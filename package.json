@@ -23,6 +23,8 @@
         "primeicons": "^6.0.1",
         "primereact": "^9.2.0",
         "react": "^18.2.0",
-        "react-dom": "^18.2.0"
+        "react-dom": "^18.2.0",
+        "react-hook-form": "^7.43.5",
+        "select-philippines-address": "^1.0.6"
     }
 }
