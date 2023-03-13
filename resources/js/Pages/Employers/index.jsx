@@ -12,7 +12,7 @@ import EstablishmentContactDetails from "./Pages/EstablishmentContactDetails";
 import { Steps } from "primereact/steps";
 
 export default function InteractiveDemo() {
-    const [activeIndex, setActiveIndex] = useState(3);
+    const [activeIndex, setActiveIndex] = useState(4);
     const toast = useRef(null);
     const numberOfPage = 5;
 

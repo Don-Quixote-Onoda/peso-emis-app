@@ -29,7 +29,11 @@ class EmployersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+
+        return Inertia::render('Employers/index', [
+            'requests' => $request
+        ]);
     }
 
     /**

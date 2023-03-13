@@ -17,14 +17,15 @@ export default function EstablishmentContactDetails({
     setActiveIndex,
     counterPrevious,
 }) {
-
     const [positionTitle, setPositionTitle] = useSessionStorage(
         sessionStorage.getItem("positionTitle"),
         "positionTitle"
     );
 
-    const [natureOfWork, setNatureOfWork] = useSessionStorage(
-        sessionStorage.getItem("natureOfWork"),
+    const [natureOfWork, setNatureOfWork] = useState("")
+
+    const [natureOfWorks, setNatureOfWorks] = useSessionStorage(
+        "",
         "natureOfWork"
     );
 
@@ -47,6 +48,7 @@ export default function EstablishmentContactDetails({
         sessionStorage.getItem("vacancyCount"),
         "vacancyCount"
     );
+    
 
     const toast = useRef(null);
 
@@ -72,7 +74,12 @@ export default function EstablishmentContactDetails({
 
     const onSubmit = (data) => {
         data.value && show();
-        setActiveIndex(activeIndex+1);
+        setNatureOfWorks(natureOfWork);
+        setPositionTitle(data.positionTitle);
+        setPlaceOfWork(data.placeOfWork);
+        setSalary(data.salary);
+        setVacancyCount(data.vacancyCount);
+        setActiveIndex(activeIndex + 1);
 
     };
 
@@ -84,331 +91,385 @@ export default function EstablishmentContactDetails({
         );
     };
 
-    const handleNatureOfWork = (value) => {
-        setNatureOfWork('');
-        !natureOfWork.includes(value) && setNatureOfWork(natureOfWork +" "+ value);
-        console.log(natureOfWork);
-    }
+    const handleNatureOfWork = (value, e) => {
+            if(e.target.checked && !natureOfWork.includes(value)) {
+
+                setNatureOfWork(natureOfWork + " " + value);
+
+            }
+            else {
+                setNatureOfWork(natureOfWork.replace(value,''));
+            }
+
+            
+    };
+
+   
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <Toast ref={toast} />
             <div class="step-3">
-            <div class="card rounded-0 border-0">
-                <div class=" bg-light mb-2 font-bold mt-10">
-                    <h4 class="card-title fw-bold">III. VACANCY DETAILS</h4>
-                </div>
-                <div class="card-body row">
-                    <div class="col-md-6">
-                        <div class="col-md-12 mb-4">
-                        <Controller
-                                name="positionTitle"
-                                control={control}
-                                rules={{
-                                    required:
-                                        "Position Title is required.",
-                                }}
-                                render={({ field, fieldState }) => (
-                                    <>
-                                        <label
-                                            for="inputEmail4"
-                                            className={`form-label !text-xs ${classNames(
-                                                { "p-error": errors.value }
-                                            )} !text-gray-400 fw-bold text-light-emphasis`}
-                                        >
-                                            {" "}
-                                            Position Title:
-                                            <span className="text-red-500">
-                                                *
-                                            </span>{" "}
-                                        </label>
-                                        <InputText
-                                            id={field.name}
-                                            value={field.value}
-                                            className={`form-control !text-xs !py-2.5 ${classNames(
-                                                {
-                                                    "p-invalid":
-                                                        fieldState.error,
-                                                }
-                                            )} !text-gray-500 border-light-emphasis establishment-name`}
-                                            onChange={(e) =>
-                                                field.onChange(e.target.value)
-                                            }
-                                        />
-
-                                        {getFormErrorMessage(field.name)}
-                                    </>
-                                )}
-                            />
-                            <span class="text-danger !text-xs  vacancy-title-error"></span>
-                        </div>
-                        <div class="col-md-12 mb-4">
-                            <label
-                                for="inputEmail4"
-                                class="form-label !text-xs text-gray-400 fw-bold text-light-emphasis"
-                            >
-                                Job Description:
-                            </label>
-                            <div class="form-floating">
-                                <textarea
-                                    class="form-control  vacancy-job-description"
-                                    placeholder="Leave a comment here"
-                                    id="floatingTextarea2"
-                                    style={{ height: "250px" }}
-                                ></textarea>
-                                
-                            </div>
-                            <span class="text-danger !text-xs vacancy-job-description-error"></span>
-                        </div>
+                <div class="card rounded-0 border-0">
+                    <div class=" bg-light mb-2 font-bold mt-10">
+                        <h4 class="card-title fw-bold">III. VACANCY DETAILS</h4>
                     </div>
-
-                    <div class="col-md-6">
-                        <div class="row">
+                    <div class="card-body row">
+                        <div class="col-md-6">
                             <div class="col-md-12 mb-4">
-                            
+                                <Controller
+                                    name="positionTitle"
+                                    control={control}
+                                    rules={{
+                                        required: "Position Title is required.",
+                                    }}
+                                    render={({ field, fieldState }) => (
+                                        <>
+                                            <label
+                                                for="inputEmail4"
+                                                className={`form-label !text-xs ${classNames(
+                                                    { "p-error": errors.value }
+                                                )} !text-gray-400 fw-bold text-light-emphasis`}
+                                            >
+                                                {" "}
+                                                Position Title:
+                                                <span className="text-red-500">
+                                                    *
+                                                </span>{" "}
+                                            </label>
+                                            <InputText
+                                                id={field.name}
+                                                value={field.value}
+                                                className={`form-control !text-xs !py-2.5 ${classNames(
+                                                    {
+                                                        "p-invalid":
+                                                            fieldState.error,
+                                                    }
+                                                )} !text-gray-500 border-light-emphasis establishment-name`}
+                                                onChange={(e) =>
+                                                    field.onChange(
+                                                        e.target.value
+                                                    )
+                                                }
+                                            />
+
+                                            {getFormErrorMessage(field.name)}
+                                        </>
+                                    )}
+                                />
+                                <span class="text-danger !text-xs  vacancy-title-error"></span>
+                            </div>
+                            <div class="col-md-12 mb-4">
                                 <label
                                     for="inputEmail4"
-                                    class="form-label !text-xs !text-gray-400 fw-bold text-light-emphasis"
+                                    class="form-label !text-xs text-gray-400 fw-bold text-light-emphasis"
                                 >
-                                    Nature of Work:{" "}
+                                    Job Description:
                                 </label>
-                               
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-check">
-                                            <input
-                                                class="form-check-input vacancy-nature-of-work  border-light-emphasis "
-                                                name="vacancy-nature-of-work[]"
-                                                type="checkbox"
-                                                value="Permanent"
-                                                id="vacancy-nature-of-work"
-                                                onChange={() => handleNatureOfWork('Permanent')}
-                                            />
-                                            <label
-                                                class="form-check-label !text-xs fw-bold !text-gray-500 !p-0"
-                                                for="flexCheckDefault"
-                                            >
-                                                Permanent
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input
-                                                class="form-check-input vacancy-nature-of-work  border-light-emphasis "
-                                                name="vacancy-nature-of-work[]"
-                                                type="checkbox"
-                                                value="Contractual"
-                                                id="vacancy-nature-of-work"
-                                                onChange={() => handleNatureOfWork('Contractual')}
-                                            />
-                                            <label
-                                                class="form-check-label !text-xs fw-bold !text-gray-500 !p-0"
-                                                for="flexCheckDefault"
-                                            >
-                                                Contractual
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input
-                                                class="form-check-input vacancy-nature-of-work  border-light-emphasis "
-                                                name="vacancy-nature-of-work[]"
-                                                type="checkbox"
-                                                value="Project-based"
-                                                id="vacancy-nature-of-work"
-                                                onChange={() => handleNatureOfWork('Project-based')}
-                                            />
-                                            <label
-                                                class="form-check-label !text-xs fw-bold !text-gray-500 !p-0"
-                                                for="flexCheckDefault"
-                                            >
-                                                Project-based
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-check">
-                                            <input
-                                                class="form-check-input vacancy-nature-of-work  border-light-emphasis "
-                                                name="vacancy-nature-of-work[]"
-                                                type="checkbox"
-                                                value="Internship / OJT"
-                                                id="vacancy-nature-of-work"
-                                                onChange={() => handleNatureOfWork('Internship / OJT')}
-                                            />
-                                            <label
-                                                class="form-check-label !text-xs fw-bold !text-gray-500 !p-0"
-                                                for="flexCheckDefault"
-                                            >
-                                                Internship / OJT
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input
-                                                class="form-check-input vacancy-nature-of-work  border-light-emphasis "
-                                                name="vacancy-nature-of-work[]"
-                                                type="checkbox"
-                                                value="Part-time"
-                                                id="vacancy-nature-of-work"
-                                                onChange={() => handleNatureOfWork('Part-time')}
-                                            />
-                                            <label
-                                                class="form-check-label !text-xs fw-bold !text-gray-500 !p-0"
-                                                for="flexCheckDefault"
-                                            >
-                                                Part-time
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input
-                                                class="form-check-input vacancy-nature-of-work  border-light-emphasis "
-                                                name="vacancy-nature-of-work[]"
-                                                type="checkbox"
-                                                value="Work from home / online-job"
-                                                id="vacancy-nature-of-work"
-                                                onChange={() => handleNatureOfWork('Work from home / online-job')}
-                                            />
-                                            <label
-                                                class="form-check-label !text-xs fw-bold !text-gray-500 !p-0"
-                                                for="flexCheckDefault"
-                                            >
-                                                Work from home / online-job
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <span class="text-danger !text-xs vacancy-nature-of-work-error"></span>
+                                <div class="form-floating">
+                                    <textarea
+                                        class="form-control  vacancy-job-description"
+                                        placeholder="Leave a comment here"
+                                        id="floatingTextarea2"
+                                        style={{ height: "250px" }}
+
+                                        onChange={(e) => setJobDescription(e.target.value)}
+                                    >{jobDescription}</textarea>
                                 </div>
-                            </div>
-                            <div class="col-md-12 mb-4">
-                            <Controller
-                                name="placeOfWork"
-                                control={control}
-                                rules={{
-                                    required:
-                                        "Place of Work is required.",
-                                }}
-                                render={({ field, fieldState }) => (
-                                    <>
-                                        <label
-                                            for="inputEmail4"
-                                            className={`form-label !text-xs ${classNames(
-                                                { "p-error": errors.value }
-                                            )} !text-gray-400 fw-bold text-light-emphasis`}
-                                        >
-                                            {" "}
-                                            Place of Work:
-                                            <span className="text-red-500">
-                                                *
-                                            </span>{" "}
-                                        </label>
-                                        <InputText
-                                            id={field.name}
-                                            value={field.value}
-                                            className={`form-control !text-xs !py-2.5 ${classNames(
-                                                {
-                                                    "p-invalid":
-                                                        fieldState.error,
-                                                }
-                                            )} !text-gray-500 border-light-emphasis establishment-name`}
-                                            onChange={(e) =>
-                                                field.onChange(e.target.value)
-                                            }
-                                        />
-
-                                        {getFormErrorMessage(field.name)}
-                                    </>
-                                )}
-                            />
-                                <span class="text-danger !text-xs vacancy-place-of-work-error"></span>
-                            </div>
-                            <div class="col-md-12 mb-4">
-                            <Controller
-                                name="salary"
-                                control={control}
-                                rules={{
-                                    required:
-                                        "Salary is required.",
-                                }}
-                                render={({ field, fieldState }) => (
-                                    <>
-                                        <label
-                                            for="inputEmail4"
-                                            className={`form-label !text-xs ${classNames(
-                                                { "p-error": errors.value }
-                                            )} !text-gray-400 fw-bold text-light-emphasis`}
-                                        >
-                                            {" "}
-                                            Salary:
-                                            <span className="text-red-500">
-                                                *
-                                            </span>{" "}
-                                        </label>
-                                        <InputText
-                                            id={field.name}
-                                            value={field.value}
-                                            className={`form-control !text-xs !py-2.5 ${classNames(
-                                                {
-                                                    "p-invalid":
-                                                        fieldState.error,
-                                                }
-                                            )} !text-gray-500 border-light-emphasis establishment-name`}
-                                            onChange={(e) =>
-                                                field.onChange(e.target.value)
-                                            }
-                                        />
-
-                                        {getFormErrorMessage(field.name)}
-                                    </>
-                                )}
-                            />
-                                <span class="text-danger !text-xs vacancy-salary-error"></span>
-                            </div>
-                            <div class="col-md-12 mb-4">
-                            <Controller
-                                name="vacancyCount"
-                                control={control}
-                                rules={{
-                                    required:
-                                        "Vacancy Count is required.",
-                                }}
-                                render={({ field, fieldState }) => (
-                                    <>
-                                        <label
-                                            for="inputEmail4"
-                                            className={`form-label !text-xs ${classNames(
-                                                { "p-error": errors.value }
-                                            )} !text-gray-400 fw-bold text-light-emphasis`}
-                                        >
-                                            {" "}
-                                            Vacancy Count:
-                                            <span className="text-red-500">
-                                                *
-                                            </span>{" "}
-                                        </label>
-                                        <InputText
-                                            id={field.name}
-                                            value={field.value}
-                                            className={`form-control !text-xs !py-2.5 ${classNames(
-                                                {
-                                                    "p-invalid":
-                                                        fieldState.error,
-                                                }
-                                            )} !text-gray-500 border-light-emphasis establishment-name`}
-                                            onChange={(e) =>
-                                                field.onChange(e.target.value)
-                                            }
-                                        />
-
-                                        {getFormErrorMessage(field.name)}
-                                    </>
-                                )}
-                            />
-                                <span class="text-danger !text-xs vacancy-count-error"></span>
+                                <span class="text-danger !text-xs vacancy-job-description-error"></span>
                             </div>
                         </div>
+
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-12 mb-4">
+                                    <label
+                                        for="inputEmail4"
+                                        class="form-label !text-xs !text-gray-400 fw-bold text-light-emphasis"
+                                    >
+                                        Nature of Work:{" "}
+                                    </label>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-check">
+                                                <input
+                                                    class="form-check-input vacancy-nature-of-work  border-light-emphasis "
+                                                    name="vacancy-nature-of-work[]"
+                                                    type="checkbox"
+                                                    value="Permanent"
+                                                    id="vacancy-nature-of-work"
+                                                    onChange={(e) =>
+                                                        handleNatureOfWork(
+                                                            "Permanent", e
+                                                        )
+                                                    }
+                                                />
+                                                <label
+                                                    class="form-check-label !text-xs fw-bold !text-gray-500 !p-0"
+                                                    for="flexCheckDefault"
+                                                >
+                                                    Permanent
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input
+                                                    class="form-check-input vacancy-nature-of-work  border-light-emphasis "
+                                                    name="vacancy-nature-of-work[]"
+                                                    type="checkbox"
+                                                    value="Contractual"
+                                                    id="vacancy-nature-of-work"
+                                                    onChange={(e) =>
+                                                        handleNatureOfWork(
+                                                            "Contractual",e
+                                                        )
+                                                    }
+                                                />
+                                                <label
+                                                    class="form-check-label !text-xs fw-bold !text-gray-500 !p-0"
+                                                    for="flexCheckDefault"
+                                                >
+                                                    Contractual
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input
+                                                    class="form-check-input vacancy-nature-of-work  border-light-emphasis "
+                                                    name="vacancy-nature-of-work[]"
+                                                    type="checkbox"
+                                                    value="Project-based"
+                                                    id="vacancy-nature-of-work"
+                                                    onChange={(e) =>
+                                                        handleNatureOfWork(
+                                                            "Project-based",e
+                                                        )
+                                                    }
+                                                />
+                                                <label
+                                                    class="form-check-label !text-xs fw-bold !text-gray-500 !p-0"
+                                                    for="flexCheckDefault"
+                                                >
+                                                    Project-based
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-check">
+                                                <input
+                                                    class="form-check-input vacancy-nature-of-work  border-light-emphasis "
+                                                    name="vacancy-nature-of-work[]"
+                                                    type="checkbox"
+                                                    value="Internship / OJT"
+                                                    id="vacancy-nature-of-work"
+                                                    onChange={(e) =>
+                                                        handleNatureOfWork(
+                                                            "Internship / OJT",e
+                                                        )
+                                                    }
+                                                />
+                                                <label
+                                                    class="form-check-label !text-xs fw-bold !text-gray-500 !p-0"
+                                                    for="flexCheckDefault"
+                                                >
+                                                    Internship / OJT
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input
+                                                    class="form-check-input vacancy-nature-of-work  border-light-emphasis "
+                                                    name="vacancy-nature-of-work[]"
+                                                    type="checkbox"
+                                                    value="Part-time"
+                                                    id="vacancy-nature-of-work"
+                                                    onChange={(e) =>
+                                                        handleNatureOfWork(
+                                                            "Part-time",e
+                                                        )
+                                                    }
+                                                />
+                                                <label
+                                                    class="form-check-label !text-xs fw-bold !text-gray-500 !p-0"
+                                                    for="flexCheckDefault"
+                                                >
+                                                    Part-time
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input
+                                                    class="form-check-input vacancy-nature-of-work  border-light-emphasis "
+                                                    name="vacancy-nature-of-work[]"
+                                                    type="checkbox"
+                                                    value="Work from home / online-job"
+                                                    id="vacancy-nature-of-work"
+                                                    onChange={(e) =>
+                                                        handleNatureOfWork(
+                                                            "Work from home / online-job",e
+                                                        )
+                                                    }
+                                                />
+                                                <label
+                                                    class="form-check-label !text-xs fw-bold !text-gray-500 !p-0"
+                                                    for="flexCheckDefault"
+                                                >
+                                                    Work from home / online-job
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <span class="text-danger !text-xs vacancy-nature-of-work-error"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb-4">
+                                    <Controller
+                                        name="placeOfWork"
+                                        control={control}
+                                        rules={{
+                                            required:
+                                                "Place of Work is required.",
+                                        }}
+                                        render={({ field, fieldState }) => (
+                                            <>
+                                                <label
+                                                    for="inputEmail4"
+                                                    className={`form-label !text-xs ${classNames(
+                                                        {
+                                                            "p-error":
+                                                                errors.value,
+                                                        }
+                                                    )} !text-gray-400 fw-bold text-light-emphasis`}
+                                                >
+                                                    {" "}
+                                                    Place of Work:
+                                                    <span className="text-red-500">
+                                                        *
+                                                    </span>{" "}
+                                                </label>
+                                                <InputText
+                                                    id={field.name}
+                                                    value={field.value}
+                                                    className={`form-control !text-xs !py-2.5 ${classNames(
+                                                        {
+                                                            "p-invalid":
+                                                                fieldState.error,
+                                                        }
+                                                    )} !text-gray-500 border-light-emphasis establishment-name`}
+                                                    onChange={(e) =>
+                                                        field.onChange(
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                />
+
+                                                {getFormErrorMessage(
+                                                    field.name
+                                                )}
+                                            </>
+                                        )}
+                                    />
+                                    <span class="text-danger !text-xs vacancy-place-of-work-error"></span>
+                                </div>
+                                <div class="col-md-12 mb-4">
+                                    <Controller
+                                        name="salary"
+                                        control={control}
+                                        rules={{
+                                            required: "Salary is required.",
+                                        }}
+                                        render={({ field, fieldState }) => (
+                                            <>
+                                                <label
+                                                    for="inputEmail4"
+                                                    className={`form-label !text-xs ${classNames(
+                                                        {
+                                                            "p-error":
+                                                                errors.value,
+                                                        }
+                                                    )} !text-gray-400 fw-bold text-light-emphasis`}
+                                                >
+                                                    {" "}
+                                                    Salary:
+                                                    <span className="text-red-500">
+                                                        *
+                                                    </span>{" "}
+                                                </label>
+                                                <InputText
+                                                    id={field.name}
+                                                    value={field.value}
+                                                    className={`form-control !text-xs !py-2.5 ${classNames(
+                                                        {
+                                                            "p-invalid":
+                                                                fieldState.error,
+                                                        }
+                                                    )} !text-gray-500 border-light-emphasis establishment-name`}
+                                                    onChange={(e) =>
+                                                        field.onChange(
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                />
+
+                                                {getFormErrorMessage(
+                                                    field.name
+                                                )}
+                                            </>
+                                        )}
+                                    />
+                                    <span class="text-danger !text-xs vacancy-salary-error"></span>
+                                </div>
+                                <div class="col-md-12 mb-4">
+                                    <Controller
+                                        name="vacancyCount"
+                                        control={control}
+                                        rules={{
+                                            required:
+                                                "Vacancy Count is required.",
+                                        }}
+                                        render={({ field, fieldState }) => (
+                                            <>
+                                                <label
+                                                    for="inputEmail4"
+                                                    className={`form-label !text-xs ${classNames(
+                                                        {
+                                                            "p-error":
+                                                                errors.value,
+                                                        }
+                                                    )} !text-gray-400 fw-bold text-light-emphasis`}
+                                                >
+                                                    {" "}
+                                                    Vacancy Count:
+                                                    <span className="text-red-500">
+                                                        *
+                                                    </span>{" "}
+                                                </label>
+                                                <InputText
+                                                    id={field.name}
+                                                    value={field.value}
+                                                    className={`form-control !text-xs !py-2.5 ${classNames(
+                                                        {
+                                                            "p-invalid":
+                                                                fieldState.error,
+                                                        }
+                                                    )} !text-gray-500 border-light-emphasis establishment-name`}
+                                                    onChange={(e) =>
+                                                        field.onChange(
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                />
+
+                                                {getFormErrorMessage(
+                                                    field.name
+                                                )}
+                                            </>
+                                        )}
+                                    />
+                                    <span class="text-danger !text-xs vacancy-count-error"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-4"></div>
                     </div>
-                    <div class="col-md-12 mb-4"></div>
                 </div>
             </div>
-        </div>
             <NavigatorButton
                 activeIndex={activeIndex}
                 numberOfPage={numberOfPage}
