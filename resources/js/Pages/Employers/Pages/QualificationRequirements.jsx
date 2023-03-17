@@ -136,6 +136,7 @@ export default function EstablishmentContactDetails({
         setQualificationRequirementNatureOfWorks(qualificationRequirementNatureOfWork);
         setDisabilitiesAccepted(disabilityAccepted);
         setActiveIndex(activeIndex + 1);
+        setWorkExperience(data.workExperience);
 
         console.log(data);
     };

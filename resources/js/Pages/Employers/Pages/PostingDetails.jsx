@@ -29,11 +29,7 @@ export default function EstablishmentContactDetails({
         value: "",
     };
 
-    const { data, setData, post, processing, errors } = useForm({
-        email: '',
-        password: '',
-        remember: false,
-      })
+    const { data, setData, post, processing, errors } = useForm(sessionStorage)
       
 
     const toast = useRef(null);
@@ -53,7 +49,7 @@ export default function EstablishmentContactDetails({
       }
 
     useState(()=>{
-        setData('test', 'ok');
+        
     }, []);
 
 
