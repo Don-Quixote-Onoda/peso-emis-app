@@ -149,7 +149,7 @@ export default function EstablishmentDetails({
         setStablishmentName(data.stablishmentName);
         setTotalWorkForce(data.totalWorkForce);
 
-        setActiveIndex(activeIndex+1);
+        setActiveIndex(activeIndex + 1);
     };
 
     const getFormErrorMessage = (name) => {
@@ -471,8 +471,7 @@ export default function EstablishmentDetails({
                             <span class="text-danger !text-xs  establishment-employer-type-error"></span>
                         </div>
                         <div class="col-md-6 mb-4">
-                           
-                        <Controller
+                            <Controller
                                 name="totalWorkForce"
                                 control={control}
                                 rules={{
@@ -579,7 +578,7 @@ export default function EstablishmentDetails({
                                     </>
                                 )}
                             />
-                            
+
                             <span class="text-danger !text-xs establishment-total-worked-force-error"></span>
                         </div>
 

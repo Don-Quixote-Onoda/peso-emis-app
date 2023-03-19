@@ -1,8 +1,158 @@
 import React, { useState, useRef } from "react";
+import NavigatorButton from "../Components/NavigatorButton";
 
-export default function PersonalInformation() {
+import { InputText } from 'primereact/inputtext';
+import { useSessionStorage, useLocalStorage } from "primereact/hooks";
+
+import { Calendar } from 'primereact/calendar';
+        
+import { RadioButton } from 'primereact/radiobutton';
+
+import { Dropdown } from 'primereact/dropdown';
+        
+        
+
+export default function PersonalInformation({
+    activeIndex,
+    numberOfPage,
+    setActiveIndex,
+    counterPrevious,
+}) {
+    const [surname, setSurname] = useSessionStorage(
+        sessionStorage.getItem("surname"),
+        "surname"
+    );
+
+    const [firstname, setFirstname] = useSessionStorage(
+        sessionStorage.getItem("firstname"),
+        "firstname"
+    );
+
+    const [middlename, setMiddlename] = useSessionStorage(
+        sessionStorage.getItem("middlename"),
+        "middlename"
+    );
+
+    const [suffix, setSuffix] = useSessionStorage(
+        sessionStorage.getItem("suffix"),
+        "suffix"
+    );
+
+    const [birthdate, setBithdate] = useSessionStorage(
+        sessionStorage.getItem("birthdate"),
+        "birthdate"
+    );
+
+    const [religion, setReligion] = useSessionStorage(
+        sessionStorage.getItem("religion"),
+        "religion"
+    );
+
+    const [height, setHeight] = useSessionStorage(
+        sessionStorage.getItem("height"),
+        "height"
+    );
+
+    const [birthOfPlaceHouseOrStreet, setBirthOfPlaceHouseOrStreet] = useSessionStorage(
+        sessionStorage.getItem("birthOfPlaceHouseOrStreet"),
+        "birthOfPlaceHouseOrStreet"
+    );
+
+    const [presentAddressHouseOrStreet, setpresentAddressHouseOrStreet] = useSessionStorage(
+        sessionStorage.getItem("presentAddressHouseOrStreet"),
+        "presentAddressHouseOrStreet"
+    );
+
+    const [emailAddress, setEmailAddress] = useSessionStorage(
+        sessionStorage.getItem("emailAddress"),
+        "emailAddress"
+    );
+
+    const [phoneNumber, setPhoneNumber] = useSessionStorage(
+        sessionStorage.getItem("phoneNumber"),
+        "phoneNumber"
+    );
+
+    const [landlineNumber, setLandlineNumber] = useSessionStorage(
+        sessionStorage.getItem("landlineNumber"),
+        "landlineNumber"
+    );
+
+    const [GSISNumber, setGSISNumber] = useSessionStorage(
+        sessionStorage.getItem("GSISNumber"),
+        "GSISNumber"
+    );
+
+    const [pagIbigNumber, setPagIbigNumber] = useSessionStorage(
+        sessionStorage.getItem("pagIbigNumber"),
+        "pagIbigNumber"
+    );
+
+    const [philhealthNumber, setPhilhealthNumber] = useSessionStorage(
+        sessionStorage.getItem("philhealthNumber"),
+        "philhealthNumber"
+    );
+
+    const [sex, setSex] = useSessionStorage(
+        sessionStorage.getItem("sex"),
+        "sex"
+    );
+
+    const [civilStatus, setCivilStatus] = useSessionStorage(
+        sessionStorage.getItem("civilStatus"),
+        "civilStatus"
+    );
+
+    const [disability, setDisability] = useSessionStorage(
+        sessionStorage.getItem("disability"),
+        "disability"
+    );
+
+    const [activelyLookingForWork, setActivelyLookingForWork] = useSessionStorage(
+        sessionStorage.getItem("activelyLookingForWork"),
+        "activelyLookingForWork"
+    );
+
+
+    const [willingToWorkImmediately, setWillingToWorkImmediately] = useSessionStorage(
+        sessionStorage.getItem("willingToWorkImmediately"),
+        "willingToWorkImmediately"
+    );
+
+    const [is4psBeneficiary, setIs4psBeneficiary] = useSessionStorage(
+        sessionStorage.getItem("is4psBeneficiary"),
+        "is4psBeneficiary"
+    );
+
+    const [employementStatus, setEmployementStatus] = useSessionStorage(
+        sessionStorage.getItem("employementStatus"),
+        "employementStatus"
+    );
+
+    const civilStatuses = [
+        { name: 'Single' },
+        { name: 'Married' },
+        { name: 'Widowed' },
+        { name: 'Seperated' },
+        { name: 'Live-in' },
+    ];
+
+    const disabilities = [
+        { name: 'Visual' },
+        { name: 'Hearing' },
+        { name: 'Speech' },
+        { name: 'Physical' },
+        { name: 'Others' },
+    ];
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setActiveIndex(activeIndex + 1);
+    }
     return (
-        <div class="step-1">
+        
+        <form onSubmit={e => handleSubmit(e)}>
+            <div class="step-1">
             <div class="card rounded-0 border-0">
                 <div class=" bg-light mb-2 font-bold mt-10">
                     <h4 class="card-title fw-bold">1. Personal information</h4>
@@ -15,10 +165,7 @@ export default function PersonalInformation() {
                         >
                             Surname
                         </label>
-                        <input
-                            type="input"
-                            class="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                        />
+                        <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" value={surname} onChange={(e) => setSurname(e.target.value)} />
                         <span class="text-danger !text-xs pi_surname-error"></span>
                     </div>
                     <div class="col-md-6 mb-4">
@@ -28,10 +175,8 @@ export default function PersonalInformation() {
                         >
                             First Name
                         </label>
-                        <input
-                            type="input"
-                            class="form-control !py-2.5 !text-xs !text-gray-500 border-light-emphasis pi_firstname"
-                        />
+                        <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" value={firstname} onChange={(e) => setFirstname(e.target.value)} />
+
                         <span class="text-danger !text-xs pi_firstname-error"></span>
                     </div>
                     <div class="col-md-6 mb-4">
@@ -41,10 +186,7 @@ export default function PersonalInformation() {
                         >
                             Middle Name
                         </label>
-                        <input
-                            type="input"
-                            class="form-control !py-2.5 !text-xs !text-gray-500 border-light-emphasis pi_middlename"
-                        />
+                        <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" value={middlename} onChange={(e) => setMiddlename(e.target.value)} />
                         <span class="text-danger !text-xs pi_middlename-error"></span>
                     </div>
                     <div class="col-md-6 mb-4">
@@ -54,11 +196,7 @@ export default function PersonalInformation() {
                         >
                             Suffix
                         </label>
-                        <input
-                            type="input"
-                            class="form-control !py-2.5 !text-xs pi_suffix !text-gray-500 border-light-emphasis"
-                            placeholder="Ex. Sr., Jr."
-                        />
+                        <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" value={suffix} onChange={(e) => setSuffix(e.target.value)} />
                         <span class="text-danger !text-xs pi_suffix-error"></span>
                     </div>
                     <div class="col-md-6 mb-4">
@@ -68,10 +206,7 @@ export default function PersonalInformation() {
                         >
                             Date of Birth
                         </label>
-                        <input
-                            type="date"
-                            class="form-control !py-2.5 !text-xs pi_date_of_birth !text-gray-500 border-light-emphasis"
-                        />
+                        <Calendar className="form-control p-0 border-0" value={birthdate} setBithdate={(e) => setDate(e.value)} dateFormat="dd/mm/yy" />
                         <span class="text-danger !text-xs pi_date_of_birth-error"></span>
                     </div>
                     <div class="col-md-6 mb-4">
@@ -81,10 +216,7 @@ export default function PersonalInformation() {
                         >
                             Religion
                         </label>
-                        <input
-                            type="text"
-                            class="form-control !py-2.5 pi_religion !text-xs !text-gray-500 border-light-emphasis"
-                        />
+                        <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" value={religion} onChange={(e) => setReligion(e.target.value)} />
                         <span class="text-danger !text-xs pi_religion-error"></span>
                     </div>
                     <div class="col-md-4 mb-4">
@@ -97,11 +229,7 @@ export default function PersonalInformation() {
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-check">
-                                    <input
-                                        class="form-check-input pi_sex border-light-emphasis"
-                                        type="radio"
-                                        value="Male"
-                                    />
+                                     <RadioButton inputId="ingredient1" name="sex" value="Male" onChange={(e) => setSex(e.value)} checked={sex === 'Male'} />
                                     <label
                                         class="form-check-label !text-xs !text-gray-500"
                                         for="exampleRadios1"
@@ -112,11 +240,8 @@ export default function PersonalInformation() {
                             </div>
                             <div class="col-md-6">
                                 <div class="form-check">
-                                    <input
-                                        class="form-check-input pi_sex border-light-emphasis"
-                                        type="radio"
-                                        value="Female"
-                                    />
+                                <RadioButton inputId="ingredient1" name="sex" value="Female" onChange={(e) => setSex(e.value)} checked={sex === 'Female'} />
+
                                     <label
                                         class="form-check-label !text-xs !text-gray-500"
                                         for="exampleRadios2"
@@ -135,19 +260,10 @@ export default function PersonalInformation() {
                         >
                             Civil Status
                         </label>
-                        <select
-                            class="form-select !text-xs pi_civil_status !text-gray-500 !py-2.5 border-light-emphasis"
-                            aria-label="Default select example"
-                        >
-                            <option selected value="Single">
-                                Single
-                            </option>
-                            <option value="Married">Married</option>
-                            <option value="Widowed">Widowed</option>
-                            <option value="Seperated">Seperated</option>
-                            <option value="Live-in">Live-in</option>
-                        </select>
-                        <span class="text-danger !text-xs pi_civil_status-error"></span>
+                        
+                        <Dropdown value={civilStatus} onChange={(e) => setCivilStatus(e.value)} options={civilStatuses} optionLabel="name" 
+                editable placeholder="Select a Civil Status" className="form-select !text-xs pi_civil_status !text-gray-500 !py-2.5 border-light-emphasis" />
+                        <span class="text-danger !text-xs pi_civil_status-error h-10"></span>
                     </div>
                     <div class="col-md-4 mb-4">
                         <label
@@ -157,12 +273,7 @@ export default function PersonalInformation() {
                             Height
                         </label>
                         <div class="input-group mb-3">
-                            <input
-                                type="text"
-                                class="form-control pi_height !text-gray-500 !py-2.5 !text-xs border-light-emphasis"
-                                aria-label="Recipient's username"
-                                aria-describedby="basic-addon2"
-                            />
+                        <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" value={height} onChange={(e) => setHeight(e.target.value)} />
                             <span class="input-group-text !text-gray-500 !text-xs border-light-emphasis">
                                 cm
                             </span>
@@ -180,13 +291,7 @@ export default function PersonalInformation() {
                             <div class="row">
                                 <div class="col-md-2">
                                     <div class="form-check">
-                                        <input
-                                            class="form-check-input pi_looking_for_work yes_actively_looking_for_work border-light-emphasis"
-                                            type="radio"
-                                            name="exampleRadios"
-                                            id="exampleRadios1"
-                                            value="Yes"
-                                        />
+                                    <RadioButton inputId="ingredient1" name="activilyLookingForWork" value="Yes" onChange={(e) => setActivelyLookingForWork(e.value)} checked={activelyLookingForWork === 'Yes'} />
                                         <label
                                             class="form-check-label !text-xs !py-2.5 !text-gray-500"
                                             for="exampleRadios1"
@@ -197,13 +302,7 @@ export default function PersonalInformation() {
                                 </div>
                                 <div class="col-md-10">
                                     <div class="form-check">
-                                        <input
-                                            class="form-check-input pi_looking_for_work not_actively_looking_for_work border-light-emphasis"
-                                            type="radio"
-                                            name="exampleRadios"
-                                            id="exampleRadios2"
-                                            value="No"
-                                        />
+                                    <RadioButton inputId="ingredient1" name="activilyLookingForWork" value="No" onChange={(e) => setActivelyLookingForWork(e.value)} checked={activelyLookingForWork === 'No'} />
                                         <label
                                             class="form-check-label !text-xs !py-2.5 !text-gray-500"
                                             for="exampleRadios2"
@@ -239,13 +338,7 @@ export default function PersonalInformation() {
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="form-check">
-                                    <input
-                                        class="form-check-input pi_when_to_work yes_when_to_work border-light-emphasis"
-                                        type="radio"
-                                        name="exampleRadios"
-                                        id="exampleRadios1"
-                                        value="Yes"
-                                    />
+                                <RadioButton inputId="ingredient1" name="willingToWorkImmediately" value="Yes" onChange={(e) => setWillingToWorkImmediately(e.value)} checked={willingToWorkImmediately === 'Yes'} />
                                     <label
                                         class="form-check-label !text-xs !py-2.5 !text-gray-500"
                                         for="exampleRadios1"
@@ -256,13 +349,7 @@ export default function PersonalInformation() {
                             </div>
                             <div class="col-md-10">
                                 <div class="form-check">
-                                    <input
-                                        class="form-check-input pi_when_to_work no_when_to_work border-light-emphasis"
-                                        type="radio"
-                                        name="exampleRadios"
-                                        id="exampleRadios2"
-                                        value="No"
-                                    />
+                                <RadioButton inputId="ingredient1" name="willingToWorkImmediately" value="No" onChange={(e) => setWillingToWorkImmediately(e.value)} checked={willingToWorkImmediately === 'No'} />
                                     <label
                                         class="form-check-label !text-xs !py-2.5 !text-gray-500"
                                         for="exampleRadios2"
@@ -297,13 +384,7 @@ export default function PersonalInformation() {
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="form-check">
-                                    <input
-                                        class="form-check-input pi_4ps_beneficiary yes_4ps_beneficiary border-light-emphasis"
-                                        type="radio"
-                                        name="exampleRadios"
-                                        id="exampleRadios1"
-                                        value="Yes"
-                                    />
+                                <RadioButton inputId="ingredient1" name="is4psBeneficiary" value="Yes" onChange={(e) => setIs4psBeneficiary(e.value)} checked={is4psBeneficiary === 'Yes'} />
                                     <label
                                         class="form-check-label !text-xs !py-2.5 !text-gray-500"
                                         for="exampleRadios1"
@@ -314,13 +395,7 @@ export default function PersonalInformation() {
                             </div>
                             <div class="col-md-10">
                                 <div class="form-check">
-                                    <input
-                                        class="form-check-input pi_4ps_beneficiary no_4ps_beneficiary border-light-emphasis"
-                                        type="radio"
-                                        name="exampleRadios"
-                                        id="exampleRadios2"
-                                        value="No"
-                                    />
+                                <RadioButton inputId="ingredient1" name="is4psBeneficiary" value="No" onChange={(e) => setIs4psBeneficiary(e.value)} checked={is4psBeneficiary === 'No'} />
                                     <label
                                         class="form-check-label !text-xs !py-2.5 !text-gray-500"
                                         for="exampleRadios2"
@@ -483,11 +558,7 @@ export default function PersonalInformation() {
                         >
                             Email Address
                         </label>
-                        <input
-                            type="email"
-                            class="form-control !text-xs pi_email_address !py-2.5 !text-gray-500 border-light-emphasis"
-                            id="pi_email_address"
-                        />
+                        <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" value={emailAddress} onChange={(e) => setEmailAddress(e.target.value)} />
                         <span class="text-danger !text-xs pi_email_address-error"></span>
                     </div>
                     <div class="col-md-6 mb-4">
@@ -497,11 +568,7 @@ export default function PersonalInformation() {
                         >
                             Cellphone Number
                         </label>
-                        <input
-                            type="text"
-                            class="form-control pi_celphone_number !text-xs !py-2.5 !text-gray-500 border-light-emphasis"
-                            id="pi_celphone_number"
-                        />
+                        <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
                         <span class="text-danger !text-xs pi_celphone_number-error"></span>
                     </div>
                     <div class="col-md-6 mb-4">
@@ -511,11 +578,7 @@ export default function PersonalInformation() {
                         >
                             Landline Number
                         </label>
-                        <input
-                            type="text"
-                            class="form-control pi_landine_number !text-xs !py-2.5 !text-gray-500 border-light-emphasis"
-                            id="pi_landine_number"
-                        />
+                        <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" value={landlineNumber} onChange={(e) => setLandlineNumber(e.target.value)} />
                         <span class="text-danger !text-xs pi_landine_number-error"></span>
                     </div>
                     <div class="col-md-6 mb-4">
@@ -525,11 +588,7 @@ export default function PersonalInformation() {
                         >
                             GSIS/SSS Number
                         </label>
-                        <input
-                            type="text"
-                            class="form-control pi_sss_number !text-xs !py-2.5 !text-gray-500 border-light-emphasis"
-                            id="pi_sss_number"
-                        />
+                        <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" value={GSISNumber} onChange={(e) => setGSISNumber(e.target.value)} />
                         <span class="text-danger !text-xs pi_sss_number-error"></span>
                     </div>
                     <div class="col-md-6 mb-4">
@@ -539,11 +598,7 @@ export default function PersonalInformation() {
                         >
                             Pag-ibig Number
                         </label>
-                        <input
-                            type="text"
-                            class="form-control pi_pag_ibig_number !text-xs !py-2.5 !text-gray-500 border-light-emphasis"
-                            id="pi_pag_ibig_number"
-                        />
+                        <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" value={pagIbigNumber} onChange={(e) => setPagIbigNumber(e.target.value)} />
                         <span class="text-danger !text-xs pi_pag_ibig_number-error"></span>
                     </div>
                     <div class="col-md-6 mb-4">
@@ -553,11 +608,7 @@ export default function PersonalInformation() {
                         >
                             PhilHealth Number
                         </label>
-                        <input
-                            type="text"
-                            class="form-control pi_philheath_number !text-xs !py-2.5 !text-gray-500 border-light-emphasis"
-                            id="pi_philheath_number"
-                        />
+                        <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" value={philhealthNumber} onChange={(e) => setPhilhealthNumber(e.target.value)} />
                         <span class="text-danger !text-xs pi_philheath_number-error"></span>
                     </div>
                     <div class="col-md-6 mb-4">
@@ -568,21 +619,8 @@ export default function PersonalInformation() {
                             >
                                 Disability
                             </label>
-                            <select
-                                class="form-select disability pi_disability border-light-emphasis mb-2 !text-xs !py-2.5 !text-gray-500"
-                                aria-label="Default select example"
-                            >
-                                <option value="" selected>
-                                    Select disablity
-                                </option>
-                                <option value="Visual">Visual</option>
-                                <option value="Hearing">Hearing</option>
-                                <option value="Speech">Speech</option>
-                                <option value="Physical">Physical</option>
-                                <option value="Others">
-                                    Others, please specify:{" "}
-                                </option>
-                            </select>
+                            <Dropdown value={disability} onChange={(e) => setDisability(e.value)} options={disabilities} optionLabel="name" 
+                editable placeholder="Select a Disability" className="form-select !text-xs pi_civil_status !text-gray-500 !py-2.5 border-light-emphasis" />
                             <span class="text-danger !text-xs pi_disability-error"></span>
                         </div>
                     </div>
@@ -597,13 +635,7 @@ export default function PersonalInformation() {
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-check">
-                                        <input
-                                            class="form-check-input employed border-light-emphasis pi_employed"
-                                            type="radio"
-                                            name="pi_employed"
-                                            id="pi_employed"
-                                            value="Employed"
-                                        />
+                                    <RadioButton inputId="ingredient1" name="employementStatus" value="Employed" onChange={(e) => setEmployementStatus(e.value)} checked={employementStatus === 'Employed'} />
                                         <label
                                             class="form-check-label !text-xs !py-2.5 !text-gray-500"
                                             for="exampleRadios1"
@@ -614,13 +646,7 @@ export default function PersonalInformation() {
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-check">
-                                        <input
-                                            class="form-check-input unemployed pi_employed border-light-emphasis"
-                                            type="radio"
-                                            name="pi_employed"
-                                            id="pi_employed"
-                                            value="Unemployed"
-                                        />
+                                    <RadioButton inputId="ingredient1" name="employementStatus" value="Unemployed" onChange={(e) => setEmployementStatus(e.value)} checked={employementStatus === 'Unemployed'} />
                                         <label
                                             class="form-check-label !text-xs !py-2.5 !text-gray-500"
                                             for="exampleRadios2"
@@ -674,5 +700,12 @@ export default function PersonalInformation() {
                 </div>
             </div>
         </div>
+            <NavigatorButton
+                activeIndex={activeIndex}
+                numberOfPage={numberOfPage}
+                setActiveIndex={setActiveIndex}
+                counterPrevious={counterPrevious}
+            />
+        </form>
     );
 }
