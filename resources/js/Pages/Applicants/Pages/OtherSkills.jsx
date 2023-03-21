@@ -1,5 +1,8 @@
 import React, { useState, useRef } from "react";
 import NavigatorButton from "../Components/NavigatorButton";
+
+import { Checkbox } from 'primereact/checkbox';
+        
 export default function OtherSkills({
     activeIndex,
     numberOfPage,

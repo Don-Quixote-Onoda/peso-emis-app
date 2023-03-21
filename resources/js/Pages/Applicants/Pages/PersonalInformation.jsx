@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import NavigatorButton from "../Components/NavigatorButton";
 
 import { InputText } from 'primereact/inputtext';
@@ -9,8 +9,14 @@ import { Calendar } from 'primereact/calendar';
 import { RadioButton } from 'primereact/radiobutton';
 
 import { Dropdown } from 'primereact/dropdown';
+import InputTextWrapper from "@/Pages/FormComponents/InputTextWrapper";
         
-        
+import {
+    regions,
+    provinces,
+    cities,
+    barangays,
+} from "select-philippines-address";
 
 export default function PersonalInformation({
     activeIndex,
@@ -129,6 +135,158 @@ export default function PersonalInformation({
         "employementStatus"
     );
 
+    const [pob_regionAddr, pob_setRegionAddr] = useSessionStorage(
+        sessionStorage.getItem("pob_regionAddr"),
+        "pob_regionAddr"
+    );
+    const [pob_provinceAddr, pob_setProvinceAddr] = useSessionStorage(
+        sessionStorage.getItem("pob_provinceAddr"),
+        "pob_provinceAddr"
+    );
+    const [pob_cityAddr, pob_setCityAddr] = useSessionStorage("pob_cityAddr", "pob_cityAddr");
+    const [pob_barangayAddr, pob_setBarangayAddr] = useSessionStorage(
+        sessionStorage.getItem("pob_barangayAddr"),
+        "pob_barangayAddr"
+    );
+    const [pob_houseNumber_Street_Village, pob_setHouseNumber_Street_Village] =
+        useSessionStorage(
+            sessionStorage.getItem("pob_houseNumber_Street_Village"),
+            "pob_houseNumber_Street_Village"
+        );
+
+    const [pob_regionData, pob_setRegion] = useState([]);
+    const [pob_provinceData, pob_setProvince] = useSessionStorage(
+        sessionStorage.getItem("provinceData"),
+        "provinceData"
+    );
+    const [pob_cityData, pob_setCity] = useSessionStorage(
+        sessionStorage.getItem("cityData"),
+        "cityData"
+    );
+    const [pob_barangayData, pob_setBarangay] = useSessionStorage(
+        sessionStorage.getItem("barangayData"),
+        "barangayData"
+    );
+    const [pob_regionCode, pob_setRegionCode] = useSessionStorage(
+        sessionStorage.getItem("regionCode"),
+        "regionCode"
+    );
+
+    const pob_region = () => {
+        regions().then((response) => {
+            pob_setRegion(response);
+        });
+    };
+
+    const pob_province = (e) => {
+        setRegionAddr(e.target.selectedOptions[0].text);
+        provinces(e.target.value).then((response) => {
+            pob_setProvince(response);
+            pob_setCity([]);
+            pob_setBarangay([]);
+            pob_setRegionCode(e.target.value);
+        });
+    };
+
+    const pob_city = (e) => {
+        pob_setProvinceAddr(e.target.selectedOptions[0].text);
+        cities(e.target.value).then((response) => {
+            pob_setCity(response);
+        });
+    };
+
+    const pob_barangay = (e) => {
+        pob_setCityAddr(e.target.selectedOptions[0].text);
+        barangays(e.target.value).then((response) => {
+            pob_setBarangay(response);
+        });
+    };
+
+    const pob_brgy = (e) => {
+        pob_setBarangayAddr(e.target.selectedOptions[0].text);
+    };
+
+    const [isValidated, setValidated] = useState(true);
+
+    useEffect(() => {
+        pob_region();
+    }, []);
+
+    const [pa_regionAddr, pa_setRegionAddr] = useSessionStorage(
+        sessionStorage.getItem("pa_regionAddr"),
+        "pa_regionAddr"
+    );
+    const [pa_provinceAddr, pa_setProvinceAddr] = useSessionStorage(
+        sessionStorage.getItem("pa_provinceAddr"),
+        "pa_provinceAddr"
+    );
+    const [pa_cityAddr, pa_setCityAddr] = useSessionStorage("pa_cityAddr", "pa_cityAddr");
+    const [pa_barangayAddr, pa_setBarangayAddr] = useSessionStorage(
+        sessionStorage.getItem("pa_barangayAddr"),
+        "pa_barangayAddr"
+    );
+    const [pa_houseNumber_Street_Village, pa_setHouseNumber_Street_Village] =
+        useSessionStorage(
+            sessionStorage.getItem("pa_houseNumber_Street_Village"),
+            "pa_houseNumber_Street_Village"
+        );
+
+    const [pa_regionData, pa_setRegion] = useState([]);
+    const [pa_provinceData, pa_setProvince] = useSessionStorage(
+        sessionStorage.getItem("provinceData"),
+        "provinceData"
+    );
+    const [pa_cityData, pa_setCity] = useSessionStorage(
+        sessionStorage.getItem("cityData"),
+        "cityData"
+    );
+    const [pa_barangayData, pa_setBarangay] = useSessionStorage(
+        sessionStorage.getItem("barangayData"),
+        "barangayData"
+    );
+    const [pa_regionCode, pa_setRegionCode] = useSessionStorage(
+        sessionStorage.getItem("regionCode"),
+        "regionCode"
+    );
+
+    const pa_region = () => {
+        regions().then((response) => {
+            pa_setRegion(response);
+        });
+    };
+
+    const pa_province = (e) => {
+        setRegionAddr(e.target.selectedOptions[0].text);
+        provinces(e.target.value).then((response) => {
+            pa_setProvince(response);
+            pa_setCity([]);
+            pa_setBarangay([]);
+            pa_setRegionCode(e.target.value);
+        });
+    };
+
+    const pa_city = (e) => {
+        pa_setProvinceAddr(e.target.selectedOptions[0].text);
+        cities(e.target.value).then((response) => {
+            pa_setCity(response);
+        });
+    };
+
+    const pa_barangay = (e) => {
+        pa_setCityAddr(e.target.selectedOptions[0].text);
+        barangays(e.target.value).then((response) => {
+            pa_setBarangay(response);
+        });
+    };
+
+    const pa_brgy = (e) => {
+        pa_setBarangayAddr(e.target.selectedOptions[0].text);
+    };
+
+    useEffect(() => {
+        pa_region();
+    }, []);
+
     const civilStatuses = [
         { name: 'Single' },
         { name: 'Married' },
@@ -206,7 +364,7 @@ export default function PersonalInformation({
                         >
                             Date of Birth
                         </label>
-                        <Calendar className="form-control p-0 border-0" value={birthdate} setBithdate={(e) => setDate(e.value)} dateFormat="dd/mm/yy" />
+                        <Calendar className="form-control h-10 p-0 border-0" value={birthdate} setBithdate={(e) => setDate(e.value)} dateFormat="dd/mm/yy" />
                         <span class="text-danger !text-xs pi_date_of_birth-error"></span>
                     </div>
                     <div class="col-md-6 mb-4">
@@ -228,7 +386,7 @@ export default function PersonalInformation({
                         </label>
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-check">
+                                <div class="form-check flex items-center gap-2">
                                      <RadioButton inputId="ingredient1" name="sex" value="Male" onChange={(e) => setSex(e.value)} checked={sex === 'Male'} />
                                     <label
                                         class="form-check-label !text-xs !text-gray-500"
@@ -239,7 +397,7 @@ export default function PersonalInformation({
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-check">
+                                <div class="form-check flex items-center gap-2">
                                 <RadioButton inputId="ingredient1" name="sex" value="Female" onChange={(e) => setSex(e.value)} checked={sex === 'Female'} />
 
                                     <label
@@ -262,7 +420,7 @@ export default function PersonalInformation({
                         </label>
                         
                         <Dropdown value={civilStatus} onChange={(e) => setCivilStatus(e.value)} options={civilStatuses} optionLabel="name" 
-                editable placeholder="Select a Civil Status" className="form-select !text-xs pi_civil_status !text-gray-500 !py-2.5 border-light-emphasis" />
+                editable placeholder="Select a Civil Status" className="form-select h-10 !text-xs pi_civil_status !text-gray-500 !py-2.5 border-light-emphasis" />
                         <span class="text-danger !text-xs pi_civil_status-error h-10"></span>
                     </div>
                     <div class="col-md-4 mb-4">
@@ -290,7 +448,7 @@ export default function PersonalInformation({
                             </label>
                             <div class="row">
                                 <div class="col-md-2">
-                                    <div class="form-check">
+                                    <div class="form-check flex items-center gap-2">
                                     <RadioButton inputId="ingredient1" name="activilyLookingForWork" value="Yes" onChange={(e) => setActivelyLookingForWork(e.value)} checked={activelyLookingForWork === 'Yes'} />
                                         <label
                                             class="form-check-label !text-xs !py-2.5 !text-gray-500"
@@ -301,7 +459,7 @@ export default function PersonalInformation({
                                     </div>
                                 </div>
                                 <div class="col-md-10">
-                                    <div class="form-check">
+                                    <div class="form-check flex items-center gap-2">
                                     <RadioButton inputId="ingredient1" name="activilyLookingForWork" value="No" onChange={(e) => setActivelyLookingForWork(e.value)} checked={activelyLookingForWork === 'No'} />
                                         <label
                                             class="form-check-label !text-xs !py-2.5 !text-gray-500"
@@ -310,22 +468,19 @@ export default function PersonalInformation({
                                             No
                                         </label>
                                     </div>
-                                </div>
+                                </div> 
                             </div>
                             <span class="text-danger !text-xs pi_looking_for_work-error"></span>
-                            <div class="col-md-12 mb-4 is_actively_looking_for_work d-none">
+                            {activelyLookingForWork == "Yes" && <div class="col-md-12 mb-4 is_actively_looking_for_work">
                                 <label
                                     for="inputEmail4"
                                     class="form-label !text-xs !text-gray-400 fw-bold text-light-emphasis"
                                 >
                                     How long have you been looking for work?
                                 </label>
-                                <input
-                                    type="text"
-                                    class="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
-                                />
+                                <InputText className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis" value={height} onChange={(e) => setHeight(e.target.value)} />
                                 <span class="text-danger !text-xs pi_is_actively_looking_for_work-error"></span>
-                            </div>
+                            </div>}  
                         </div>
                     </div>
                     <div class="col-md-4 mb-4">
@@ -337,7 +492,7 @@ export default function PersonalInformation({
                         </label>
                         <div class="row">
                             <div class="col-md-2">
-                                <div class="form-check">
+                                <div class="form-check flex items-center gap-2">
                                 <RadioButton inputId="ingredient1" name="willingToWorkImmediately" value="Yes" onChange={(e) => setWillingToWorkImmediately(e.value)} checked={willingToWorkImmediately === 'Yes'} />
                                     <label
                                         class="form-check-label !text-xs !py-2.5 !text-gray-500"
@@ -348,7 +503,7 @@ export default function PersonalInformation({
                                 </div>
                             </div>
                             <div class="col-md-10">
-                                <div class="form-check">
+                                <div class="form-check flex items-center gap-2">
                                 <RadioButton inputId="ingredient1" name="willingToWorkImmediately" value="No" onChange={(e) => setWillingToWorkImmediately(e.value)} checked={willingToWorkImmediately === 'No'} />
                                     <label
                                         class="form-check-label !text-xs !py-2.5 !text-gray-500"
@@ -359,19 +514,19 @@ export default function PersonalInformation({
                                 </div>
                             </div>
                             <span class="text-danger !text-xs pi_when_to_work-error"></span>
-                            <div class="col-md-12 mb-4 is_not_when_to_work d-none">
+                            {
+                                willingToWorkImmediately == "No" && <div class="col-md-12 mb-4 is_not_when_to_work">
                                 <label
                                     for="inputEmail4"
                                     class="form-label !text-xs !text-gray-400 fw-bold text-light-emphasis"
                                 >
                                     If no, when?
                                 </label>
-                                <input
-                                    type="text"
-                                    class="form-control !py-2.5  pi_not_when_to_work !text-xs !text-gray-500 border-light-emphasis"
-                                />
+                                <InputText className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis" value={height} onChange={(e) => setHeight(e.target.value)} />
+
                                 <span class="text-danger !text-xs pi_not_when_to_work-error"></span>
                             </div>
+                            }
                         </div>
                     </div>
                     <div class="col-md-4 mb-4">
@@ -383,7 +538,7 @@ export default function PersonalInformation({
                         </label>
                         <div class="row">
                             <div class="col-md-2">
-                                <div class="form-check">
+                                <div class="form-check flex items-center gap-2">
                                 <RadioButton inputId="ingredient1" name="is4psBeneficiary" value="Yes" onChange={(e) => setIs4psBeneficiary(e.value)} checked={is4psBeneficiary === 'Yes'} />
                                     <label
                                         class="form-check-label !text-xs !py-2.5 !text-gray-500"
@@ -394,7 +549,7 @@ export default function PersonalInformation({
                                 </div>
                             </div>
                             <div class="col-md-10">
-                                <div class="form-check">
+                                <div class="form-check flex items-center gap-2">
                                 <RadioButton inputId="ingredient1" name="is4psBeneficiary" value="No" onChange={(e) => setIs4psBeneficiary(e.value)} checked={is4psBeneficiary === 'No'} />
                                     <label
                                         class="form-check-label !text-xs !py-2.5 !text-gray-500"
@@ -405,85 +560,169 @@ export default function PersonalInformation({
                                 </div>
                             </div>
                             <span class="text-danger !text-xs pi_4ps_beneficiary-error"></span>
-                            <div class="col-md-12 mb-4 is_4ps_beneficiary d-none">
+                            {
+                                is4psBeneficiary == "Yes" && <div class="col-md-12 mb-4 is_4ps_beneficiary">
                                 <label
                                     for="inputEmail4"
                                     class="form-label !text-xs !text-gray-400 fw-bold text-light-emphasis"
                                 >
                                     If yes, Household ID No.{" "}
                                 </label>
-                                <input
-                                    type="text"
-                                    class="form-control !py-2.5 pi_4ps_household_id !text-xs !text-gray-500 border-light-emphasis"
-                                />
+                                <InputText className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis" value={height} onChange={(e) => setHeight(e.target.value)} />
                                 <span class="text-danger !text-xs pi_4ps_household_id-error"></span>
                             </div>
+                            }
                         </div>
                     </div>
                     <div class="col-md-6 mb-4">
                         <h5 class="fw-bold text-dark-emphasis mb-4 text-gray-500 !text-md">
                             Place of Birth
                         </h5>
-                        <div class="row">
-                            <div class="col-md-12 mb-4 d-flex flex-column justify-content-between">
-                                <label
-                                    for="inputEmail4"
-                                    class="form-label !text-xs !text-gray-400 text-light-emphasis"
-                                >
-                                    Province
-                                </label>
-                                <select
-                                    class="form-select pob_province border-light-emphasis !text-xs !py-2.5 !text-gray-500"
-                                    aria-label="Default select example"
-                                >
-                                    <option value="0">Select Province</option>
-                                </select>
+                            <div class="row">
+                                <div class="col-md-12 mb-4 d-flex flex-column justify-content-between">
+                                    <label
+                                        for="inputEmail4"
+                                        class="form-label !text-xs !text-gray-400 text-light-emphasis"
+                                    >
+                                        Region
+                                        <span className="text-red-500">*</span>
+                                    </label>
+                                    <select
+                                        onChange={pob_province}
+                                        onSelect={pob_region}
+                                        className=" pa_province !text-xs !py-2.5 !text-gray-500 !rounded form-select !border-gray-300"
+                                        aria-label="Default select example"
+                                    >
+                                        <option disabled>Select Region</option>
+                                        {pob_regionData &&
+                                            pob_regionData.length > 0 &&
+                                            pob_regionData.map((item) => (
+                                                <option
+                                                    key={item.region_code}
+                                                    value={item.region_code}
+                                                    selected={
+                                                        pob_regionAddr ==
+                                                        item.region_name
+                                                            ? true
+                                                            : null
+                                                    }
+                                                >
+                                                    {item.region_name}
+                                                </option>
+                                            ))}
+                                    </select>
+                                </div>
+                                <div class="col-md-12 mb-4 d-flex flex-column justify-content-between">
+                                    <label
+                                        for="inputEmail4"
+                                        class="form-label !text-xs !text-gray-400 text-light-emphasis"
+                                    >
+                                        Province
+                                        <span className="text-red-500">*</span>
+                                    </label>
+                                    <select
+                                        onChange={pob_city}
+                                        class=" pa_province !text-xs !py-2.5 !text-gray-500 !rounded form-select !border-gray-300 form-select border-light-emphasis"
+                                        aria-label="Default select example"
+                                    >
+                                        <option disabled>
+                                            Select Province
+                                        </option>
+                                        {pob_provinceData &&
+                                            pob_provinceData.length > 0 &&
+                                            pob_provinceData.map((item) => (
+                                                <option
+                                                    key={item.province_code}
+                                                    value={item.province_code}
+                                                    selected={
+                                                        pob_provinceAddr ==
+                                                        item.province_name
+                                                            ? true
+                                                            : null
+                                                    }
+                                                >
+                                                    {item.province_name}
+                                                </option>
+                                            ))}
+                                    </select>
+                                </div>
+                                <div class="col-md-12 mb-4  d-flex flex-column justify-content-between">
+                                    <label
+                                        for="inputEmail4"
+                                        class="form-label !text-xs !text-gray-400 text-light-emphasis"
+                                    >
+                                        Municipality/City
+                                        <span className="text-red-500">*</span>
+                                    </label>
+                                    <select
+                                        onChange={pob_barangay}
+                                        class=" pa_city !text-xs !py-2.5 !rounded form-select !border-gray-300 !text-gray-500 form-select border-light-emphasis"
+                                        aria-label="Default select example"
+                                    >
+                                        <option disabled>Select City</option>
+                                        {pob_cityData &&
+                                            pob_cityData.length > 0 &&
+                                            pob_cityData.map((item) => (
+                                                <option
+                                                    key={item.city_code}
+                                                    value={item.city_code}
+                                                    selected={
+                                                        pob_cityAddr ==
+                                                        item.city_name
+                                                            ? true
+                                                            : null
+                                                    }
+                                                >
+                                                    {item.city_name}
+                                                </option>
+                                            ))}
+                                    </select>
+                                </div>
+                                <div class="col-md-12 mb-4  d-flex flex-column justify-content-between">
+                                    <label
+                                        for="inputEmail4"
+                                        class="form-label !text-xs !text-gray-400 text-light-emphasis"
+                                    >
+                                        Barangay
+                                        <span className="text-red-500">*</span>
+                                    </label>
+                                    <select
+                                        onChange={pob_brgy}
+                                        class=" pa_barangay !text-xs !rounded form-select !border-gray-300 !py-2.5 !text-gray-500 form-select border-light-emphasis"
+                                        aria-label="Default select example"
+                                    >
+                                        <option disabled>
+                                            Select Barangay
+                                        </option>
+                                        {pob_barangayData &&
+                                            pob_barangayData.length > 0 &&
+                                            pob_barangayData.map((item) => (
+                                                <option
+                                                    key={item.brgy_code}
+                                                    value={item.brgy_code}
+                                                    selected={
+                                                        pob_barangayAddr ==
+                                                        item.brgy_name
+                                                            ? true
+                                                            : null
+                                                    }
+                                                >
+                                                    {item.brgy_name}
+                                                </option>
+                                            ))}
+                                    </select>
+                                </div>
+                                <div class="col-md-12 mb-4  d-flex flex-column justify-content-between">
+                                    <InputTextWrapper
+                                        stateValue={pob_houseNumber_Street_Village}
+                                        stateMethod={
+                                            pob_setHouseNumber_Street_Village
+                                        }
+                                        isRequired={false}
+                                        label={"House No./ Street Village"}
+                                    />
+                                </div>
                             </div>
-                            <div class="col-md-12 mb-4  d-flex flex-column justify-content-between">
-                                <label
-                                    for="inputEmail4"
-                                    class="form-label !text-xs !text-gray-400 text-light-emphasis"
-                                >
-                                    Municipality/City
-                                </label>
-                                <select
-                                    class="form-select pob_city !text-xs !py-2.5 !text-gray-500 border-light-emphasis"
-                                    aria-label="Default select example"
-                                >
-                                    <option value="0">
-                                        Select Municipality
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="col-md-12 mb-4  d-flex flex-column justify-content-between">
-                                <label
-                                    for="inputEmail4"
-                                    class="form-label !text-xs !text-gray-400 text-light-emphasis"
-                                >
-                                    Barangay
-                                </label>
-                                <select
-                                    class=" pob_barangay  !text-xs !py-2.5 !text-gray-500 form-select border-light-emphasis"
-                                    aria-label="Default select example"
-                                >
-                                    <option value="0">Select Barangay</option>
-                                    <option value="1">Poblacion</option>
-                                    <option value="2">Lumbo</option>
-                                </select>
-                            </div>
-                            <div class="col-md-12 mb-4  d-flex flex-column justify-content-between">
-                                <label
-                                    for="inputEmail4"
-                                    class="form-label pop_street !text-xs !text-gray-400 text-light-emphasis"
-                                >
-                                    House No./ Street Village
-                                </label>
-                                <input
-                                    type="input"
-                                    class="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis"
-                                />
-                            </div>
-                        </div>
                     </div>
 
                     <div class="col-md-6 mb-4">
@@ -491,63 +730,150 @@ export default function PersonalInformation({
                             Present Address
                         </h5>
                         <div class="row">
-                            <div class="col-md-12 mb-4 d-flex flex-column justify-content-between">
-                                <label
-                                    for="inputEmail4"
-                                    class="form-label !text-xs !text-gray-400 text-light-emphasis"
-                                >
-                                    Province
-                                </label>
-                                <select
-                                    class=" pa_province !text-xs !py-2.5 !text-gray-500 form-select border-light-emphasis"
-                                    aria-label="Default select example"
-                                >
-                                    <option value="0">Select Province</option>
-                                </select>
+                                <div class="col-md-12 mb-4 d-flex flex-column justify-content-between">
+                                    <label
+                                        for="inputEmail4"
+                                        class="form-label !text-xs !text-gray-400 text-light-emphasis"
+                                    >
+                                        Region
+                                        <span className="text-red-500">*</span>
+                                    </label>
+                                    <select
+                                        onChange={pa_province}
+                                        onSelect={pa_region}
+                                        className=" pa_province !text-xs !py-2.5 !text-gray-500 !rounded form-select !border-gray-300"
+                                        aria-label="Default select example"
+                                    >
+                                        <option disabled>Select Region</option>
+                                        {pa_regionData &&
+                                            pa_regionData.length > 0 &&
+                                            pa_regionData.map((item) => (
+                                                <option
+                                                    key={item.region_code}
+                                                    value={item.region_code}
+                                                    selected={
+                                                        pa_regionAddr ==
+                                                        item.region_name
+                                                            ? true
+                                                            : null
+                                                    }
+                                                >
+                                                    {item.region_name}
+                                                </option>
+                                            ))}
+                                    </select>
+                                </div>
+                                <div class="col-md-12 mb-4 d-flex flex-column justify-content-between">
+                                    <label
+                                        for="inputEmail4"
+                                        class="form-label !text-xs !text-gray-400 text-light-emphasis"
+                                    >
+                                        Province
+                                        <span className="text-red-500">*</span>
+                                    </label>
+                                    <select
+                                        onChange={pa_city}
+                                        class=" pa_province !text-xs !py-2.5 !text-gray-500 !rounded form-select !border-gray-300 form-select border-light-emphasis"
+                                        aria-label="Default select example"
+                                    >
+                                        <option disabled>
+                                            Select Province
+                                        </option>
+                                        {pa_provinceData &&
+                                            pa_provinceData.length > 0 &&
+                                            pa_provinceData.map((item) => (
+                                                <option
+                                                    key={item.province_code}
+                                                    value={item.province_code}
+                                                    selected={
+                                                        pa_provinceAddr ==
+                                                        item.province_name
+                                                            ? true
+                                                            : null
+                                                    }
+                                                >
+                                                    {item.province_name}
+                                                </option>
+                                            ))}
+                                    </select>
+                                </div>
+                                <div class="col-md-12 mb-4  d-flex flex-column justify-content-between">
+                                    <label
+                                        for="inputEmail4"
+                                        class="form-label !text-xs !text-gray-400 text-light-emphasis"
+                                    >
+                                        Municipality/City
+                                        <span className="text-red-500">*</span>
+                                    </label>
+                                    <select
+                                        onChange={pa_barangay}
+                                        class=" pa_city !text-xs !py-2.5 !rounded form-select !border-gray-300 !text-gray-500 form-select border-light-emphasis"
+                                        aria-label="Default select example"
+                                    >
+                                        <option disabled>Select City</option>
+                                        {pa_cityData &&
+                                            pa_cityData.length > 0 &&
+                                            pa_cityData.map((item) => (
+                                                <option
+                                                    key={item.city_code}
+                                                    value={item.city_code}
+                                                    selected={
+                                                        pa_cityAddr ==
+                                                        item.city_name
+                                                            ? true
+                                                            : null
+                                                    }
+                                                >
+                                                    {item.city_name}
+                                                </option>
+                                            ))}
+                                    </select>
+                                </div>
+                                <div class="col-md-12 mb-4  d-flex flex-column justify-content-between">
+                                    <label
+                                        for="inputEmail4"
+                                        class="form-label !text-xs !text-gray-400 text-light-emphasis"
+                                    >
+                                        Barangay
+                                        <span className="text-red-500">*</span>
+                                    </label>
+                                    <select
+                                        onChange={pa_brgy}
+                                        class=" pa_barangay !text-xs !rounded form-select !border-gray-300 !py-2.5 !text-gray-500 form-select border-light-emphasis"
+                                        aria-label="Default select example"
+                                    >
+                                        <option disabled>
+                                            Select Barangay
+                                        </option>
+                                        {pa_barangayData &&
+                                            pa_barangayData.length > 0 &&
+                                            pa_barangayData.map((item) => (
+                                                <option
+                                                    key={item.brgy_code}
+                                                    value={item.brgy_code}
+                                                    selected={
+                                                        pa_barangayAddr ==
+                                                        item.brgy_name
+                                                            ? true
+                                                            : null
+                                                    }
+                                                >
+                                                    {item.brgy_name}
+                                                </option>
+                                            ))}
+                                    </select>
+                                </div>
+                                <div class="col-md-12 mb-4  d-flex flex-column justify-content-between">
+                                    <InputTextWrapper
+                                        stateValue={pa_houseNumber_Street_Village}
+                                        stateMethod={
+                                            pa_setHouseNumber_Street_Village
+                                        }
+                                        isRequired={false}
+                                        label={"House No./ Street Village"}
+                                    />
+                                </div>
                             </div>
-                            <div class="col-md-12 mb-4  d-flex flex-column justify-content-between">
-                                <label
-                                    for="inputEmail4"
-                                    class="form-label !text-xs !text-gray-400 text-light-emphasis"
-                                >
-                                    Municipality/City
-                                </label>
-                                <select
-                                    class=" pa_city !text-xs !py-2.5 !text-gray-500 form-select border-light-emphasis"
-                                    aria-label="Default select example"
-                                >
-                                    <option value="0">
-                                        Select Municipality
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="col-md-12 mb-4  d-flex flex-column justify-content-between">
-                                <label
-                                    for="inputEmail4"
-                                    class="form-label !text-xs !text-gray-400 text-light-emphasis"
-                                >
-                                    Barangay
-                                </label>
-                                <select
-                                    class=" pa_barangay !text-xs !py-2.5 !text-gray-500 form-select border-light-emphasis"
-                                    aria-label="Default select example"
-                                >
-                                    <option value="0">Select Barangay</option>
-                                </select>
-                            </div>
-                            <div class="col-md-12 mb-4  d-flex flex-column justify-content-between">
-                                <label
-                                    for="inputEmail4"
-                                    class="form-label !text-xs !text-gray-400 text-light-emphasis"
-                                >
-                                    House No./ Street Village
-                                </label>
-                                <input
-                                    type="input"
-                                    class="form-control pa_street !text-xs !py-2.5 !text-gray-500 border-light-emphasis"
-                                />
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="card-body row">
@@ -620,7 +946,7 @@ export default function PersonalInformation({
                                 Disability
                             </label>
                             <Dropdown value={disability} onChange={(e) => setDisability(e.value)} options={disabilities} optionLabel="name" 
-                editable placeholder="Select a Disability" className="form-select !text-xs pi_civil_status !text-gray-500 !py-2.5 border-light-emphasis" />
+                editable placeholder="Select a Disability" className="form-select h-10 !text-xs pi_civil_status !text-gray-500 !py-2.5 border-light-emphasis" />
                             <span class="text-danger !text-xs pi_disability-error"></span>
                         </div>
                     </div>
@@ -634,7 +960,7 @@ export default function PersonalInformation({
                             </label>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-check">
+                                    <div class="form-check flex items-center gap-2">
                                     <RadioButton inputId="ingredient1" name="employementStatus" value="Employed" onChange={(e) => setEmployementStatus(e.value)} checked={employementStatus === 'Employed'} />
                                         <label
                                             class="form-check-label !text-xs !py-2.5 !text-gray-500"
@@ -645,7 +971,7 @@ export default function PersonalInformation({
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-check">
+                                    <div class="form-check flex items-center gap-2">
                                     <RadioButton inputId="ingredient1" name="employementStatus" value="Unemployed" onChange={(e) => setEmployementStatus(e.value)} checked={employementStatus === 'Unemployed'} />
                                         <label
                                             class="form-check-label !text-xs !py-2.5 !text-gray-500"

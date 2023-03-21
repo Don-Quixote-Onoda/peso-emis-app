@@ -1,19 +1,24 @@
 import React, { useState, useRef } from "react";
 import NavigatorButton from "../Components/NavigatorButton";
+import { InputText } from "primereact/inputtext";
+import { Calendar } from "primereact/calendar";
+
 export default function Vocational({
     activeIndex,
     numberOfPage,
     setActiveIndex,
     counterPrevious,
 }) {
-
     const handleSubmit = (e) => {
         e.preventDefault();
         setActiveIndex(activeIndex + 1);
-    }
+    };
+
+    const [vocationalCourse, setVocationalCourse] = useState("");
+    const [duration, setDuration] = useState("");
 
     return (
-        <form onSubmit={e => handleSubmit(e)}>
+        <form onSubmit={(e) => handleSubmit(e)}>
             <div class="step-6">
                 <div class="py-5 card border-0 rounded-0">
                     <h4 class="card-header pl-0 border-0 fw-bold">
@@ -51,38 +56,55 @@ export default function Vocational({
                                 >
                                     1
                                 </label>
-                                <input
-                                    type="input"
-                                    class="form-control technical_course_1 !text-xs islocal_preferred_work_location !py-2.5 !text-gray-500 border-light-emphasis"
+                                <InputText
+                                    className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
+                                    value={vocationalCourse}
+                                    onChange={(e) =>
+                                        setVocationalCourse(e.target.value)
+                                    }
                                 />
                             </div>
                             <div class="col-md-3">
                                 <div class="row">
                                     <div class="col-md-6 !pr-0 ">
-                                        <input
-                                            type="date"
-                                            class="form-control technical_course_duration_start_1 !text-xs !py-2.5 !text-gray-500 border-light-emphasis"
+                                        <Calendar
+                                            className="form-control h-10 p-0 border-0"
+                                            value={duration}
+                                            setBithdate={(e) =>
+                                                setDuration(e.value)
+                                            }
+                                            dateFormat="dd/mm/yy"
                                         />
                                     </div>
                                     <div class="col-md-6 !pr-0">
-                                        <input
-                                            type="date"
-                                            class="form-control technical_course_duration_end_1 !text-xs !py-2.5 !text-gray-500 border-light-emphasis"
+                                        <Calendar
+                                            className="form-control h-10 p-0 border-0"
+                                            value={duration}
+                                            setBithdate={(e) =>
+                                                setDuration(e.value)
+                                            }
+                                            dateFormat="dd/mm/yy"
                                         />
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <input
-                                    type="input"
-                                    class="form-control !text-xs technical_course_training_instituition_1 !py-2.5 !text-gray-500 border-light-emphasis"
+                                <InputText
+                                    className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
+                                    value={vocationalCourse}
+                                    onChange={(e) =>
+                                        setVocationalCourse(e.target.value)
+                                    }
                                 />
                             </div>
                             <div class="col-md-3">
-                                <input
-                                    type="input"
+                                <InputText
                                     placeholder="(NC I, NC II, NC II, NC IV, etc)"
-                                    class="form-control !text-xs technical_course_certificates_recieved_1 !py-2.5 !text-gray-500 border-light-emphasis"
+                                    className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
+                                    value={vocationalCourse}
+                                    onChange={(e) =>
+                                        setVocationalCourse(e.target.value)
+                                    }
                                 />
                             </div>
                         </div>
@@ -94,38 +116,55 @@ export default function Vocational({
                                 >
                                     2
                                 </label>
-                                <input
-                                    type="input"
-                                    class="form-control technical_course_2 !text-xs islocal_preferred_work_location !py-2.5 !text-gray-500 border-light-emphasis"
+                                <InputText
+                                    className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
+                                    value={vocationalCourse}
+                                    onChange={(e) =>
+                                        setVocationalCourse(e.target.value)
+                                    }
                                 />
                             </div>
                             <div class="col-md-3">
                                 <div class="row">
                                     <div class="col-md-6 !pr-0 ">
-                                        <input
-                                            type="date"
-                                            class="form-control technical_course_duration_start_2 !text-xs !py-2.5 !text-gray-500 border-light-emphasis"
+                                        <Calendar
+                                            className="form-control h-10 p-0 border-0"
+                                            value={duration}
+                                            setBithdate={(e) =>
+                                                setDuration(e.value)
+                                            }
+                                            dateFormat="dd/mm/yy"
                                         />
                                     </div>
                                     <div class="col-md-6 !pr-0">
-                                        <input
-                                            type="date"
-                                            class="form-control technical_course_duration_end_2 !text-xs !py-2.5 !text-gray-500 border-light-emphasis"
+                                        <Calendar
+                                            className="form-control h-10 p-0 border-0"
+                                            value={duration}
+                                            setBithdate={(e) =>
+                                                setDuration(e.value)
+                                            }
+                                            dateFormat="dd/mm/yy"
                                         />
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <input
-                                    type="input"
-                                    class="form-control !text-xs technical_course_training_instituition_2 !py-2.5 !text-gray-500 border-light-emphasis"
+                                <InputText
+                                    className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
+                                    value={vocationalCourse}
+                                    onChange={(e) =>
+                                        setVocationalCourse(e.target.value)
+                                    }
                                 />
                             </div>
                             <div class="col-md-3">
-                                <input
-                                    type="input"
+                                <InputText
                                     placeholder="(NC I, NC II, NC II, NC IV, etc)"
-                                    class="form-control !text-xs technical_course_certificates_recieved_2 !py-2.5 !text-gray-500 border-light-emphasis"
+                                    className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
+                                    value={vocationalCourse}
+                                    onChange={(e) =>
+                                        setVocationalCourse(e.target.value)
+                                    }
                                 />
                             </div>
                         </div>
@@ -137,38 +176,55 @@ export default function Vocational({
                                 >
                                     3
                                 </label>
-                                <input
-                                    type="input"
-                                    class="form-control technical_course_3 !text-xs islocal_preferred_work_location !py-2.5 !text-gray-500 border-light-emphasis"
+                                <InputText
+                                    className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
+                                    value={vocationalCourse}
+                                    onChange={(e) =>
+                                        setVocationalCourse(e.target.value)
+                                    }
                                 />
                             </div>
                             <div class="col-md-3">
                                 <div class="row">
                                     <div class="col-md-6 !pr-0 ">
-                                        <input
-                                            type="date"
-                                            class="form-control technical_course_duration_start_3 !text-xs !py-2.5 !text-gray-500 border-light-emphasis"
+                                        <Calendar
+                                            className="form-control h-10 p-0 border-0"
+                                            value={duration}
+                                            setBithdate={(e) =>
+                                                setDuration(e.value)
+                                            }
+                                            dateFormat="dd/mm/yy"
                                         />
                                     </div>
                                     <div class="col-md-6 !pr-0">
-                                        <input
-                                            type="date"
-                                            class="form-control technical_course_duration_end_3 !text-xs !py-2.5 !text-gray-500 border-light-emphasis"
+                                        <Calendar
+                                            className="form-control h-10 p-0 border-0"
+                                            value={duration}
+                                            setBithdate={(e) =>
+                                                setDuration(e.value)
+                                            }
+                                            dateFormat="dd/mm/yy"
                                         />
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <input
-                                    type="input"
-                                    class="form-control !text-xs technical_course_training_instituition_3 !py-2.5 !text-gray-500 border-light-emphasis"
+                                <InputText
+                                    className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
+                                    value={vocationalCourse}
+                                    onChange={(e) =>
+                                        setVocationalCourse(e.target.value)
+                                    }
                                 />
                             </div>
                             <div class="col-md-3">
-                                <input
-                                    type="input"
+                                <InputText
                                     placeholder="(NC I, NC II, NC II, NC IV, etc)"
-                                    class="form-control !text-xs technical_course_certificates_recieved_3 !py-2.5 !text-gray-500 border-light-emphasis"
+                                    className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
+                                    value={vocationalCourse}
+                                    onChange={(e) =>
+                                        setVocationalCourse(e.target.value)
+                                    }
                                 />
                             </div>
                         </div>
@@ -206,22 +262,32 @@ export default function Vocational({
                                 >
                                     1
                                 </label>
-                                <input
-                                    type="input"
-                                    class="form-control eligibility_civil_service__name_1 !text-xs islocal_preferred_work_location !py-2.5 !text-gray-500 border-light-emphasis"
+                                <InputText
+                                    className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
+                                    value={vocationalCourse}
+                                    onChange={(e) =>
+                                        setVocationalCourse(e.target.value)
+                                    }
                                 />
                             </div>
                             <div class="col-md-4">
-                                <input
-                                    type="input"
-                                    class="form-control !text-xs elig  eligibility_civil_service__rating_1  !py-2.5 !text-gray-500 border-light-emphasis"
+                            <InputText
+                                    className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
+                                    value={vocationalCourse}
+                                    onChange={(e) =>
+                                        setVocationalCourse(e.target.value)
+                                    }
                                 />
                             </div>
                             <div class="col-md-4">
-                                <input
-                                    type="date"
-                                    class="form-control !text-xs !py-2.5 eligibility_civil_service__examination_date_1 !text-gray-500 border-light-emphasis"
-                                />
+                            <Calendar
+                                            className="form-control h-10 p-0 border-0"
+                                            value={duration}
+                                            setBithdate={(e) =>
+                                                setDuration(e.value)
+                                            }
+                                            dateFormat="dd/mm/yy"
+                                        />
                             </div>
                         </div>
                         <div class="row mb-4">
@@ -232,22 +298,32 @@ export default function Vocational({
                                 >
                                     2
                                 </label>
-                                <input
-                                    type="input"
-                                    class="form-control eligibility_civil_service__name_2 !text-xs islocal_preferred_work_location !py-2.5 !text-gray-500 border-light-emphasis"
+                                <InputText
+                                    className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
+                                    value={vocationalCourse}
+                                    onChange={(e) =>
+                                        setVocationalCourse(e.target.value)
+                                    }
                                 />
                             </div>
                             <div class="col-md-4">
-                                <input
-                                    type="input"
-                                    class="form-control !text-xs elig  eligibility_civil_service__rating_2  !py-2.5 !text-gray-500 border-light-emphasis"
+                            <InputText
+                                    className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
+                                    value={vocationalCourse}
+                                    onChange={(e) =>
+                                        setVocationalCourse(e.target.value)
+                                    }
                                 />
                             </div>
                             <div class="col-md-4">
-                                <input
-                                    type="date"
-                                    class="form-control !text-xs !py-2.5 eligibility_civil_service__examination_date_2 !text-gray-500 border-light-emphasis"
-                                />
+                            <Calendar
+                                            className="form-control h-10 p-0 border-0"
+                                            value={duration}
+                                            setBithdate={(e) =>
+                                                setDuration(e.value)
+                                            }
+                                            dateFormat="dd/mm/yy"
+                                        />
                             </div>
                         </div>
                         <div class="row">
@@ -270,16 +346,23 @@ export default function Vocational({
                                 >
                                     1
                                 </label>
-                                <input
-                                    type="input"
-                                    class="form-control prc_name_1 !text-xs islocal_preferred_work_location !py-2.5 !text-gray-500 border-light-emphasis"
+                                <InputText
+                                    className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
+                                    value={vocationalCourse}
+                                    onChange={(e) =>
+                                        setVocationalCourse(e.target.value)
+                                    }
                                 />
                             </div>
                             <div class="col-md-6">
-                                <input
-                                    type="date"
-                                    class="form-control !text-xs prc_valid_until_1 !py-2.5 !text-gray-500 border-light-emphasis"
-                                />
+                            <Calendar
+                                            className="form-control h-10 p-0 border-0"
+                                            value={duration}
+                                            setBithdate={(e) =>
+                                                setDuration(e.value)
+                                            }
+                                            dateFormat="dd/mm/yy"
+                                        />
                             </div>
                         </div>
                         <div class="row mb-6">
@@ -290,16 +373,23 @@ export default function Vocational({
                                 >
                                     2
                                 </label>
-                                <input
-                                    type="input"
-                                    class="form-control prc_name_2 !text-xs islocal_preferred_work_location !py-2.5 !text-gray-500 border-light-emphasis"
+                                <InputText
+                                    className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
+                                    value={vocationalCourse}
+                                    onChange={(e) =>
+                                        setVocationalCourse(e.target.value)
+                                    }
                                 />
                             </div>
                             <div class="col-md-6">
-                                <input
-                                    type="date"
-                                    class="form-control !text-xs prc_valid_until_2 !py-2.5 !text-gray-500 border-light-emphasis"
-                                />
+                            <Calendar
+                                            className="form-control h-10 p-0 border-0"
+                                            value={duration}
+                                            setBithdate={(e) =>
+                                                setDuration(e.value)
+                                            }
+                                            dateFormat="dd/mm/yy"
+                                        />
                             </div>
                         </div>
                     </div>

@@ -15,7 +15,7 @@ import NavigatorPage from "../Applicants/Components/NavigatorPage";
 import { Steps } from "primereact/steps";
 
 export default function InteractiveDemo() {
-    const [activeIndex, setActiveIndex] = useState(0);
+    const [activeIndex, setActiveIndex] = useState(5);
     const toast = useRef(null);
     const numberOfPage = 8;
 
