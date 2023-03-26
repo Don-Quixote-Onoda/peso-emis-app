@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApplicantsController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -36,6 +37,7 @@ Route::middleware('guest')->group(function () {
                 ->name('password.store');
 
     Route::post('register-employer', [EmployersController::class, 'store']);
+    Route::post('register-applicant', [ApplicantsController::class, 'store']);
 });
 
 Route::middleware('auth')->group(function () {

@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ApplicantJobPreferenceLocation extends Model
+class ApplicantProfessionalLicense extends Model
 {
     use HasFactory;
 
-    public $table = "applicant_job_preference_locations";
+    public $table = "applicant_professional_licenses";
     public $primary_key = "id";
     public $timestamp = true;
 
     protected $fillable = [
-        "type",
-        "location",
+        "professional_license",
+        "valid_until",
         "applicant_id"
     ];
 

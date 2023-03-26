@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import NavigatorButton from "../Components/NavigatorButton";
 import { InputText } from "primereact/inputtext";
 import { Calendar } from "primereact/calendar";
-
+import { useSessionStorage, useLocalStorage } from "primereact/hooks";
 import { Dropdown } from "primereact/dropdown";
 
 export default function WorkExperience({
@@ -16,9 +16,110 @@ export default function WorkExperience({
         setActiveIndex(activeIndex + 1);
     };
 
-    const [companyName, setCompanyName] = useState("");
-    const [inclusive, setInclusive] = useState("");
-    const [status, setStatus] = useState(null);
+    const [companyName1, setCompanyName1] = useSessionStorage(
+        sessionStorage.getItem("companyName1"),
+        "companyName1"
+    );;
+    const [address1, setAddress1] = useSessionStorage(
+        sessionStorage.getItem("address1"),
+        "address1"
+    );;
+    const [position1, setPosition1] = useSessionStorage(
+        sessionStorage.getItem("position1"),
+        "position1"
+    );;
+    const [inclusive1, setInclusive1] = useSessionStorage(
+        sessionStorage.getItem("inclusive1"),
+        "inclusive1"
+    );;
+    const [status1, setStatus1] = useSessionStorage(
+        sessionStorage.getItem("status1"),
+        "status1"
+    );;
+
+    const [companyName2, setCompanyName2] = useSessionStorage(
+        sessionStorage.getItem("companyName2"),
+        "companyName2"
+    );;
+    const [address2, setAddress2] = useSessionStorage(
+        sessionStorage.getItem("address2"),
+        "address2"
+    );;
+    const [position2, setPosition2] = useSessionStorage(
+        sessionStorage.getItem("position2"),
+        "position2"
+    );;
+    const [inclusive2, setInclusive2] = useSessionStorage(
+        sessionStorage.getItem("inclusive2"),
+        "inclusive2"
+    );;
+    const [status2, setStatus2] = useSessionStorage(
+        sessionStorage.getItem("status2"),
+        "status2"
+    );;
+
+    const [companyName3, setCompanyName3] = useSessionStorage(
+        sessionStorage.getItem("companyName3"),
+        "companyName3"
+    );;
+    const [address3, setAddress3] = useSessionStorage(
+        sessionStorage.getItem("address3"),
+        "address3"
+    );;
+    const [position3, setPosition3] = useSessionStorage(
+        sessionStorage.getItem("position3"),
+        "position3"
+    );;
+    const [inclusive3, setInclusive3] = useSessionStorage(
+        sessionStorage.getItem("inclusive3"),
+        "inclusive3"
+    );;
+    const [status3, setStatus3] = useSessionStorage(
+        sessionStorage.getItem("status3"),
+        "status3"
+    );;
+
+    const [companyName4, setCompanyName4] = useSessionStorage(
+        sessionStorage.getItem("companyName4"),
+        "companyName4"
+    );;
+    const [address4, setAddress4] = useSessionStorage(
+        sessionStorage.getItem("address4"),
+        "address4"
+    );;
+    const [position4, setPosition4] = useSessionStorage(
+        sessionStorage.getItem("position4"),
+        "position4"
+    );;
+    const [inclusive4, setInclusive4] = useSessionStorage(
+        sessionStorage.getItem("inclusive4"),
+        "inclusive4"
+    );;
+    const [status4, setStatus4] = useSessionStorage(
+        sessionStorage.getItem("status4"),
+        "status4"
+    );;
+
+    const [companyName5, setCompanyName5] = useSessionStorage(
+        sessionStorage.getItem("companyName5"),
+        "companyName5"
+    );;
+    const [address5, setAddress5] = useSessionStorage(
+        sessionStorage.getItem("address5"),
+        "address5"
+    );;
+    const [position5, setPosition5] = useSessionStorage(
+        sessionStorage.getItem("position5"),
+        "position5"
+    );;
+    const [inclusive5, setInclusive5] = useSessionStorage(
+        sessionStorage.getItem("inclusive5"),
+        "inclusive5"
+    );;
+    const [status5, setStatus5] = useSessionStorage(
+        sessionStorage.getItem("status5"),
+        "status5"
+    );;
     const statuses = [
         { name: "Permanent" },
         { name: "Contractual" },
@@ -69,9 +170,9 @@ export default function WorkExperience({
                             <div class="col-md-4">
                                 <InputText
                                     className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
-                                    value={companyName}
+                                    value={companyName1}
                                     onChange={(e) =>
-                                        setCompanyName(e.target.value)
+                                        setCompanyName1(e.target.value)
                                     }
                                 />
                             </div>
@@ -80,35 +181,35 @@ export default function WorkExperience({
                                     <div class="col-md-3">
                                         <InputText
                                             className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
-                                            value={companyName}
+                                            value={address1}
                                             onChange={(e) =>
-                                                setCompanyName(e.target.value)
+                                                setAddress1(e.target.value)
                                             }
                                         />
                                     </div>
                                     <div class="col-md-3">
                                         <InputText
                                             className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
-                                            value={companyName}
+                                            value={position1}
                                             onChange={(e) =>
-                                                setCompanyName(e.target.value)
+                                                setPosition1(e.target.value)
                                             }
                                         />
                                     </div>
                                     <div class="col-md-3">
                                         <Calendar
                                             className="form-control h-10 p-0 border-0"
-                                            value={inclusive}
-                                            setBithdate={(e) =>
-                                                setInclusive(e.value)
+                                            value={inclusive1}
+                                            onChange={(e) =>
+                                                setInclusive1(e.value)
                                             }
                                             dateFormat="dd/mm/yy"
                                         />
                                     </div>
                                     <div class="col-md-3">
                                         <Dropdown
-                                            value={status}
-                                            onChange={(e) => setStatus(e.value)}
+                                            value={status1}
+                                            onChange={(e) => setStatus1(e.value)}
                                             options={statuses}
                                             optionLabel="name"
                                             editable
@@ -123,9 +224,9 @@ export default function WorkExperience({
                             <div class="col-md-4">
                                 <InputText
                                     className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
-                                    value={companyName}
+                                    value={companyName2}
                                     onChange={(e) =>
-                                        setCompanyName(e.target.value)
+                                        setCompanyName2(e.target.value)
                                     }
                                 />
                             </div>
@@ -134,35 +235,35 @@ export default function WorkExperience({
                                     <div class="col-md-3">
                                         <InputText
                                             className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
-                                            value={companyName}
+                                            value={address2}
                                             onChange={(e) =>
-                                                setCompanyName(e.target.value)
+                                                setAddress2(e.target.value)
                                             }
                                         />
                                     </div>
                                     <div class="col-md-3">
                                         <InputText
                                             className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
-                                            value={companyName}
+                                            value={position2}
                                             onChange={(e) =>
-                                                setCompanyName(e.target.value)
+                                                setPosition2(e.target.value)
                                             }
                                         />
                                     </div>
                                     <div class="col-md-3">
                                         <Calendar
                                             className="form-control h-10 p-0 border-0"
-                                            value={inclusive}
-                                            setBithdate={(e) =>
-                                                setInclusive(e.value)
+                                            value={inclusive2}
+                                            onChange={(e) =>
+                                                setInclusive2(e.value)
                                             }
                                             dateFormat="dd/mm/yy"
                                         />
                                     </div>
                                     <div class="col-md-3">
                                         <Dropdown
-                                            value={status}
-                                            onChange={(e) => setStatus(e.value)}
+                                            value={status2}
+                                            onChange={(e) => setStatus2(e.value)}
                                             options={statuses}
                                             optionLabel="name"
                                             editable
@@ -177,9 +278,9 @@ export default function WorkExperience({
                             <div class="col-md-4">
                                 <InputText
                                     className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
-                                    value={companyName}
+                                    value={companyName3}
                                     onChange={(e) =>
-                                        setCompanyName(e.target.value)
+                                        setCompanyName3(e.target.value)
                                     }
                                 />
                             </div>
@@ -187,89 +288,36 @@ export default function WorkExperience({
                                 <div class="row">
                                     <div class="col-md-3">
                                         <InputText
-                                            className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
-                                            value={companyName}
+                                            className="form-control pi_is_actively_looking_for_work !py-3.5 !text-xs !text-gray-500 border-light-emphasis"
+                                            value={address3}
                                             onChange={(e) =>
-                                                setCompanyName(e.target.value)
+                                                setAddress3(e.target.value)
                                             }
                                         />
                                     </div>
                                     <div class="col-md-3">
                                         <InputText
-                                            className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
-                                            value={companyName}
+                                            className="form-control pi_is_actively_looking_for_work !py-3.5 !text-xs !text-gray-500 border-light-emphasis"
+                                            value={position3}
                                             onChange={(e) =>
-                                                setCompanyName(e.target.value)
+                                                setPosition3(e.target.value)
                                             }
                                         />
                                     </div>
                                     <div class="col-md-3">
                                         <Calendar
                                             className="form-control h-10 p-0 border-0"
-                                            value={inclusive}
-                                            setBithdate={(e) =>
-                                                setInclusive(e.value)
+                                            value={inclusive3}
+                                            onChange={(e) =>
+                                                setInclusive3(e.value)
                                             }
                                             dateFormat="dd/mm/yy"
                                         />
                                     </div>
                                     <div class="col-md-3">
                                         <Dropdown
-                                            value={status}
-                                            onChange={(e) => setStatus(e.value)}
-                                            options={statuses}
-                                            optionLabel="name"
-                                            editable
-                                            placeholder="Select a Status"
-                                            className="form-select h-10 !text-xs pi_civil_status !text-gray-500 !py-2.5 border-light-emphasis"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                        </div><div class="row mb-4">
-                            <div class="col-md-4">
-                                <InputText
-                                    className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
-                                    value={companyName}
-                                    onChange={(e) =>
-                                        setCompanyName(e.target.value)
-                                    }
-                                />
-                            </div>
-                            <div class="col-md-8">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <InputText
-                                            className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
-                                            value={companyName}
-                                            onChange={(e) =>
-                                                setCompanyName(e.target.value)
-                                            }
-                                        />
-                                    </div>
-                                    <div class="col-md-3">
-                                        <InputText
-                                            className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
-                                            value={companyName}
-                                            onChange={(e) =>
-                                                setCompanyName(e.target.value)
-                                            }
-                                        />
-                                    </div>
-                                    <div class="col-md-3">
-                                        <Calendar
-                                            className="form-control h-10 p-0 border-0"
-                                            value={inclusive}
-                                            setBithdate={(e) =>
-                                                setInclusive(e.value)
-                                            }
-                                            dateFormat="dd/mm/yy"
-                                        />
-                                    </div>
-                                    <div class="col-md-3">
-                                        <Dropdown
-                                            value={status}
-                                            onChange={(e) => setStatus(e.value)}
+                                            value={status3}
+                                            onChange={(e) => setStatus3(e.value)}
                                             options={statuses}
                                             optionLabel="name"
                                             editable
@@ -284,9 +332,9 @@ export default function WorkExperience({
                             <div class="col-md-4">
                                 <InputText
                                     className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
-                                    value={companyName}
+                                    value={companyName3}
                                     onChange={(e) =>
-                                        setCompanyName(e.target.value)
+                                        setCompanyName3(e.target.value)
                                     }
                                 />
                             </div>
@@ -294,36 +342,144 @@ export default function WorkExperience({
                                 <div class="row">
                                     <div class="col-md-3">
                                         <InputText
-                                            className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
-                                            value={companyName}
+                                            className="form-control pi_is_actively_looking_for_work !py-3.5 !text-xs !text-gray-500 border-light-emphasis"
+                                            value={address3}
                                             onChange={(e) =>
-                                                setCompanyName(e.target.value)
+                                                setAddress3(e.target.value)
                                             }
                                         />
                                     </div>
                                     <div class="col-md-3">
                                         <InputText
-                                            className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
-                                            value={companyName}
+                                            className="form-control pi_is_actively_looking_for_work !py-3.5 !text-xs !text-gray-500 border-light-emphasis"
+                                            value={position3}
                                             onChange={(e) =>
-                                                setCompanyName(e.target.value)
+                                                setPosition3(e.target.value)
                                             }
                                         />
                                     </div>
                                     <div class="col-md-3">
                                         <Calendar
                                             className="form-control h-10 p-0 border-0"
-                                            value={inclusive}
-                                            setBithdate={(e) =>
-                                                setInclusive(e.value)
+                                            value={inclusive3}
+                                            onChange={(e) =>
+                                                setInclusive3(e.value)
                                             }
                                             dateFormat="dd/mm/yy"
                                         />
                                     </div>
                                     <div class="col-md-3">
                                         <Dropdown
-                                            value={status}
-                                            onChange={(e) => setStatus(e.value)}
+                                            value={status3}
+                                            onChange={(e) => setStatus3(e.value)}
+                                            options={statuses}
+                                            optionLabel="name"
+                                            editable
+                                            placeholder="Select a Status"
+                                            className="form-select h-10 !text-xs pi_civil_status !text-gray-500 !py-2.5 border-light-emphasis"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <InputText
+                                    className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
+                                    value={companyName4}
+                                    onChange={(e) =>
+                                        setCompanyName4(e.target.value)
+                                    }
+                                />
+                            </div>
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <InputText
+                                            className="form-control pi_is_actively_looking_for_work !py-4.5 !text-xs !text-gray-500 border-light-emphasis"
+                                            value={address4}
+                                            onChange={(e) =>
+                                                setAddress4(e.target.value)
+                                            }
+                                        />
+                                    </div>
+                                    <div class="col-md-3">
+                                        <InputText
+                                            className="form-control pi_is_actively_looking_for_work !py-4.5 !text-xs !text-gray-500 border-light-emphasis"
+                                            value={position4}
+                                            onChange={(e) =>
+                                                setPosition4(e.target.value)
+                                            }
+                                        />
+                                    </div>
+                                    <div class="col-md-3">
+                                        <Calendar
+                                            className="form-control h-10 p-0 border-0"
+                                            value={inclusive4}
+                                            onChange={(e) =>
+                                                setInclusive4(e.value)
+                                            }
+                                            dateFormat="dd/mm/yy"
+                                        />
+                                    </div>
+                                    <div class="col-md-3">
+                                        <Dropdown
+                                            value={status4}
+                                            onChange={(e) => setStatus4(e.value)}
+                                            options={statuses}
+                                            optionLabel="name"
+                                            editable
+                                            placeholder="Select a Status"
+                                            className="form-select h-10 !text-xs pi_civil_status !text-gray-500 !py-2.5 border-light-emphasis"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <InputText
+                                    className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
+                                    value={companyName5}
+                                    onChange={(e) =>
+                                        setCompanyName5(e.target.value)
+                                    }
+                                />
+                            </div>
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <InputText
+                                            className="form-control pi_is_actively_looking_for_work !py-5.5 !text-xs !text-gray-500 border-light-emphasis"
+                                            value={address5}
+                                            onChange={(e) =>
+                                                setAddress5(e.target.value)
+                                            }
+                                        />
+                                    </div>
+                                    <div class="col-md-3">
+                                        <InputText
+                                            className="form-control pi_is_actively_looking_for_work !py-5.5 !text-xs !text-gray-500 border-light-emphasis"
+                                            value={position5}
+                                            onChange={(e) =>
+                                                setPosition5(e.target.value)
+                                            }
+                                        />
+                                    </div>
+                                    <div class="col-md-3">
+                                        <Calendar
+                                            className="form-control h-10 p-0 border-0"
+                                            value={inclusive5}
+                                            onChange={(e) =>
+                                                setInclusive5(e.value)
+                                            }
+                                            dateFormat="dd/mm/yy"
+                                        />
+                                    </div>
+                                    <div class="col-md-3">
+                                        <Dropdown
+                                            value={status5}
+                                            onChange={(e) => setStatus5(e.value)}
                                             options={statuses}
                                             optionLabel="name"
                                             editable

@@ -52,7 +52,6 @@ class ApplicantSeeder extends Seeder
             'province' => 'bukidnon',
             'municipality_or_city' => 'valencia city',
             'barangay' => 'poblacion',
-            'village' => 'juanilla village',
             'house_no_or_street' => 'N/A',
         ]);
 
@@ -61,7 +60,6 @@ class ApplicantSeeder extends Seeder
             'province' => 'bukidnon',
             'municipality_or_city' => 'valencia city',
             'barangay' => 'poblacion',
-            'village' => 'juanilla village',
             'house_no_or_street' => 'N/A',
         ]);
 
@@ -105,18 +103,41 @@ class ApplicantSeeder extends Seeder
             'awards' => 'Cum Laude',
         ]);
 
-        $applicant1->applicant_eligibility()->create([
+        $applicant1->applicant_vocational_course()->create([
             'training_or_courses' => 'Computer Programming',
             'duration' => '6months',
             'instituition' => 'tesda',
             'certificates' => 'NCII',
         ]);
 
-        $applicant1->applicant_eligibility()->create([
+        $applicant1->applicant_vocational_course()->create([
             'training_or_courses' => 'Computer System Servicing',
             'duration' => '6months',
             'instituition' => 'tesda',
             'certificates' => 'NCII',
+        ]);
+
+        $applicant1->applicant_eligibility()->create([
+            'eligibility' => 'Computer System Servicing',
+            'rating' => '6months',
+            'date_of_examination' => '2023/01/30',
+        ]);
+
+
+        $applicant1->applicant_eligibility()->create([
+            'eligibility' => 'Computer System Servicing',
+            'rating' => '6months',
+            'date_of_examination' => '2023/01/30',
+        ]);
+
+        $applicant1->applicant_professional_license()->create([
+            'professional_license' => 'Computer System Servicing',
+            'valid_until' => '2023/01/30',
+        ]);
+
+        $applicant1->applicant_professional_license()->create([
+            'professional_license' => 'Computer System Servicing',
+            'valid_until' => '2023/01/30',
         ]);
 
         $applicant1->applicant_job_preference_location()->create([

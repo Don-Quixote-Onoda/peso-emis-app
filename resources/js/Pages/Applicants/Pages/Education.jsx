@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import NavigatorButton from "../Components/NavigatorButton";
 import { InputText } from "primereact/inputtext";
 import { Calendar } from "primereact/calendar";
+import { useSessionStorage, useLocalStorage } from "primereact/hooks";
 export default function Education({
     activeIndex,
     numberOfPage,
@@ -13,48 +14,120 @@ export default function Education({
         setActiveIndex(activeIndex + 1);
     };
 
-    const [schoolElementary, setSchoolElementary] = useState("");
-    const [courseElementary, setCourseElementary] = useState("");
-    const [yearGraduateElementary, setYearGraduatedElementary] = useState("");
+    const [schoolElementary, setSchoolElementary] =  useSessionStorage(
+        sessionStorage.getItem("schoolElementary"),
+        "schoolElementary"
+    );
+    const [courseElementary, setCourseElementary] =  useSessionStorage(
+        sessionStorage.getItem("courseElementary"),
+        "courseElementary"
+    );
+    const [yearGraduateElementary, setYearGraduatedElementary] =  useSessionStorage(
+        sessionStorage.getItem("yearGraduateElementary"),
+        "yearGraduateElementary"
+    );
     const [undergraduateLevelElementary, setUndergraduateLevelElementary] =
-        useState("");
+         useSessionStorage(
+        sessionStorage.getItem("undergraduateLevelElementary"),
+        "undergraduateLevelElementary"
+    );
     const [awardsRecievedElementary, setAwardsRecievedElementary] =
-        useState("");
+         useSessionStorage(
+        sessionStorage.getItem("awardsRecievedElementary"),
+        "awardsRecievedElementary"
+    );
     const [yearLastAttendedElementary, setYearLastAttendedElementary] =
-        useState("");
+         useSessionStorage(
+        sessionStorage.getItem("yearLastAttendedElementary"),
+        "yearLastAttendedElementary"
+    );
 
-    const [schoolSecondary, setSchoolSecondary] = useState("");
-    const [courseSecondary, setCourseSecondary] = useState("");
-    const [yearGraduateSecondary, setYearGraduatedSecondary] = useState("");
+    const [schoolSecondary, setSchoolSecondary] =  useSessionStorage(
+        sessionStorage.getItem("schoolSecondary"),
+        "schoolSecondary"
+    );
+    const [courseSecondary, setCourseSecondary] =  useSessionStorage(
+        sessionStorage.getItem("courseSecondary"),
+        "courseSecondary"
+    );
+    const [yearGraduateSecondary, setYearGraduatedSecondary] =  useSessionStorage(
+        sessionStorage.getItem("yearGraduateSecondary"),
+        "yearGraduateSecondary"
+    );
     const [undergraduateLevelSecondary, setUndergraduateLevelSecondary] =
-        useState("");
-    const [awardsRecievedSecondary, setAwardsRecievedSecondary] = useState("");
+         useSessionStorage(
+        sessionStorage.getItem("undergraduateLevelSecondary"),
+        "undergraduateLevelSecondary"
+    );
+    const [awardsRecievedSecondary, setAwardsRecievedSecondary] =  useSessionStorage(
+        sessionStorage.getItem("awardsRecievedSecondary"),
+        "awardsRecievedSecondary"
+    );
     const [yearLastAttendedSecondary, setYearLastAttendedSecondary] =
-        useState("");
+         useSessionStorage(
+        sessionStorage.getItem("yearLastAttendedSecondary"),
+        "yearLastAttendedSecondary"
+    );
 
-    const [schoolTertiary, setSchoolTertiary] = useState("");
-    const [courseTertiary, setCourseTertiary] = useState("");
-    const [yearGraduateTertiary, setYearGraduatedTertiary] = useState("");
+    const [schoolTertiary, setSchoolTertiary] =  useSessionStorage(
+        sessionStorage.getItem("schoolTertiary"),
+        "schoolTertiary"
+    );
+    const [courseTertiary, setCourseTertiary] =  useSessionStorage(
+        sessionStorage.getItem("courseTertiary"),
+        "courseTertiary"
+    );
+    const [yearGraduateTertiary, setYearGraduatedTertiary] =  useSessionStorage(
+        sessionStorage.getItem("yearGraduateTertiary"),
+        "yearGraduateTertiary"
+    );
     const [undergraduateLevelTertiary, setUndergraduateLevelTertiary] =
-        useState("");
-    const [awardsRecievedTertiary, setAwardsRecievedTertiary] = useState("");
+         useSessionStorage(
+        sessionStorage.getItem("undergraduateLevelTertiary"),
+        "undergraduateLevelTertiary"
+    );
+    const [awardsRecievedTertiary, setAwardsRecievedTertiary] =  useSessionStorage(
+        sessionStorage.getItem("awardsRecievedTertiary"),
+        "awardsRecievedTertiary"
+    );
     const [yearLastAttendedTertiary, setYearLastAttendedTertiary] =
-        useState("");
+         useSessionStorage(
+        sessionStorage.getItem("yearLastAttendedTertiary"),
+        "yearLastAttendedTertiary"
+    );
 
-    const [schoolGraduateStudies, setSchoolGraduateStudies] = useState("");
-    const [courseGraduateStudies, setCourseGraduateStudies] = useState("");
+    const [schoolGraduateStudies, setSchoolGraduateStudies] =  useSessionStorage(
+        sessionStorage.getItem("schoolGraduateStudies"),
+        "schoolGraduateStudies"
+    );
+    const [courseGraduateStudies, setCourseGraduateStudies] =  useSessionStorage(
+        sessionStorage.getItem("courseGraduateStudies"),
+        "courseGraduateStudies"
+    );
     const [yearGraduateGraduateStudies, setYearGraduatedGraduateStudies] =
-        useState("");
+         useSessionStorage(
+        sessionStorage.getItem("yearGraduateGraduateStudies"),
+        "yearGraduateGraduateStudies"
+    );
     const [
         undergraduateLevelGraduateStudies,
         setUndergraduateLevelGraduateStudies,
-    ] = useState("");
+    ] =  useSessionStorage(
+        sessionStorage.getItem("undergraduateLevelGraduateStudies"),
+        "undergraduateLevelGraduateStudies"
+    );
     const [awardsRecievedGraduateStudies, setAwardsRecievedGraduateStudies] =
-        useState("");
+         useSessionStorage(
+        sessionStorage.getItem("awardsRecievedGraduateStudies"),
+        "awardsRecievedGraduateStudies"
+    );
     const [
         yearLastAttendedGraduateStudies,
         setYearLastAttendedGraduateStudies,
-    ] = useState("");
+    ] =  useSessionStorage(
+        sessionStorage.getItem("yearLastAttendedGraduateStudies"),
+        "yearLastAttendedGraduateStudies"
+    );
 
     return (
         <form onSubmit={(e) => handleSubmit(e)}>
@@ -114,7 +187,7 @@ export default function Education({
                                         <Calendar
                                             className="form-control h-10 p-0 border-0"
                                             value={yearGraduateElementary}
-                                            setBithdate={(e) =>
+                                            onChange={(e) =>
                                                 setYearGraduatedElementary(
                                                     e.value
                                                 )
@@ -157,7 +230,7 @@ export default function Education({
                                                 value={
                                                     yearLastAttendedElementary
                                                 }
-                                                setBithdate={(e) =>
+                                                onChange={(e) =>
                                                     setYearLastAttendedElementary(
                                                         e.value
                                                     )
@@ -234,7 +307,7 @@ export default function Education({
                                         <Calendar
                                             className="form-control h-10 p-0 border-0"
                                             value={yearGraduateSecondary}
-                                            setBithdate={(e) =>
+                                            onChange={(e) =>
                                                 setYearGraduatedSecondary(
                                                     e.value
                                                 )
@@ -277,7 +350,7 @@ export default function Education({
                                                 value={
                                                     yearLastAttendedSecondary
                                                 }
-                                                setBithdate={(e) =>
+                                                onChange={(e) =>
                                                     setYearLastAttendedSecondary(
                                                         e.value
                                                     )
@@ -354,7 +427,7 @@ export default function Education({
                                         <Calendar
                                             className="form-control h-10 p-0 border-0"
                                             value={yearGraduateTertiary}
-                                            setBithdate={(e) =>
+                                            onChange={(e) =>
                                                 setYearGraduatedTertiary(
                                                     e.value
                                                 )
@@ -397,7 +470,7 @@ export default function Education({
                                                 value={
                                                     yearLastAttendedTertiary
                                                 }
-                                                setBithdate={(e) =>
+                                                onChange={(e) =>
                                                     setYearLastAttendedTertiary(
                                                         e.value
                                                     )
@@ -474,7 +547,7 @@ export default function Education({
                                         <Calendar
                                             className="form-control h-10 p-0 border-0"
                                             value={yearGraduateGraduateStudies}
-                                            setBithdate={(e) =>
+                                            onChange={(e) =>
                                                 setYearGraduatedGraduateStudies(
                                                     e.value
                                                 )
@@ -517,7 +590,7 @@ export default function Education({
                                                 value={
                                                     yearLastAttendedGraduateStudies
                                                 }
-                                                setBithdate={(e) =>
+                                                onChange={(e) =>
                                                     setYearLastAttendedGraduateStudies(
                                                         e.value
                                                     )

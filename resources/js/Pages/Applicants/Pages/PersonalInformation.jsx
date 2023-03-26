@@ -94,6 +94,11 @@ export default function PersonalInformation({
         "pagIbigNumber"
     );
 
+    const [TINNumber, setTINNumber] = useSessionStorage(
+        sessionStorage.getItem("TINNumber"),
+        "TINNumber"
+    );
+
     const [philhealthNumber, setPhilhealthNumber] = useSessionStorage(
         sessionStorage.getItem("philhealthNumber"),
         "philhealthNumber"
@@ -119,10 +124,24 @@ export default function PersonalInformation({
         "activelyLookingForWork"
     );
 
+    const [howLongLookingForWork, setHowLongLookingForWork] = useSessionStorage(
+        sessionStorage.getItem("howLongLookingForWork"),
+        "howLongLookingForWork"
+    );
+
+    const [noWhenToWork, setNoWhenToWOrk] = useSessionStorage(
+        sessionStorage.getItem("noWhenToWork"),
+        "noWhenToWork"
+    );
 
     const [willingToWorkImmediately, setWillingToWorkImmediately] = useSessionStorage(
         sessionStorage.getItem("willingToWorkImmediately"),
         "willingToWorkImmediately"
+    );
+
+    const [householdNumber, setHouseholdNumber] = useSessionStorage(
+        sessionStorage.getItem("householdNumber"),
+        "householdNumber"
     );
 
     const [is4psBeneficiary, setIs4psBeneficiary] = useSessionStorage(
@@ -179,7 +198,7 @@ export default function PersonalInformation({
     };
 
     const pob_province = (e) => {
-        setRegionAddr(e.target.selectedOptions[0].text);
+        pob_setRegionAddr(e.target.selectedOptions[0].text);
         provinces(e.target.value).then((response) => {
             pob_setProvince(response);
             pob_setCity([]);
@@ -256,7 +275,7 @@ export default function PersonalInformation({
     };
 
     const pa_province = (e) => {
-        setRegionAddr(e.target.selectedOptions[0].text);
+        pa_setRegionAddr(e.target.selectedOptions[0].text);
         provinces(e.target.value).then((response) => {
             pa_setProvince(response);
             pa_setCity([]);
@@ -364,7 +383,7 @@ export default function PersonalInformation({
                         >
                             Date of Birth
                         </label>
-                        <Calendar className="form-control h-10 p-0 border-0" value={birthdate} setBithdate={(e) => setDate(e.value)} dateFormat="dd/mm/yy" />
+                        <Calendar className="form-control h-10 p-0 border-0" value={birthdate} onChange={(e) => setBithdate(e.value)} dateFormat="dd/mm/yy" />
                         <span class="text-danger !text-xs pi_date_of_birth-error"></span>
                     </div>
                     <div class="col-md-6 mb-4">
@@ -478,7 +497,7 @@ export default function PersonalInformation({
                                 >
                                     How long have you been looking for work?
                                 </label>
-                                <InputText className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis" value={height} onChange={(e) => setHeight(e.target.value)} />
+                                <InputText className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis" value={howLongLookingForWork} onChange={(e) => setHowLongLookingForWork(e.target.value)} />
                                 <span class="text-danger !text-xs pi_is_actively_looking_for_work-error"></span>
                             </div>}  
                         </div>
@@ -522,7 +541,7 @@ export default function PersonalInformation({
                                 >
                                     If no, when?
                                 </label>
-                                <InputText className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis" value={height} onChange={(e) => setHeight(e.target.value)} />
+                                <InputText className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis" value={noWhenToWork} onChange={(e) => setNoWhenToWOrk(e.target.value)} />
 
                                 <span class="text-danger !text-xs pi_not_when_to_work-error"></span>
                             </div>
@@ -566,9 +585,9 @@ export default function PersonalInformation({
                                     for="inputEmail4"
                                     class="form-label !text-xs !text-gray-400 fw-bold text-light-emphasis"
                                 >
-                                    If yes, Household ID No.{" "}
+                                    If yes, Household ID No.
                                 </label>
-                                <InputText className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis" value={height} onChange={(e) => setHeight(e.target.value)} />
+                                <InputText className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis" value={householdNumber} onChange={(e) => setHouseholdNumber(e.target.value)} />
                                 <span class="text-danger !text-xs pi_4ps_household_id-error"></span>
                             </div>
                             }
@@ -935,6 +954,16 @@ export default function PersonalInformation({
                             PhilHealth Number
                         </label>
                         <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" value={philhealthNumber} onChange={(e) => setPhilhealthNumber(e.target.value)} />
+                        <span class="text-danger !text-xs pi_philheath_number-error"></span>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <label
+                            for="inputEmail4"
+                            class="form-label !text-xs !text-gray-400 fw-bold text-light-emphasis"
+                        >
+                            TIN Number
+                        </label>
+                        <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" value={TINNumber} onChange={(e) => setTINNumber(e.target.value)} />
                         <span class="text-danger !text-xs pi_philheath_number-error"></span>
                     </div>
                     <div class="col-md-6 mb-4">

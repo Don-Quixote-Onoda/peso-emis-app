@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import NavigatorButton from "../Components/NavigatorButton";
-
+import { useSessionStorage, useLocalStorage } from "primereact/hooks";
 import { Checkbox } from 'primereact/checkbox';
         
 export default function OtherSkills({
@@ -10,10 +10,36 @@ export default function OtherSkills({
     counterPrevious,
 }) {
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setActiveIndex(activeIndex + 1);
-    }
+    
+
+    const [checked, setChecked] = useState(false);
+
+
+    const [OtherSkill, setOtherSkill] = useState("");
+    const [OtherSkills, setOtherSkills] = useSessionStorage(
+        sessionStorage.getItem("OtherSkills"),
+        "OtherSkills"
+    );
+
+    const handleOtherSkill = (value, e) => {
+        if(e.target.checked && !OtherSkill.includes(value)) {
+
+            setOtherSkill(OtherSkill + " " + value);
+
+        }
+        else {
+            setOtherSkill(OtherSkill.replace(value,''));
+        }
+
+        console.log(OtherSkill);
+};
+
+const handleSubmit = (e) => {
+    e.preventDefault();
+    setActiveIndex(activeIndex + 1);
+
+    setOtherSkills(OtherSkill);
+}
 
     return (
         <form onSubmit={e => handleSubmit(e)}>
@@ -32,6 +58,11 @@ export default function OtherSkills({
                                     name="osawft"
                                     id="osawft"
                                     value="Auto Mechanic"
+                                    onChange={(e) =>
+                                        handleOtherSkill(
+                                            "Auto Mechanic",e
+                                        )
+                                    }
                                 />
                                 <label
                                     class="form-check-label !text-xs !py-2.5 !text-gray-500"
@@ -49,6 +80,12 @@ export default function OtherSkills({
                                     name="osawft"
                                     id="osawft"
                                     value="Electrician"
+
+                                    onChange={(e) =>
+                                        handleOtherSkill(
+                                            "Electrician",e
+                                        )
+                                    }
                                 />
                                 <label
                                     class="form-check-label !text-xs !py-2.5 !text-gray-500"
@@ -66,6 +103,12 @@ export default function OtherSkills({
                                     name="osawft"
                                     id="osawft"
                                     value="Photography"
+
+                                    onChange={(e) =>
+                                        handleOtherSkill(
+                                            "Photography",e
+                                        )
+                                    }
                                 />
                                 <label
                                     class="form-check-label !text-xs !py-2.5 !text-gray-500"
@@ -83,6 +126,12 @@ export default function OtherSkills({
                                     name="osawft"
                                     id="osawft"
                                     value="Beautician"
+
+                                    onChange={(e) =>
+                                        handleOtherSkill(
+                                            "Beautician",e
+                                        )
+                                    }
                                 />
                                 <label
                                     class="form-check-label !text-xs !py-2.5 !text-gray-500"
@@ -100,6 +149,12 @@ export default function OtherSkills({
                                     name="osawft"
                                     id="osawft"
                                     value="Embroidery"
+
+                                    onChange={(e) =>
+                                        handleOtherSkill(
+                                            "Embroidery",e
+                                        )
+                                    }
                                 />
                                 <label
                                     class="form-check-label !text-xs !py-2.5 !text-gray-500"
@@ -117,6 +172,11 @@ export default function OtherSkills({
                                     name="osawft"
                                     id="osawft"
                                     value="Plumbing"
+                                    onChange={(e) =>
+                                        handleOtherSkill(
+                                            "Plumbing",e
+                                        )
+                                    }
                                 />
                                 <label
                                     class="form-check-label !text-xs !py-2.5 !text-gray-500"
@@ -134,6 +194,12 @@ export default function OtherSkills({
                                     name="osawft"
                                     id="osawft"
                                     value="Carpentry Work"
+
+                                    onChange={(e) =>
+                                        handleOtherSkill(
+                                            "Carpentry Work",e
+                                        )
+                                    }
                                 />
                                 <label
                                     class="form-check-label !text-xs !py-2.5 !text-gray-500"
@@ -151,6 +217,12 @@ export default function OtherSkills({
                                     name="osawft"
                                     id="osawft"
                                     value="Gardening"
+
+                                    onChange={(e) =>
+                                        handleOtherSkill(
+                                            "Gardening",e
+                                        )
+                                    }
                                 />
                                 <label
                                     class="form-check-label !text-xs !py-2.5 !text-gray-500"
@@ -168,6 +240,11 @@ export default function OtherSkills({
                                     name="osawft"
                                     id="osawft"
                                     value="Sewing Dresses"
+                                    onChange={(e) =>
+                                        handleOtherSkill(
+                                            "Sewing Dresses",e
+                                        )
+                                    }
                                 />
                                 <label
                                     class="form-check-label !text-xs !py-2.5 !text-gray-500"
@@ -185,6 +262,12 @@ export default function OtherSkills({
                                     name="osawft"
                                     id="osawft"
                                     value="Computer Literate"
+
+                                    onChange={(e) =>
+                                        handleOtherSkill(
+                                            "Computer Literate",e
+                                        )
+                                    }
                                 />
                                 <label
                                     class="form-check-label !text-xs !py-2.5 !text-gray-500"
@@ -202,6 +285,12 @@ export default function OtherSkills({
                                     name="osawft"
                                     id="osawft"
                                     value="Masonry"
+
+                                    onChange={(e) =>
+                                        handleOtherSkill(
+                                            "Masonry",e
+                                        )
+                                    }
                                 />
                                 <label
                                     class="form-check-label !text-xs !py-2.5 !text-gray-500"
@@ -219,6 +308,12 @@ export default function OtherSkills({
                                     name="osawft"
                                     id="osawft"
                                     value="Stenography"
+
+                                    onChange={(e) =>
+                                        handleOtherSkill(
+                                            "Stenography",e
+                                        )
+                                    }
                                 />
                                 <label
                                     class="form-check-label !text-xs !py-2.5 !text-gray-500"
@@ -236,6 +331,12 @@ export default function OtherSkills({
                                     name="osawft"
                                     id="osawft"
                                     value="Domestic Chores"
+
+                                    onChange={(e) =>
+                                        handleOtherSkill(
+                                            "Domestic Chores",e
+                                        )
+                                    }
                                 />
                                 <label
                                     class="form-check-label !text-xs !py-2.5 !text-gray-500"
@@ -253,6 +354,12 @@ export default function OtherSkills({
                                     name="osawft"
                                     id="osawft"
                                     value="Painter/Artist"
+
+                                    onChange={(e) =>
+                                        handleOtherSkill(
+                                            "Painter/Artist",e
+                                        )
+                                    }
                                 />
                                 <label
                                     class="form-check-label !text-xs !py-2.5 !text-gray-500"
@@ -270,6 +377,12 @@ export default function OtherSkills({
                                     name="osawft"
                                     id="osawft"
                                     value="Tailoring"
+
+                                    onChange={(e) =>
+                                        handleOtherSkill(
+                                            "Tailoring",e
+                                        )
+                                    }
                                 />
                                 <label
                                     class="form-check-label !text-xs !py-2.5 !text-gray-500"
@@ -287,6 +400,12 @@ export default function OtherSkills({
                                     name="osawft"
                                     id="osawft"
                                     value="Driving"
+
+                                    onChange={(e) =>
+                                        handleOtherSkill(
+                                            "Driving",e
+                                        )
+                                    }
                                 />
                                 <label
                                     class="form-check-label !text-xs !py-2.5 !text-gray-500"
@@ -304,6 +423,12 @@ export default function OtherSkills({
                                     name="osawft"
                                     id="osawft"
                                     value="Painting Jobs"
+
+                                    onChange={(e) =>
+                                        handleOtherSkill(
+                                            "Painting Jobs",e
+                                        )
+                                    }
                                 />
                                 <label
                                     class="form-check-label !text-xs !py-2.5 !text-gray-500"

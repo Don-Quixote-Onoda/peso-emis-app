@@ -14,10 +14,9 @@ class ApplicantEligibility extends Model
     public $timestamp = true;
 
     protected $fillable = [
-        "training_or_course",
-        "duration",
-        "instituition",
-        "certificates",
+        "eligibility",
+        "rating",
+        "date_of_examination",
         "applicant_id"
     ];
 

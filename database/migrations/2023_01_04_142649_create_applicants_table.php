@@ -38,7 +38,7 @@ return new class extends Migration
             $table->date('when_to_start_working');
             $table->integer('is_4Ps');
             $table->string('household_id_4ps');
-            $table->integer('expected_salary');
+            $table->string('expected_salary');
             $table->string('passport_number');
             $table->date('expiry_date');
             $table->string('skills_without_formal_training');

@@ -8,16 +8,14 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('applicant_eligibilities', function (Blueprint $table) {
-            $table->id();
-            $table->string('eligibility');
-            $table->string('rating');
-            $table->date('date_of_examination');
+        Schema::create('applicant_vocational_courses', function (Blueprint $table) {
+            $table->string('training_or_courses');
+            $table->string('duration');
+            $table->string('instituition');
+            $table->string('certificates');
             $table->unsignedBigInteger('applicant_id');
             $table->foreign('applicant_id')->references('id')->on('applicants');
             $table->timestamps();
@@ -26,11 +24,9 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('applicant_eligibilities');
+        Schema::dropIfExists('applicant_vocational_courses');
     }
 };

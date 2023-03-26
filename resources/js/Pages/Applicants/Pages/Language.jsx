@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import NavigatorButton from "../Components/NavigatorButton";
 import { InputText } from 'primereact/inputtext';
 import { Checkbox } from "primereact/checkbox";
+import { useSessionStorage, useLocalStorage } from "primereact/hooks";
 
 export default function Language({
     activeIndex,
@@ -15,22 +16,61 @@ export default function Language({
         setActiveIndex(activeIndex + 1);
     }
 
-    const [othersLanguage, setOthersLangauge] = useState("");
+    const [othersLanguage, setOthersLangauge] = useSessionStorage(
+        sessionStorage.getItem("othersLanguage"),
+        "othersLanguage"
+    );
 
-    const [readEnglish, setReadEnglish] = useState(false);
-    const [writeEnglish, setWriteEnglish] = useState(false);
-    const [speakEnglish, setSpeakEnglish] = useState(false);
-    const [understandEnglish, setUnderstandEnglish] = useState(false);
+    const [readEnglish, setReadEnglish] = useSessionStorage(
+        sessionStorage.getItem("readEnglish"),
+        "readEnglish"
+    );
+    const [writeEnglish, setWriteEnglish] = useSessionStorage(
+        sessionStorage.getItem("writeEnglish"),
+        "writeEnglish"
+    );
+    const [speakEnglish, setSpeakEnglish] = useSessionStorage(
+        sessionStorage.getItem("speakEnglish"),
+        "speakEnglish"
+    );
+    const [understandEnglish, setUnderstandEnglish] = useSessionStorage(
+        sessionStorage.getItem("understandEnglish"),
+        "understandEnglish"
+    );
 
-    const [readFilipino, setReadFilipino] = useState(false);
-    const [writeFilipino, setWriteFilipino] = useState(false);
-    const [speakFilipino, setSpeakFilipino] = useState(false);
-    const [understandFilipino, setUnderstandFilipino] = useState(false);
+    const [readFilipino, setReadFilipino] = useSessionStorage(
+        sessionStorage.getItem("readFilipino"),
+        "readFilipino"
+    );
+    const [writeFilipino, setWriteFilipino] = useSessionStorage(
+        sessionStorage.getItem("writeFilipino"),
+        "writeFilipino"
+    );
+    const [speakFilipino, setSpeakFilipino] = useSessionStorage(
+        sessionStorage.getItem("speakFilipino"),
+        "speakFilipino"
+    );
+    const [understandFilipino, setUnderstandFilipino] = useSessionStorage(
+        sessionStorage.getItem("understandFilipino"),
+        "understandFilipino"
+    );
 
-    const [readOthers, setReadOthers] = useState(false);
-    const [writeOthers, setWriteOthers] = useState(false);
-    const [speakOthers, setSpeakOthers] = useState(false);
-    const [understandOthers, setUnderstandOthers] = useState(false);
+    const [readOthers, setReadOthers] = useSessionStorage(
+        sessionStorage.getItem("readOthers"),
+        "readOthers"
+    );
+    const [writeOthers, setWriteOthers] = useSessionStorage(
+        sessionStorage.getItem("writeOthers"),
+        "writeOthers"
+    );
+    const [speakOthers, setSpeakOthers] = useSessionStorage(
+        sessionStorage.getItem("speakOthers"),
+        "speakOthers"
+    );
+    const [understandOthers, setUnderstandOthers] = useSessionStorage(
+        sessionStorage.getItem("understandOthers"),
+        "understandOthers"
+    );
 
     return (
         <form onSubmit={e => handleSubmit(e)}>

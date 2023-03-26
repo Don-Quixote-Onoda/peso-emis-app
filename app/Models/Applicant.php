@@ -79,6 +79,12 @@ class Applicant extends Model
         return $this->hasMany(ApplicantWorkExperience::class);
     }
 
-    
+    public function applicant_professional_license() {
+        return $this->hasMany(ApplicantProfessionalLicense::class);
+    }
+
+    public function applicant_vocational_course() {
+        return $this->hasMany(ApplicantVocationalCourse::class);
+    }
 
 }

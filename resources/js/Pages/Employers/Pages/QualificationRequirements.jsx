@@ -385,7 +385,7 @@ const handleDisabilityAccepted = (value, e) => {
                                     for="inputEmail4"
                                     class="form-label !text-xs !text-gray-400 fw-bold text-light-emphasis"
                                 >
-                                    Nature of Work:{" "}
+                                    Nature of Work:
                                 </label>
 
                                 <div class="row">

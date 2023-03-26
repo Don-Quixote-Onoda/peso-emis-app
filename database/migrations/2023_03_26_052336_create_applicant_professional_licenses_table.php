@@ -8,18 +8,13 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('applicant_addresses', function (Blueprint $table) {
+        Schema::create('applicant_professional_licenses', function (Blueprint $table) {
             $table->id();
-            $table->integer("address_type");
-            $table->string("province");
-            $table->string("municipality_or_city");
-            $table->string("barangay");
-            $table->string("house_no_or_street");
+            $table->string('professional_license');
+            $table->date('valid_until');
             $table->unsignedBigInteger('applicant_id');
             $table->foreign('applicant_id')->references('id')->on('applicants');
             $table->timestamps();
@@ -28,11 +23,9 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('applicant_addresses');
+        Schema::dropIfExists('applicant_professional_licenses');
     }
 };
