@@ -25,6 +25,16 @@ export default function Authenticated({ auth, header, children }) {
                                     Dashboard
                                 </NavLink>
                             </div>
+                            <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <NavLink href={route('admin-applicants')} active={route().current('admin-applicants')}>
+                                    Applicants
+                                </NavLink>
+                            </div>
+                            <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <NavLink href={route('admin-employers')} active={route().current('admin-employers')}>
+                                    Employers
+                                </NavLink>
+                            </div>
                         </div>
 
                         <div className="hidden sm:flex sm:items-center sm:ml-6">

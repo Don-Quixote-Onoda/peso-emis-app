@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\ApplicantsController;
 use App\Http\Controllers\EmployersController;
+use App\Http\Controllers\AdminApplicantsController;
+use App\Http\Controllers\AdminEmployersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,5 +41,11 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('employers', EmployersController::class);
 Route::resource('applicants', ApplicantsController::class);
+// Route::resource('/admin-employers', AdminEmployersController::class)->middleware(['auth', 'verified']);
+// Route::resource('/admin-applicants', AdminApplicantsController::class)->middleware(['auth', 'verified']);
+Route::get('/admin-applicants', [AdminApplicantsController::class, 'index'])->middleware(['auth', 'verified'])->name('admin-applicants');
+Route::get('/admin-employers', [AdminEmployersController::class, 'index'])->middleware(['auth', 'verified'])->name('admin-employers');
+
+
 
 require __DIR__.'/auth.php';

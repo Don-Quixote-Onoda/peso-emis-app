@@ -272,6 +272,16 @@ class ApplicantsController extends Controller
             'status' => trim($request->workExperience['workExperience5']['status'], '"'),
         ]);
 
+        $applicant->applicant_status()->create([
+            'applicant_type' => trim($request->employment['employed']['employementStatus'], '"'),
+            'applicant_status_type' => trim($request->employment['employed']['employementStatusType'], '"'),
+        ]);
+
+        $applicant->applicant_status()->create([
+            'applicant_type' => trim($request->employment['unemployed']['unemployementStatus'], '"'),
+            'applicant_status_type' => trim($request->employment['unemployed']['unemployementStatusType'], '"'),
+        ]);
+
         // dd($request->educationalBackground['graduateStudies']['awardsRecieved']);
     }
 
