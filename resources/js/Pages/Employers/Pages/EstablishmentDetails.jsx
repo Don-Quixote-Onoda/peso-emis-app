@@ -15,6 +15,7 @@ import { Controller, set, useForm } from "react-hook-form";
 import { Button } from "primereact/button";
 import { classNames } from "primereact/utils";
 import { Toast } from "primereact/toast";
+import InputError from "@/Components/InputError";
 
 export default function EstablishmentDetails({
     activeIndex,
@@ -78,6 +79,9 @@ export default function EstablishmentDetails({
         "regionCode"
     );
 
+    const [isSubmitted, setSubmitted] = useState(false);
+    const [isCompleteAddress, setCompleteAddress] = useState(false);
+
     const region = () => {
         regions().then((response) => {
             setRegion(response);
@@ -140,16 +144,37 @@ export default function EstablishmentDetails({
         reset,
     } = useForm({ defaultValues });
 
-    const onSubmit = (data) => {
-        data.value && show();
-        setTIN(data.TIN);
-        setEmployerType(data.employerType);
-        setLineOfBusiness(data.lineOfBusiness);
-        setStablishmentAbbreviation(data.stablishmentAbbreviation);
-        setStablishmentName(data.stablishmentName);
-        setTotalWorkForce(data.totalWorkForce);
+    const onSubmit = (e) => {
+        e.preventDefault();
+        setSubmitted(true);
 
+        if(
+            (regionAddr !== '' && regionAddr !== null) &&
+            (provinceAddr !== '' && provinceAddr !== null) &&
+            (cityAddr !== '' && cityAddr !== null) &&
+            (barangayAddr !== '' && barangayAddr !== null) &&
+            (houseNumber_Street_Village !== '' && houseNumber_Street_Village !== null)
+        )
+            {
+                setCompleteAddress(true);
+            }
+
+        else 
+            {
+                setCompleteAddress(false);
+            }
+
+        if(
+            stablishmentName &&
+            stablishmentAbbreviation &&
+            TIN &&
+            lineOfBusiness &&
+            employerType &&
+            totalWorkForce &&
+            isCompleteAddress
+        )   
         setActiveIndex(activeIndex + 1);
+
     };
 
     const getFormErrorMessage = (name) => {
@@ -161,7 +186,7 @@ export default function EstablishmentDetails({
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={onSubmit}>
             <Toast ref={toast} />
             <div class="step-1">
                 <div class="card rounded-0 border-0">
@@ -172,97 +197,74 @@ export default function EstablishmentDetails({
                     </div>
                     <div class="card-body row p-0">
                         <div class="col-md-6 mb-4">
-                            <Controller
-                                name="stablishmentName"
-                                control={control}
-                                rules={{
-                                    required: "Establishment Name is required.",
-                                }}
-                                render={({ field, fieldState }) => (
-                                    <>
-                                        <label
-                                            for="inputEmail4"
-                                            className={`form-label !text-xs ${classNames(
-                                                { "p-error": errors.value }
-                                            )} !text-gray-400 fw-bold text-light-emphasis`}
-                                        >
-                                            {" "}
-                                            Establishment Name:
-                                            <span className="text-red-500">
-                                                *
-                                            </span>{" "}
-                                        </label>
-                                        <InputText
-                                            id={field.name}
-                                            // value={field.value}
-                                            value={field.value}
-                                            className={`form-control !text-xs !py-2.5 ${classNames(
-                                                {
-                                                    "p-invalid":
-                                                        fieldState.error,
-                                                }
-                                            )} !text-gray-500 border-light-emphasis establishment-name`}
-                                            onChange={(e) =>
-                                                field.onChange(e.target.value)
-                                            }
-                                        />
-
-                                        {getFormErrorMessage(field.name)}
-                                    </>
-                                )}
+                            <label
+                                for="inputEmail4"
+                                className={`form-label !text-xs ${classNames({
+                                    "p-error": errors.value,
+                                })} !text-gray-400 fw-bold text-light-emphasis`}
+                            >
+                                {" "}
+                                Establishment Name:
+                                <span className="text-red-500">*</span>{" "}
+                            </label>
+                            <InputText
+                                // value={field.value}
+                                value={stablishmentName}
+                                className={`form-control !text-xs !py-2.5 ${classNames(
+                                    {
+                                        "p-invalid":
+                                            isSubmitted &&
+                                            (stablishmentName == "" ||
+                                                stablishmentName == null),
+                                    }
+                                )} !text-gray-500 border-light-emphasis establishment-name`}
+                                onChange={(e) =>
+                                    setStablishmentName(e.target.value)
+                                }
                             />
+                            {isSubmitted &&
+                                (stablishmentName == "" ||
+                                    stablishmentName == null) && (
+                                    <InputError
+                                        message="Establishment Name is required!"
+                                        className="mt-2 text-xs"
+                                    />
+                                )}
                         </div>
                         <div class="col-md-6 mb-4">
-                            <Controller
-                                name="stablishmentAbbreviation"
-                                control={control}
-                                rules={{
-                                    required:
-                                        "Acronym/Abbreviation is required.",
-                                }}
-                                render={({ field, fieldState }) => (
-                                    <>
-                                        <label
-                                            for="inputEmail4"
-                                            className={`form-label !text-xs ${classNames(
-                                                { "p-error": errors.value }
-                                            )} !text-gray-400 fw-bold text-light-emphasis`}
-                                        >
-                                            {" "}
-                                            Acronym/Abbreviation:
-                                            <span className="text-red-500">
-                                                *
-                                            </span>{" "}
-                                        </label>
-                                        <InputText
-                                            id={field.name}
-                                            value={field.value}
-                                            className={`form-control !text-xs !py-2.5 ${classNames(
-                                                {
-                                                    "p-invalid":
-                                                        fieldState.error,
-                                                }
-                                            )} !text-gray-500 border-light-emphasis establishment-name`}
-                                            onChange={(e) =>
-                                                field.onChange(e.target.value)
-                                            }
-                                        />
-
-                                        {getFormErrorMessage(field.name)}
-                                    </>
-                                )}
+                            <label
+                                for="inputEmail4"
+                                className={`form-label !text-xs ${classNames({
+                                    "p-error": isSubmitted &&
+                                    (stablishmentAbbreviation == "" ||
+                                        stablishmentAbbreviation == null),
+                                })} !text-gray-400 fw-bold text-light-emphasis`}
+                            >
+                                {" "}
+                                Acronym/Abbreviation:
+                                <span className="text-red-500">*</span>{" "}
+                            </label>
+                            <InputText
+                                value={stablishmentAbbreviation}
+                                className={`form-control !text-xs !py-2.5 ${classNames(
+                                    {
+                                        "p-invalid": isSubmitted &&
+                                        (stablishmentAbbreviation == "" ||
+                                            stablishmentAbbreviation == null),
+                                    }
+                                )} !text-gray-500 border-light-emphasis establishment-name`}
+                                onChange={(e) => setStablishmentAbbreviation(e.target.value)}
                             />
+                            {isSubmitted &&
+                                (stablishmentAbbreviation == "" ||
+                                    stablishmentAbbreviation == null) && (
+                                    <InputError
+                                        message="Establishment Abbreviation is required!"
+                                        className="mt-2 text-xs"
+                                    />
+                                )}
                         </div>
                         <div class="col-md-6 mb-4">
-                            <Controller
-                                name="TIN"
-                                control={control}
-                                rules={{
-                                    required:
-                                        "Tax Identification Number: is required.",
-                                }}
-                                render={({ field, fieldState }) => (
-                                    <>
                                         <label
                                             for="inputEmail4"
                                             className={`form-label !text-xs ${classNames(
@@ -276,34 +278,29 @@ export default function EstablishmentDetails({
                                             </span>{" "}
                                         </label>
                                         <InputText
-                                            id={field.name}
-                                            value={field.value}
+                                            value={TIN}
                                             className={`form-control !text-xs !py-2.5 ${classNames(
                                                 {
                                                     "p-invalid":
-                                                        fieldState.error,
+                                                    isSubmitted &&
+                                                    (TIN == "" ||
+                                                        TIN == null),
                                                 }
                                             )} !text-gray-500 border-light-emphasis establishment-name`}
                                             onChange={(e) =>
-                                                field.onChange(e.target.value)
+                                                setTIN(e.target.value)
                                             }
                                         />
-
-                                        {getFormErrorMessage(field.name)}
-                                    </>
+                                        {isSubmitted &&
+                                (TIN == "" ||
+                                    TIN == null) && (
+                                    <InputError
+                                        message="Tax Identification Number is required!"
+                                        className="mt-2 text-xs"
+                                    />
                                 )}
-                            />
                         </div>
                         <div class="col-md-6 mb-4">
-                            <Controller
-                                name="lineOfBusiness"
-                                control={control}
-                                rules={{
-                                    required:
-                                        "Line of Business/Industry is required.",
-                                }}
-                                render={({ field, fieldState }) => (
-                                    <>
                                         <label
                                             for="inputEmail4"
                                             className={`form-label !text-xs ${classNames(
@@ -317,34 +314,30 @@ export default function EstablishmentDetails({
                                             </span>{" "}
                                         </label>
                                         <InputText
-                                            id={field.name}
-                                            value={field.value}
+                                            value={lineOfBusiness}
                                             className={`form-control !text-xs !py-2.5 ${classNames(
                                                 {
                                                     "p-invalid":
-                                                        fieldState.error,
+                                                    isSubmitted &&
+                                                    (lineOfBusiness == "" ||
+                                                        lineOfBusiness == null),
                                                 }
                                             )} !text-gray-500 border-light-emphasis establishment-name`}
                                             onChange={(e) =>
-                                                field.onChange(e.target.value)
+                                                setLineOfBusiness(e.target.value)
                                             }
                                         />
-
-                                        {getFormErrorMessage(field.name)}
-                                    </>
+                                        {isSubmitted &&
+                                (lineOfBusiness == "" ||
+                                    lineOfBusiness == null) && (
+                                    <InputError
+                                        message="Line of Business is required!"
+                                        className="mt-2 text-xs"
+                                    />
                                 )}
-                            />
                         </div>
 
                         <div class="col-md-6 mb-4">
-                            <Controller
-                                name="employerType"
-                                control={control}
-                                rules={{
-                                    required: "Employer Type is required.",
-                                }}
-                                render={({ field }) => (
-                                    <>
                                         <label
                                             for="inputEmail4"
                                             class="form-label !text-xs !text-gray-400 fw-bold text-light-emphasis"
@@ -360,13 +353,12 @@ export default function EstablishmentDetails({
                                                     <RadioButton
                                                         className="form-check-input border-light-emphasis !border-0 establishment-employer-type"
                                                         inputId="f5"
-                                                        {...field}
-                                                        inputRef={field.ref}
                                                         value="Government"
                                                         checked={
-                                                            field.value ===
+                                                            employerType ===
                                                             "Government"
                                                         }
+                                                        onChange={(e) => setEmployerType(e.target.value)}
                                                     />
                                                     <label
                                                         htmlFor="f5"
@@ -381,13 +373,12 @@ export default function EstablishmentDetails({
                                                     <RadioButton
                                                         className="form-check-input border-light-emphasis !border-0 establishment-employer-type"
                                                         inputId="f5"
-                                                        {...field}
-                                                        inputRef={field.ref}
                                                         value="Private"
                                                         checked={
-                                                            field.value ===
+                                                            employerType ===
                                                             "Private"
                                                         }
+                                                        onChange={(e) => setEmployerType(e.target.value)}
                                                     />
                                                     <label
                                                         htmlFor="f5"
@@ -402,13 +393,12 @@ export default function EstablishmentDetails({
                                                     <RadioButton
                                                         className="form-check-input border-light-emphasis !border-0 establishment-employer-type"
                                                         inputId="f5"
-                                                        {...field}
-                                                        inputRef={field.ref}
                                                         value="Recruitment & Placement Agency (Local)"
                                                         checked={
-                                                            field.value ===
+                                                            employerType ===
                                                             "Recruitment & Placement Agency (Local)"
                                                         }
+                                                        onChange={(e) => setEmployerType(e.target.value)}
                                                     />
                                                     <label
                                                         htmlFor="f5"
@@ -424,13 +414,12 @@ export default function EstablishmentDetails({
                                                     <RadioButton
                                                         className="form-check-input border-light-emphasis !border-0 establishment-employer-type"
                                                         inputId="f5"
-                                                        {...field}
-                                                        inputRef={field.ref}
                                                         value="Licensed Recruitment Agency (Overseas)"
                                                         checked={
-                                                            field.value ===
+                                                            employerType ===
                                                             "Licensed Recruitment Agency (Overseas)"
                                                         }
+                                                        onChange={(e) => setEmployerType(e.target.value)}
                                                     />
                                                     <label
                                                         htmlFor="f5"
@@ -446,13 +435,13 @@ export default function EstablishmentDetails({
                                                     <RadioButton
                                                         className="form-check-input border-light-emphasis !border-0 establishment-employer-type"
                                                         inputId="f5"
-                                                        {...field}
-                                                        inputRef={field.ref}
                                                         value="DO 174-17, Subcontractor"
                                                         checked={
-                                                            field.value ===
+                                                            employerType ===
                                                             "DO 174-17, Subcontractor"
                                                         }
+
+                                                        onChange={(e) => setEmployerType(e.target.value)}
                                                     />
                                                     <label
                                                         htmlFor="f5"
@@ -463,22 +452,17 @@ export default function EstablishmentDetails({
                                                 </div>
                                             </div>
                                         </div>
-                                        {getFormErrorMessage(field.name)}
-                                    </>
+                                        {isSubmitted &&
+                                (employerType == "" ||
+                                    employerType == null) && (
+                                    <InputError
+                                        message="Employer Type is required!"
+                                        className="mt-2 text-xs"
+                                    />
                                 )}
-                            />
-
-                            <span class="text-danger !text-xs  establishment-employer-type-error"></span>
                         </div>
                         <div class="col-md-6 mb-4">
-                            <Controller
-                                name="totalWorkForce"
-                                control={control}
-                                rules={{
-                                    required: "Total Work Force is required.",
-                                }}
-                                render={({ field }) => (
-                                    <>
+                            
                                         <label
                                             for="inputEmail4"
                                             class="form-label !text-xs !text-gray-400 fw-bold text-light-emphasis"
@@ -494,13 +478,12 @@ export default function EstablishmentDetails({
                                                     <RadioButton
                                                         className="form-check-input border-light-emphasis !border-0 establishment-employer-type"
                                                         inputId="f5"
-                                                        {...field}
-                                                        inputRef={field.ref}
                                                         value="Micro (1-9)"
                                                         checked={
-                                                            field.value ===
+                                                            totalWorkForce ===
                                                             "Micro (1-9)"
                                                         }
+                                                        onChange={(e) => setTotalWorkForce(e.target.value)}
                                                     />
                                                     <label
                                                         htmlFor="f5"
@@ -515,13 +498,13 @@ export default function EstablishmentDetails({
                                                     <RadioButton
                                                         className="form-check-input border-light-emphasis !border-0 establishment-employer-type"
                                                         inputId="f5"
-                                                        {...field}
-                                                        inputRef={field.ref}
                                                         value="Small (10-99)"
                                                         checked={
-                                                            field.value ===
+                                                            totalWorkForce ===
                                                             "Small (10-99)"
                                                         }
+
+                                                        onChange={(e) => setTotalWorkForce(e.target.value)}
                                                     />
                                                     <label
                                                         htmlFor="f5"
@@ -536,13 +519,12 @@ export default function EstablishmentDetails({
                                                     <RadioButton
                                                         className="form-check-input border-light-emphasis !border-0 establishment-employer-type"
                                                         inputId="f5"
-                                                        {...field}
-                                                        inputRef={field.ref}
                                                         value="Medium (100-199)"
                                                         checked={
-                                                            field.value ===
+                                                            totalWorkForce ===
                                                             "Medium (100-199)"
                                                         }
+                                                        onChange={(e) => setTotalWorkForce(e.target.value)}
                                                     />
                                                     <label
                                                         htmlFor="f5"
@@ -557,13 +539,12 @@ export default function EstablishmentDetails({
                                                     <RadioButton
                                                         className="form-check-input border-light-emphasis !border-0 establishment-employer-type"
                                                         inputId="f5"
-                                                        {...field}
-                                                        inputRef={field.ref}
                                                         value="Large (200 and up)"
                                                         checked={
-                                                            field.value ===
+                                                            totalWorkForce ===
                                                             "Large (200 and up)"
                                                         }
+                                                        onChange={(e) => setTotalWorkForce(e.target.value)}
                                                     />
                                                     <label
                                                         htmlFor="f5"
@@ -574,12 +555,14 @@ export default function EstablishmentDetails({
                                                 </div>
                                             </div>
                                         </div>
-                                        {getFormErrorMessage(field.name)}
-                                    </>
+                                        {isSubmitted &&
+                                (totalWorkForce == "" ||
+                                    totalWorkForce == null) && (
+                                    <InputError
+                                        message="Employer Type is required!"
+                                        className="mt-2 text-xs"
+                                    />
                                 )}
-                            />
-
-                            <span class="text-danger !text-xs establishment-total-worked-force-error"></span>
                         </div>
 
                         <div class="col-md-12 mb-4">
@@ -726,8 +709,16 @@ export default function EstablishmentDetails({
                                         isRequired={false}
                                         label={"House No./ Street Village"}
                                     />
+                                    {isSubmitted && !isCompleteAddress && (
+                                <InputError
+                                    message="Complete Address is required!"
+                                    className="mt-2"
+                                />
+                            )}
                                 </div>
+                                
                             </div>
+                            
                         </div>
                     </div>
                 </div>

@@ -144,17 +144,17 @@ export default function Vocational({
                                     TRAINING/VOCATIONAL COURSE
                                 </h6>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3 responsive-text-md-none">
                                 <h6 class="fw-bold text-dark-emphasis mb-2 !text-xs text-gray-500 !text-md">
                                     Duration
                                 </h6>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3 responsive-text-md-none">
                                 <h6 class="fw-bold text-dark-emphasis mb-2 !text-xs text-gray-500 !text-md">
                                     Training Institution
                                 </h6>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3 responsive-text-md-none">
                                 <h6 class="fw-bold text-dark-emphasis mb-2 !text-xs text-gray-500 !text-md">
                                     Certificates Received
                                 </h6>
@@ -171,30 +171,51 @@ export default function Vocational({
                                 <InputText
                                     className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
                                     value={trainingVocationalCourse1}
+                                    placeholder="Training / Vocational Course"
                                     onChange={(e) =>
                                         setTrainingVocationalCourse1(e.target.value)
                                     }
                                 />
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3 mb-4  d-flex flex-row align-items-center gap-3 ">
+                            <label
+                                    for="inputEmail4"
+                                    class="form-label !text-xs responsive-visibility-md  !text-gray-600 mb-0 fw-bold text-light-emphasis"
+                                >
+                                    1
+                                </label>
                             <InputText
                                     className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
                                     value={trainingVocationalCourseDuration1}
+                                    placeholder="Duration"
                                     onChange={(e) =>
                                         setTrainingVocationalCourseDuration1(e.target.value)
                                     }
                                 />
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3 mb-4  d-flex flex-row align-items-center gap-3 ">
+                            <label
+                                    for="inputEmail4"
+                                    class="form-label !text-xs responsive-visibility-md  !text-gray-600 mb-0 fw-bold text-light-emphasis"
+                                >
+                                    1
+                                </label>
                                 <InputText
                                     className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
                                     value={trainingVocationalCourseTrainingInstituition1}
+                                    placeholder="Training Instituition"
                                     onChange={(e) =>
                                         setTrainingVocationalCourseTrainingInstituition1(e.target.value)
                                     }
                                 />
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3 mb-4  d-flex flex-row align-items-center gap-3 ">
+                            <label
+                                    for="inputEmail4"
+                                    class="form-label responsive-visibility-md !text-xs !text-gray-600 mb-0 fw-bold text-light-emphasis"
+                                >
+                                    1
+                                </label>
                                 <InputText
                                     placeholder="(NC I, NC II, NC II, NC IV, etc)"
                                     className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
@@ -216,30 +237,51 @@ export default function Vocational({
                                 <InputText
                                     className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
                                     value={trainingVocationalCourse2}
+                                    placeholder="Training / Vocational Course"
                                     onChange={(e) =>
                                         setTrainingVocationalCourse2(e.target.value)
                                     }
                                 />
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3 mb-4  d-flex flex-row align-items-center gap-3 ">
+                            <label
+                                    for="inputEmail4"
+                                    class="form-label !text-xs responsive-visibility-md  !text-gray-600 mb-0 fw-bold text-light-emphasis"
+                                >
+                                    1
+                                </label>
                             <InputText
                                     className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
                                     value={trainingVocationalCourseDuration2}
+                                    placeholder="Duration"
                                     onChange={(e) =>
                                         setTrainingVocationalCourseDuration2(e.target.value)
                                     }
                                 />
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3 mb-4  d-flex flex-row align-items-center gap-3 ">
+                            <label
+                                    for="inputEmail4"
+                                    class="form-label !text-xs responsive-visibility-md  !text-gray-600 mb-0 fw-bold text-light-emphasis"
+                                >
+                                    1
+                                </label>
                                 <InputText
                                     className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
                                     value={trainingVocationalCourseTrainingInstituition2}
+                                    placeholder="Training Instituition"
                                     onChange={(e) =>
                                         setTrainingVocationalCourseTrainingInstituition2(e.target.value)
                                     }
                                 />
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3 mb-4  d-flex flex-row align-items-center gap-3 ">
+                            <label
+                                    for="inputEmail4"
+                                    class="form-label !text-xs responsive-visibility-md  !text-gray-600 mb-0 fw-bold text-light-emphasis"
+                                >
+                                    1
+                                </label>
                                 <InputText
                                     placeholder="(NC I, NC II, NC II, NC IV, etc)"
                                     className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
@@ -261,30 +303,51 @@ export default function Vocational({
                                 <InputText
                                     className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
                                     value={trainingVocationalCourse3}
+                                    placeholder="Training / Vocational Course"
                                     onChange={(e) =>
                                         setTrainingVocationalCourse3(e.target.value)
                                     }
                                 />
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3 mb-4  d-flex flex-row align-items-center gap-3 ">
+                            <label
+                                    for="inputEmail4"
+                                    class="form-label !text-xs responsive-visibility-md  !text-gray-600 mb-0 fw-bold text-light-emphasis"
+                                >
+                                    1
+                                </label>
                             <InputText
                                     className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
                                     value={trainingVocationalCourseDuration3}
+                                    placeholder="Duration"
                                     onChange={(e) =>
                                         setTrainingVocationalCourseDuration3(e.target.value)
                                     }
                                 />
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3 mb-4  d-flex flex-row align-items-center gap-3 ">
+                            <label
+                                    for="inputEmail4"
+                                    class="form-label !text-xs responsive-visibility-md  !text-gray-600 mb-0 fw-bold text-light-emphasis"
+                                >
+                                    1
+                                </label>
                                 <InputText
                                     className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
                                     value={trainingVocationalCourseTrainingInstituition3}
+                                    placeholder="Training Instituition"
                                     onChange={(e) =>
                                         setTrainingVocationalCourseTrainingInstituition3(e.target.value)
                                     }
                                 />
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3 mb-4  d-flex flex-row align-items-center gap-3 ">
+                            <label
+                                    for="inputEmail4"
+                                    class="form-label !text-xs responsive-visibility-md  !text-gray-600 mb-0 fw-bold text-light-emphasis"
+                                >
+                                    1
+                                </label>
                                 <InputText
                                     placeholder="(NC I, NC II, NC II, NC IV, etc)"
                                     className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
@@ -310,12 +373,12 @@ export default function Vocational({
                                     ELIGIBILITY (Civil Service)
                                 </h6>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 responsive-text-md-none">
                                 <h6 class="fw-bold text-dark-emphasis mb-2 !text-xs text-gray-500 !text-md">
                                     Rating
                                 </h6>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 responsive-text-md-none">
                                 <h6 class="fw-bold text-dark-emphasis mb-2 !text-xs text-gray-500 !text-md">
                                     Date of examination
                                 </h6>
@@ -332,24 +395,39 @@ export default function Vocational({
                                 <InputText
                                     className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
                                     value={eligibilility1}
+                                    placeholder="Eligibility (Civil Service)"
                                     onChange={(e) =>
                                         setEligibility1(e.target.value)
                                     }
                                 />
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 mb-4  d-flex flex-row align-items-center gap-3 ">
+                            <label
+                                    for="inputEmail4"
+                                    class="form-label !text-xs responsive-visibility-md  !text-gray-600 mb-0 fw-bold text-light-emphasis"
+                                >
+                                    1
+                                </label>
                             <InputText
                                     className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
                                     value={eligibililityRating1}
+                                    placeholder="Rating"
                                     onChange={(e) =>
                                         setEligibilityRating1(e.target.value)
                                     }
                                 />
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 mb-4  d-flex flex-row align-items-center gap-3 ">
+                            <label
+                                    for="inputEmail4"
+                                    class="form-label !text-xs responsive-visibility-md  !text-gray-600 mb-0 fw-bold text-light-emphasis"
+                                >
+                                    1
+                                </label>
                             <Calendar
-                                            className="form-control h-10 p-0 border-0"
+                                            className="form-control calendar-text-xs h-10 p-0 border-0"
                                             value={eligibililityDateOfExamination1}
+                                            placeholder="Date Of Examination"
                                     onChange={(e) =>
                                         setEligibilityDateOfExamination1(e.target.value)
                                     }
@@ -368,24 +446,39 @@ export default function Vocational({
                                 <InputText
                                     className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
                                     value={eligibilility2}
+                                    placeholder="Eligibility (Civil Service)"
                                     onChange={(e) =>
                                         setEligibility2(e.target.value)
                                     }
                                 />
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 mb-4  d-flex flex-row align-items-center gap-3 ">
+                            <label
+                                    for="inputEmail4"
+                                    class="form-label !text-xs responsive-visibility-md  !text-gray-600 mb-0 fw-bold text-light-emphasis"
+                                >
+                                    1
+                                </label>
                             <InputText
                                     className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
                                     value={eligibililityRating2}
+                                    placeholder="Rating"
                                     onChange={(e) =>
                                         setEligibilityRating2(e.target.value)
                                     }
                                 />
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 mb-4  d-flex flex-row align-items-center gap-3 ">
+                            <label
+                                    for="inputEmail4"
+                                    class="form-label !text-xs responsive-visibility-md  !text-gray-600 mb-0 fw-bold text-light-emphasis"
+                                >
+                                    1
+                                </label>
                             <Calendar
-                                            className="form-control h-10 p-0 border-0"
+                                            className="form-control h-10 p-0 border-0 calendar-text-xs"
                                             value={eligibililityDateOfExamination2}
+                                            placeholder="Date of Examination"
                                     onChange={(e) =>
                                         setEligibilityDateOfExamination2(e.target.value)
                                     }
@@ -399,7 +492,7 @@ export default function Vocational({
                                     PROFESSIONAL LICENSE (PRC)
                                 </h6>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 responsive-text-md-none">
                                 <h6 class="fw-bold text-dark-emphasis mb-2 !text-xs text-gray-500 !text-md">
                                     Valid Until
                                 </h6>
@@ -416,15 +509,23 @@ export default function Vocational({
                                 <InputText
                                     className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
                                     value={professionalLicense1}
+                                    placeholder="Professional License (PRC)"
                                     onChange={(e) =>
                                         setProfessionalLicense1(e.target.value)
                                     }
                                 />
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 mb-4  d-flex flex-row align-items-center gap-3 ">
+                            <label
+                                    for="inputEmail4"
+                                    class="form-label !text-xs responsive-visibility-md  !text-gray-600 mb-0 fw-bold text-light-emphasis"
+                                >
+                                    1
+                                </label>
                             <Calendar
-                                            className="form-control h-10 p-0 border-0"
+                                            className="form-control h-10 p-0 border-0 calendar-text-xs"
                                             value={professionalLicenseValidUntil1}
+                                            placeholder="Valid Until"
                                             onChange={(e) =>
                                                 setProfessionalLicenseValidUntil1(e.value)
                                             }
@@ -443,15 +544,23 @@ export default function Vocational({
                                 <InputText
                                     className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
                                     value={professionalLicense2}
+                                    placeholder="Professional License (PRC)"
                                     onChange={(e) =>
                                         setProfessionalLicense2(e.target.value)
                                     }
                                 />
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 mb-4  d-flex flex-row align-items-center gap-3 ">
+                            <label
+                                    for="inputEmail4"
+                                    class="form-label !text-xs responsive-visibility-md  !text-gray-600 mb-0 fw-bold text-light-emphasis"
+                                >
+                                    1
+                                </label>
                             <Calendar
-                                            className="form-control h-10 p-0 border-0"
+                                            className="form-control h-10 p-0 border-0 calendar-text-xs"
                                             value={professionalLicenseValidUntil2}
+                                            placeholder="Date of Examination"
                                             onChange={(e) =>
                                                 setProfessionalLicenseValidUntil2(e.value)
                                             }

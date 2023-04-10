@@ -1,9 +1,13 @@
 <?php
 
+use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\ApplicantsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployersController;
+use App\Http\Controllers\JobPostingController;
+use App\Http\Controllers\TestController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,3 +26,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::resource('employers', EmployersController::class);
 Route::resource('applicants', ApplicantsController::class);
+Route::resource('job-posting', JobPostingController::class);
+Route::resource('users', AdminUserController::class);
+
+Route::get('test', [TestController::class, 'index']);

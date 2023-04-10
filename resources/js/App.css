@@ -1,0 +1,35 @@
+.responsive-text-md-none {
+    display: flex;
+}
+
+@media (max-width: 767px) {
+    .responsive-text-md-none {
+        display: none;
+    }
+}
+
+.responsive-text-md-block {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .responsive-text-md-block {
+        display: inline;
+    }
+}
+
+.responsive-visibility-md {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .responsive-visibility-md {
+        visibility: hidden;
+        display: block;
+    }
+}
+
+.calendar-text-xs input {
+    font-size: 0.75rem !important;
+    line-height: 1rem !important;
+}

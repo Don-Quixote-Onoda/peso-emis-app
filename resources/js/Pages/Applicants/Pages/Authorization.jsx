@@ -49,6 +49,7 @@ export default function Authorization({
             is4psBeneficiary: sessionStorage.getItem("is4psBeneficiary"),
             employementStatus: sessionStorage.getItem("employementStatus"),
             pob_provinceAddr: sessionStorage.getItem("pob_provinceAddr"),
+            pob_regionAddr: sessionStorage.getItem("pob_regionAddr"),
             pob_cityAddr: sessionStorage.getItem("pob_cityAddr"),
             pob_barangayAddr: sessionStorage.getItem("pob_barangayAddr"),
             pob_houseNumber_Street_Village: sessionStorage.getItem(
@@ -56,6 +57,7 @@ export default function Authorization({
             ),
             pa_regionAddr: sessionStorage.getItem("pa_regionAddr"),
             pa_provinceAddr: sessionStorage.getItem("pa_provinceAddr"),
+            pa_regionAddr: sessionStorage.getItem("pa_regionAddr"),
             pa_cityAddr: sessionStorage.getItem("pa_cityAddr"),
             pa_barangayAddr: sessionStorage.getItem("pa_barangayAddr"),
             pa_houseNumber_Street_Village: sessionStorage.getItem(
@@ -72,6 +74,7 @@ export default function Authorization({
         address: {
             placeOfBirth: {
                 province: sessionStorage.getItem("pob_provinceAddr"),
+                region: sessionStorage.getItem("pob_regionAddr"),
                 city: sessionStorage.getItem("pob_cityAddr"),
                 barangay: sessionStorage.getItem("pob_barangayAddr"),
                 houseStreetVillage: sessionStorage.getItem(
@@ -80,6 +83,7 @@ export default function Authorization({
             },
             presentAddress: {
                 province: sessionStorage.getItem("pa_provinceAddr"),
+                region: sessionStorage.getItem("pa_regionAddr"),
                 city: sessionStorage.getItem("pa_cityAddr"),
                 barangay: sessionStorage.getItem("pa_barangayAddr"),
                 houseStreetVillage: sessionStorage.getItem(
@@ -366,11 +370,19 @@ export default function Authorization({
 
     useEffect(() => {
         console.log(personalInformation);
+        console.log(personalInformation);
     });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post("/api/applicants");
+        post("/api/applicants", {
+        onSuccess: () =>{
+            sessionStorage.clear();
+        },
+        onError: () => {
+            console.log(errors);
+        },}
+        );
     };
 
     return (

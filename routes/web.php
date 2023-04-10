@@ -8,6 +8,8 @@ use App\Http\Controllers\ApplicantsController;
 use App\Http\Controllers\EmployersController;
 use App\Http\Controllers\AdminApplicantsController;
 use App\Http\Controllers\AdminEmployersController;
+use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\JobPostingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +47,8 @@ Route::resource('applicants', ApplicantsController::class);
 // Route::resource('/admin-applicants', AdminApplicantsController::class)->middleware(['auth', 'verified']);
 Route::get('/admin-applicants', [AdminApplicantsController::class, 'index'])->middleware(['auth', 'verified'])->name('admin-applicants');
 Route::get('/admin-employers', [AdminEmployersController::class, 'index'])->middleware(['auth', 'verified'])->name('admin-employers');
-
+Route::get('/admin-users', [AdminUserController::class, 'index'])->middleware(['auth', 'verified'])->name('admin-users');
+Route::get('/job-posting', [JobPostingController::class, 'index'])->middleware(['auth', 'verified'])->name('job-postings');
 
 
 require __DIR__.'/auth.php';

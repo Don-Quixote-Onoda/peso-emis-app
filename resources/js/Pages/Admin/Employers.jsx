@@ -14,16 +14,16 @@ import { MultiSelect } from 'primereact/multiselect';
 import { Slider } from 'primereact/slider';
 import { Tag } from 'primereact/tag';
 
-export default function Applicants(props) {
-
-    const [applicants, setApplicants] = useState([]);
+export default function Employers(props) {
+    const [employers, setEmployers] = useState([]);
     const [globalFilterValue, setGlobalFilterValue] = useState('');
 
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
     });
     useEffect(() => {
-        setApplicants(props.applicants);
+        setEmployers(props.employers);
+        console.log(employers);
     });
 
     const onGlobalFilterChange = (e) => {
@@ -53,20 +53,20 @@ export default function Applicants(props) {
         <AuthenticatedLayout
             auth={props.auth}
             errors={props.errors}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Applicants</h2>}
+            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Employers</h2>}
         >
-            <Head title="Applicants" />
-            <div className="card">
-            <DataTable value={applicants} paginator header={header} rows={10}
+            <Head title="Employers" />
+            <div className="card mt-5 max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <DataTable value={employers} paginator header={header} rows={10}
                     paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                     rowsPerPageOptions={[10, 25, 50]} dataKey="id" 
                     filters={filters} filterDisplay="menu"
                     emptyMessage="No customers found." currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
                 <Column selectionMode="multiple" headerStyle={{ width: '3rem' }}></Column>
-                <Column field="surname" header="Surname" sortable filter filterPlaceholder="Search by name" style={{ minWidth: '14rem' }} />
-                <Column field="firstname" header="First Name" sortable filter filterPlaceholder="Search by name" style={{ minWidth: '14rem' }} />
-                <Column field="middlename" header="Middle Name" sortable filter filterPlaceholder="Search by name" style={{ minWidth: '14rem' }} />
-                <Column field="suffix" header="Suffix" sortable filter filterPlaceholder="Search by name" style={{ minWidth: '14rem' }} />
+                <Column field="establishment_name" header="Establishment Accronym" sortable filter filterPlaceholder="Search by name" style={{ minWidth: '14rem' }} />
+                <Column field="employer_type" header="Employer Type" sortable filter filterPlaceholder="Search by name" style={{ minWidth: '14rem' }} />
+                <Column field="line_of_business" header="Line of Business" sortable filter filterPlaceholder="Search by name" style={{ minWidth: '14rem' }} />
+                <Column field="total_work_force" header="Total Work Force" sortable filter filterPlaceholder="Search by name" style={{ minWidth: '14rem' }} />
             </DataTable>
         </div>
         </AuthenticatedLayout>

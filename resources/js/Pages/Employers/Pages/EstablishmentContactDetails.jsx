@@ -7,7 +7,7 @@ import { RadioButton } from "primereact/radiobutton";
 import NavigatorButton from "../Components/NavigatorButton";
 import { Controller, set, useForm } from "react-hook-form";
 import { classNames } from "primereact/utils";
-
+import InputError from "@/Components/InputError";
 import { Toast } from "primereact/toast";
 
 export default function EstablishmentContactDetails({
@@ -62,6 +62,7 @@ export default function EstablishmentContactDetails({
             detail: getValues("value"),
         });
     };
+    const [isSubmitted, setSubmitted] = useState(false);
 
     const defaultValues = {
         value: "",
@@ -75,16 +76,19 @@ export default function EstablishmentContactDetails({
         reset,
     } = useForm({ defaultValues });
 
-    const onSubmit = (data) => {
-        data.value && show();
-        setActiveIndex(activeIndex+1);
-        setTitle(data.title);
-        setContactPerson(data.contactPerson);
-        setPosition(data.position);
-        setTelephoneNumber(data.telephoneNumber);
-        setMobileNumber(data.mobileNumber);
-        setFaxNumber(data.faxNumber);
-        setEmailAddress(data.emailAdress);
+    const onSubmit = (e) => {
+        e.preventDefault();
+       
+        setSubmitted(true);
+
+        if(
+            title &&
+            contactPerson &&
+            postion &&
+            mobileNumber &&
+            emailAdress
+        )
+        setActiveIndex(activeIndex + 1);
     };
 
     const getFormErrorMessage = (name) => {
@@ -96,7 +100,7 @@ export default function EstablishmentContactDetails({
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={onSubmit}>
             <Toast ref={toast} />
             <div class="step-2">
                 <div class="card rounded-0 border-0">
@@ -109,14 +113,7 @@ export default function EstablishmentContactDetails({
                         <div class="col-md-12">
                             
                             
-                            <Controller
-                                name="title"
-                                control={control}
-                                rules={{
-                                    required: "Title is required.",
-                                }}
-                                render={({ field }) => (
-                                    <>
+                            
                                         
                                         <label
                                 for="inputEmail4"
@@ -132,13 +129,12 @@ export default function EstablishmentContactDetails({
                                                     <RadioButton
                                                         className="form-check-input border-light-emphasis !border-0 establishment-employer-type"
                                                         inputId="f5"
-                                                        {...field}
-                                                        inputRef={field.ref}
                                                         value="Mr."
                                                         checked={
-                                                            field.value ===
+                                                            title ===
                                                             "Mr."
                                                         }
+                                                        onChange={(e) => setTitle(e.target.value)}
                                                     />
                                                     <label
                                                         htmlFor="f5"
@@ -153,13 +149,12 @@ export default function EstablishmentContactDetails({
                                                     <RadioButton
                                                         className="form-check-input border-light-emphasis !border-0 establishment-employer-type"
                                                         inputId="f5"
-                                                        {...field}
-                                                        inputRef={field.ref}
                                                         value="Ms."
                                                         checked={
-                                                            field.value ===
+                                                            title ===
                                                             "Ms."
                                                         }
+                                                        onChange={(e) => setTitle(e.target.value)}
                                                     />
                                                     <label
                                                         htmlFor="f5"
@@ -174,13 +169,12 @@ export default function EstablishmentContactDetails({
                                                     <RadioButton
                                                         className="form-check-input border-light-emphasis !border-0 establishment-employer-type"
                                                         inputId="f5"
-                                                        {...field}
-                                                        inputRef={field.ref}
                                                         value="Mrs."
                                                         checked={
-                                                            field.value ===
+                                                            title ===
                                                             "Mrs."
                                                         }
+                                                        onChange={(e) => setTitle(e.target.value)}
                                                     />
                                                     <label
                                                         htmlFor="f5"
@@ -195,17 +189,16 @@ export default function EstablishmentContactDetails({
                                                     <RadioButton
                                                         className="form-check-input border-light-emphasis !border-0 establishment-employer-type"
                                                         inputId="f5"
-                                                        {...field}
-                                                        inputRef={field.ref}
                                                         value="Others (please specify):"
                                                         checked={
-                                                            field.value ===
-                                                            "Others (please specify):"
+                                                            title !==
+                                                            "Others (please specify):" && title !==
+                                                            "Mrs." && title !==
+                                                            "Ms." && title !==
+                                                            "Mr."
                                                             
                                                         }
-
-                                                      
-                                                        
+                                                        onChange={(e) => setTitle(e.target.value)}
                                                     />
                                                     
                                                     <label
@@ -218,30 +211,24 @@ export default function EstablishmentContactDetails({
                                             </div>
                                             {otherTitle && <div className="col-md-6 mt-3">
                                             <InputText
-                                            id={field.name}
                                             className={`form-control col-md-9 !text-xs !py-2.5 !text-gray-500 border-light-emphasis establishment-name`}
-                                            onChange={(e) =>
-                                                field.onChange(e.target.value)
-                                            }
+                                            onChange={(e) => setTitle(e.target.value)}
                                         />
+
                                             </div>}
-                                        </div>
-                                        
-                                        {getFormErrorMessage(field.name)}
-                                    </>
+                                            {isSubmitted &&
+                                (title == "" ||
+                                    title == null) && (
+                                    <InputError
+                                        message="Establishment Name is required!"
+                                        className="mt-2 text-xs"
+                                    />
                                 )}
-                            />
+                                        </div>
                         </div>
                         <div class="col-md-6 mb-4">
                            
-                            <Controller
-                                name="contactPerson"
-                                control={control}
-                                rules={{
-                                    required: "Contact Person (Full Name) is required.",
-                                }}
-                                render={({ field, fieldState }) => (
-                                    <>
+                            
                                          <label
                                 for="inputEmail4"
                                 class="form-label !text-xs  !text-gray-400 fw-bold text-light-emphasis"
@@ -249,35 +236,31 @@ export default function EstablishmentContactDetails({
                                 Contact Person (Full Name):
                             </label>
                                         <InputText
-                                            id={field.name}
                                             // value={field.value}
-                                            value={field.value}
+                                            value={contactPerson}
                                             className={`form-control !text-xs !py-2.5 ${classNames(
                                                 {
                                                     "p-invalid":
-                                                        fieldState.error,
+                                                    isSubmitted &&
+                                                    (contactPerson == "" ||
+                                                        contactPerson == null),
                                                 }
                                             )} !text-gray-500 border-light-emphasis establishment-name`}
                                             onChange={(e) =>
-                                                field.onChange(e.target.value)
+                                                setContactPerson(e.target.value)
                                             }
                                         />
-
-                                        {getFormErrorMessage(field.name)}
-                                    </>
+                           {isSubmitted &&
+                                (contactPerson == "" ||
+                                    contactPerson == null) && (
+                                    <InputError
+                                        message="Contact Person is required!"
+                                        className="mt-2 text-xs"
+                                    />
                                 )}
-                            />
-                            <span class="text-danger !text-xs contact-person-error"></span>
                         </div>
                         <div class="col-md-6 mb-4">
-                           <Controller
-                                name="position"
-                                control={control}
-                                rules={{
-                                    required: "Position is required.",
-                                }}
-                                render={({ field, fieldState }) => (
-                                    <>
+                          
                                          <label
                                 for="inputEmail4"
                                 class="form-label !text-xs  !text-gray-400 fw-bold text-light-emphasis"
@@ -285,35 +268,31 @@ export default function EstablishmentContactDetails({
                                 Position:
                             </label>
                                         <InputText
-                                            id={field.name}
                                             // value={field.value}
-                                            value={field.value}
+                                            value={postion}
                                             className={`form-control !text-xs !py-2.5 ${classNames(
                                                 {
                                                     "p-invalid":
-                                                        fieldState.error,
+                                                    isSubmitted &&
+                                                    (postion == "" ||
+                                                        postion == null),
                                                 }
                                             )} !text-gray-500 border-light-emphasis establishment-name`}
                                             onChange={(e) =>
-                                                field.onChange(e.target.value)
+                                               setPosition(e.target.value)
                                             }
                                         />
-
-                                        {getFormErrorMessage(field.name)}
-                                    </>
+                            {isSubmitted &&
+                                (postion == "" ||
+                                    postion == null) && (
+                                    <InputError
+                                        message="Position is required!"
+                                        className="mt-2 text-xs"
+                                    />
                                 )}
-                            />
-                            <span class="text-danger !text-xs contact-person-position-error"></span>
                         </div>
                         <div class="col-md-6 mb-4">
-                        <Controller
-                                name="telephoneNumber"
-                                control={control}
-                                rules={{
-                                    required: "Telephone Number is required.",
-                                }}
-                                render={({ field, fieldState }) => (
-                                    <>
+                       
                                          <label
                                 for="inputEmail4"
                                 class="form-label !text-xs  !text-gray-400 fw-bold text-light-emphasis"
@@ -321,35 +300,16 @@ export default function EstablishmentContactDetails({
                                 Telephone Number:
                             </label>
                                         <InputText
-                                            id={field.name}
-                                            // value={field.value}
-                                            value={field.value}
-                                            className={`form-control !text-xs !py-2.5 ${classNames(
-                                                {
-                                                    "p-invalid":
-                                                        fieldState.error,
-                                                }
-                                            )} !text-gray-500 border-light-emphasis establishment-name`}
+                                            value={telephoneNumber}
+                                            className={`form-control !text-xs !py-2.5  !text-gray-500 border-light-emphasis establishment-name`}
                                             onChange={(e) =>
-                                                field.onChange(e.target.value)
+                                                setTelephoneNumber(e.target.value)
                                             }
                                         />
-
-                                        {getFormErrorMessage(field.name)}
-                                    </>
-                                )}
-                            />
-                            <span class="text-danger !text-xs contact-person-telephone-error"></span>
+                            
                         </div>
                         <div class="col-md-6 mb-4">
-                        <Controller
-                                name="mobileNumber"
-                                control={control}
-                                rules={{
-                                    required: "Mobile Number is required.",
-                                }}
-                                render={({ field, fieldState }) => (
-                                    <>
+                       
                                          <label
                                 for="inputEmail4"
                                 class="form-label !text-xs  !text-gray-400 fw-bold text-light-emphasis"
@@ -357,35 +317,30 @@ export default function EstablishmentContactDetails({
                                 Mobile Number:
                             </label>
                                         <InputText
-                                            id={field.name}
-                                            // value={field.value}
-                                            value={field.value}
+                                            value={mobileNumber}
                                             className={`form-control !text-xs !py-2.5 ${classNames(
                                                 {
                                                     "p-invalid":
-                                                        fieldState.error,
+                                                    isSubmitted &&
+                                                    (mobileNumber == "" ||
+                                                        mobileNumber == null),
                                                 }
                                             )} !text-gray-500 border-light-emphasis establishment-name`}
                                             onChange={(e) =>
-                                                field.onChange(e.target.value)
+                                                setMobileNumber(e.target.value)
                                             }
                                         />
-
-                                        {getFormErrorMessage(field.name)}
-                                    </>
+                           {isSubmitted &&
+                                (mobileNumber == "" ||
+                                    mobileNumber == null) && (
+                                    <InputError
+                                        message="Mobile Number is required!"
+                                        className="mt-2 text-xs"
+                                    />
                                 )}
-                            />
-                            <span class="text-danger !text-xs contact-person-mobile-error"></span>
                         </div>
                         <div class="col-md-6 mb-4">
-                        <Controller
-                                name="faxNumber"
-                                control={control}
-                                rules={{
-                                    required: "Fax Number is required.",
-                                }}
-                                render={({ field, fieldState }) => (
-                                    <>
+                        
                                          <label
                                 for="inputEmail4"
                                 class="form-label !text-xs  !text-gray-400 fw-bold text-light-emphasis"
@@ -393,35 +348,16 @@ export default function EstablishmentContactDetails({
                                 Fax Number:
                             </label>
                                         <InputText
-                                            id={field.name}
-                                            // value={field.value}
-                                            value={field.value}
-                                            className={`form-control !text-xs !py-2.5 ${classNames(
-                                                {
-                                                    "p-invalid":
-                                                        fieldState.error,
-                                                }
-                                            )} !text-gray-500 border-light-emphasis establishment-name`}
+                                            value={faxNumber}
+                                            className={`form-control !text-xs !py-2.5  !text-gray-500 border-light-emphasis establishment-name`}
                                             onChange={(e) =>
-                                                field.onChange(e.target.value)
+                                                setFaxNumber(e.target.value)
                                             }
                                         />
-
-                                        {getFormErrorMessage(field.name)}
-                                    </>
-                                )}
-                            />
-                            <span class="text-danger !text-xs contact-person-fax-error"></span>
+                            
                         </div>
                         <div class="col-md-6 mb-4">
-                        <Controller
-                                name="emailAdress"
-                                control={control}
-                                rules={{
-                                    required: "Email Adress is required.",
-                                }}
-                                render={({ field, fieldState }) => (
-                                    <>
+                       
                                          <label
                                 for="inputEmail4"
                                 class="form-label !text-xs  !text-gray-400 fw-bold text-light-emphasis"
@@ -429,25 +365,27 @@ export default function EstablishmentContactDetails({
                                 Email Adress:
                             </label>
                                         <InputText
-                                            id={field.name}
-                                            // value={field.value}
-                                            value={field.value}
+                                            value={emailAdress}
                                             className={`form-control !text-xs !py-2.5 ${classNames(
                                                 {
                                                     "p-invalid":
-                                                        fieldState.error,
+                                                    isSubmitted &&
+                                                    (emailAdress == "" ||
+                                                        emailAdress == null),
                                                 }
                                             )} !text-gray-500 border-light-emphasis establishment-name`}
                                             onChange={(e) =>
-                                                field.onChange(e.target.value)
+                                                setEmailAddress(e.target.value)
                                             }
                                         />
-
-                                        {getFormErrorMessage(field.name)}
-                                    </>
+                            {isSubmitted &&
+                                (emailAdress == "" ||
+                                    emailAdress == null) && (
+                                    <InputError
+                                        message="Email Address is required!"
+                                        className="mt-2 text-xs"
+                                    />
                                 )}
-                            />
-                            <span class="text-danger !text-xs contact-person-email-error"></span>
                         </div>
                         <div class="col-md-12 mb-4"></div>
                     </div>

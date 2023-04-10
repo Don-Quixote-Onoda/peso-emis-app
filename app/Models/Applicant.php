@@ -68,7 +68,7 @@ class Applicant extends Model
     }
 
     public function applicant_language_spoken() {
-        return $this->hasOne(ApplicantLanguageSpoken::class);
+        return $this->hasMany(ApplicantLanguageSpoken::class);
     }
 
     public function applicant_status() {

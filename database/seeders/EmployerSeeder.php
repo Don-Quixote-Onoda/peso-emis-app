@@ -23,12 +23,14 @@ class EmployerSeeder extends Seeder
             "total_work_force" => 'Medium (100-199) ',
             "line_of_business" => 'Test',
             "e_signature" => 'brightlocal_esignature.png',
-            "is_authorization_accepted" => 1
+            "is_authorization_accepted" => 1,
+            "user_id" => 1
         ]);
 
         $employer->employer_address()->create([
             "address" => '2nd floor unknown building',
             "barangay" => 'Poblacion',
+            'region' => 'test',
             "city_or_municipality" => 'valencia city',
             "province" => 'bukidnon',
             "employer_id" => 1

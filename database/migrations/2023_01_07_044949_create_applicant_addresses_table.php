@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('applicant_addresses', function (Blueprint $table) {
             $table->id();
             $table->integer("address_type");
+            $table->string("region");
             $table->string("province");
             $table->string("municipality_or_city");
             $table->string("barangay");

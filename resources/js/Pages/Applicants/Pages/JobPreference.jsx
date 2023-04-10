@@ -152,7 +152,7 @@ export default function JobPreference({
                                     <div class="col-md-6 mb-4">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <div class="form-check flex items-center gap-2">
+                                                <div class="form-check pl-0 flex items-center gap-2">
                                                 <Checkbox onChange={e => setCheckedLocal(e.checked)} checked={checkedLocal}></Checkbox>
                                                     <label
                                                         class="form-check-label !text-xs !py-2.5 !text-gray-500"
@@ -196,7 +196,7 @@ export default function JobPreference({
                                     <div class="col-md-6 mb-4">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <div class="form-check  flex items-center gap-2">
+                                                <div class="form-check pl-0   flex items-center gap-2">
                                                 <Checkbox onChange={e => setCheckedOverseas(e.checked)} checked={checkedOverseas}></Checkbox>
                                                     <label
                                                         class="form-check-label !text-xs !py-2.5 !text-gray-500"

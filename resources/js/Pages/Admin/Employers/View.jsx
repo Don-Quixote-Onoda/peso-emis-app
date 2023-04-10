@@ -1,0 +1,649 @@
+import React, { useState, useEffect } from "react";
+import { InputText } from "primereact/inputtext";
+import { Calendar } from "primereact/calendar";
+import { RadioButton } from "primereact/radiobutton";
+import { Dropdown } from "primereact/dropdown";
+import { Checkbox } from "primereact/checkbox";
+import { Button } from "primereact/button";
+
+export default function ViewApplicant({ employer, back }) {
+    useEffect(() => {
+        console.log(employer);
+    }, []);
+
+    return (
+        <>
+            <div class="step-1">
+                <div class="card rounded-0 border-0">
+                    <div class=" bg-light mb-2 font-bold mt-10">
+                        <div className="flex justify-between">
+                            <h4 class="card-title fw-bold">
+                                1. Personal information
+                            </h4>
+                            <Button
+                                icon="pi pi-arrow-left"
+                                className="mr-2"
+                                label="Back"
+                                onClick={() => back()}
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body row p-0">
+                    <div class="col-md-6 mb-4">
+                        <label
+                            for="inputEmail4"
+                            className={`form-label !text-xs  !text-gray-900 fw-bold text-light-emphasis`}
+                        >
+                            Establishment Name:
+                        </label>
+                        <InputText
+                            disabled
+                            // value={field.value}
+                            value={employer.establishment_name}
+                            className={`form-control !text-xs !py-2.5  !text-gray-500 border-light-emphasis establishment-name`}
+                        />
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <label
+                            for="inputEmail4"
+                            className={`form-label !text-xs !text-gray-900 fw-bold text-light-emphasis`}
+                        >
+                            Acronym/Abbreviation:
+                        </label>
+                        <InputText
+                            disabled
+                            value={employer.establishment_accronym}
+                            className={`form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis establishment-name`}
+                        />
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <label
+                            for="inputEmail4"
+                            className={`form-label !text-xs !text-gray-900 fw-bold text-light-emphasis`}
+                        >
+                            Tax Identification Number
+                        </label>
+                        <InputText
+                            disabled
+                            value={employer.TIN_number}
+                            className={`form-control !text-xs !py-2.5  !text-gray-500 border-light-emphasis establishment-name`}
+                        />
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <label
+                            for="inputEmail4"
+                            className={`form-label !text-xs !text-gray-900 fw-bold text-light-emphasis`}
+                        >
+                            Line of Business/Industry:
+                        </label>
+                        <InputText
+                            disabled
+                            value={employer.line_of_business}
+                            className={`form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis establishment-name`}
+                        />
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                        <label
+                            for="inputEmail4"
+                            class="form-label !text-xs !text-gray-900 fw-bold text-light-emphasis"
+                        >
+                            Employer type:
+                            <span className="text-red-500">*</span>
+                        </label>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div className="flex flex-nowrap items-center">
+                                    <RadioButton
+                                        className="form-check-input border-light-emphasis !border-0 establishment-employer-type"
+                                        inputId="f5"
+                                        disabled
+                                        value="Government"
+                                        checked={
+                                            employer.employer_type ===
+                                            "Government"
+                                        }
+                                    />
+                                    <label
+                                        htmlFor="f5"
+                                        className="ml-1 mr-3 form-check-label !text-xs !text-gray-500 ml-1"
+                                    >
+                                        Government
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div className="flex flex-nowrap items-center">
+                                    <RadioButton
+                                        className="form-check-input border-light-emphasis !border-0 establishment-employer-type"
+                                        inputId="f5"
+                                        disabled
+                                        value="Private"
+                                        checked={
+                                            employer.employer_type === "Private"
+                                        }
+                                    />
+                                    <label
+                                        htmlFor="f5"
+                                        className="ml-1 mr-3 form-check-label !text-xs !text-gray-500 ml-1"
+                                    >
+                                        Private
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div className="flex flex-nowrap items-center">
+                                    <RadioButton
+                                        className="form-check-input border-light-emphasis !border-0 establishment-employer-type"
+                                        inputId="f5"
+                                        disabled
+                                        value="Recruitment & Placement Agency (Local)"
+                                        checked={
+                                            employer.employer_type ===
+                                            "Recruitment & Placement Agency (Local)"
+                                        }
+                                    />
+                                    <label
+                                        htmlFor="f5"
+                                        className="ml-1 mr-3 form-check-label !text-xs !text-gray-500 ml-1"
+                                    >
+                                        Recruitment & Placement Agency (Local)
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div className="flex flex-nowrap items-center">
+                                    <RadioButton
+                                        className="form-check-input border-light-emphasis !border-0 establishment-employer-type"
+                                        inputId="f5"
+                                        disabled
+                                        value="Licensed Recruitment Agency (Overseas)"
+                                        checked={
+                                            employer.employer_type ===
+                                            "Licensed Recruitment Agency (Overseas)"
+                                        }
+                                    />
+                                    <label
+                                        htmlFor="f5"
+                                        className="ml-1 mr-3 form-check-label !text-xs !text-gray-500 ml-1"
+                                    >
+                                        Licensed Recruitment Agency (Overseas)
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div className="flex flex-nowrap items-center">
+                                    <RadioButton
+                                        className="form-check-input border-light-emphasis !border-0 establishment-employer-type"
+                                        inputId="f5"
+                                        disabled
+                                        value="DO 174-17, Subcontractor"
+                                        checked={
+                                            employer.employer_type ===
+                                            "DO 174-17, Subcontractor"
+                                        }
+                                    />
+                                    <label
+                                        htmlFor="f5"
+                                        className="ml-1 mr-3 form-check-label !text-xs !text-gray-500 ml-1"
+                                    >
+                                        DO 174-17, Subcontractor
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <label
+                            for="inputEmail4"
+                            class="form-label !text-xs !text-gray-900 fw-bold text-light-emphasis"
+                        >
+                            Total Work Force:
+                            <span className="text-red-500">*</span>
+                        </label>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div className="flex flex-nowrap items-center">
+                                    <RadioButton
+                                        className="form-check-input border-light-emphasis !border-0 establishment-employer-type"
+                                        inputId="f5"
+                                        disabled
+                                        value="Micro (1-9)"
+                                        checked={
+                                            employer.total_work_force ===
+                                            "Micro (1-9)"
+                                        }
+                                    />
+                                    <label
+                                        htmlFor="f5"
+                                        className="ml-1 mr-3 form-check-label !text-xs !text-gray-500 ml-1"
+                                    >
+                                        Micro (1-9)
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div className="flex flex-nowrap items-center">
+                                    <RadioButton
+                                        className="form-check-input border-light-emphasis !border-0 establishment-employer-type"
+                                        inputId="f5"
+                                        disabled
+                                        value="Small (10-99)"
+                                        checked={
+                                            employer.total_work_force ===
+                                            "Small (10-99)"
+                                        }
+                                    />
+                                    <label
+                                        htmlFor="f5"
+                                        className="ml-1 mr-3 form-check-label !text-xs !text-gray-500 ml-1"
+                                    >
+                                        Small (10-99)
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div className="flex flex-nowrap items-center">
+                                    <RadioButton
+                                        className="form-check-input border-light-emphasis !border-0 establishment-employer-type"
+                                        inputId="f5"
+                                        disabled
+                                        value="Medium (100-199)"
+                                        checked={
+                                            employer.total_work_force ===
+                                            "Medium (100-199)"
+                                        }
+                                    />
+                                    <label
+                                        htmlFor="f5"
+                                        className="ml-1 mr-3 form-check-label !text-xs !text-gray-500 ml-1"
+                                    >
+                                        Medium (100-199)
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div className="flex flex-nowrap items-center">
+                                    <RadioButton
+                                        className="form-check-input border-light-emphasis !border-0 establishment-employer-type"
+                                        inputId="f5"
+                                        disabled
+                                        value="Large (200 and up)"
+                                        checked={
+                                            employer.total_work_force ===
+                                            "Large (200 and up)"
+                                        }
+                                    />
+                                    <label
+                                        htmlFor="f5"
+                                        className="ml-1 mr-3 form-check-label !text-xs !text-gray-500 ml-1"
+                                    >
+                                        Large (200 and up)
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* <div class="col-md-12 mb-4">
+                        <div class="row">
+                            <div class="col-md-6 mb-4 d-flex flex-column justify-content-between">
+                                <label
+                                    for="inputEmail4"
+                                    class="form-label !text-xs !text-gray-900 text-light-emphasis"
+                                >
+                                    Region
+                                    <span className="text-red-500">*</span>
+                                </label>
+                                <select
+                                    onChange={province}
+                                    onSelect={region}
+                                    className=" pa_province !text-xs !py-2.5 !text-gray-500 !rounded form-select !border-gray-300"
+                                    aria-label="Default select example"
+                                >
+                                    <option disabled>Select Region</option>
+                                    {regionData &&
+                                        regionData.length > 0 &&
+                                        regionData.map((item) => (
+                                            <option
+                                                key={item.region_code}
+                                        disabled
+                                                value={item.region_code}
+                                                selected={
+                                                    regionAddr ==
+                                                    item.region_name
+                                                        ? true
+                                                        : null
+                                                }
+                                            >
+                                                {item.region_name}
+                                            </option>
+                                        ))}
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-4 d-flex flex-column justify-content-between">
+                                <label
+                                    for="inputEmail4"
+                                    class="form-label !text-xs !text-gray-900 text-light-emphasis"
+                                >
+                                    Province
+                                    <span className="text-red-500">*</span>
+                                </label>
+                                <select
+                                    onChange={city}
+                                    class=" pa_province !text-xs !py-2.5 !text-gray-500 !rounded form-select !border-gray-300 form-select border-light-emphasis"
+                                    aria-label="Default select example"
+                                >
+                                    <option disabled>Select Province</option>
+                                    {provinceData &&
+                                        provinceData.length > 0 &&
+                                        provinceData.map((item) => (
+                                            <option
+                                                key={item.province_code}
+                                        disabled
+                                                value={item.province_code}
+                                                selected={
+                                                    provinceAddr ==
+                                                    item.province_name
+                                                        ? true
+                                                        : null
+                                                }
+                                            >
+                                                {item.province_name}
+                                            </option>
+                                        ))}
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-4  d-flex flex-column justify-content-between">
+                                <label
+                                    for="inputEmail4"
+                                    class="form-label !text-xs !text-gray-900 text-light-emphasis"
+                                >
+                                    Municipality/City
+                                    <span className="text-red-500">*</span>
+                                </label>
+                                <select
+                                    onChange={barangay}
+                                    class=" pa_city !text-xs !py-2.5 !rounded form-select !border-gray-300 !text-gray-500 form-select border-light-emphasis"
+                                    aria-label="Default select example"
+                                >
+                                    <option disabled>Select City</option>
+                                    {cityData &&
+                                        cityData.length > 0 &&
+                                        cityData.map((item) => (
+                                            <option
+                                                key={item.city_code}
+                                        disabled
+                                                value={item.city_code}
+                                                selected={
+                                                    cityAddr == item.city_name
+                                                        ? true
+                                                        : null
+                                                }
+                                            >
+                                                {item.city_name}
+                                            </option>
+                                        ))}
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-4  d-flex flex-column justify-content-between">
+                                <label
+                                    for="inputEmail4"
+                                    class="form-label !text-xs !text-gray-900 text-light-emphasis"
+                                >
+                                    Barangay
+                                    <span className="text-red-500">*</span>
+                                </label>
+                                <select
+                                    onChange={brgy}
+                                    class=" pa_barangay !text-xs !rounded form-select !border-gray-300 !py-2.5 !text-gray-500 form-select border-light-emphasis"
+                                    aria-label="Default select example"
+                                >
+                                    <option disabled>Select Barangay</option>
+                                    {barangayData &&
+                                        barangayData.length > 0 &&
+                                        barangayData.map((item) => (
+                                            <option
+                                                key={item.brgy_code}
+                                        disabled
+                                                value={item.brgy_code}
+                                                selected={
+                                                    barangayAddr ==
+                                                    item.brgy_name
+                                                        ? true
+                                                        : null
+                                                }
+                                            >
+                                                {item.brgy_name}
+                                            </option>
+                                        ))}
+                                </select>
+                            </div>
+                            <div class="col-md-12 mb-4  d-flex flex-column justify-content-between">
+                                <InputTextWrapper
+                                        disabled
+                                    stateValue={houseNumber_Street_Village}
+                                    stateMethod={setHouseNumber_Street_Village}
+                                    isRequired={false}
+                                    label={"House No./ Street Village"}
+                                />
+                                {isSubmitted && !isCompleteAddress && (
+                                    <InputError
+                                        message="Complete Address is required!"
+                                        className="mt-2"
+                                    />
+                                )}
+                            </div>
+                        </div>
+                    </div> */}
+                </div>
+            </div>
+            <div class="step-2">
+                <div class="card rounded-0 border-0">
+                    <div class=" bg-light mb-2 font-bold mt-10">
+                        <h4 class="card-title fw-bold">
+                            II. ESTABLISHMENT CONTACT DETAILS
+                        </h4>
+                    </div>
+                    <div class="card-body row">
+                        <div class="col-md-12">
+                            <label
+                                for="inputEmail4"
+                                class="form-label !text-xs !text-gray-900 fw-bold text-light-emphasis"
+                            >
+                                Title:<span className="text-red-500">*</span>
+                            </label>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <div
+                                        className="flex flex-nowrap items-center"
+                                    >
+                                        <RadioButton
+                                            className="form-check-input border-light-emphasis !border-0 establishment-employer-type"
+                                            inputId="f5"
+                                            value="Mr."
+                                            disabled
+                                            checked={employer.employer_establishment_contact_detail.title === "Mr."}
+                                           
+                                        />
+                                        <label
+                                            htmlFor="f5"
+                                            className="ml-1 mr-3 form-check-label !text-xs !text-gray-500 ml-1"
+                                        >
+                                            Mr.
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div
+                                        className="flex flex-nowrap items-center"
+                                    >
+                                        <RadioButton
+                                            className="form-check-input border-light-emphasis !border-0 establishment-employer-type"
+                                            inputId="f5"
+                                            value="Ms."
+                                            disabled
+                                            checked={employer.employer_establishment_contact_detail.title === "Ms."}
+                                        />
+                                        <label
+                                            htmlFor="f5"
+                                            className="ml-1 mr-3 form-check-label !text-xs !text-gray-500 ml-1"
+                                        >
+                                            Ms.
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div
+                                        className="flex flex-nowrap items-center"
+                                    >
+                                        <RadioButton
+                                            className="form-check-input border-light-emphasis !border-0 establishment-employer-type"
+                                            inputId="f5"
+                                            value="Mrs."
+                                            disabled
+                                            checked={employer.employer_establishment_contact_detail.title === "Mrs."}
+                                        />
+                                        <label
+                                            htmlFor="f5"
+                                            className="ml-1 mr-3 form-check-label !text-xs !text-gray-500 ml-1"
+                                        >
+                                            Mrs.
+                                        </label>
+                                    </div>
+                                </div>
+                                {/* <div class="col-md-9">
+                                    <div
+                                        className="flex flex-nowrap items-center"
+                                    >
+                                        <RadioButton
+                                            className="form-check-input border-light-emphasis !border-0 establishment-employer-type"
+                                            inputId="f5"
+                                            value="Others (please specify):"
+                                            checked={
+                                                employer.employer_establishment_contact_detail.title !==
+                                                    "Others (please specify):" &&
+                                                employer.employer_establishment_contact_detail.title !== "Mrs." &&
+                                                employer.employer_establishment_contact_detail.title !== "Ms." &&
+                                                employer.employer_establishment_contact_detail.title !== "Mr."
+                                            }
+                                        />
+
+                                        <label
+                                            htmlFor="f5"
+                                            className="ml-1 mr-3 form-check-label !text-xs !text-gray-500 ml-1"
+                                        >
+                                            Others (please specify):
+                                        </label>
+                                    </div>
+                                </div>
+                                {otherTitle && (
+                                    <div className="col-md-6 mt-3">
+                                        <InputText
+                                            className={`form-control col-md-9 !text-xs !py-2.5 !text-gray-500 border-light-emphasis establishment-name`}
+                                            onChange={(e) =>
+                                                setTitle(e.target.value)
+                                            }
+                                        />
+                                    </div>
+                                )} */}
+                              
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label
+                                for="inputEmail4"
+                                class="form-label !text-xs  !text-gray-900 fw-bold text-light-emphasis"
+                            >
+                                Contact Person (Full Name):
+                            </label>
+                            <InputText
+                                // value={field.value}
+                                disabled
+                                value={employer.employer_establishment_contact_detail.fullname
+                                }
+                                className={`form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis establishment-name`}
+                               
+                            />
+                           
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label
+                                for="inputEmail4"
+                                class="form-label !text-xs  !text-gray-900 fw-bold text-light-emphasis"
+                            >
+                                Position:
+                            </label>
+                            <InputText
+                                // value={field.value}
+                                disabled
+                                value={employer.employer_establishment_contact_detail.position}
+                                className={`form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis establishment-name`}
+                            />
+                           
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label
+                                for="inputEmail4"
+                                class="form-label !text-xs  !text-gray-900 fw-bold text-light-emphasis"
+                            >
+                                Telephone Number:
+                            </label>
+                            <InputText
+                            disabled
+                                value={employer.employer_establishment_contact_detail.telephone_number}
+                                className={`form-control !text-xs !py-2.5  !text-gray-500 border-light-emphasis establishment-name`}
+                               
+                            />
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label
+                                for="inputEmail4"
+                                class="form-label !text-xs  !text-gray-900 fw-bold text-light-emphasis"
+                            >
+                                Mobile Number:
+                            </label>
+                            <InputText
+                            disabled
+                                value={employer.employer_establishment_contact_detail.mobile_number
+                                }
+                                className={`form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis establishment-name`}
+                               
+                            />
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label
+                                for="inputEmail4"
+                                class="form-label !text-xs  !text-gray-900 fw-bold text-light-emphasis"
+                            >
+                                Fax Number:
+                            </label>
+                            <InputText
+                            disabled
+                                value={employer.employer_establishment_contact_detail.fax_number}
+                                className={`form-control !text-xs !py-2.5  !text-gray-500 border-light-emphasis establishment-name`}
+                            />
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label
+                                for="inputEmail4"
+                                class="form-label !text-xs  !text-gray-900 fw-bold text-light-emphasis"
+                            >
+                                Email Adress:
+                            </label>
+                            <InputText
+                            disabled
+                                value={employer.employer_establishment_contact_detail.email_address}
+                                className={`form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis establishment-name`}
+                               
+                            />
+                           
+                        </div>
+                        <div class="col-md-12 mb-4"></div>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+}

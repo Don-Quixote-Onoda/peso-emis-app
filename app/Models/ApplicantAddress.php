@@ -15,6 +15,7 @@ class ApplicantAddress extends Model
 
     protected $fillable = [
         "address_type",
+        "region",
         "province",
         "municipality_or_city",
         "barangay",

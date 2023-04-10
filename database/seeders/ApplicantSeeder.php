@@ -49,6 +49,7 @@ class ApplicantSeeder extends Seeder
 
         $applicant1->applicant_address()->create([
             'address_type' => 0,
+            'region' => 'test',
             'province' => 'bukidnon',
             'municipality_or_city' => 'valencia city',
             'barangay' => 'poblacion',

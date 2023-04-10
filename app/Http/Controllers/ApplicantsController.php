@@ -13,7 +13,9 @@ class ApplicantsController extends Controller
      */
     public function index()
     {
+        $applicants = Applicant::all();
         return Inertia::render('Applicants/index', [
+            'applicants' => $applicants
         ]);
     }
 
@@ -64,6 +66,7 @@ class ApplicantsController extends Controller
 
         $applicant->applicant_address()->create([
             'address_type' => 0,
+            'region' => trim($request->address['placeOfBirth']['region'], '"'),
             'province' => trim($request->address['placeOfBirth']['province'], '"'),
             'municipality_or_city' => trim($request->address['placeOfBirth']['city'], '"'),
             'barangay' => trim($request->address['placeOfBirth']['barangay'], '"'),
@@ -72,6 +75,7 @@ class ApplicantsController extends Controller
 
         $applicant->applicant_address()->create([
             'address_type' => 1,
+            'region' => trim($request->address['presentAddress']['region'], '"'),
             'province' => trim($request->address['presentAddress']['province'], '"'),
             'municipality_or_city' => trim($request->address['presentAddress']['city'], '"'),
             'barangay' => trim($request->address['presentAddress']['barangay'], '"'),
@@ -109,7 +113,7 @@ class ApplicantsController extends Controller
         ]);
 
         $applicant->applicant_educational_background()->create([
-            'type' => 0,
+            'type' => 3,
             'school' => trim($request->educationalBackground['graduateStudies']['name'], '"'),
             'course' => trim($request->educationalBackground['graduateStudies']['course'], '"'),
             'year_graduated' => date('Y', strtotime(trim($request->educationalBackground['graduateStudies']['yearGraduated'], '"'))),

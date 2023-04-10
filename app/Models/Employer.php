@@ -21,7 +21,8 @@ class Employer extends Model
         "total_work_force",
         "e_signature",
         "is_authorization_accepted",
-        "line_of_business"
+        "line_of_business",
+        'user_id'
     ];
 
     public function employer_address() {
@@ -33,14 +34,18 @@ class Employer extends Model
     }
 
     public function employer_posting_detail() {
-        return $this->hasOne(EmployerPostingDetail::class);
+        return $this->hasMany(EmployerPostingDetail::class);
     }
 
     public function employer_qualification_requirement() {
-        return $this->hasOne(EmployerQualificationRequirement::class);
+        return $this->hasMany(EmployerQualificationRequirement::class);
     }
 
     public function employer_vacancy_detail() {
-        return $this->hasOne(EmployerVacancyDetail::class);
+        return $this->hasMany(EmployerVacancyDetail::class);
+    }
+
+    public function user() {
+        return $this->belongsTo(UserEmployer::class);
     }
 }

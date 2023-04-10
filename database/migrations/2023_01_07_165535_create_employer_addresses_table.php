@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('barangay');
             $table->string('city_or_municipality');
             $table->string('province');
+            $table->string('region');
             $table->unsignedBigInteger('employer_id');
             $table->foreign('employer_id')->references('id')->on('employers');
             $table->timestamps();

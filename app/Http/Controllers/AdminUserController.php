@@ -4,29 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use App\Models\Employer;
-class AdminEmployersController extends Controller
+use App\Models\Applicant;
+use App\Models\User;
+
+class AdminUserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $response = array();
-        $employers = Employer::all();
-        foreach($employers as $employer) {
-            array_push($response, array(
-                $employer,
-                $employer->employer_address,
-                $employer->employer_establishment_contact_detail,
-                $employer->employer_posting_detail,
-                $employer->employer_qualification_requirement,
-                $employer->employer_vacancy_detail,
-            ));
-        }
-        return Inertia::render('Admin/Employers/Index', [
-            'employers' => $employers
-        ]);
+        $users = User::all();
+        return Inertia::render('Admin/Users/Index', ['users' => $users, 'type'=>'default']);
     }
 
     /**
@@ -50,7 +39,8 @@ class AdminEmployersController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $users = User::where('id', $id)->get();
+        return Inertia::render('Admin/Users/Index', ['users' => $users, 'type'=>'view']);
     }
 
     /**

@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Employer;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
+use App\Providers\RouteServiceProvider;
 
 class EmployersController extends Controller
 {
@@ -31,6 +36,13 @@ class EmployersController extends Controller
     public function store(Request $request)
     {
 
+        $user = User::create([
+            'name' => trim($request->username, '"'),
+            'email' => trim($request->email, '"'),
+            'password' => Hash::make(trim($request->password, '"')),
+            'role' => 0
+        ]);
+
         $employer = Employer::create([
             "establishment_name" => trim($request->stablishmentName, '"'),
             "establishment_accronym" => trim($request->stablishmentAbbreviation, '"'),
@@ -39,7 +51,8 @@ class EmployersController extends Controller
             "total_work_force" => trim($request->totalWorkForce, '"'),
             "line_of_business" => trim($request->lineOfBusiness, '"'),
             "e_signature" => 'brightlocal_esignature.png',
-            "is_authorization_accepted" => 1
+            "is_authorization_accepted" => 1,
+            'user_id' => $user->id
         ]);
 
         $employer->employer_address()->create([
@@ -47,6 +60,7 @@ class EmployersController extends Controller
             "barangay" => trim($request->barangayAddress, '"'),
             "city_or_municipality" => trim($request->cityAddress, '"'),
             "province" => trim($request->provinceAddress, '"'),
+            "region" => trim($request->regionAddress, '"'),
         ]);
 
         $employer->employer_establishment_contact_detail()->create([
@@ -59,41 +73,14 @@ class EmployersController extends Controller
             "email_address" => trim($request->emailAdress, '"'),
         ]);
 
+        event(new Registered($user));
+
+        Auth::login($user);
+        return redirect(RouteServiceProvider::HOME);
+
         
 
-        $employer->employer_qualification_requirement()->create([
-            "work_of_experience" => trim($request->workExperience, '"'),
-            "sex" => trim($request->sex, '"'),
-            "religion" => trim($request->religion, '"'),
-            "civil_status" => trim($request->civilStatus, '"'),
-            "is_accept_disability" => trim($request->isAcceptDisability),
-            "disability_type" => $request->disabilitiesAccepted,
-            "educational_level" => trim($request->educationalLevel, '"'),
-            "course_or_major" => trim($request->courseOrMajor, '"'),
-            "license" => trim($request->license, '"'),
-            "eligibility" => trim($request->eligibility, '"'),
-            "certification" => trim($request->certification, '"'),
-            "language_or_dialect" => trim($request->languageOrDialectSpoken, '"'),
-            "preferred_residence" => trim($request->preferredResidence, '"'),
-            "nature_of_work" => trim($request->natureOfWork, '"'),
-            "other_qualification" => "PESO",
-        ]);
-
-        $employer->employer_vacancy_detail()->create([
-            "position_title" => trim($request->positionTitle, '"'),
-            "job_description" => trim($request->jobDescription, '"'),
-            "nature_of_work" => trim($request->natureOfWork, '"'),
-            "place_of_work" => trim($request->placeOfWork, '"'),
-            "salary" => trim($request->salary, '"'),
-            "vacancy_count" => trim($request->vacancyCount, '"'),
-        ]);
-
-        $employer->employer_posting_detail()->create([
-            "posting_date" => date('Y-m-d', strtotime(trim($request->postingDate, '"'))),
-            "valid_until" =>date('Y-m-d', strtotime(trim($request->validUntil, '"'))),
-        ]);
-
-        dd("done");
+        // dd("done");
 
     }
 

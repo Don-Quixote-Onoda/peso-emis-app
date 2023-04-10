@@ -20,7 +20,7 @@
         rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="{{ asset('vendor\homevendor\animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor\homevendor\animate.css\animate.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor\homevendor\aos\aos.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor\homevendor\bootstrap\css\bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor\homevendor\bootstrap-icons\bootstrap-icons.css') }}" rel="stylesheet">

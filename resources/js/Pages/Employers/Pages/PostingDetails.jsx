@@ -8,6 +8,7 @@ import { Toast } from "primereact/toast";
 
 import { useForm } from '@inertiajs/react'
 import axios from "axios";
+import { Checkbox } from "primereact/checkbox";
 
 export default function EstablishmentContactDetails({
     activeIndex,
@@ -45,13 +46,24 @@ export default function EstablishmentContactDetails({
 
     const submit = (e) => {
         e.preventDefault()
-        post('/api/employers')
+        if(authorizationAccepted)
+            post('/api/employers', {
+                onSuccess: () =>{
+                    sessionStorage.clear();
+                },
+                onError: () => {
+                    console.log(errors);
+                },})
+           
       }
 
     useState(()=>{
         
     }, []);
-
+    const [authorizationAccepted, setAuthorizationAccepted] = useSessionStorage(
+        sessionStorage.getItem("authorizationAccepted"),
+        "authorizationAccepted"
+    );
 
     const chooseOptions = {
         icon: "pi pi-fw pi-images",
@@ -76,10 +88,10 @@ export default function EstablishmentContactDetails({
             <Toast ref={toast} />
             <div class="step-5">
                 <div class="py-5 card border-0 rounded-0">
-                    <div class=" bg-light mb-2 font-bold mt-10">
+                    {/* <div class=" bg-light mb-2 font-bold mt-10">
                         <h4 class="card-title fw-bold">V. POSTING DETAILS</h4>
-                    </div>
-                    <div class="row">
+                    </div> */}
+                    {/* <div class="row">
                         <div class="col-md-6">
                             <div class="col-md-12 mb-4">
                                 <label
@@ -112,24 +124,36 @@ export default function EstablishmentContactDetails({
                                 <span class="text-danger !text-xs posting-details-valid-until-error"></span>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     <h4 class="card-header pl-0 border-0 text-center fw-bold mt-5">
                         CERTIFICATION/AUTHORIZATION
                     </h4>
                     <div class="card-body pl-0 pt-3">
                         <div class="row">
-                            <h6 class="indent-16 !text-gray-500">
-                                This is to certify that all data/information
-                                that I have provided in this form are true to
-                                the best of my knowledge.This Is also to
-                                authorized the DOLE to include my profile in the
-                                PESO Employment Information System , which ia a
-                                subsystem of the PhilJobNet. It is understood
-                                that my name shall be made available to
-                                employers who have access to the Registry. I am
-                                also aware that DOLE is not obliged to seek
-                                employment on my behalf.
-                            </h6>
+                        <div className="col-md-1 flex justify-end">
+                        <Checkbox
+                                    className="mr-3"
+                                    onChange={(e) =>
+                                        setAuthorizationAccepted(e.checked)
+                                    }
+                                    checked={authorizationAccepted}
+                                ></Checkbox>
+                        </div>
+                            <div className="col-md-11">
+                            <h6 class=" !text-gray-500">
+                            
+                            This is to certify that all data/information
+                            that I have provided in this form are true to
+                            the best of my knowledge.This Is also to
+                            authorized the DOLE to include my profile in the
+                            PESO Employment Information System , which ia a
+                            subsystem of the PhilJobNet. It is understood
+                            that my name shall be made available to
+                            employers who have access to the Registry. I am
+                            also aware that DOLE is not obliged to seek
+                            employment on my behalf.
+                        </h6>
+                            </div>
                         </div>
                     </div>
                     <div class="row mt-5">

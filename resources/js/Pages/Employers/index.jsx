@@ -8,16 +8,17 @@ import PostingDetails from "./Pages/PostingDetails";
 import QualificationRequirement from "./Pages/QualificationRequirements";
 import VacancyDetails from "./Pages/VacancyDetails";
 import EstablishmentContactDetails from "./Pages/EstablishmentContactDetails";
+import RegisterEmployer from "./Pages/RegisterEmployer";
 
 import { Steps } from "primereact/steps";
 
 export default function InteractiveDemo() {
-    const [activeIndex, setActiveIndex] = useState(4);
+    const [activeIndex, setActiveIndex] = useState(0);
     const toast = useRef(null);
-    const numberOfPage = 5;
+    const numberOfPage = 4;
 
     const counterNext = () => {
-        if (activeIndex < 7) {
+        if (activeIndex < 4) {
             setActiveIndex(activeIndex + 1);
         }
     };
@@ -29,11 +30,10 @@ export default function InteractiveDemo() {
     };
 
     const navigatePage = [
-        "Establishment Page",
+        "REGISTRATION",
+        "ESTABLISHMENT DETAILS",
         "ESTABLISHMENT CONTACT DETAILS",
-        "VACANCY DETAILS",
-        "QUALIFICATION REQUIREMENTS",
-        "POSTING DETAILS",
+        "AUTHORIZATION",
     ];
 
     return (
@@ -53,8 +53,8 @@ export default function InteractiveDemo() {
                                 </NavigatorPage>
                             ))}
                         </div>
-                            {activeIndex == 0 && (
-                                <EstablishmentDetails
+                        {activeIndex == 0 && (
+                                <RegisterEmployer
                                     activeIndex={activeIndex}
                                     numberOfPage={numberOfPage}
                                     counterNext={counterNext}
@@ -63,7 +63,7 @@ export default function InteractiveDemo() {
                                 />
                             )}
                             {activeIndex == 1 && (
-                                <EstablishmentContactDetails
+                                <EstablishmentDetails
                                     activeIndex={activeIndex}
                                     numberOfPage={numberOfPage}
                                     counterNext={counterNext}
@@ -72,6 +72,15 @@ export default function InteractiveDemo() {
                                 />
                             )}
                             {activeIndex == 2 && (
+                                <EstablishmentContactDetails
+                                    activeIndex={activeIndex}
+                                    numberOfPage={numberOfPage}
+                                    counterNext={counterNext}
+                                    counterPrevious={counterPrevious}
+                                    setActiveIndex={setActiveIndex}
+                                />
+                            )}
+                            {/* {activeIndex == 3 && (
                                 <VacancyDetails
                                     activeIndex={activeIndex}
                                     numberOfPage={numberOfPage}
@@ -80,7 +89,7 @@ export default function InteractiveDemo() {
                                     setActiveIndex={setActiveIndex}
                                 />
                             )}
-                            {activeIndex == 3 && (
+                            {activeIndex == 4 && (
                                 <QualificationRequirement
                                     activeIndex={activeIndex}
                                     numberOfPage={numberOfPage}
@@ -88,8 +97,8 @@ export default function InteractiveDemo() {
                                     counterPrevious={counterPrevious}
                                     setActiveIndex={setActiveIndex}
                                 />
-                            )}
-                            {activeIndex == 4 && (
+                            )} */}
+                            {activeIndex == 3 && (
                                 <PostingDetails
                                     activeIndex={activeIndex}
                                     numberOfPage={numberOfPage}

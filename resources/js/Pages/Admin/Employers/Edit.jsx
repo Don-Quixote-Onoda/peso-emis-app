@@ -1,16 +1,12 @@
-import React, { useState, useRef, useEffect } from "react";
-import NavigatorButton from "../Components/NavigatorButton";
-
+import React, { useState, useEffect } from "react";
 import { InputText } from "primereact/inputtext";
-import { useSessionStorage, useLocalStorage } from "primereact/hooks";
-
 import { Calendar } from "primereact/calendar";
-
 import { RadioButton } from "primereact/radiobutton";
-
 import { Dropdown } from "primereact/dropdown";
+import { Checkbox } from "primereact/checkbox";
+import { Button } from 'primereact/button';
 import InputTextWrapper from "@/Pages/FormComponents/InputTextWrapper";
-
+import { useSessionStorage, useLocalStorage } from "primereact/hooks";
 import {
     regions,
     provinces,
@@ -18,325 +14,10 @@ import {
     barangays,
 } from "select-philippines-address";
 
-export default function PersonalInformation({
-    activeIndex,
-    numberOfPage,
-    setActiveIndex,
-    counterPrevious,
-}) {
-    const [surname, setSurname] = useSessionStorage(
-        sessionStorage.getItem("surname"),
-        "surname"
-    );
-
-    const [firstname, setFirstname] = useSessionStorage(
-        sessionStorage.getItem("firstname"),
-        "firstname"
-    );
-
-    const [middlename, setMiddlename] = useSessionStorage(
-        sessionStorage.getItem("middlename"),
-        "middlename"
-    );
-
-    const [suffix, setSuffix] = useSessionStorage(
-        sessionStorage.getItem("suffix"),
-        "suffix"
-    );
-
-    const [birthdate, setBithdate] = useSessionStorage(
-        sessionStorage.getItem("birthdate"),
-        "birthdate"
-    );
-
-    const [religion, setReligion] = useSessionStorage(
-        sessionStorage.getItem("religion"),
-        "religion"
-    );
-
-    const [height, setHeight] = useSessionStorage(
-        sessionStorage.getItem("height"),
-        "height"
-    );
-
-    const [birthOfPlaceHouseOrStreet, setBirthOfPlaceHouseOrStreet] =
-        useSessionStorage(
-            sessionStorage.getItem("birthOfPlaceHouseOrStreet"),
-            "birthOfPlaceHouseOrStreet"
-        );
-
-    const [presentAddressHouseOrStreet, setpresentAddressHouseOrStreet] =
-        useSessionStorage(
-            sessionStorage.getItem("presentAddressHouseOrStreet"),
-            "presentAddressHouseOrStreet"
-        );
-
-    const [emailAddress, setEmailAddress] = useSessionStorage(
-        sessionStorage.getItem("emailAddress"),
-        "emailAddress"
-    );
-
-    const [phoneNumber, setPhoneNumber] = useSessionStorage(
-        sessionStorage.getItem("phoneNumber"),
-        "phoneNumber"
-    );
-
-    const [landlineNumber, setLandlineNumber] = useSessionStorage(
-        sessionStorage.getItem("landlineNumber"),
-        "landlineNumber"
-    );
-
-    const [GSISNumber, setGSISNumber] = useSessionStorage(
-        sessionStorage.getItem("GSISNumber"),
-        "GSISNumber"
-    );
-
-    const [pagIbigNumber, setPagIbigNumber] = useSessionStorage(
-        sessionStorage.getItem("pagIbigNumber"),
-        "pagIbigNumber"
-    );
-
-    const [TINNumber, setTINNumber] = useSessionStorage(
-        sessionStorage.getItem("TINNumber"),
-        "TINNumber"
-    );
-
-    const [philhealthNumber, setPhilhealthNumber] = useSessionStorage(
-        sessionStorage.getItem("philhealthNumber"),
-        "philhealthNumber"
-    );
-
-    const [sex, setSex] = useSessionStorage(
-        sessionStorage.getItem("sex"),
-        "sex"
-    );
-
-    const [civilStatus, setCivilStatus] = useSessionStorage(
-        sessionStorage.getItem("civilStatus"),
-        "civilStatus"
-    );
-
-    const [disability, setDisability] = useSessionStorage(
-        sessionStorage.getItem("disability"),
-        "disability"
-    );
-
-    const [activelyLookingForWork, setActivelyLookingForWork] =
-        useSessionStorage(
-            sessionStorage.getItem("activelyLookingForWork"),
-            "activelyLookingForWork"
-        );
-
-    const [howLongLookingForWork, setHowLongLookingForWork] = useSessionStorage(
-        sessionStorage.getItem("howLongLookingForWork"),
-        "howLongLookingForWork"
-    );
-
-    const [noWhenToWork, setNoWhenToWOrk] = useSessionStorage(
-        sessionStorage.getItem("noWhenToWork"),
-        "noWhenToWork"
-    );
-
-    const [employedStatus, setEmployedStatus] = useSessionStorage(
-        sessionStorage.getItem("employedStatus"),
-        "employedStatus"
-    );
-
-    const [unEmployedStatus, setUnEmployedStatus] = useSessionStorage(
-        sessionStorage.getItem("unEmployedStatus"),
-        "unEmployedStatus"
-    );
-
-    const [willingToWorkImmediately, setWillingToWorkImmediately] =
-        useSessionStorage(
-            sessionStorage.getItem("willingToWorkImmediately"),
-            "willingToWorkImmediately"
-        );
-
-    const [householdNumber, setHouseholdNumber] = useSessionStorage(
-        sessionStorage.getItem("householdNumber"),
-        "householdNumber"
-    );
-
-    const [is4psBeneficiary, setIs4psBeneficiary] = useSessionStorage(
-        sessionStorage.getItem("is4psBeneficiary"),
-        "is4psBeneficiary"
-    );
-
-    const [employementStatus, setEmployementStatus] = useSessionStorage(
-        sessionStorage.getItem("employementStatus"),
-        "employementStatus"
-    );
-
-    const [pob_regionAddr, pob_setRegionAddr] = useSessionStorage(
-        sessionStorage.getItem("pob_regionAddr"),
-        "pob_regionAddr"
-    );
-    const [pob_provinceAddr, pob_setProvinceAddr] = useSessionStorage(
-        sessionStorage.getItem("pob_provinceAddr"),
-        "pob_provinceAddr"
-    );
-    const [pob_cityAddr, pob_setCityAddr] = useSessionStorage(
-        "pob_cityAddr",
-        "pob_cityAddr"
-    );
-    const [pob_barangayAddr, pob_setBarangayAddr] = useSessionStorage(
-        sessionStorage.getItem("pob_barangayAddr"),
-        "pob_barangayAddr"
-    );
-    const [pob_houseNumber_Street_Village, pob_setHouseNumber_Street_Village] =
-        useSessionStorage(
-            sessionStorage.getItem("pob_houseNumber_Street_Village"),
-            "pob_houseNumber_Street_Village"
-        );
-
-    const [pob_regionData, pob_setRegion] = useState([]);
-    const [pob_provinceData, pob_setProvince] = useSessionStorage(
-        sessionStorage.getItem("provinceData"),
-        "provinceData"
-    );
-    const [pob_cityData, pob_setCity] = useSessionStorage(
-        sessionStorage.getItem("cityData"),
-        "cityData"
-    );
-    const [pob_barangayData, pob_setBarangay] = useSessionStorage(
-        sessionStorage.getItem("barangayData"),
-        "barangayData"
-    );
-    const [pob_regionCode, pob_setRegionCode] = useSessionStorage(
-        sessionStorage.getItem("regionCode"),
-        "regionCode"
-    );
-
-    const pob_region = () => {
-        regions().then((response) => {
-            pob_setRegion(response);
-        });
-    };
-
-    const pob_province = (e) => {
-        pob_setRegionAddr(e.target.selectedOptions[0].text);
-        provinces(e.target.value).then((response) => {
-            pob_setProvince(response);
-            pob_setCity([]);
-            pob_setBarangay([]);
-            pob_setRegionCode(e.target.value);
-        });
-    };
-
-    const pob_city = (e) => {
-        pob_setProvinceAddr(e.target.selectedOptions[0].text);
-        cities(e.target.value).then((response) => {
-            pob_setCity(response);
-        });
-    };
-
-    const pob_barangay = (e) => {
-        pob_setCityAddr(e.target.selectedOptions[0].text);
-        barangays(e.target.value).then((response) => {
-            pob_setBarangay(response);
-        });
-    };
-
-    const pob_brgy = (e) => {
-        pob_setBarangayAddr(e.target.selectedOptions[0].text);
-    };
-
-    const [isValidated, setValidated] = useState(true);
-
+export default function EditApplicant({ data, setData, back }) {
     useEffect(() => {
-        pob_region();
-    }, []);
-
-    const [pa_regionAddr, pa_setRegionAddr] = useSessionStorage(
-        sessionStorage.getItem("pa_regionAddr"),
-        "pa_regionAddr"
-    );
-    const [pa_provinceAddr, pa_setProvinceAddr] = useSessionStorage(
-        sessionStorage.getItem("pa_provinceAddr"),
-        "pa_provinceAddr"
-    );
-    const [pa_cityAddr, pa_setCityAddr] = useSessionStorage(
-        "pa_cityAddr",
-        "pa_cityAddr"
-    );
-    const [pa_barangayAddr, pa_setBarangayAddr] = useSessionStorage(
-        sessionStorage.getItem("pa_barangayAddr"),
-        "pa_barangayAddr"
-    );
-    const [pa_houseNumber_Street_Village, pa_setHouseNumber_Street_Village] =
-        useSessionStorage(
-            sessionStorage.getItem("pa_houseNumber_Street_Village"),
-            "pa_houseNumber_Street_Village"
-        );
-
-    const [pa_regionData, pa_setRegion] = useState([]);
-    const [pa_provinceData, pa_setProvince] = useSessionStorage(
-        sessionStorage.getItem("provinceData"),
-        "provinceData"
-    );
-    const [pa_cityData, pa_setCity] = useSessionStorage(
-        sessionStorage.getItem("cityData"),
-        "cityData"
-    );
-    const [pa_barangayData, pa_setBarangay] = useSessionStorage(
-        sessionStorage.getItem("barangayData"),
-        "barangayData"
-    );
-    const [pa_regionCode, pa_setRegionCode] = useSessionStorage(
-        sessionStorage.getItem("regionCode"),
-        "regionCode"
-    );
-
-    const [employedStatusType, setEmployedStatusType] = useSessionStorage(
-        sessionStorage.getItem("employedStatusType"),
-        "employedStatusType"
-    );
-
-    const [unEmployedStatusType, setUnEmployedStatusType] = useState("");
-
-
-    const [unEmployedStatusTypes, setUnEmployedStatusTypes] = useSessionStorage(
-        sessionStorage.getItem("unEmployedStatusTypes"),
-        "unEmployedStatusTypes"
-    );
-
-    const pa_region = () => {
-        regions().then((response) => {
-            pa_setRegion(response);
-        });
-    };
-
-    const pa_province = (e) => {
-        pa_setRegionAddr(e.target.selectedOptions[0].text);
-        provinces(e.target.value).then((response) => {
-            pa_setProvince(response);
-            pa_setCity([]);
-            pa_setBarangay([]);
-            pa_setRegionCode(e.target.value);
-        });
-    };
-
-    const pa_city = (e) => {
-        pa_setProvinceAddr(e.target.selectedOptions[0].text);
-        cities(e.target.value).then((response) => {
-            pa_setCity(response);
-        });
-    };
-
-    const pa_barangay = (e) => {
-        pa_setCityAddr(e.target.selectedOptions[0].text);
-        barangays(e.target.value).then((response) => {
-            pa_setBarangay(response);
-        });
-    };
-
-    const pa_brgy = (e) => {
-        pa_setBarangayAddr(e.target.selectedOptions[0].text);
-    };
-
-    useEffect(() => {
-        pa_region();
+        console.log(data);
+        
     }, []);
 
     const civilStatuses = [
@@ -355,253 +36,22 @@ export default function PersonalInformation({
         { name: "Others" },
     ];
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setActiveIndex(activeIndex + 1);
-    };
-
-    const [teminated_Laidoff_abroad, setTeminated_Laidoff_abroad] =
-        useState(false);
-
-        const [teminated_Laidoff_abroadValue, setTeminated_Laidoff_abroadValue] =
-        useState("");
-    const [employedStatusOthers, setUmployedStatusOthers] = useState(false);
-
-    const [employedStatusOthersValue, setUmployedStatusOthersValue] = useState("");
-
-    const [employedStatusTypeWageEmployed, setEmployedStatusTypeWageEmployed] = useSessionStorage(
-        sessionStorage.getItem("employedStatusTypeWageEmployed"),
-        "employedStatusTypeWageEmployed"
-    );
-
-    const handleEmployedStatusTypeWageEmployed = (value) => {
-        
-        if(employedStatusTypeWageEmployed !== '') {
-            setEmployedStatusTypeWageEmployed('');
-        }
-        else {
-            setEmployedStatusTypeWageEmployed(value);
-        }
-    }
-
-    const [employedStatusTypeSelfEmployed, setEmployedStatusTypeSelfEmployed] = useSessionStorage(
-        sessionStorage.getItem("employedStatusTypeSelfEmployed"),
-        "employedStatusTypeSelfEmployed"
-    );
-    
-
-    const handleEmployedStatusTypeSelfEmployed = (value) => {
-        
-        if(employedStatusTypeSelfEmployed !== '') {
-            setEmployedStatusTypeSelfEmployed('');
-        }
-        else {
-            setEmployedStatusTypeSelfEmployed(value);
-        }
-
-        console.log(employedStatusTypeSelfEmployed);
-    }
-
-    const [unEmployedStatusNewEntrant, setUnEmployedStatusNewEntrant] = useSessionStorage(
-        sessionStorage.getItem("unEmployedStatusNewEntrant"),
-        "unEmployedStatusNewEntrant"
-    );
-
-    const handleUnEmployedStatusNewEntrant = (value) => {
-        
-        if(unEmployedStatusNewEntrant !== '') {
-            setUnEmployedStatusNewEntrant('');
-        }
-        else {
-            setUnEmployedStatusNewEntrant(value);
-        }
-
-        console.log(unEmployedStatusNewEntrant);
-    }
-
-    const [unEmployedStatusFinishedContract, setUnEmployedStatusFinishedContract] = useSessionStorage(
-        sessionStorage.getItem("unEmployedStatusFinishedContract"),
-        "unEmployedStatusFinishedContract"
-    );
-
-    const handleUnEmployedStatusFinishedContract = (value) => {
-        
-        if(unEmployedStatusFinishedContract !== '') {
-            setUnEmployedStatusFinishedContract('');
-        }
-        else {
-            setUnEmployedStatusFinishedContract(value);
-        }
-
-        console.log(unEmployedStatusFinishedContract);
-    }
-
-    const [unEmployedStatusResigned, setUnEmployedStatusResigned] = useSessionStorage(
-        sessionStorage.getItem("unEmployedStatusResigned"),
-        "unEmployedStatusResigned"
-    );
-
-    const handleUnEmployedStatusResigned = (value) => {
-        
-        if(unEmployedStatusResigned !== '') {
-            setUnEmployedStatusResigned('');
-        }
-        else {
-            setUnEmployedStatusResigned(value);
-        }
-
-        console.log(unEmployedStatusResigned);
-    }
-
-    const [unEmployedStatusRetired, setUnEmployedStatusRetired] = useSessionStorage(
-        sessionStorage.getItem("unEmployedStatusRetired"),
-        "unEmployedStatusRetired"
-    );
-
-    const handleUnEmployedStatusRetired = (value) => {
-        
-        if(unEmployedStatusRetired !== '') {
-            setUnEmployedStatusRetired('');
-        }
-        else {
-            setUnEmployedStatusRetired(value);
-        }
-
-        console.log(unEmployedStatusRetired);
-    }
-
-    const [unEmployedStatusTerminatedLocal, setUnEmployedStatusTerminatedLocal] = useSessionStorage(
-        sessionStorage.getItem("unEmployedStatusTerminatedLocal"),
-        "unEmployedStatusTerminatedLocal"
-    );
-
-    const handleUnEmployedStatusTerminatedLocal = (value) => {
-        
-        if(unEmployedStatusTerminatedLocal !== '') {
-            setUnEmployedStatusTerminatedLocal('');
-        }
-        else {
-            setUnEmployedStatusTerminatedLocal(value);
-        }
-
-        console.log(unEmployedStatusTerminatedLocal);
-    }
-
-    const [unEmployedStatusTerminatedAbroad, setUnEmployedStatusTerminatedAbroad] = useSessionStorage(
-        sessionStorage.getItem("unEmployedStatusTerminatedAbroad"),
-        "unEmployedStatusTerminatedAbroad"
-    );
-
-    const handleUnEmployedStatusTerminatedAbroad = (value, e) => {
-        
-        if (e.target.checked) {
-            setTeminated_Laidoff_abroad(true);
-        }
-        else {
-            setTeminated_Laidoff_abroad(false);
-        }
-
-        if(unEmployedStatusTerminatedAbroad !== '') {
-            setUnEmployedStatusTerminatedAbroad('');
-        }
-        else {
-            setUnEmployedStatusTerminatedAbroad(value);
-        }
-
-        
-
-        console.log(unEmployedStatusTerminatedAbroad);
-    }
-
-    const [unEmployedStatusTerminatedAbroadValue, setUnEmployedStatusTerminatedAbroadValue] = useSessionStorage(
-        sessionStorage.getItem("unEmployedStatusTerminatedAbroadValue"),
-        "unEmployedStatusTerminatedAbroadValue"
-    );
-
-    const handleUnEmployedStatusTerminatedAbroadValue = (value) => {
-        
-
-        if(unEmployedStatusTerminatedAbroadValue !== '') {
-            setUnEmployedStatusTerminatedAbroadValue('');
-        }
-        else {
-            setUnEmployedStatusTerminatedAbroadValue(value);
-        }
-
-        console.log(unEmployedStatusTerminatedAbroadValue);
-    }
-
-    const [unEmployedStatusOthers, setUnEmployedStatusOthers] = useSessionStorage(
-        sessionStorage.getItem("unEmployedStatusOthers"),
-        "unEmployedStatusOthers"
-    );
-
-    const handleUnEmployedStatusTerminatedOthers = (value, e) => {
-        if (e.target.checked) {
-            setUmployedStatusOthers(true);
-        }
-        else {
-            setUmployedStatusOthers(false);
-        }
-        if(unEmployedStatusOthers !== '') {
-            setUnEmployedStatusOthers('');
-        }
-        else {
-            setUnEmployedStatusOthers(value);
-        }
-
-        console.log(unEmployedStatusOthers);
-    }
-
-    const [unEmployedStatusOthersValue, setUnEmployedStatusOthersValue] = useSessionStorage(
-        sessionStorage.getItem("unEmployedStatusOthersValue"),
-        "unEmployedStatusOthersValue"
-    );
-
-    const handleUnEmployedStatusTerminatedOthersValue = (value) => {
-        
-        if(unEmployedStatusTerminatedOthersValue !== '') {
-            setUnEmployedStatusTerminatedOthersValue('');
-        }
-        else {
-            setUnEmployedStatusTerminatedOthersValue(value);
-        }
-
-        console.log(unEmployedStatusTerminatedOthersValue);
-    }
-
-    const handleApplicantStatusType = (value, e) => {
-
-        if(e.target.checked && !unEmployedStatusType.includes(value)) {
-            if (value === "Others, specify") {
-                setUmployedStatusOthers(true);
-            }else if (value === "Teminated/Laidoff(abroad)") {
-                setTeminated_Laidoff_abroad(true);
-            }
-            else {
-                setUnEmployedStatusType(unEmployedStatusType + " " + value);
-            }
-        }else {
-            if (value === "Others, specify") {
-                setUmployedStatusOthers(false);
-            }else if (value === "Teminated/Laidoff(abroad)") {
-                setTeminated_Laidoff_abroad(false);
-            }else {
-                setUnEmployedStatusType(unEmployedStatusType.replace(value,''));
-            }
-        }
-
-        console.log(unEmployedStatusType);
-    };
-
     return (
-        <form onSubmit={(e) => handleSubmit(e)}>
-            <div class="step-1">
+        <>
+        <div class="step-1">
                 <div class="card rounded-0 border-0">
                     <div class=" bg-light mb-2 font-bold mt-10">
+                        <div className="flex justify-between">
                         <h4 class="card-title fw-bold">
                             1. Personal information
                         </h4>
+                        <Button
+                    icon="pi pi-arrow-left"
+                    className="mr-2"
+                    label="Back"
+                    onClick={() => back()}
+                />
+                        </div>
                     </div>
                     <div class="card-body pb-0 row">
                         <div class="col-md-6 mb-4">
@@ -613,8 +63,8 @@ export default function PersonalInformation({
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={surname}
-                                onChange={(e) => setSurname(e.target.value)}
+                                value={data.surname}
+                                onChange={(e) => setData('surname', e.target.value)}
                             />
                             <span class="text-danger !text-xs pi_surname-error"></span>
                         </div>
@@ -627,8 +77,8 @@ export default function PersonalInformation({
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={firstname}
-                                onChange={(e) => setFirstname(e.target.value)}
+                                value={data.firstname}
+                                onChange={(e) => setData('firstname', e.target.value)}
                             />
 
                             <span class="text-danger !text-xs pi_firstname-error"></span>
@@ -642,8 +92,8 @@ export default function PersonalInformation({
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={middlename}
-                                onChange={(e) => setMiddlename(e.target.value)}
+                                value={data.middlename}
+                                onChange={(e) => setData('middlename', e.target.value)}
                             />
                             <span class="text-danger !text-xs pi_middlename-error"></span>
                         </div>
@@ -656,8 +106,8 @@ export default function PersonalInformation({
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={suffix}
-                                onChange={(e) => setSuffix(e.target.value)}
+                                value={data.suffix}
+                                onChange={(e) => setData('suffix',e.target.value)}
                             />
                             <span class="text-danger !text-xs pi_suffix-error"></span>
                         </div>
@@ -670,8 +120,8 @@ export default function PersonalInformation({
                             </label>
                             <Calendar
                                 className="form-control h-10 p-0 border-0"
-                                value={birthdate}
-                                onChange={(e) => setBithdate(e.value)}
+                                value={new Date(data.birthdate)}
+                                onChange={(e) => setData('birthdate', e.value)}
                                 dateFormat="dd/mm/yy"
                             />
                             <span class="text-danger !text-xs pi_date_of_birth-error"></span>
@@ -685,8 +135,8 @@ export default function PersonalInformation({
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={religion}
-                                onChange={(e) => setReligion(e.target.value)}
+                                value={data.religion}
+                                onChange={(e) => setData('religion',e.target.value)}
                             />
                             <span class="text-danger !text-xs pi_religion-error"></span>
                         </div>
@@ -704,8 +154,8 @@ export default function PersonalInformation({
                                             inputId="ingredient1"
                                             name="sex"
                                             value="Male"
-                                            onChange={(e) => setSex(e.value)}
-                                            checked={sex === "Male"}
+                                            onChange={(e) => setData('sex', e.value)}
+                                            checked={data.sex === "Male"}
                                         />
                                         <label
                                             class="form-check-label !text-xs !text-gray-500"
@@ -721,8 +171,8 @@ export default function PersonalInformation({
                                             inputId="ingredient1"
                                             name="sex"
                                             value="Female"
-                                            onChange={(e) => setSex(e.value)}
-                                            checked={sex === "Female"}
+                                            onChange={(e) => setData('sex', e.value)}
+                                            checked={data.sex === "Female"}
                                         />
 
                                         <label
@@ -745,15 +195,14 @@ export default function PersonalInformation({
                             </label>
 
                             <Dropdown
-                                value={civilStatus}
-                                onChange={(e) => setCivilStatus(e.value)}
+                                value={data.civil_status}
+                                onChange={(e) => setData('civil_status', e.value)}
                                 options={civilStatuses}
                                 optionLabel="name"
                                 editable
                                 placeholder="Select a Civil Status"
                                 className="form-select h-10 !text-xs pi_civil_status !text-gray-500 !py-2.5 border-light-emphasis"
                             />
-                            <span class="text-danger !text-xs pi_civil_status-error h-10"></span>
                         </div>
                         <div class="col-md-4 mb-4">
                             <label
@@ -765,8 +214,8 @@ export default function PersonalInformation({
                             <div class="input-group mb-3">
                                 <InputText
                                     className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                    value={height}
-                                    onChange={(e) => setHeight(e.target.value)}
+                                    value={data.height}
+                                    onChange={(e) => setData('height', e.target.value)}
                                 />
                                 <span class="input-group-text !text-gray-500 !text-xs border-light-emphasis">
                                     cm
@@ -790,13 +239,14 @@ export default function PersonalInformation({
                                                 name="activilyLookingForWork"
                                                 value="Yes"
                                                 onChange={(e) =>
-                                                    setActivelyLookingForWork(
+                                                    setData(
+                                                        'is_actively_looking_for_work',
                                                         e.value
                                                     )
                                                 }
                                                 checked={
-                                                    activelyLookingForWork ===
-                                                    "Yes"
+                                                    data.is_actively_looking_for_work ===
+                                                    1
                                                 }
                                             />
                                             <label
@@ -814,13 +264,14 @@ export default function PersonalInformation({
                                                 name="activilyLookingForWork"
                                                 value="No"
                                                 onChange={(e) =>
-                                                    setActivelyLookingForWork(
+                                                    setData(
+                                                        'is_actively_looking_for_work',
                                                         e.value
                                                     )
                                                 }
                                                 checked={
-                                                    activelyLookingForWork ===
-                                                    "No"
+                                                    data.is_actively_looking_for_work ===
+                                                    0
                                                 }
                                             />
                                             <label
@@ -833,7 +284,7 @@ export default function PersonalInformation({
                                     </div>
                                 </div>
                                 <span class="text-danger !text-xs pi_looking_for_work-error"></span>
-                                {activelyLookingForWork == "Yes" && (
+                                {data.is_actively_looking_for_work == 1 && (
                                     <div class="col-md-12 mb-4 is_actively_looking_for_work">
                                         <label
                                             for="inputEmail4"
@@ -844,9 +295,10 @@ export default function PersonalInformation({
                                         </label>
                                         <InputText
                                             className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
-                                            value={howLongLookingForWork}
+                                            value={data.find_job_duration}
                                             onChange={(e) =>
-                                                setHowLongLookingForWork(
+                                                setData(
+                                                    'find_job_duration',
                                                     e.target.value
                                                 )
                                             }
@@ -871,13 +323,14 @@ export default function PersonalInformation({
                                             name="willingToWorkImmediately"
                                             value="Yes"
                                             onChange={(e) =>
-                                                setWillingToWorkImmediately(
+                                                setData(
+                                                    'is_willing_to_work_immidiately',
                                                     e.value
                                                 )
                                             }
                                             checked={
-                                                willingToWorkImmediately ===
-                                                "Yes"
+                                                data.is_willing_to_work_immidiately ===
+                                                1
                                             }
                                         />
                                         <label
@@ -895,13 +348,14 @@ export default function PersonalInformation({
                                             name="willingToWorkImmediately"
                                             value="No"
                                             onChange={(e) =>
-                                                setWillingToWorkImmediately(
+                                                setData(
+                                                    'is_willing_to_work_immidiately',
                                                     e.value
                                                 )
                                             }
                                             checked={
-                                                willingToWorkImmediately ===
-                                                "No"
+                                                data.is_willing_to_work_immidiately ===
+                                                0
                                             }
                                         />
                                         <label
@@ -913,7 +367,7 @@ export default function PersonalInformation({
                                     </div>
                                 </div>
                                 <span class="text-danger !text-xs pi_when_to_work-error"></span>
-                                {willingToWorkImmediately == "No" && (
+                                {data.is_willing_to_work_immidiately == 0 && (
                                     <div class="col-md-12 mb-4 is_not_when_to_work">
                                         <label
                                             for="inputEmail4"
@@ -925,7 +379,7 @@ export default function PersonalInformation({
                                             className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
                                             value={noWhenToWork}
                                             onChange={(e) =>
-                                                setNoWhenToWOrk(e.target.value)
+                                                setData('when_to_start_working', e.target.value)
                                             }
                                         />
 
@@ -949,9 +403,9 @@ export default function PersonalInformation({
                                             name="is4psBeneficiary"
                                             value="Yes"
                                             onChange={(e) =>
-                                                setIs4psBeneficiary(e.value)
+                                                setData('is_4Ps', e.value)
                                             }
-                                            checked={is4psBeneficiary === "Yes"}
+                                            checked={data.is_4Ps === 1}
                                         />
                                         <label
                                             class="form-check-label !text-xs !py-2.5 !text-gray-500"
@@ -968,9 +422,9 @@ export default function PersonalInformation({
                                             name="is4psBeneficiary"
                                             value="No"
                                             onChange={(e) =>
-                                                setIs4psBeneficiary(e.value)
+                                                setData('is_4Ps', e.value)
                                             }
-                                            checked={is4psBeneficiary === "No"}
+                                            checked={data.is_4Ps === 0}
                                         />
                                         <label
                                             class="form-check-label !text-xs !py-2.5 !text-gray-500"
@@ -981,7 +435,7 @@ export default function PersonalInformation({
                                     </div>
                                 </div>
                                 <span class="text-danger !text-xs pi_4ps_beneficiary-error"></span>
-                                {is4psBeneficiary == "Yes" && (
+                                {data.is_4Ps == 1 && (
                                     <div class="col-md-12 mb-4 is_4ps_beneficiary">
                                         <label
                                             for="inputEmail4"
@@ -991,9 +445,10 @@ export default function PersonalInformation({
                                         </label>
                                         <InputText
                                             className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-500 border-light-emphasis"
-                                            value={householdNumber}
+                                            value={data.household_id_4ps}
                                             onChange={(e) =>
-                                                setHouseholdNumber(
+                                                setData(
+                                                    'household_id_4ps',
                                                     e.target.value
                                                 )
                                             }
@@ -1003,7 +458,7 @@ export default function PersonalInformation({
                                 )}
                             </div>
                         </div>
-                        <div class="col-md-6 mb-4">
+                        {/* <div class="col-md-6 mb-4">
                             <h5 class="fw-bold text-dark-emphasis mb-4 text-gray-500 !text-md">
                                 Place of Birth
                             </h5>
@@ -1154,9 +609,9 @@ export default function PersonalInformation({
                                     />
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
-                        <div class="col-md-6 mb-4">
+                        {/* <div class="col-md-6 mb-4">
                             <h5 class="fw-bold text-gray-500 text-dark-emphasis mb-4">
                                 Present Address
                             </h5>
@@ -1307,7 +762,7 @@ export default function PersonalInformation({
                                     />
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                     <div class="card-body pt-0 row">
                         <div class="col-md-6 mb-4">
@@ -1319,9 +774,9 @@ export default function PersonalInformation({
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={emailAddress}
+                                value={data.email_address}
                                 onChange={(e) =>
-                                    setEmailAddress(e.target.value)
+                                    setData('email_address', e.target.value)
                                 }
                             />
                             <span class="text-danger !text-xs pi_email_address-error"></span>
@@ -1335,8 +790,8 @@ export default function PersonalInformation({
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={phoneNumber}
-                                onChange={(e) => setPhoneNumber(e.target.value)}
+                                value={data.phone_number}
+                                onChange={(e) => setData('phone_number', e.target.value)}
                             />
                             <span class="text-danger !text-xs pi_celphone_number-error"></span>
                         </div>
@@ -1349,9 +804,9 @@ export default function PersonalInformation({
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={landlineNumber}
+                                value={data.landline_number}
                                 onChange={(e) =>
-                                    setLandlineNumber(e.target.value)
+                                    setData('landline_number', e.target.value)
                                 }
                             />
                             <span class="text-danger !text-xs pi_landine_number-error"></span>
@@ -1365,8 +820,8 @@ export default function PersonalInformation({
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={GSISNumber}
-                                onChange={(e) => setGSISNumber(e.target.value)}
+                                value={data.GSIS_SSS_id}
+                                onChange={(e) => setData('GSIS_SSS_id', e.target.value)}
                             />
                             <span class="text-danger !text-xs pi_sss_number-error"></span>
                         </div>
@@ -1379,9 +834,9 @@ export default function PersonalInformation({
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={pagIbigNumber}
+                                value={data.pag_ibig_number}
                                 onChange={(e) =>
-                                    setPagIbigNumber(e.target.value)
+                                    setData('pag_ibig_number', e.target.value)
                                 }
                             />
                             <span class="text-danger !text-xs pi_pag_ibig_number-error"></span>
@@ -1395,14 +850,14 @@ export default function PersonalInformation({
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={philhealthNumber}
+                                value={data.pag_ibig_number}
                                 onChange={(e) =>
-                                    setPhilhealthNumber(e.target.value)
+                                    setData('pag_ibig_number', e.target.value)
                                 }
                             />
                             <span class="text-danger !text-xs pi_philheath_number-error"></span>
                         </div>
-                        <div class="col-md-6 mb-4">
+                        {/* <div class="col-md-6 mb-4">
                             <label
                                 for="inputEmail4"
                                 class="form-label !text-xs !text-gray-400 fw-bold text-light-emphasis"
@@ -1415,8 +870,8 @@ export default function PersonalInformation({
                                 onChange={(e) => setTINNumber(e.target.value)}
                             />
                             <span class="text-danger !text-xs pi_philheath_number-error"></span>
-                        </div>
-                        <div class="col-md-6 mb-4">
+                        </div> */}
+                        {/* <div class="col-md-6 mb-4">
                             <div class="col-md-12 mb-4">
                                 <label
                                     for="inputEmail4"
@@ -1435,8 +890,8 @@ export default function PersonalInformation({
                                 />
                                 <span class="text-danger !text-xs pi_disability-error"></span>
                             </div>
-                        </div>
-                        <div class="col-md-6 mb-4">
+                        </div> */}
+                        {/* <div class="col-md-6 mb-4">
                             <div class="col-md-4 mb-4">
                                 <label
                                     for="inputEmail4"
@@ -1736,16 +1191,10 @@ export default function PersonalInformation({
                                     </div>
                                 )}
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
-            <NavigatorButton
-                activeIndex={activeIndex}
-                numberOfPage={numberOfPage}
-                setActiveIndex={setActiveIndex}
-                counterPrevious={counterPrevious}
-            />
-        </form>
+        </>
     );
 }

@@ -5,7 +5,7 @@ export default function Welcome(props) {
         <>
             <header
                 id="header"
-                className="fixed-top d-flex align-items-center  header-transparent "
+                className="fixed-top d-flex align-items-center "
             >
                 <div className="container d-flex align-items-center justify-content-between">
                     <div className="logo">
@@ -418,7 +418,7 @@ export default function Welcome(props) {
                                     </div>
                                     <div className="col-lg-6 order-1 order-lg-2 text-center">
                                         <img
-                                            src="assets/img/features-1.png"
+                                            src="img/homepage/features-1.png"
                                             alt=""
                                             className="img-fluid"
                                         />
@@ -481,7 +481,7 @@ export default function Welcome(props) {
                                     </div>
                                     <div className="col-lg-6 order-1 order-lg-2 text-center">
                                         <img
-                                            src="assets/img/features-2.png"
+                                            src="img/homepage/features-2.png"
                                             alt=""
                                             className="img-fluid"
                                         />
@@ -535,7 +535,7 @@ export default function Welcome(props) {
                                     </div>
                                     <div className="col-lg-6 order-1 order-lg-2 text-center">
                                         <img
-                                            src="assets/img/features-3.png"
+                                            src="img/homepage/features-3.png"
                                             alt=""
                                             className="img-fluid"
                                         />
@@ -591,7 +591,7 @@ export default function Welcome(props) {
                                     </div>
                                     <div className="col-lg-6 order-1 order-lg-2 text-center">
                                         <img
-                                            src="assets/img/features-4.png"
+                                            src="img/homepage/features-4.png"
                                             alt=""
                                             className="img-fluid"
                                         />
@@ -716,7 +716,7 @@ export default function Welcome(props) {
                             <div className="col-lg-4 col-md-6 portfolio-item filter-app">
                                 <div className="portfolio-img">
                                     <img
-                                        src="assets/img/portfolio/portfolio-1.jpg"
+                                        src="img/homepage/portfolio/portfolio-1.jpg"
                                         className="img-fluid"
                                         alt=""
                                     />
@@ -725,7 +725,7 @@ export default function Welcome(props) {
                                     <h4>App 1</h4>
                                     <p>App</p>
                                     <a
-                                        href="assets/img/portfolio/portfolio-1.jpg"
+                                        href="img/homepage/portfolio/portfolio-1.jpg"
                                         data-gallery="portfolioGallery"
                                         className="portfolio-lightbox preview-link"
                                         title="App 1"
@@ -745,7 +745,7 @@ export default function Welcome(props) {
                             <div className="col-lg-4 col-md-6 portfolio-item filter-web">
                                 <div className="portfolio-img">
                                     <img
-                                        src="assets/img/portfolio/portfolio-2.jpg"
+                                        src="img/homepage/portfolio/portfolio-2.jpg"
                                         className="img-fluid"
                                         alt=""
                                     />
@@ -754,7 +754,7 @@ export default function Welcome(props) {
                                     <h4>Web 3</h4>
                                     <p>Web</p>
                                     <a
-                                        href="assets/img/portfolio/portfolio-2.jpg"
+                                        href="img/homepage/portfolio/portfolio-2.jpg"
                                         data-gallery="portfolioGallery"
                                         className="portfolio-lightbox preview-link"
                                         title="Web 3"
@@ -774,7 +774,7 @@ export default function Welcome(props) {
                             <div className="col-lg-4 col-md-6 portfolio-item filter-app">
                                 <div className="portfolio-img">
                                     <img
-                                        src="assets/img/portfolio/portfolio-3.jpg"
+                                        src="img/homepage/portfolio/portfolio-3.jpg"
                                         className="img-fluid"
                                         alt=""
                                     />
@@ -783,7 +783,7 @@ export default function Welcome(props) {
                                     <h4>App 2</h4>
                                     <p>App</p>
                                     <a
-                                        href="assets/img/portfolio/portfolio-3.jpg"
+                                        href="img/homepage/portfolio/portfolio-3.jpg"
                                         data-gallery="portfolioGallery"
                                         className="portfolio-lightbox preview-link"
                                         title="App 2"
@@ -803,7 +803,7 @@ export default function Welcome(props) {
                             <div className="col-lg-4 col-md-6 portfolio-item filter-card">
                                 <div className="portfolio-img">
                                     <img
-                                        src="assets/img/portfolio/portfolio-4.jpg"
+                                        src="img/homepage/portfolio/portfolio-4.jpg"
                                         className="img-fluid"
                                         alt=""
                                     />
@@ -812,7 +812,7 @@ export default function Welcome(props) {
                                     <h4>Card 2</h4>
                                     <p>Card</p>
                                     <a
-                                        href="assets/img/portfolio/portfolio-4.jpg"
+                                        href="img/homepage/portfolio/portfolio-4.jpg"
                                         data-gallery="portfolioGallery"
                                         className="portfolio-lightbox preview-link"
                                         title="Card 2"
@@ -832,7 +832,7 @@ export default function Welcome(props) {
                             <div className="col-lg-4 col-md-6 portfolio-item filter-web">
                                 <div className="portfolio-img">
                                     <img
-                                        src="assets/img/portfolio/portfolio-5.jpg"
+                                        src="img/homepage/portfolio/portfolio-5.jpg"
                                         className="img-fluid"
                                         alt=""
                                     />
@@ -841,7 +841,7 @@ export default function Welcome(props) {
                                     <h4>Web 2</h4>
                                     <p>Web</p>
                                     <a
-                                        href="assets/img/portfolio/portfolio-5.jpg"
+                                        href="img/homepage/portfolio/portfolio-5.jpg"
                                         data-gallery="portfolioGallery"
                                         className="portfolio-lightbox preview-link"
                                         title="Web 2"
@@ -861,7 +861,7 @@ export default function Welcome(props) {
                             <div className="col-lg-4 col-md-6 portfolio-item filter-app">
                                 <div className="portfolio-img">
                                     <img
-                                        src="assets/img/portfolio/portfolio-6.jpg"
+                                        src="img/homepage/portfolio/portfolio-6.jpg"
                                         className="img-fluid"
                                         alt=""
                                     />
@@ -870,7 +870,7 @@ export default function Welcome(props) {
                                     <h4>App 3</h4>
                                     <p>App</p>
                                     <a
-                                        href="assets/img/portfolio/portfolio-6.jpg"
+                                        href="img/homepage/portfolio/portfolio-6.jpg"
                                         data-gallery="portfolioGallery"
                                         className="portfolio-lightbox preview-link"
                                         title="App 3"
@@ -890,7 +890,7 @@ export default function Welcome(props) {
                             <div className="col-lg-4 col-md-6 portfolio-item filter-card">
                                 <div className="portfolio-img">
                                     <img
-                                        src="assets/img/portfolio/portfolio-7.jpg"
+                                        src="img/homepage/portfolio/portfolio-7.jpg"
                                         className="img-fluid"
                                         alt=""
                                     />
@@ -899,7 +899,7 @@ export default function Welcome(props) {
                                     <h4>Card 1</h4>
                                     <p>Card</p>
                                     <a
-                                        href="assets/img/portfolio/portfolio-7.jpg"
+                                        href="img/homepage/portfolio/portfolio-7.jpg"
                                         data-gallery="portfolioGallery"
                                         className="portfolio-lightbox preview-link"
                                         title="Card 1"
@@ -919,7 +919,7 @@ export default function Welcome(props) {
                             <div className="col-lg-4 col-md-6 portfolio-item filter-card">
                                 <div className="portfolio-img">
                                     <img
-                                        src="assets/img/portfolio/portfolio-8.jpg"
+                                        src="img/homepage/portfolio/portfolio-8.jpg"
                                         className="img-fluid"
                                         alt=""
                                     />
@@ -928,7 +928,7 @@ export default function Welcome(props) {
                                     <h4>Card 3</h4>
                                     <p>Card</p>
                                     <a
-                                        href="assets/img/portfolio/portfolio-8.jpg"
+                                        href="img/homepage/portfolio/portfolio-8.jpg"
                                         data-gallery="portfolioGallery"
                                         className="portfolio-lightbox preview-link"
                                         title="Card 3"
@@ -948,7 +948,7 @@ export default function Welcome(props) {
                             <div className="col-lg-4 col-md-6 portfolio-item filter-web">
                                 <div className="portfolio-img">
                                     <img
-                                        src="assets/img/portfolio/portfolio-9.jpg"
+                                        src="img/homepage/portfolio/portfolio-9.jpg"
                                         className="img-fluid"
                                         alt=""
                                     />
@@ -957,7 +957,7 @@ export default function Welcome(props) {
                                     <h4>Web 3</h4>
                                     <p>Web</p>
                                     <a
-                                        href="assets/img/portfolio/portfolio-9.jpg"
+                                        href="img/homepage/portfolio/portfolio-9.jpg"
                                         data-gallery="portfolioGallery"
                                         className="portfolio-lightbox preview-link"
                                         title="Web 3"
@@ -1175,7 +1175,7 @@ export default function Welcome(props) {
                                 <div className="member" data-aos="fade-up">
                                     <div className="member-img">
                                         <img
-                                            src="assets/img/team/team-1.jpg"
+                                            src="img/homepage/team/team-1.jpg"
                                             className="img-fluid"
                                             alt=""
                                         />
@@ -1209,7 +1209,7 @@ export default function Welcome(props) {
                                 >
                                     <div className="member-img">
                                         <img
-                                            src="assets/img/team/team-2.jpg"
+                                            src="img/homepage/team/team-2.jpg"
                                             className="img-fluid"
                                             alt=""
                                         />
@@ -1243,7 +1243,7 @@ export default function Welcome(props) {
                                 >
                                     <div className="member-img">
                                         <img
-                                            src="assets/img/team/team-3.jpg"
+                                            src="img/homepage/team/team-3.jpg"
                                             className="img-fluid"
                                             alt=""
                                         />
@@ -1277,7 +1277,7 @@ export default function Welcome(props) {
                                 >
                                     <div className="member-img">
                                         <img
-                                            src="assets/img/team/team-4.jpg"
+                                            src="img/homepage/team/team-4.jpg"
                                             className="img-fluid"
                                             alt=""
                                         />

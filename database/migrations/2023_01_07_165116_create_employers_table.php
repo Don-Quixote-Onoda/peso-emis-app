@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('line_of_business');
             $table->string('e_signature');
             $table->integer('is_authorization_accepted');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

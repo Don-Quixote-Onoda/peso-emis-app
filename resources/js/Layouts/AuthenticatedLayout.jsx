@@ -4,10 +4,10 @@ import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link } from '@inertiajs/react';
+import { useEffect } from 'react';
 
 export default function Authenticated({ auth, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
-
     return (
         <div className="min-h-screen bg-gray-100">
             <nav className="bg-white border-b border-gray-100">
@@ -19,22 +19,55 @@ export default function Authenticated({ auth, header, children }) {
                                     <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
                                 </Link>
                             </div>
-
-                            <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            {
+                                auth.user.role == 1 && <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink href={route('dashboard')} active={route().current('dashboard')}>
                                     Dashboard
                                 </NavLink>
                             </div>
-                            <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            }
+
+                            {
+                                auth.user.role == 0 && <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <NavLink href={route('dashboard')} active={route().current('dashboard')}>
+                                    Dashboard
+                                </NavLink>
+                            </div>
+                            }
+                            {
+                                auth.user.role == 1 && <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink href={route('admin-applicants')} active={route().current('admin-applicants')}>
                                     Applicants
                                 </NavLink>
                             </div>
-                            <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink href={route('admin-employers')} active={route().current('admin-employers')}>
-                                    Employers
+                            }
+
+                            {
+                                auth.user.role == 1 && 
+                                <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                    <NavLink href={route('admin-employers')} active={route().current('admin-employers')}>
+                                        Employers
+                                    </NavLink>
+                                </div>
+                            }
+
+{
+                                auth.user.role == 1 && 
+                                <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                    <NavLink href={route('admin-users')} active={route().current('admin-users')}>
+                                        Users
+                                    </NavLink>
+                                </div>
+                            }
+
+                            {
+                                auth.user.role == 0 && <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <NavLink href={route('job-postings')} active={route().current('job-postings')}>
+                                    Job Posting
                                 </NavLink>
                             </div>
+                            }
+                            
                         </div>
 
                         <div className="hidden sm:flex sm:items-center sm:ml-6">
