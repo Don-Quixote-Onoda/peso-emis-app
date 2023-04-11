@@ -8,6 +8,9 @@ use App\Models\Employer;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use App\Models\EmployerVacancyDetail;
+use App\Models\EmployerQualificationRequirement;
+use App\Models\EmployerPostingDetail;
 
 class JobPostingController extends Controller
 {
@@ -91,15 +94,49 @@ class JobPostingController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        $employer_vacancy_detail = EmployerVacancyDetail::find($request->id);
+        $employer_vacancy_detail->update([
+            "position_title" => $request->positionTitle,
+            "job_description" => $request->jobDescription,
+            "nature_of_work" => $request->natureOfWork,
+            "place_of_work" => $request->placeOfWork,
+            "salary" => $request->salary,
+            "vacancy_count" => $request->vacancyCount,
+        ]);
+
+        $employer_qualification_requirement = EmployerQualificationRequirement::find($request->id);
+        $employer_qualification_requirement->update([
+            "work_of_experience" => $request->workExperience == null ? "N/A" : $request->workExperience,
+            "sex" => $request->sex,
+            "religion" => $request->religion,
+            "civil_status" => $request->civilStatus,
+            "is_accept_disability" => $request->isAcceptDisability,
+            "disability_type" => $request->disabilityAccepted == null ? "N/A" : $request->disabilityAccepted,
+            "educational_level" => $request->educationalLevel == null ? "N/A" : $request->educationalLevel,
+            "course_or_major" => $request->courseOrMajor == null ? "N/A" : $request->courseOrMajor,
+            "license" => $request->license == null ? "N/A" : $request->license,
+            "eligibility" => $request->eligibility == null ? "N/A" : $request->eligibility,
+            "certification" => $request->certification == null ? "N/A" : $request->certification,
+            "language_or_dialect" => $request->languageOrDialectSpoken == null ? "N/A" : $request->languageOrDialectSpoken,
+            "preferred_residence" =>  $request->preferredResidence == null ? "N/A" : $request->preferredResidence,
+            "nature_of_work" => $request->qualificationRequirementNatureOfWork,
+            "other_qualification" => $request->otherQualifications == null ? "N/A" : $request->otherQualifications,
+        ]);
+
+        $employer_posting_detail = EmployerPostingDetail::find($request->id);
+        $employer_posting_detail->update([
+            "posting_date" => date('Y-m-d', strtotime($request->postingDate)),
+            "valid_until" =>date('Y-m-d', strtotime($request->validUntil)),
+        ]);
+        return Redirect::route('job-postings');
     }
 
     /**
@@ -107,9 +144,12 @@ class JobPostingController extends Controller
      */
     public function destroy(Request $request)
     {
-        // $employer = Employer::where('user_id', $request->user_id)->get();
-        // $employer[0]->employer_qualification_requirement()->delete();
-        // $employer[0]->employer_posting_detail()->delete();
-        // return Redirect::route('job-postings');
+        $employer_vacancy_detail = EmployerVacancyDetail::find($request->id);
+        $employer_qualification_requirement = EmployerQualificationRequirement::find($request->id);
+        $employer_posting_detail = EmployerPostingDetail::find($request->id);
+        $employer_vacancy_detail->delete();
+        $employer_qualification_requirement->delete();
+        $employer_posting_detail->delete();
+        return Redirect::route('job-postings');
     }
 }
