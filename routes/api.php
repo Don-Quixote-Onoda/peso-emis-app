@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminEmployersController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\ApplicantsController;
 use Illuminate\Http\Request;
@@ -30,5 +31,6 @@ Route::resource('job-posting', JobPostingController::class);
 Route::post('job-posting-update', [JobPostingController::class, 'update'])->name('update-job-posting');
 Route::post('job-posting-delete', [JobPostingController::class, 'destroy'])->name('delete-job-posting');
 Route::resource('users', AdminUserController::class);
+Route::post('update-employer-establishment-details', [AdminEmployersController::class, 'updateEstablishmentDetail']);
 
 Route::get('test', [TestController::class, 'index']);

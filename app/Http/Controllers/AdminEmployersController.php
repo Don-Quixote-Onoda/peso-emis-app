@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Employer;
+use Illuminate\Support\Facades\Redirect;
+
 class AdminEmployersController extends Controller
 {
     /**
@@ -75,5 +77,21 @@ class AdminEmployersController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function updateEstablishmentDetail(Request $request) {
+        $employer = Employer::find($request->id);
+        $employer->update([
+            "establishment_name" =>$request->establishment_name,
+            "establishment_accronym" =>$request->establishment_accronym,
+            "TIN_number" =>$request->TIN_number,
+            "employer_type" =>$request->employer_type,
+            "total_work_force" =>$request->total_work_force,
+            "line_of_business" =>$request->line_of_business,
+            "e_signature" => 'brightlocal_esignature.png',
+            "is_authorization_accepted" => 1
+        ]);
+
+        return Redirect::route('admin-employers');
     }
 }

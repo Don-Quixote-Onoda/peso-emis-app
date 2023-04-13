@@ -6,7 +6,7 @@ import { InputText } from "primereact/inputtext";
 import EmployersTable from "./Table";
 import ViewEmployer from './View';
 import { useForm } from "@inertiajs/react";
-// import EditEmployer from './Edit';
+import EditEmployer from './Edit';
 
 export default function employers(props) {
     const [employers, setEmployers] = useState([]);
@@ -21,7 +21,7 @@ export default function employers(props) {
     });
     useEffect(() => {
         setEmployers(props.employers);
-        console.log(props);
+        console.log(employers);
     });
 
     const onGlobalFilterChange = (e) => {
@@ -89,9 +89,9 @@ export default function employers(props) {
                 {type == "view" && (
                     <ViewEmployer employer={employer} back={back} />
                 )}
-                {/* {type == "edit" && (
-                    <EditEmployer data={data} setData={setData} back={back} />
-                )} */}
+                {type == "edit" && (
+                    <EditEmployer employer={data} setData={setData} back={back} setType={setType} />
+                )}
             </div>
         </AuthenticatedLayout>
     );
