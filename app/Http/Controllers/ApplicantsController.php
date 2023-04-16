@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Applicant;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Models\EmployerVacancyDetail;
 
 class ApplicantsController extends Controller
 {
@@ -286,7 +289,17 @@ class ApplicantsController extends Controller
             'applicant_status_type' => trim($request->employment['unemployed']['unemployementStatusType'], '"'),
         ]);
 
-        // dd($request->educationalBackground['graduateStudies']['awardsRecieved']);
+        // Route::get('/', function () {
+        //     return Inertia::render('Welcome', [
+        //         'canLogin' => Route::has('login'),
+        //         'canRegister' => Route::has('register'),
+        //         'laravelVersion' => Application::VERSION,
+        //         'phpVersion' => PHP_VERSION,
+        //         'jobs' => EmployerVacancyDetail::all()
+        //     ]);
+        // })->name('home');
+
+        return redirect()->route('home');
     }
 
     /**
