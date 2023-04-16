@@ -6,7 +6,7 @@ import { InputText } from 'primereact/inputtext';
 import ApplicantsTable from './Table';
 import ViewApplicant from './View';
 import { useForm } from '@inertiajs/react';
-import EditApplicant from './Edit';
+import EditApplicant from './Edit/Edit';
 
 export default function Applicants(props) {
 

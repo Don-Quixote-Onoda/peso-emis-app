@@ -11,6 +11,7 @@ use App\Http\Controllers\AdminEmployersController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\JobPostingController;
 use App\Models\Employer;
+use App\Models\EmployerVacancyDetail;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,7 @@ Route::get('/', function () {
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
+        'jobs' => EmployerVacancyDetail::all()
     ]);
 })->name('home');
 

@@ -26,7 +26,7 @@ export default function Dashboard(props) {
                     <div className=" overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="flex flex-wrap" style={{gap: '1rem'}}>
                         {
-                            employers.map((employer) => (
+                            props.employers.map((employer) => (
                                 <a
                                 class="relative hover:bg-stone-200 transition flex items-start justify-between rounded-xl border border-gray-100 p-4 shadow-xl sm:p-6 lg:p-8"
                                 href="#"

@@ -7,6 +7,8 @@ import EmployersTable from "./Table";
 import ViewEmployer from './View';
 import { useForm } from "@inertiajs/react";
 import EditEmployer from './Edit';
+import { Dialog } from "primereact/dialog";
+import { Button } from "primereact/button";
 
 export default function employers(props) {
     const [employers, setEmployers] = useState([]);
@@ -49,6 +51,51 @@ export default function employers(props) {
         sessionStorage.clear();
     };
 
+    const [deleteEmployerDialog, setDeleteEmployerDialog] = useState(false);
+
+    const confirmDeleteEmployer = (Employer) => {
+        setDeleteEmployerDialog(true);
+        setData({"id": Employer.id});
+    };
+
+    const hideDeleteEmployerDialog = () => {
+        setDeleteEmployerDialog(false);
+    };
+
+    const deleteEmployer = () => {
+        // post(route('delete-job-posting'), {
+        //     forceFormData: true,
+        //     onSuccess: () =>{
+        //         console.log('success');
+        //         reset();
+        //         setType('default');
+        //         setDeleteJobPostingDialog(false);
+        //     },
+        //     onError: () => {
+        //         // console.log(errors);
+        //     },
+        // });
+    }
+
+    const deleteEmployerDialogFooter = (
+        <React.Fragment>
+            <Button
+                label="No"
+                icon="pi pi-times"
+                outlined
+                onClick={hideDeleteEmployerDialog}
+            />
+            <Button
+                label="Yes"
+                icon="pi pi-check"
+                severity="danger"
+                onClick={deleteEmployer}
+            />
+        </React.Fragment>
+    );
+
+    
+
     const renderHeader = () => {
         return (
             <div className="flex flex-wrap gap-2 justify-content-between align-items-center">
@@ -84,6 +131,7 @@ export default function employers(props) {
                         // confirmDeleteEmployer={confirmDeleteEmployer}
                         viewEmployer={viewEmployer}
                         editEmployer={editEmployer}
+                        confirmDeleteEmployer={confirmDeleteEmployer}
                     />
                 )}
                 {type == "view" && (
@@ -92,7 +140,27 @@ export default function employers(props) {
                 {type == "edit" && (
                     <EditEmployer employer={data} setData={setData} back={back} setType={setType} />
                 )}
+                 <Dialog
+                visible={deleteEmployerDialog}
+                style={{ width: "32rem" }}
+                breakpoints={{ "960px": "75vw", "641px": "90vw" }}
+                header="Confirm"
+                modal
+                footer={deleteEmployerDialogFooter}
+                onHide={hideDeleteEmployerDialog}
+            >
+                <div className="confirmation-content">
+                    <i
+                        className="pi pi-exclamation-triangle mr-3"
+                        style={{ fontSize: "2rem" }}
+                    />
+                        <span>
+                            Are you sure you want to delete <b></b>?
+                        </span>
+                </div>
+            </Dialog>
             </div>
+
         </AuthenticatedLayout>
     );
 }
