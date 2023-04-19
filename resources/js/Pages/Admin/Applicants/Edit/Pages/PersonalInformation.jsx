@@ -1325,9 +1325,9 @@ export default function PersonalInformation({back, values}) {
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={emailAddress}
+                                value={data.email_address}
                                 onChange={(e) =>
-                                    setEmailAddress(e.target.value)
+                                    setData('email_address', e.target.value)
                                 }
                             />
                             <span class="text-danger !text-xs pi_email_address-error"></span>
@@ -1341,8 +1341,8 @@ export default function PersonalInformation({back, values}) {
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={phoneNumber}
-                                onChange={(e) => setPhoneNumber(e.target.value)}
+                                value={data.phone_number}
+                                onChange={(e) => setData('phone_number', e.target.value)}
                             />
                             <span class="text-danger !text-xs pi_celphone_number-error"></span>
                         </div>
@@ -1355,9 +1355,9 @@ export default function PersonalInformation({back, values}) {
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={landlineNumber}
+                                value={data.landline_number}
                                 onChange={(e) =>
-                                    setLandlineNumber(e.target.value)
+                                    setData('landline_number', e.target.value)
                                 }
                             />
                             <span class="text-danger !text-xs pi_landine_number-error"></span>
@@ -1371,8 +1371,8 @@ export default function PersonalInformation({back, values}) {
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={GSISNumber}
-                                onChange={(e) => setGSISNumber(e.target.value)}
+                                value={data.GSIS_SSS_id}
+                                onChange={(e) => setData('GSIS_SSS_id', e.target.value)}
                             />
                             <span class="text-danger !text-xs pi_sss_number-error"></span>
                         </div>
@@ -1385,9 +1385,9 @@ export default function PersonalInformation({back, values}) {
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={pagIbigNumber}
+                                value={data.pag_ibig_number}
                                 onChange={(e) =>
-                                    setPagIbigNumber(e.target.value)
+                                    setData('pag_ibig_number', e.target.value)
                                 }
                             />
                             <span class="text-danger !text-xs pi_pag_ibig_number-error"></span>
@@ -1401,9 +1401,9 @@ export default function PersonalInformation({back, values}) {
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={philhealthNumber}
+                                value={data.philhealth_id}
                                 onChange={(e) =>
-                                    setPhilhealthNumber(e.target.value)
+                                    setData('philhealth_id', e.target.value)
                                 }
                             />
                             <span class="text-danger !text-xs pi_philheath_number-error"></span>
@@ -1417,8 +1417,8 @@ export default function PersonalInformation({back, values}) {
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={TINNumber}
-                                onChange={(e) => setTINNumber(e.target.value)}
+                                value={data.TIN_number}
+                                onChange={(e) => setData('TIN_number', e.target.value)}
                             />
                             <span class="text-danger !text-xs pi_philheath_number-error"></span>
                         </div>
@@ -1431,8 +1431,8 @@ export default function PersonalInformation({back, values}) {
                                     Disability
                                 </label>
                                 <Dropdown
-                                    value={disability}
-                                    onChange={(e) => setDisability(e.value)}
+                                    value={data.disability}
+                                    onChange={(e) => setData('disability', e.value)}
                                     options={disabilities}
                                     optionLabel="name"
                                     editable

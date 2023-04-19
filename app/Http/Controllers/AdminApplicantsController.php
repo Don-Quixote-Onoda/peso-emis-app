@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Applicant;
+use Illuminate\Support\Facades\Redirect;
 class AdminApplicantsController extends Controller
 {
     /**
@@ -78,8 +79,9 @@ class AdminApplicantsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        Applicant::find($request->id)->delete();
+        return Redirect::route('delete-applicant');
     }
 }

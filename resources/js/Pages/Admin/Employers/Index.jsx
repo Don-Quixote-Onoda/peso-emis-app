@@ -124,7 +124,7 @@ export default function employers(props) {
             }
         >
             <Head title="employers" />
-            <div className="card mt-5 max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <div className="mt-5 max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 {type == "default" && (
                     <EmployersTable
                         employers={employers}
@@ -155,7 +155,7 @@ export default function employers(props) {
                         style={{ fontSize: "2rem" }}
                     />
                         <span>
-                            Are you sure you want to delete <b></b>?
+                            Are you sure you want to delete this employer <b></b>?
                         </span>
                 </div>
             </Dialog>

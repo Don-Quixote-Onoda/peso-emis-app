@@ -10,6 +10,7 @@ use App\Http\Controllers\AdminApplicantsController;
 use App\Http\Controllers\AdminEmployersController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\JobPostingController;
+use App\Http\Controllers\WelcomeController;
 use App\Models\Employer;
 use App\Models\EmployerVacancyDetail;
 
@@ -24,15 +25,7 @@ use App\Models\EmployerVacancyDetail;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-        'jobs' => EmployerVacancyDetail::all()
-    ]);
-})->name('home');
+Route::get('/', [WelcomeController::class, 'index'])->name('home');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard', [

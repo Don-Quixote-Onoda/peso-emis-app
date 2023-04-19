@@ -71,8 +71,8 @@ export default function UsersTable({users, confirmDeleteUser, viewUser, editUser
 
     const header = renderHeader();
     return (
-        
-            <DataTable value={users} paginator header={header} rows={10}
+        <div className="card mt-5 max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+<DataTable value={users} paginator header={header} rows={10}
                     paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                     rowsPerPageOptions={[10, 25, 50]} dataKey="id" 
                     filters={filters} filterDisplay="menu"
@@ -86,6 +86,8 @@ export default function UsersTable({users, confirmDeleteUser, viewUser, editUser
                 style={{ minWidth: "12rem", display: "flex", gap: "0.5rem" }}
             ></Column>
             </DataTable>
+        </div>
+            
        
     );
 }

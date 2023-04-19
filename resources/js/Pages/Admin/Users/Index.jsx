@@ -115,7 +115,7 @@ export default function Users(props) {
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Users</h2>}
         >
             <Head title="users" />
-            <div className="card mt-5 max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <div className="mt-5 max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             {
                 type == 'default' && <UsersTable users={users} editUser={editUser} viewUser={viewUser} confirmDeleteUser={confirmDeleteUser} />
             }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminApplicantsController;
 use App\Http\Controllers\AdminEmployersController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\ApplicantsController;
@@ -32,5 +33,5 @@ Route::post('job-posting-update', [JobPostingController::class, 'update'])->name
 Route::post('job-posting-delete', [JobPostingController::class, 'destroy'])->name('delete-job-posting');
 Route::resource('users', AdminUserController::class);
 Route::post('update-employer-establishment-details', [AdminEmployersController::class, 'updateEstablishmentDetail']);
-
+Route::post('applicant-delete', [AdminApplicantsController::class, 'destroy'])->name('delete-applicant');
 Route::get('test', [TestController::class, 'index']);

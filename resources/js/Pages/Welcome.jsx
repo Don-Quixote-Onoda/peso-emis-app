@@ -700,24 +700,45 @@ export default function Welcome(props) {
                             <p>Check out the latest Job Postings</p>
                         </div>
 
-                        <div class="row">
+                        <div class="row job-postings">
+                            <div className="job-posts">
                             {props.jobs.map((job) => (
                                 <div class="col-sm-6">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h5 class="card-title">
-                                                {job.position_title}
+                                            <h5 class="card-title"
+                                            style={{backgroundColor: '#'+(Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0')}}
+                                            >
+                                                {job.employer.establishment_accronym}
                                             </h5>
-                                            <p class="card-text">
-                                                {job.job_description}
+                                            <div class="card-text"
+                                                
+                                            >
+                                            <p className="text-md font-bold py-1">
+                                                {job.position_title}
                                             </p>
-                                            <a href="#" class="btn btn-primary">
-                                                See Details
-                                            </a>
+                                            <p className="text-sm py-1">
+                                                {job.employer.establishment_name}
+                                            </p>
+                                            <p className="text-sm py-1"
+                                                style={{textTransform: 'capitalize'}}
+                                            >
+                                                {job.place_of_work}
+                                            </p>
+                                            <p className="text-sm py-1"
+                                            >
+                                                
+                                                {Math.ceil((new Date().getTime() - new Date(job.created_at).getTime()) / (1000 * 3600 * 24))+' hours ago'}
+                                            </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             ))}
+                            </div>
+                            <div className="job-post-description">
+
+                            </div>
                         </div>
                     </div>
                 </section>

@@ -1,11 +1,17 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { InputText } from 'primereact/inputtext';
 import { Checkbox } from 'primereact/checkbox';
 import { useSessionStorage, useLocalStorage } from "primereact/hooks";
-
+import { useForm } from "@inertiajs/react";
 import { Calendar } from 'primereact/calendar';
-export default function JobPreference(props) {
+export default function JobPreference({values, job_preference_location, personal_information}) {
+    const { data, setData, post, processing, errors } =
+    useForm(values);
 
+    useEffect(() => {
+        console.log('data');
+        console.log(data);
+    },[])
     const [checkedLocal, setCheckedLocal] = useSessionStorage(
         sessionStorage.getItem("checkedLocal"),
         "checkedLocal"
@@ -93,42 +99,19 @@ export default function JobPreference(props) {
                                     Preferred Occupation
                                 </h5>
                                 <div class="row">
-                                    <div class="col-md-6 mb-4  d-flex flex-row align-items-center gap-3 ">
+                                    {/* {
+                                        data.map((item, index) => (
+                                            <div class="col-md-6 mb-4  d-flex flex-row align-items-center gap-3 ">
                                         <label
                                             for="inputEmail4"
                                             class="form-label !text-xs !text-gray-600 mb-0 fw-bold text-light-emphasis"
                                         >
-                                            1
+                                            {index + 1}
                                         </label>
-                                        <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" value={preferredOccupation1} onChange={(e) => setPreferredOccupation1(e.target.value)} />
+                                        <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" value={item.occupation} onChange={(e) => setData('occupation', e.target.value)} />
                                     </div>
-                                    <div class="col-md-6 mb-4  d-flex flex-row align-items-center gap-3 ">
-                                        <label
-                                            for="inputEmail4"
-                                            class="form-label !text-xs !text-gray-600 mb-0 fw-bold text-light-emphasis"
-                                        >
-                                            2
-                                        </label>
-                                        <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" value={preferredOccupation2} onChange={(e) => setPreferredOccupation2(e.target.value)} />
-                                    </div>
-                                    <div class="col-md-6 mb-4  d-flex flex-row align-items-center gap-3 ">
-                                        <label
-                                            for="inputEmail4"
-                                            class="form-label !text-xs !text-gray-600 mb-0 fw-bold text-light-emphasis"
-                                        >
-                                            3
-                                        </label>
-                                        <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" value={preferredOccupation3} onChange={(e) => setPreferredOccupation3(e.target.value)} />
-                                    </div>
-                                    <div class="col-md-6 mb-4  d-flex flex-row align-items-center gap-3 ">
-                                        <label
-                                            for="inputEmail4"
-                                            class="form-label  !text-xs !text-gray-600 mb-0 fw-bold text-light-emphasis"
-                                        >
-                                            4
-                                        </label>
-                                        <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" value={preferredOccupation4} onChange={(e) => setPreferredOccupation4(e.target.value)} />
-                                    </div>
+                                        ))
+                                    } */}
                                     <span class="text-danger !text-xs preferred_occupation-error"></span>
                                 </div>
                             </div>
@@ -152,33 +135,20 @@ export default function JobPreference(props) {
                                                     </label>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12 mb-4  d-flex flex-row align-items-center gap-3 ">
-                                                <label
-                                                    for="inputEmail4"
-                                                    class="form-label !text-xs !text-gray-600 mb-0 fw-bold text-light-emphasis"
-                                                >
-                                                    1
-                                                </label>
-                                                <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" disabled={!checkedLocal} value={preferredWorkLocationLocal1} onChange={(e) => setPreferredWorkLocationLocal1(e.target.value)} />
-                                            </div>
-                                            <div class="col-md-12 mb-4  d-flex flex-row align-items-center gap-3 ">
-                                                <label
-                                                    for="inputEmail4"
-                                                    class="form-label !text-xs !text-gray-600 mb-0 fw-bold text-light-emphasis"
-                                                >
-                                                    2
-                                                </label>
-                                                <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" disabled={!checkedLocal} value={preferredWorkLocationLocal2} onChange={(e) => setPreferredWorkLocationLocal2(e.target.value)} />
-                                            </div>
-                                            <div class="col-md-12 mb-4  d-flex flex-row align-items-center gap-3 ">
-                                                <label
-                                                    for="inputEmail4"
-                                                    class="form-label !text-xs !text-gray-600 mb-0 fw-bold text-light-emphasis"
-                                                >
-                                                    3
-                                                </label>
-                                                <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" disabled={!checkedLocal} value={preferredWorkLocationLocal3} onChange={(e) => setPreferredWorkLocationLocal3(e.target.value)} />
-                                            </div>
+                                            
+                                            {/* {
+                                                job_preference_location.map((item) => (
+                                                    item.type == 0 && <div class="col-md-12 mb-4  d-flex flex-row align-items-center gap-3 ">
+                                                    <label
+                                                        for="inputEmail4"
+                                                        class="form-label !text-xs !text-gray-600 mb-0 fw-bold text-light-emphasis"
+                                                    >
+                                                        1
+                                                    </label>
+                                                    <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" disabled={!checkedLocal} value={preferredWorkLocationLocal1} onChange={(e) => setPreferredWorkLocationLocal1(e.target.value)} />
+                                                </div>
+                                                ))
+                                            } */}
                                             <span class="text-danger !text-xs islocal_preferred_work_location-error"></span>
                                         </div>
                                     </div>
@@ -196,33 +166,20 @@ export default function JobPreference(props) {
                                                     </label>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12 mb-4  d-flex flex-row align-items-center gap-3 ">
-                                                <label
-                                                    for="inputEmail4"
-                                                    class="form-label !text-xs !text-gray-600 mb-0 fw-bold text-light-emphasis"
-                                                >
-                                                    1
-                                                </label>
-                                                <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" disabled={!checkedOverseas} value={preferredWorkLocationOverseas1} onChange={(e) => setpreferredWorkLocationOverseas1(e.target.value)} />
-                                            </div>
-                                            <div class="col-md-12 mb-4  d-flex flex-row align-items-center gap-3 ">
-                                                <label
-                                                    for="inputEmail4"
-                                                    class="form-label !text-xs !text-gray-600 mb-0 fw-bold text-light-emphasis"
-                                                >
-                                                    2
-                                                </label>
-                                                <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" disabled={!checkedOverseas} value={preferredWorkLocationOverseas2} onChange={(e) => setpreferredWorkLocationOverseas2(e.target.value)} />
-                                            </div>
-                                            <div class="col-md-12 mb-4  d-flex flex-row align-items-center gap-3 ">
-                                                <label
-                                                    for="inputEmail4"
-                                                    class="form-label !text-xs !text-gray-600 mb-0 fw-bold text-light-emphasis"
-                                                >
-                                                    3
-                                                </label>
-                                                <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" disabled={!checkedOverseas} value={preferredWorkLocationOverseas3} onChange={(e) => setpreferredWorkLocationOverseas3(e.target.value)} />
-                                            </div>
+                                           
+                                            {
+                                                job_preference_location.map((item) => (
+                                                    item.type == 1 &&  <div class="col-md-12 mb-4  d-flex flex-row align-items-center gap-3 ">
+                                                    <label
+                                                        for="inputEmail4"
+                                                        class="form-label !text-xs !text-gray-600 mb-0 fw-bold text-light-emphasis"
+                                                    >
+                                                        1
+                                                    </label>
+                                                    <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" disabled={!checkedOverseas} value={preferredWorkLocationOverseas1} onChange={(e) => setpreferredWorkLocationOverseas1(e.target.value)} />
+                                                </div>
+                                                ))
+                                            }
                                             <span class="text-danger !text-xs isoverseas_preferred_work_location-error"></span>
                                         </div>
                                     </div>
@@ -235,7 +192,7 @@ export default function JobPreference(props) {
                                 >
                                     Expected Salary (Range){" "}
                                 </label>
-                                <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" value={expectedSalary} onChange={(e) => setExpectedSalary(e.target.value)} />
+                                <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" value={personal_information.expected_salary} onChange={(e) => setExpectedSalary(e.target.value)} />
                                 <span class="text-danger !text-xs expected_salary-error"></span>
                             </div>
                             <div class="col-md-4 mb-4">
@@ -245,7 +202,7 @@ export default function JobPreference(props) {
                                 >
                                     Passport No.
                                 </label>
-                                <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" value={passportNumber} onChange={(e) => setPassportNumber(e.target.value)} />
+                                <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" value={personal_information.passport_number} onChange={(e) => setPassportNumber(e.target.value)} />
                                 <span class="text-danger !text-xs passport_number-error"></span>
                             </div>
                             <div class="col-md-4 mb-4">
@@ -255,7 +212,7 @@ export default function JobPreference(props) {
                                 >
                                     Expiry date
                                 </label>
-                                <Calendar className="form-control h-10 p-0 border-0" value={expiryDate} onChange={(e) => setExpiryDate(e.value)} dateFormat="dd/mm/yy" />
+                                <Calendar className="form-control h-10 p-0 border-0" value={new Date(personal_information.expiry_date)} onChange={(e) => setExpiryDate(e.value)}  />
                                 <span class="text-danger !text-xs expiry_date-error"></span>
                             </div>
                         </div>

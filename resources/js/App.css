@@ -33,3 +33,26 @@
     font-size: 0.75rem !important;
     line-height: 1rem !important;
 }
+
+.job-postings .job-posts .card .card-body .card-title {
+    width: 5rem;
+    height: 5rem;
+    line-height: 5rem;
+    text-align: center;
+    flex-basis: 25%;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 700;
+    gap: 1rem;
+}
+
+.job-postings .job-posts .card .card-body {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.job-postings .job-posts .card .card-body .card-text {
+    flex-basis: 75%;
+    padding: 0 0.5rem;
+}

@@ -7,6 +7,8 @@ import ApplicantsTable from './Table';
 import ViewApplicant from './View';
 import { useForm } from '@inertiajs/react';
 import EditApplicant from './Edit/Edit';
+import { Dialog } from "primereact/dialog";
+import { Button } from "primereact/button";
 
 export default function Applicants(props) {
 
@@ -49,6 +51,49 @@ export default function Applicants(props) {
         sessionStorage.clear();
     }
 
+    const [deleteApplicantDialog, setDeleteApplicantDialog] = useState(false);
+
+    const confirmDeleteApplicant = (Applicant) => {
+        setDeleteApplicantDialog(true);
+        setData({"id": Applicant.id});
+    };
+
+    const hideDeleteApplicantDialog = () => {
+        setDeleteApplicantDialog(false);
+    };
+
+    const deleteApplicant = () => {
+        post(route('delete-applicant'), {
+            forceFormData: true,
+            onSuccess: () =>{
+                console.log('success');
+                reset();
+                setType('default');
+                setDeleteApplicantDialog(false);
+            },
+            onError: () => {
+                // console.log(errors);
+            },
+        });
+    }
+
+    const deleteApplicantDialogFooter = (
+        <React.Fragment>
+            <Button
+                label="No"
+                icon="pi pi-times"
+                outlined
+                onClick={hideDeleteApplicantDialog}
+            />
+            <Button
+                label="Yes"
+                icon="pi pi-check"
+                severity="danger"
+                onClick={deleteApplicant}
+            />
+        </React.Fragment>
+    );
+
     const renderHeader = () => {
         return (
             <div className="flex flex-wrap gap-2 justify-content-between align-items-center">
@@ -69,19 +114,38 @@ export default function Applicants(props) {
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Applicants</h2>}
         >
             <Head title="Applicants" />
-            <div className="card mt-5 max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <div className=" mt-5 max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             {
                 type == 'default' && <ApplicantsTable applicants={applicants} 
-                // confirmDeleteApplicant={confirmDeleteApplicant} 
+                confirmDeleteApplicant={confirmDeleteApplicant} 
                 viewApplicant={viewApplicant} editApplicant={editApplicant} />
             }
             {
                 type == 'view' && <ViewApplicant applicant={applicant} back={back} />
             }
             {
-                type== 'edit' && <EditApplicant data={data} setData={setData} back={back} />
+                type== 'edit' && <EditApplicant applicant={applicant} data={data} setData={setData} back={back} />
             }
         </div>
+        <Dialog
+                visible={deleteApplicantDialog}
+                style={{ width: "32rem" }}
+                breakpoints={{ "960px": "75vw", "641px": "90vw" }}
+                header="Confirm"
+                modal
+                footer={deleteApplicantDialogFooter}
+                onHide={hideDeleteApplicantDialog}
+            >
+                <div className="confirmation-content">
+                    <i
+                        className="pi pi-exclamation-triangle mr-3"
+                        style={{ fontSize: "2rem" }}
+                    />
+                        <span>
+                            Are you sure you want to delete this applicant? <b></b>?
+                        </span>
+                </div>
+            </Dialog>
         </AuthenticatedLayout>
     );
 }
