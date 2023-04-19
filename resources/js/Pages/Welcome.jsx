@@ -123,9 +123,8 @@ export default function Welcome(props) {
                     <div className="carousel-item active">
                         <div className="carousel-container">
                             <h2 className="animate__animated animate__fadeInDown">
-                                Welcome to
-                                <span>
-                                    Valencia City PESO Employment Management
+                               <span>
+                                Welcome to Valencia City PESO Employment Management
                                     Information System
                                 </span>
                             </h2>
@@ -271,6 +270,9 @@ export default function Welcome(props) {
                                     Office (PESO) is an office that serves the
                                     public in the employment sector.
                                 </p>
+                                <p>
+                                The PESO aims to ensure prompt and efficient delivery of employment facilitation services as well as to provide timely information on labor market and DOLE Programs.
+                                </p>
                                 <ul>
                                     <li>
                                         <i className="ri-check-double-line"></i>
@@ -377,48 +379,47 @@ export default function Welcome(props) {
                                 <div className="row">
                                     <div className="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
                                         <h3>
-                                            Voluptatem dignissimos provident
-                                            quasi corporis voluptates sit
-                                            assumenda.
+                                        Programs Implemented:
                                         </h3>
-                                        <p className="fst-italic">
-                                            Lorem ipsum dolor sit amet,
-                                            consectetur adipiscing elit, sed do
-                                            eiusmod tempor incididunt ut labore
-                                            et dolore magna aliqua.
-                                        </p>
                                         <ul>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                Ullamco laboris nisi ut aliquip
-                                                ex ea commodo consequat.
+                                                Special Program for the Employment of Students (SPES)
                                             </li>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                Duis aute irure dolor in
-                                                reprehenderit in voluptate
-                                                velit.
+                                                Job Fairs
                                             </li>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                Ullamco laboris nisi ut aliquip
-                                                ex ea commodo consequat. Duis
-                                                aute irure dolor in
-                                                reprehenderit in voluptate
-                                                trideta storacalaperda mastiro
-                                                dolore eu fugiat nulla pariatur.
+                                                PhilJobnet / PESO Employment Information System (PEIS)
+                                            </li>
+                                            <li>
+                                                <i className="ri-check-double-line"></i>
+                                                National Skills Registry Program (NSRP)
+                                            </li>
+                                            <li>
+                                                <i className="ri-check-double-line"></i>
+                                                DOLE Government Internship Program (DOLE-GIP)
+                                            </li>
+                                            <li>
+                                                <i className="ri-check-double-line"></i>
+                                                Tulong Pangkabuhayan para sa Ating Disadvantaged Workers (TUPAD)
+                                            </li>
+                                            <li>
+                                                <i className="ri-check-double-line"></i>
+                                                DOLE Integrated Livelihood and Emergency Employment Program (DILEEP)
+                                            </li>
+                                            <li>
+                                                <i className="ri-check-double-line"></i>
+                                                JOBSTART
+                                            </li>
+                                            <li>
+                                                <i className="ri-check-double-line"></i>
+                                                Pre-Employment Orientation Seminar (PAOS)
                                             </li>
                                         </ul>
-                                        <p>
-                                            Ullamco laboris nisi ut aliquip ex
-                                            ea commodo consequat. Duis aute
-                                            irure dolor in reprehenderit in
-                                            voluptate velit esse cillum dolore
-                                            eu fugiat nulla pariatur. Excepteur
-                                            sint occaecat cupidatat non
-                                            proident, sunt in culpa qui officia
-                                            deserunt mollit anim id est laborum
-                                        </p>
+                                        
                                     </div>
                                     <div className="col-lg-6 order-1 order-lg-2 text-center">
                                         <img
@@ -433,53 +434,52 @@ export default function Welcome(props) {
                                 <div className="row">
                                     <div className="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
                                         <h3>
-                                            Neque exercitationem debitis soluta
-                                            quos debitis quo mollitia officia
-                                            est
+                                            Who does the PESO cater to?
                                         </h3>
-                                        <p>
-                                            Ullamco laboris nisi ut aliquip ex
-                                            ea commodo consequat. Duis aute
-                                            irure dolor in reprehenderit in
-                                            voluptate velit esse cillum dolore
-                                            eu fugiat nulla pariatur. Excepteur
-                                            sint occaecat cupidatat non
-                                            proident, sunt in culpa qui officia
-                                            deserunt mollit anim id est laborum
-                                        </p>
-                                        <p className="fst-italic">
-                                            Lorem ipsum dolor sit amet,
-                                            consectetur adipiscing elit, sed do
-                                            eiusmod tempor incididunt ut labore
-                                            et dolore magna aliqua.
-                                        </p>
                                         <ul>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                Ullamco laboris nisi ut aliquip
-                                                ex ea commodo consequat.
+                                                Jobseekers
                                             </li>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                Duis aute irure dolor in
-                                                reprehenderit in voluptate
-                                                velit.
+                                                Employers
                                             </li>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                Provident mollitia neque rerum
-                                                asperiores dolores quos qui a.
-                                                Ipsum neque dolor voluptate nisi
-                                                sed.
+                                                Students
                                             </li>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                Ullamco laboris nisi ut aliquip
-                                                ex ea commodo consequat. Duis
-                                                aute irure dolor in
-                                                reprehenderit in voluptate
-                                                trideta storacalaperda mastiro
-                                                dolore eu fugiat nulla pariatur.
+                                                Out-of-School Yout (OSY)
+                                            </li>
+                                            <li>
+                                                <i className="ri-check-double-line"></i>
+                                                Migrant Workers
+                                            </li>
+                                            <li>
+                                                <i className="ri-check-double-line"></i>
+                                                Persons with Disabilities (PWDs)
+                                            </li>
+                                            <li>
+                                                <i className="ri-check-double-line"></i>
+                                                Returning OFWs
+                                            </li>
+                                            <li>
+                                                <i className="ri-check-double-line"></i>
+                                                Displaced Workers
+                                            </li>
+                                            <li>
+                                                <i className="ri-check-double-line"></i>
+                                                Researchers and Planners
+                                            </li>
+                                            <li>
+                                                <i className="ri-check-double-line"></i>
+                                                Senior Citizens
+                                            </li>
+                                            <li>
+                                                <i className="ri-check-double-line"></i>
+                                                Other PESOs and Government Entities
                                             </li>
                                         </ul>
                                     </div>
@@ -697,7 +697,7 @@ export default function Welcome(props) {
                     <div className="container">
                         <div className="section-title" data-aos="zoom-out">
                             <h2>Job Posts</h2>
-                            <p>What we've done</p>
+                            <p>Check out the latest Job Postings</p>
                         </div>
 
                         <div class="row">
@@ -911,7 +911,7 @@ export default function Welcome(props) {
                 <section id="team" className="team">
                     <div className="container">
                         <div className="section-title" data-aos="zoom-out">
-                            <h2>Team</h2>
+                            <h2>Organizational Chart</h2>
                             <p>Our Hardworking Team</p>
                         </div>
 
@@ -1065,21 +1065,20 @@ export default function Welcome(props) {
                                         <i className="bi bi-geo-alt"></i>
                                         <h4>Location:</h4>
                                         <p>
-                                            A108 Adam Street, New York, NY
-                                            535022
+                                            Catarata Street, Brgy. Poblacion, City of Valencia, Bukidnon
                                         </p>
                                     </div>
 
                                     <div className="email">
                                         <i className="bi bi-envelope"></i>
                                         <h4>Email:</h4>
-                                        <p>info@example.com</p>
+                                        <p>pesovalencia@gmail.com</p>
                                     </div>
 
                                     <div className="phone">
                                         <i className="bi bi-phone"></i>
                                         <h4>Call:</h4>
-                                        <p>+1 5589 55488 55s</p>
+                                        <p>00000000000</p>
                                     </div>
                                 </div>
                             </div>
