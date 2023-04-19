@@ -17,7 +17,7 @@ export default function EditApplicant({ data, setData, back }) {
 
     return (
         <>
-       <PersonalInformation back={back} />
+       <PersonalInformation back={back} values={data} />
        <JobPreference />
        <Language />
        <Education />

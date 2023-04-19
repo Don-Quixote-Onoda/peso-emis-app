@@ -2,10 +2,9 @@ import { Link, Head } from "@inertiajs/react";
 import { useEffect } from "react";
 
 export default function Welcome(props) {
-
     useEffect(() => {
         console.log(props);
-    })
+    });
     return (
         <>
             <header
@@ -702,21 +701,24 @@ export default function Welcome(props) {
                         </div>
 
                         <div class="row">
-        {
-            props.jobs.map((job) => (
-                <div class="col-sm-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">{job.position_title}</h5>
-        <p class="card-text">{job.job_description}</p>
-        <a href="#" class="btn btn-primary">See Details</a>
-      </div>
-    </div>
-  </div>    
-            ))
-        }
-  
-</div>
+                            {props.jobs.map((job) => (
+                                <div class="col-sm-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                {job.position_title}
+                                            </h5>
+                                            <p class="card-text">
+                                                {job.job_description}
+                                            </p>
+                                            <a href="#" class="btn btn-primary">
+                                                See Details
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </section>
 

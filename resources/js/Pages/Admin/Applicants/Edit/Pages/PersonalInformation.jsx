@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Button } from 'primereact/button';
 import { InputText } from "primereact/inputtext";
 import { useSessionStorage, useLocalStorage } from "primereact/hooks";
-
+import { useForm } from "@inertiajs/react";
 import { Calendar } from "primereact/calendar";
 
 import { RadioButton } from "primereact/radiobutton";
@@ -17,7 +17,14 @@ import {
     barangays,
 } from "select-philippines-address";
 
-export default function PersonalInformation({back}) {
+export default function PersonalInformation({back, values}) {
+    const { data, setData, post, processing, errors } =
+    useForm(values);
+
+    useEffect(() => {
+        console.log('data');
+        console.log(data);
+    },[])
     const [surname, setSurname] = useSessionStorage(
         sessionStorage.getItem("surname"),
         "surname"
@@ -613,8 +620,8 @@ export default function PersonalInformation({back}) {
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={surname}
-                                onChange={(e) => setSurname(e.target.value)}
+                                value={data.surname}
+                                onChange={(e) => setData('surname', e.target.value)}
                             />
                             <span class="text-danger !text-xs pi_surname-error"></span>
                         </div>
@@ -627,8 +634,8 @@ export default function PersonalInformation({back}) {
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={firstname}
-                                onChange={(e) => setFirstname(e.target.value)}
+                                value={data.firstname}
+                                onChange={(e) => setData('firstname',e.target.value)}
                             />
 
                             <span class="text-danger !text-xs pi_firstname-error"></span>
@@ -642,8 +649,8 @@ export default function PersonalInformation({back}) {
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={middlename}
-                                onChange={(e) => setMiddlename(e.target.value)}
+                                value={data.middlename}
+                                onChange={(e) => setData('middlename', e.target.value)}
                             />
                             <span class="text-danger !text-xs pi_middlename-error"></span>
                         </div>
@@ -656,8 +663,8 @@ export default function PersonalInformation({back}) {
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={suffix}
-                                onChange={(e) => setSuffix(e.target.value)}
+                                value={data.suffix}
+                                onChange={(e) => setData('suffix', e.target.value)}
                             />
                             <span class="text-danger !text-xs pi_suffix-error"></span>
                         </div>
@@ -670,9 +677,8 @@ export default function PersonalInformation({back}) {
                             </label>
                             <Calendar
                                 className="form-control h-10 p-0 border-0"
-                                value={birthdate}
-                                onChange={(e) => setBithdate(e.value)}
-                                dateFormat="dd/mm/yy"
+                                value={new Date(data.birthdate)}
+                                onChange={(e) => setData('birthdate', e.value)}
                             />
                             <span class="text-danger !text-xs pi_date_of_birth-error"></span>
                         </div>
@@ -685,8 +691,8 @@ export default function PersonalInformation({back}) {
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={religion}
-                                onChange={(e) => setReligion(e.target.value)}
+                                value={data.religion}
+                                onChange={(e) => setData('religion', e.target.value)}
                             />
                             <span class="text-danger !text-xs pi_religion-error"></span>
                         </div>
@@ -704,8 +710,8 @@ export default function PersonalInformation({back}) {
                                             inputId="ingredient1"
                                             name="sex"
                                             value="Male"
-                                            onChange={(e) => setSex(e.value)}
-                                            checked={sex === "Male"}
+                                            onChange={(e) => setData('sex', e.value)}
+                                            checked={data.sex === "Male"}
                                         />
                                         <label
                                             class="form-check-label !text-xs !text-gray-500"
@@ -721,8 +727,8 @@ export default function PersonalInformation({back}) {
                                             inputId="ingredient1"
                                             name="sex"
                                             value="Female"
-                                            onChange={(e) => setSex(e.value)}
-                                            checked={sex === "Female"}
+                                            onChange={(e) => setData('sex', e.value)}
+                                            checked={data.sex === "Female"}
                                         />
 
                                         <label
@@ -745,8 +751,8 @@ export default function PersonalInformation({back}) {
                             </label>
 
                             <Dropdown
-                                value={civilStatus}
-                                onChange={(e) => setCivilStatus(e.value)}
+                                value={data.civil_status}
+                                onChange={(e) => setData('civil_status', e.value)}
                                 options={civilStatuses}
                                 optionLabel="name"
                                 editable
@@ -765,8 +771,8 @@ export default function PersonalInformation({back}) {
                             <div class="input-group mb-3">
                                 <InputText
                                     className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                    value={height}
-                                    onChange={(e) => setHeight(e.target.value)}
+                                    value={data.height}
+                                    onChange={(e) => setData('height', e.target.value)}
                                 />
                                 <span class="input-group-text !text-gray-500 !text-xs border-light-emphasis">
                                     cm
@@ -790,13 +796,13 @@ export default function PersonalInformation({back}) {
                                                 name="activilyLookingForWork"
                                                 value="Yes"
                                                 onChange={(e) =>
-                                                    setActivelyLookingForWork(
+                                                    setData(
                                                         e.value
                                                     )
                                                 }
                                                 checked={
-                                                    activelyLookingForWork ===
-                                                    "Yes"
+                                                    data.is_actively_looking_for_work ===
+                                                    1
                                                 }
                                             />
                                             <label
