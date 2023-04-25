@@ -767,7 +767,7 @@ export default function Welcome(props) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <a href={`mailto:${jobInfo.employer.employer_establishment_contact_detail.email_address}`} className="!my-5">Email your application</a>
+                                        <a className="cursor !my-3 inline-flex gap-2 items-center transition hover:bg-rose-400 my-5 bg-rose-500 p-3 rounded text-white" href={`mailto:${jobInfo.employer.employer_establishment_contact_detail.email_address}`} ><i className="pi pi-envelope "></i>Email your application</a>
                                         <p className="my-2">{Math.ceil((new Date().getTime() - new Date(jobInfo.created_at).getTime()) / (1000 * 3600 * 24))+' hours ago'}</p>
                                         <h4 className="text-md font-bold my-3">Qualifications:</h4>
                                         <ul style={{listStyleType: 'disc', marginLeft: '1rem'}} className="">
@@ -782,7 +782,7 @@ export default function Welcome(props) {
                                 </div>
                             }
                         </div>
-                        <button className="cursor transition hover:bg-stone-400 my-5 bg-stone-500 p-3 rounded text-white">See More...</button>
+                        <button className="cursor transition hover:bg-stone-400 my-5 bg-stone-500 p-3 rounded text-white">See More</button>
                     </div>
                 </section>
 

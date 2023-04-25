@@ -1,6 +1,6 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef  } from "react";
 import { FilterMatchMode, FilterOperator } from "primereact/api";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
@@ -9,6 +9,7 @@ import { Button } from "primereact/button";
 import Applicants from "./Admin/Applicants/Index";
 
 export default function Dashboard(props) {
+    const buttonRef = useRef(null);
     const [employers, setEmployers] = useState({});
     useEffect(() => {
         setEmployers(props.employers);
@@ -27,6 +28,7 @@ export default function Dashboard(props) {
             });
     };
     const showEmployerPostingDetails = (cardData) => {
+        buttonRef.current.style.cursor = 'progress';
         fetchEmployerJobPosting(cardData.id);
     };
 
@@ -89,6 +91,7 @@ export default function Dashboard(props) {
     };
 
     const viewMatchingApplicants = (rowData) => {
+        buttonRef.current.style.cursor = 'progress';
         fetchMatchingApplicants(rowData);
     }
 
@@ -100,6 +103,7 @@ export default function Dashboard(props) {
                     rounded
                     outlined
                     className="mr-2"
+                    ref={buttonRef}
                     onClick={() => viewMatchingApplicants(rowData)}
                 />
                 <Button
@@ -143,6 +147,7 @@ export default function Dashboard(props) {
                                             "flex-basis":
                                                 "calc(calc(100% / 4) - 1rem)",
                                         }}
+                                        ref={buttonRef}
                                         onClick={() =>
                                             showEmployerPostingDetails(employer)
                                         }
