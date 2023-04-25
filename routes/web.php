@@ -9,6 +9,7 @@ use App\Http\Controllers\EmployersController;
 use App\Http\Controllers\AdminApplicantsController;
 use App\Http\Controllers\AdminEmployersController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JobPostingController;
 use App\Http\Controllers\WelcomeController;
 use App\Models\Employer;
@@ -27,11 +28,7 @@ use App\Models\EmployerVacancyDetail;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('home');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard', [
-        'employers' => Employer::all()
-    ]);
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

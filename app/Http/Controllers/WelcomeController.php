@@ -15,7 +15,8 @@ class WelcomeController extends Controller
             array_push($jobposts, array(
                 $jobpost,
                 $jobpost->employer,
-                $jobpost->employer->employer_address
+                $jobpost->employer->employer_address,
+                $jobpost->employer->employer_establishment_contact_detail
             ));
         }
 

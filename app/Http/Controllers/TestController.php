@@ -13,7 +13,8 @@ class TestController extends Controller
 {
     //
 
-    public function index() {
+    public function index()
+    {
         // // $id = Auth::user()->id;
         // $user = User::find(5);
         // // return Inertia::render('JobPosting', [
@@ -24,25 +25,43 @@ class TestController extends Controller
 
         // return $employer[0]->employer_vacancy_detail;
 
-        $response = array();
+        // $response = array();
 
-        $applicants = Applicant::all();
+        // $applicants = Applicant::all();
 
-        foreach($applicants as $applicant) {
-            array_push($response, array(
-                $applicant,
-                $applicant->applicant_address,
-                $applicant->applicant_educational_background,
-                $applicant->applicant_eligibility,
-                $applicant->applicant_job_preference,
-                $applicant->applicant_job_preference_location,
-                $applicant->applicant_language_spoken,
-                $applicant->applicant_status,
-                $applicant->applicant_work_experience,
-                $applicant->applicant_professional_license,
-                $applicant->applicant_vocational_course
-            ));
-        }
+        // foreach($applicants as $applicant) {
+        //     array_push($response, array(
+        //         $applicant,
+        //         $applicant->applicant_address,
+        //         $applicant->applicant_educational_background,
+        //         $applicant->applicant_eligibility,
+        //         $applicant->applicant_job_preference,
+        //         $applicant->applicant_job_preference_location,
+        //         $applicant->applicant_language_spoken,
+        //         $applicant->applicant_status,
+        //         $applicant->applicant_work_experience,
+        //         $applicant->applicant_professional_license,
+        //         $applicant->applicant_vocational_course
+        //     ));
+        // }
+
+        // return $applicants;
+
+        // $employer = Employer::find(1);
+        // $employer->employer_vacancy_detail;
+
+        // return  $employer->employer_vacancy_detail[0];
+
+        $jobTitle = 'Test';
+        $salary = 'Test';
+
+        $applicants = Applicant::where('expected_salary', $salary)
+            ->whereIn('id', function ($query) use ($jobTitle) {
+                $query->select('applicant_id')
+                    ->from('applicant_job_preferences')
+                    ->where('occupation', $jobTitle);
+            })
+            ->get();
 
         return $applicants;
     }

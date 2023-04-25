@@ -23,6 +23,7 @@ export default function Applicants(props) {
     });
     useEffect(() => {
         setApplicants(props.applicants);
+        console.log(props.applicants);
         // console.log(applicants);
     });
 
@@ -107,45 +108,88 @@ export default function Applicants(props) {
     };
 
     const header = renderHeader();
+
+    useEffect(() => {
+        console.log(props);
+    })
     return (
-        <AuthenticatedLayout
-            auth={props.auth}
-            errors={props.errors}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Applicants</h2>}
-        >
-            <Head title="Applicants" />
-            <div className=" mt-5 max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <>
             {
-                type == 'default' && <ApplicantsTable applicants={applicants} 
-                confirmDeleteApplicant={confirmDeleteApplicant} 
-                viewApplicant={viewApplicant} editApplicant={editApplicant} />
-            }
-            {
-                type == 'view' && <ViewApplicant applicant={applicant} back={back} />
-            }
-            {
-                type== 'edit' && <EditApplicant applicant={applicant} data={data} setData={setData} back={back} />
-            }
-        </div>
-        <Dialog
-                visible={deleteApplicantDialog}
-                style={{ width: "32rem" }}
-                breakpoints={{ "960px": "75vw", "641px": "90vw" }}
-                header="Confirm"
-                modal
-                footer={deleteApplicantDialogFooter}
-                onHide={hideDeleteApplicantDialog}
+                props.isMatches == false && <AuthenticatedLayout
+                auth={props.auth}
+                errors={props.errors}
+                header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Applicants</h2>}
             >
-                <div className="confirmation-content">
-                    <i
-                        className="pi pi-exclamation-triangle mr-3"
-                        style={{ fontSize: "2rem" }}
-                    />
-                        <span>
-                            Are you sure you want to delete this applicant? <b></b>?
-                        </span>
-                </div>
-            </Dialog>
-        </AuthenticatedLayout>
+                <Head title="Applicants" />
+                <div className=" mt-5 max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                {
+                    type == 'default' && <ApplicantsTable applicants={applicants} 
+                    confirmDeleteApplicant={confirmDeleteApplicant} 
+                    viewApplicant={viewApplicant} editApplicant={editApplicant} isMatches={props.isMatches} />
+                }
+                {
+                    type == 'view' && <ViewApplicant applicant={applicant} back={back} />
+                }
+                {
+                    type== 'edit' && <EditApplicant applicant={applicant} data={data} setData={setData} back={back} />
+                }
+            </div>
+            <Dialog
+                    visible={deleteApplicantDialog}
+                    style={{ width: "32rem" }}
+                    breakpoints={{ "960px": "75vw", "641px": "90vw" }}
+                    header="Confirm"
+                    modal
+                    footer={deleteApplicantDialogFooter}
+                    onHide={hideDeleteApplicantDialog}
+                >
+                    <div className="confirmation-content">
+                        <i
+                            className="pi pi-exclamation-triangle mr-3"
+                            style={{ fontSize: "2rem" }}
+                        />
+                            <span>
+                                Are you sure you want to delete this applicant? <b></b>?
+                            </span>
+                    </div>
+                </Dialog>
+            </AuthenticatedLayout>
+            }
+            {
+                props.isMatches == true && <>
+                {
+                    type == 'default' && <ApplicantsTable applicants={applicants} 
+                    confirmDeleteApplicant={confirmDeleteApplicant} 
+                    viewApplicant={viewApplicant} editApplicant={editApplicant} />
+                }
+                {
+                    type == 'view' && <ViewApplicant applicant={applicant} back={back} />
+                }
+                {
+                    type== 'edit' && <EditApplicant applicant={applicant} data={data} setData={setData} back={back} />
+                }
+            <Dialog
+                    visible={deleteApplicantDialog}
+                    style={{ width: "32rem" }}
+                    breakpoints={{ "960px": "75vw", "641px": "90vw" }}
+                    header="Confirm"
+                    modal
+                    footer={deleteApplicantDialogFooter}
+                    onHide={hideDeleteApplicantDialog}
+                >
+                    <div className="confirmation-content">
+                        <i
+                            className="pi pi-exclamation-triangle mr-3"
+                            style={{ fontSize: "2rem" }}
+                        />
+                            <span>
+                                Are you sure you want to delete this applicant? <b></b>?
+                            </span>
+                    </div>
+                </Dialog>
+                </>
+            }
+        
+        </>
     );
 }
