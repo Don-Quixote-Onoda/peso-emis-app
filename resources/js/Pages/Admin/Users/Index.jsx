@@ -8,6 +8,7 @@ import { Dialog } from "primereact/dialog";
 import { Button } from "primereact/button";
 import ViewUser from './ViewUser';
 import { useForm } from '@inertiajs/react';
+import Edit from './Edit';
 
 export default function Users(props) {
 
@@ -17,8 +18,15 @@ export default function Users(props) {
     const [edit, setEdit] = useState(false);
     const [deleteUserDialog, setDeleteUserDialog] = useState(false);
     const [type, setType] = useState('');
-    const { data, setData, post, get, reset, processing, errors } = useForm();
-
+    const [user, setUser] = useState({});
+    const { data, setData, post, processing, errors, reset } = useForm({
+        name: user.name,
+        email: user.email,
+        password: '',
+        password_confirmation: '',
+        role: 1
+    });
+    
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
     });
@@ -37,9 +45,9 @@ export default function Users(props) {
         setGlobalFilterValue(value);
     };
 
-    const viewUser = (user) => {
-        setType('view');
-        setData('user_id', 5);
+    const viewUser = (data) => {
+        
+        // setData('user_id', 5);
         // get('/api/users/5', {
         //     forceFormData: true,
         //     onSuccess: () =>{
@@ -48,14 +56,22 @@ export default function Users(props) {
         //     onError: () => {
         //     },
         // });
+        setUser(data);
+        setType('view');
     };
 
-    const editUser = (user) => {
+    const back = () => {
+        setType('default');
+    }
+
+    const editUser = (data) => {
+        setData(data);
         setType('edit');
     };
 
     const confirmDeleteUser = (user) => {
         setDeleteUserDialog(true);
+        setData('user_id', user.id);
     };
 
     const renderHeader = () => {
@@ -81,13 +97,16 @@ export default function Users(props) {
     };
 
     const deleteUser = () => {
-       
-        // post("api/delete_user", {
-        //     onSuccess: () =>{
-        //         setDeleteUserDialog(false);
-        //         reset()
-        //     },
-        // });
+        post(route('delete-user'), {
+            onSuccess: () =>{
+                reset()
+                hideDeleteUserDialog();
+            },
+        });
+
+        console.log(data);
+
+
     };
 
     const deleteUserDialogFooter = (
@@ -117,10 +136,13 @@ export default function Users(props) {
             <Head title="users" />
             <div className="mt-5 max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             {
-                type == 'default' && <UsersTable users={users} editUser={editUser} viewUser={viewUser} confirmDeleteUser={confirmDeleteUser} />
+                type == 'default' && <UsersTable users={users} setType={setType} editUser={editUser} viewUser={viewUser} confirmDeleteUser={confirmDeleteUser} />
             }
             {
-                type == 'view' && <ViewUser />
+                type == 'view' && <ViewUser back={back} user={user} />
+            }
+            {
+                type == 'edit' && <Edit back={back} user={user} data={data} setData={setData} processing={processing} errors={errors} reset={reset} post={post} />
             }
             <Dialog
                 visible={deleteUserDialog}

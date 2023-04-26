@@ -11,7 +11,8 @@ export default function ApplicantsTable({
     applicants,
     confirmDeleteApplicant,
     viewApplicant,
-    editApplicant
+    editApplicant,
+    isMatches
 }) {
     const [globalFilterValue, setGlobalFilterValue] = useState("");
 
@@ -45,6 +46,10 @@ export default function ApplicantsTable({
         );
     };
 
+    const civilStatusBody = (rowData) => {
+        return <span>{JSON.parse(rowData.civil_status).name}</span>
+    }
+
     const actionBodyTemplate = (rowData) => {
         return (
             <React.Fragment>
@@ -55,7 +60,9 @@ export default function ApplicantsTable({
                     className="mr-2"
                     onClick={() => viewApplicant(rowData)}
                 />
-                <Button
+                {
+                    isMatches == false && <>
+                    <Button
                     icon="pi pi-pencil"
                     rounded
                     outlined
@@ -69,6 +76,8 @@ export default function ApplicantsTable({
                     severity="danger"
                     onClick={() => confirmDeleteApplicant(rowData)}
                 />
+                </>
+                }
             </React.Fragment>
         );
     };
@@ -142,6 +151,7 @@ export default function ApplicantsTable({
                     header="Civil Statuss"
                     sortable
                     filter
+                    body={civilStatusBody}
                     filterPlaceholder="Search by name"
                     style={{ minWidth: "14rem" }}
                 />

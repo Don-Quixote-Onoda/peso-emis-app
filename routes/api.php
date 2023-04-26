@@ -4,11 +4,13 @@ use App\Http\Controllers\AdminApplicantsController;
 use App\Http\Controllers\AdminEmployersController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\ApplicantsController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployersController;
 use App\Http\Controllers\JobPostingController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,4 +36,9 @@ Route::post('job-posting-delete', [JobPostingController::class, 'destroy'])->nam
 Route::resource('users', AdminUserController::class);
 Route::post('update-employer-establishment-details', [AdminEmployersController::class, 'updateEstablishmentDetail']);
 Route::post('applicant-delete', [AdminApplicantsController::class, 'destroy'])->name('delete-applicant');
-Route::get('test', [TestController::class, 'index']);
+Route::get('test', [TestController::class, 'index'])->name('test-api');
+Route::post('users/add', [UsersController::class, 'store'])->name('add-user');
+Route::post('users/update', [UsersController::class, 'update'])->name('update-user');
+Route::post('users/delete', [UsersController::class, 'destroy'])->name('delete-user');
+Route::get('get-all-employer-job_posting/{id}', [DashboardController::class, 'getAllEmployerJobPosting'])->name('get-all-employer-job_posting');
+Route::get('get-matching-applicants/{position_title}/{salary}', [DashboardController::class, 'getMatchingApplicants'])->name('get-matching-applicants');

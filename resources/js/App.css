@@ -34,7 +34,14 @@
     line-height: 1rem !important;
 }
 
-.job-postings .job-posts .card .card-body .card-title {
+.job-postings .job-posts {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.job-postings .job-posts .card .card-body .card-title, .job-postings .job-post-description .card .card-body .card-title {
     width: 5rem;
     height: 5rem;
     line-height: 5rem;
@@ -46,13 +53,28 @@
     gap: 1rem;
 }
 
-.job-postings .job-posts .card .card-body {
+.job-postings .job-posts .card .card-body, .job-postings .job-post-description .card .card-body {
     display: flex;
     width: 100%;
     justify-content: space-between;
 }
 
-.job-postings .job-posts .card .card-body .card-text {
+.job-postings .job-posts .card .card-body .card-text, .job-postings .job-post-description .card .card-body .card-text {
     flex-basis: 75%;
     padding: 0 0.5rem;
 }
+
+.job-postings .job-posts .card {
+    cursor: pointer;
+    transition: 0.3s ease;
+    flex-basis: calc(calc(100% 3) - 53rem);
+}
+
+.job-postings .job-posts .card:hover {
+    background-color: #e9e9e9;    
+}
+
+.job-postings .job-posts:is(.showJobInfo) .card {
+    flex-basis: 100%;
+}
+

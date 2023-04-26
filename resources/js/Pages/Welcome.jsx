@@ -1,10 +1,14 @@
 import { Link, Head } from "@inertiajs/react";
+import { useState } from "react";
 import { useEffect } from "react";
 
 export default function Welcome(props) {
     useEffect(() => {
         console.log(props);
     });
+
+    const [jobInfo, setJobInfo] = useState();
+
     return (
         <>
             <header
@@ -697,13 +701,13 @@ export default function Welcome(props) {
                         </div>
 
                         <div class="row job-postings">
-                            <div className="job-posts">
+                            <div className={`job-posts ${jobInfo ? 'basis-2/4 showJobInfo' : ''}`}
+                            >
                             {props.jobs.map((job) => (
-                                <div class="col-sm-6">
-                                    <div class="card">
+                                <div class="card" onClick={() => {setJobInfo(job)}}>
                                         <div class="card-body">
                                             <h5 class="card-title"
-                                            style={{backgroundColor: '#'+(Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0')}}
+                                            style={{backgroundColor: 'rgb(157, 198, 218)'}}
                                             >
                                                 {job.employer.establishment_accronym}
                                             </h5>
@@ -729,13 +733,52 @@ export default function Welcome(props) {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                             ))}
                             </div>
-                            <div className="job-post-description">
-
-                            </div>
+                            {
+                                jobInfo && <div className={`job-post-description basis-2/4 ${jobInfo ? 'basis-2/4' : ''}`}
+                                >
+                                    <div className="desc-title">
+                                        <h1 className="text-xl font-bold mb-3">
+                                        {jobInfo.position_title}
+                                        </h1>
+                                        <div className="card mb-3">
+                                        <div class="card-body">
+                                                <h5 class="card-title"
+                                                style={{backgroundColor: 'rgb(157, 198, 218)'}}
+                                                >
+                                                    {jobInfo.employer.establishment_accronym}
+                                                </h5>
+                                                <div class="card-text"
+                                                    
+                                                >
+                                                <p className="text-sm py-1">
+                                                {jobInfo.position_title}
+                                                </p>
+                                                <p className="text-sm py-1"
+                                                    style={{textTransform: 'capitalize'}}
+                                                >
+                                                    {jobInfo.place_of_work}
+                                                </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a className="cursor !my-3 inline-flex gap-2 items-center transition hover:bg-rose-400 my-5 bg-rose-500 p-3 rounded text-white" href={`mailto:${jobInfo.employer.employer_establishment_contact_detail.email_address}`} ><i className="pi pi-envelope "></i>Email your application</a>
+                                        <p className="my-2">{Math.ceil((new Date().getTime() - new Date(jobInfo.created_at).getTime()) / (1000 * 3600 * 24))+' hours ago'}</p>
+                                        <h4 className="text-md font-bold my-3">Qualifications:</h4>
+                                        <ul style={{listStyleType: 'disc', marginLeft: '1rem'}} className="">
+                                            <li>5 years work experience</li>
+                                        </ul>
+                                        <p className="my-2">Salary: Php70,000.00 - Php80,000.00 per month</p>
+                                        <p className="text-md font-bold my-3">Experience:</p>
+                                        <ul style={{listStyleType: 'disc', marginLeft: '1rem'}} className="">
+                                            <li>Developer: 5 years (Required)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            }
                         </div>
+                        <button className="cursor transition hover:bg-stone-400 my-5 bg-stone-500 p-3 rounded text-white">See More</button>
                     </div>
                 </section>
 

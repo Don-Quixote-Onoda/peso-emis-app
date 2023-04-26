@@ -33,7 +33,7 @@ class AdminApplicantsController extends Controller
             ));
         }
 
-        return Inertia::render('Admin/Applicants/Index', ['applicants' => $applicants]);
+        return Inertia::render('Admin/Applicants/Index', ['applicants' => $applicants,'isMatches'=>false]);
     }
 
     /**
