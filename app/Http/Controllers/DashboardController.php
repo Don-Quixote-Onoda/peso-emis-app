@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Employer;
+use App\Models\User;
 use App\Models\Applicant;
 class DashboardController extends Controller
 {
@@ -52,12 +53,25 @@ class DashboardController extends Controller
     }
 
     public function getAllEmployerJobPosting(string $id) {
+        $user = User::find($id);
         $employer = Employer::find($id);
-        $response = array();
+        if($user->role == 0) {
+            $employer = Employer::where('user_id', $id)->get()[0];
+            $response = array();
             array_push($response, $employer->employer_vacancy_detail);
             array_push($response, $employer->employer_posting_detail);
             array_push($response, $employer->employer_qualification_requirement);
-        return $employer;
+        }
+        else {
+            $response = array();
+            array_push($response, $employer->employer_vacancy_detail);
+            array_push($response, $employer->employer_posting_detail);
+            array_push($response, $employer->employer_qualification_requirement);
+        }
+        
+        return response()->json([
+            $employer
+        ]);
     }
 
     public function getMatchingApplicants(string $postion_title, string $salary) {

@@ -117,7 +117,7 @@ export default function Index(props) {
             <Button
                 label="Yes"
                 icon="pi pi-check"
-                severity="danger"
+                severity="success"
                 onClick={deleteJobPosting}
             />
         </React.Fragment>
@@ -173,7 +173,7 @@ export default function Index(props) {
                         style={{ fontSize: "2rem" }}
                     />
                         <span>
-                            Are you sure you want to delete <b></b>?
+                            Are you sure you want to change active status?
                         </span>
                 </div>
             </Dialog>

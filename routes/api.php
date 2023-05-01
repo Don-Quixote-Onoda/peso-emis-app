@@ -37,6 +37,7 @@ Route::resource('users', AdminUserController::class);
 Route::post('update-employer-establishment-details', [AdminEmployersController::class, 'updateEstablishmentDetail']);
 Route::post('applicant-delete', [AdminApplicantsController::class, 'destroy'])->name('delete-applicant');
 Route::get('test', [TestController::class, 'index'])->name('test-api');
+Route::post('test', [TestController::class, 'testCreate'])->name('test-api-create');
 Route::post('users/add', [UsersController::class, 'store'])->name('add-user');
 Route::post('users/update', [UsersController::class, 'update'])->name('update-user');
 Route::post('users/delete', [UsersController::class, 'destroy'])->name('delete-user');

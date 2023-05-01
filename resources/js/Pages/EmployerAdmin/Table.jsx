@@ -50,13 +50,26 @@ export default function JobPostingTable({
                     onClick={() => editJobPosting(rowData)}
                 />
                 <Button
-                    icon="pi pi-trash"
+                    icon={`pi pi-${rowData.is_active == 0? 'times': 'check'}`}
                     rounded
                     outlined
-                    severity="danger"
+                    severity={`${rowData.is_active == 0? 'danger': 'success'}`}
                     onClick={() => confirmDeleteJobPosting(rowData)}
                 />
             </React.Fragment>
+        );
+    };
+
+    const isActiveStatus = (rowData) => {
+        return (
+            <span>{rowData.is_active == 1? 'Active': 'Not Active'}</span>
+        );
+    };
+
+    const removeComma = (rowData) => {
+        console.log(rowData);
+        return (
+            <>{rowData.nature_of_work.replace(", ", " ")}</>
         );
     };
 
@@ -116,6 +129,7 @@ export default function JobPostingTable({
                             filter
                             filterPlaceholder="Search by name"
                             style={{ minWidth: "14rem" }}
+                            body={removeComma}
                         />
                         <Column
                             field="place_of_work"
@@ -148,6 +162,15 @@ export default function JobPostingTable({
                             filter
                             filterPlaceholder="Search by name"
                             style={{ minWidth: "14rem" }}
+                        />
+                        <Column
+                            field="is_active"
+                            header="Active Status"
+                            sortable
+                            filter
+                            filterPlaceholder="Search by name"
+                            style={{ minWidth: "14rem" }}
+                            body={isActiveStatus}
                         />
                         <Column
                 body={actionBodyTemplate}

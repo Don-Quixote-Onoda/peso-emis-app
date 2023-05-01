@@ -1,13 +1,27 @@
 import { Link, Head } from "@inertiajs/react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { slice } from "lodash";
 
 export default function Welcome(props) {
-    useEffect(() => {
-        console.log(props);
-    });
-
     const [jobInfo, setJobInfo] = useState();
+    const [isCompleted, setIsCompleted] = useState(false);
+    const [index, setIndex] = useState(5);
+    const initialJobInfo = slice(props.jobs, 0, index);
+
+    const loadMore = () => {
+        setIndex(index + 5);
+        console.log(index);
+        if (index >= post.length) {
+            setIsCompleted(true);
+        } else {
+            setIsCompleted(false);
+        }
+    };
+
+    useEffect(() => {
+        console.log(initialJobInfo);
+    });
 
     return (
         <>
@@ -109,6 +123,9 @@ export default function Welcome(props) {
                                     Contact
                                 </a>
                             </li>
+                            <Link href={route("login")} className="nav-link">
+                                Login
+                            </Link>
                         </ul>
                         <i className="bi bi-list mobile-nav-toggle"></i>
                     </nav>
@@ -127,9 +144,9 @@ export default function Welcome(props) {
                     <div className="carousel-item active">
                         <div className="carousel-container">
                             <h2 className="animate__animated animate__fadeInDown">
-                               <span>
-                                Welcome to Valencia City PESO Employment Management
-                                    Information System
+                                <span>
+                                    Welcome to Valencia City PESO Employment
+                                    Management Information System
                                 </span>
                             </h2>
                             <p className="animate__animated fanimate__adeInUp">
@@ -275,7 +292,10 @@ export default function Welcome(props) {
                                     public in the employment sector.
                                 </p>
                                 <p>
-                                The PESO aims to ensure prompt and efficient delivery of employment facilitation services as well as to provide timely information on labor market and DOLE Programs.
+                                    The PESO aims to ensure prompt and efficient
+                                    delivery of employment facilitation services
+                                    as well as to provide timely information on
+                                    labor market and DOLE Programs.
                                 </p>
                                 <ul>
                                     <li>
@@ -382,13 +402,12 @@ export default function Welcome(props) {
                             <div className="tab-pane active show" id="tab-1">
                                 <div className="row">
                                     <div className="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                                        <h3>
-                                        Programs Implemented:
-                                        </h3>
+                                        <h3>Programs Implemented:</h3>
                                         <ul>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                Special Program for the Employment of Students (SPES)
+                                                Special Program for the
+                                                Employment of Students (SPES)
                                             </li>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
@@ -396,23 +415,30 @@ export default function Welcome(props) {
                                             </li>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                PhilJobnet / PESO Employment Information System (PEIS)
+                                                PhilJobnet / PESO Employment
+                                                Information System (PEIS)
                                             </li>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                National Skills Registry Program (NSRP)
+                                                National Skills Registry Program
+                                                (NSRP)
                                             </li>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                DOLE Government Internship Program (DOLE-GIP)
+                                                DOLE Government Internship
+                                                Program (DOLE-GIP)
                                             </li>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                Tulong Pangkabuhayan para sa Ating Disadvantaged Workers (TUPAD)
+                                                Tulong Pangkabuhayan para sa
+                                                Ating Disadvantaged Workers
+                                                (TUPAD)
                                             </li>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                DOLE Integrated Livelihood and Emergency Employment Program (DILEEP)
+                                                DOLE Integrated Livelihood and
+                                                Emergency Employment Program
+                                                (DILEEP)
                                             </li>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
@@ -420,10 +446,10 @@ export default function Welcome(props) {
                                             </li>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                Pre-Employment Orientation Seminar (PAOS)
+                                                Pre-Employment Orientation
+                                                Seminar (PAOS)
                                             </li>
                                         </ul>
-                                        
                                     </div>
                                     <div className="col-lg-6 order-1 order-lg-2 text-center">
                                         <img
@@ -437,9 +463,7 @@ export default function Welcome(props) {
                             <div className="tab-pane" id="tab-2">
                                 <div className="row">
                                     <div className="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                                        <h3>
-                                            Who does the PESO cater to?
-                                        </h3>
+                                        <h3>Who does the PESO cater to?</h3>
                                         <ul>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
@@ -483,7 +507,8 @@ export default function Welcome(props) {
                                             </li>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                Other PESOs and Government Entities
+                                                Other PESOs and Government
+                                                Entities
                                             </li>
                                         </ul>
                                     </div>
@@ -705,84 +730,173 @@ export default function Welcome(props) {
                         </div>
 
                         <div class="row job-postings">
-                            <div className={`job-posts ${jobInfo ? 'basis-2/4 showJobInfo' : ''}`}
+                            <div
+                                className={`job-posts ${
+                                    jobInfo ? "basis-2/4 showJobInfo" : ""
+                                }`}
                             >
-                            {props.jobs.map((job) => (
-                                <div class="card" onClick={() => {setJobInfo(job)}}>
-                                        <div class="card-body">
-                                            <h5 class="card-title"
-                                            style={{backgroundColor: 'rgb(157, 198, 218)'}}
+                                {initialJobInfo.map(
+                                    (job) =>
+                                        job.is_active == 1 && (
+                                            <div
+                                                class="card"
+                                                onClick={() => {
+                                                    setJobInfo(job);
+                                                }}
                                             >
-                                                {job.employer.establishment_accronym}
-                                            </h5>
-                                            <div class="card-text"
-                                                
-                                            >
-                                            <p className="text-md font-bold py-1">
-                                                {job.position_title}
-                                            </p>
-                                            <p className="text-sm py-1">
-                                                {job.employer.establishment_name}
-                                            </p>
-                                            <p className="text-sm py-1"
-                                                style={{textTransform: 'capitalize'}}
-                                            >
-                                                {job.place_of_work}
-                                            </p>
-                                            <p className="text-sm py-1"
-                                            >
-                                                
-                                                {Math.ceil((new Date().getTime() - new Date(job.created_at).getTime()) / (1000 * 3600 * 24))+' hours ago'}
-                                            </p>
+                                                <div class="card-body">
+                                                    <h5
+                                                        class="card-title"
+                                                        style={{
+                                                            backgroundColor:
+                                                                "rgb(157, 198, 218)",
+                                                        }}
+                                                    >
+                                                        {
+                                                            job.employer
+                                                                .establishment_accronym
+                                                        }
+                                                    </h5>
+                                                    <div class="card-text">
+                                                        <p className="text-md font-bold py-1">
+                                                            {job.position_title}
+                                                        </p>
+                                                        <p className="text-sm py-1">
+                                                            {
+                                                                job.employer
+                                                                    .establishment_name
+                                                            }
+                                                        </p>
+                                                        <p
+                                                            className="text-sm py-1"
+                                                            style={{
+                                                                textTransform:
+                                                                    "capitalize",
+                                                            }}
+                                                        >
+                                                            {job.place_of_work}
+                                                        </p>
+                                                        <p className="text-sm py-1">
+                                                            {Math.ceil(
+                                                                (new Date().getTime() -
+                                                                    new Date(
+                                                                        job.created_at
+                                                                    ).getTime()) /
+                                                                    (1000 *
+                                                                        3600 *
+                                                                        24)
+                                                            ) + " hours ago"}
+                                                        </p>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                            ))}
+                                        )
+                                )}
                             </div>
-                            {
-                                jobInfo && <div className={`job-post-description basis-2/4 ${jobInfo ? 'basis-2/4' : ''}`}
+                            {jobInfo && (
+                                <div
+                                    className={`job-post-description basis-2/4 ${
+                                        jobInfo ? "basis-2/4" : ""
+                                    }`}
                                 >
                                     <div className="desc-title">
                                         <h1 className="text-xl font-bold mb-3">
-                                        {jobInfo.position_title}
+                                            {jobInfo.position_title}
                                         </h1>
                                         <div className="card mb-3">
-                                        <div class="card-body">
-                                                <h5 class="card-title"
-                                                style={{backgroundColor: 'rgb(157, 198, 218)'}}
+                                            <div class="card-body">
+                                                <h5
+                                                    class="card-title"
+                                                    style={{
+                                                        backgroundColor:
+                                                            "rgb(157, 198, 218)",
+                                                    }}
                                                 >
-                                                    {jobInfo.employer.establishment_accronym}
+                                                    {
+                                                        jobInfo.employer
+                                                            .establishment_accronym
+                                                    }
                                                 </h5>
-                                                <div class="card-text"
-                                                    
-                                                >
-                                                <p className="text-sm py-1">
-                                                {jobInfo.position_title}
-                                                </p>
-                                                <p className="text-sm py-1"
-                                                    style={{textTransform: 'capitalize'}}
-                                                >
-                                                    {jobInfo.place_of_work}
-                                                </p>
+                                                <div class="card-text">
+                                                    <p className="text-sm py-1">
+                                                        {jobInfo.position_title}
+                                                    </p>
+                                                    <p
+                                                        className="text-sm py-1"
+                                                        style={{
+                                                            textTransform:
+                                                                "capitalize",
+                                                        }}
+                                                    >
+                                                        {jobInfo.place_of_work}
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <a className="cursor !my-3 inline-flex gap-2 items-center transition hover:bg-rose-400 my-5 bg-rose-500 p-3 rounded text-white" href={`mailto:${jobInfo.employer.employer_establishment_contact_detail.email_address}`} ><i className="pi pi-envelope "></i>Email your application</a>
-                                        <p className="my-2">{Math.ceil((new Date().getTime() - new Date(jobInfo.created_at).getTime()) / (1000 * 3600 * 24))+' hours ago'}</p>
-                                        <h4 className="text-md font-bold my-3">Qualifications:</h4>
-                                        <ul style={{listStyleType: 'disc', marginLeft: '1rem'}} className="">
+                                        <a
+                                            className="cursor !my-3 inline-flex gap-2 items-center transition hover:bg-rose-400 my-5 bg-rose-500 p-3 rounded text-white"
+                                            href={`mailto:${jobInfo.employer.employer_establishment_contact_detail.email_address}`}
+                                        >
+                                            <i className="pi pi-envelope "></i>
+                                            Email your application
+                                        </a>
+                                        <p className="my-2">
+                                            {Math.ceil(
+                                                (new Date().getTime() -
+                                                    new Date(
+                                                        jobInfo.created_at
+                                                    ).getTime()) /
+                                                    (1000 * 3600 * 24)
+                                            ) + " hours ago"}
+                                        </p>
+                                        <h4 className="text-md font-bold my-3">
+                                            Qualifications:
+                                        </h4>
+                                        <ul
+                                            style={{
+                                                listStyleType: "disc",
+                                                marginLeft: "1rem",
+                                            }}
+                                            className=""
+                                        >
                                             <li>5 years work experience</li>
                                         </ul>
-                                        <p className="my-2">Salary: Php70,000.00 - Php80,000.00 per month</p>
-                                        <p className="text-md font-bold my-3">Experience:</p>
-                                        <ul style={{listStyleType: 'disc', marginLeft: '1rem'}} className="">
-                                            <li>Developer: 5 years (Required)</li>
+                                        <p className="my-2">
+                                            Salary: Php70,000.00 - Php80,000.00
+                                            per month
+                                        </p>
+                                        <p className="text-md font-bold my-3">
+                                            Experience:
+                                        </p>
+                                        <ul
+                                            style={{
+                                                listStyleType: "disc",
+                                                marginLeft: "1rem",
+                                            }}
+                                            className=""
+                                        >
+                                            <li>
+                                                Developer: 5 years (Required)
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
-                            }
+                            )}
                         </div>
-                        <button className="cursor transition hover:bg-stone-400 my-5 bg-stone-500 p-3 rounded text-white">See More</button>
+                        {isCompleted ? (
+                            <button 
+                            onClick={loadMore}
+                            className="cursor transition hover:bg-stone-400 my-5 bg-stone-500 p-3 rounded text-white">
+                            See Mores
+                        </button>
+                        ) : (
+                             <button 
+                            onClick={loadMore}
+                            className="cursor transition hover:bg-stone-400 my-5 bg-stone-500 p-3 rounded text-white">
+                            See More
+                        </button>
+                        )}
+                        
                     </div>
                 </section>
 
@@ -1129,7 +1243,8 @@ export default function Welcome(props) {
                                         <i className="bi bi-geo-alt"></i>
                                         <h4>Location:</h4>
                                         <p>
-                                            Catarata Street, Brgy. Poblacion, City of Valencia, Bukidnon
+                                            Catarata Street, Brgy. Poblacion,
+                                            City of Valencia, Bukidnon
                                         </p>
                                     </div>
 
