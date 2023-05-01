@@ -344,7 +344,7 @@ export default function Welcome(props) {
                                 >
                                     <i className="ri-gps-line"></i>
                                     <h4 className="d-none d-lg-block">
-                                        Modi sit est dela pireda nest
+                                        PESO Programs
                                     </h4>
                                 </a>
                             </li>
@@ -360,7 +360,7 @@ export default function Welcome(props) {
                                 >
                                     <i className="ri-body-scan-line"></i>
                                     <h4 className="d-none d-lg-block">
-                                        Unde praesenti mara setra le
+                                       Beneficiaries
                                     </h4>
                                 </a>
                             </li>
@@ -376,7 +376,7 @@ export default function Welcome(props) {
                                 >
                                     <i className="ri-sun-line"></i>
                                     <h4 className="d-none d-lg-block">
-                                        Pariatur explica nitro dela
+                                        VISION
                                     </h4>
                                 </a>
                             </li>
@@ -392,7 +392,7 @@ export default function Welcome(props) {
                                 >
                                     <i className="ri-store-line"></i>
                                     <h4 className="d-none d-lg-block">
-                                        Nostrum qui dile node
+                                        MISSION
                                     </h4>
                                 </a>
                             </li>
@@ -661,7 +661,7 @@ export default function Welcome(props) {
                     <div className="container">
                         <div className="section-title" data-aos="zoom-out">
                             <h2>Services</h2>
-                            <p>What we do offer</p>
+                            <p>REGISTRATION FORMS</p>
                         </div>
 
                         <div className="row">
@@ -685,9 +685,7 @@ export default function Welcome(props) {
                                         </Link>
                                     </h4>
                                     <p className="description">
-                                        Voluptatum deleniti atque corrupti quos
-                                        dolores et quas molestias excepturi sint
-                                        occaecati cupiditate non provident
+                                        Registation Form for Establishments, Please fill out the form correctly and honestly.
                                     </p>
                                 </div>
                             </div>
@@ -712,9 +710,7 @@ export default function Welcome(props) {
                                         </Link>
                                     </h4>
                                     <p className="description">
-                                        Minim veniam, quis nostrud exercitation
-                                        ullamco laboris nisi ut aliquip ex ea
-                                        commodo consequat tarad limino ata
+                                    Registation Form for Jobseekers, Please fill out the form correctly and honestly.
                                     </p>
                                 </div>
                             </div>
