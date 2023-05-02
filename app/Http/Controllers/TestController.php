@@ -8,6 +8,7 @@ use App\Models\Employer;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Applicant;
+use Illuminate\Support\Facades\Hash;
 
 class TestController extends Controller
 {
@@ -64,5 +65,16 @@ class TestController extends Controller
             ->get();
 
         return $applicants;
+    }
+
+    public function testCreate(Request $request) {
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => $request->role
+        ]);
+
+        return 'success';
     }
 }
