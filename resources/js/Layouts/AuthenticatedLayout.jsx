@@ -74,6 +74,13 @@ export default function Authenticated({ auth, header, children }) {
                                 </NavLink>
                             </div>
                             }
+                            {
+                                auth.user.role == 1 && <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <NavLink href={route('summary-reports')} active={route().current('summary-reports')}>
+                                    Summary Reports
+                                </NavLink>
+                            </div>
+                            }
                             
                         </div>
 
