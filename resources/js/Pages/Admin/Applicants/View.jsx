@@ -120,6 +120,33 @@ export default function ViewApplicant({ applicant, back }) {
 
     useEffect(() => {
         pob_region();
+        regions().then((response) => {
+            response.map((region) => {
+                if(region.region_name === applicant.applicant_address[0].region) {
+                    provinces(region.region_code).then((response) => {
+                        pob_setProvince(response);
+                        pob_setCity([]);
+                        pob_setBarangay([]);
+                        response.map((province) => {
+                            if(province.province_name === applicant.applicant_address[0].province) {
+                                pob_setProvinceAddr(province.province_code);
+                                cities(province.province_code).then((response) => {
+                                    pob_setCity(response);
+                                    response.map((city) => {
+                                        if(city.city_name === applicant.applicant_address[0].municipality_or_city) {
+                                            pob_setCityAddr(city.city_code);
+                                            barangays(city.city_code).then((response) => {
+                                                pob_setBarangay(response);
+                                            });
+                                        }
+                                    });
+                                });
+                            }
+                        })
+                    });
+                }
+            });
+        });
     }, []);
 
     const [pa_regionAddr, pa_setRegionAddr] = useSessionStorage(
@@ -177,7 +204,31 @@ export default function ViewApplicant({ applicant, back }) {
 
     const pa_region = () => {
         regions().then((response) => {
-            pa_setRegion(response);
+            response.map((region) => {
+                if(region.region_name === applicant.applicant_address[1].region) {
+                    provinces(region.region_code).then((response) => {
+                        pa_setProvince(response);
+                        pa_setCity([]);
+                        pa_setBarangay([]);
+                        response.map((province) => {
+                            if(province.province_name === applicant.applicant_address[1].province) {
+                                pa_setProvinceAddr(province.province_code);
+                                cities(province.province_code).then((response) => {
+                                    pa_setCity(response);
+                                    response.map((city) => {
+                                        if(city.city_name === applicant.applicant_address[1].municipality_or_city) {
+                                            pa_setCityAddr(city.city_code);
+                                            barangays(city.city_code).then((response) => {
+                                                pa_setBarangay(response);
+                                            });
+                                        }
+                                    });
+                                });
+                            }
+                        })
+                    });
+                }
+            });
         });
     };
 
@@ -619,6 +670,7 @@ export default function ViewApplicant({ applicant, back }) {
                                         onSelect={pob_region}
                                         className=" pa_province !text-xs !py-2.5 !text-gray-500 !rounded form-select !border-gray-300"
                                         aria-label="Default select example"
+                                        disabled
                                     >
                                         <option disabled>Select Region</option>
                                         {pob_regionData &&
@@ -651,6 +703,7 @@ export default function ViewApplicant({ applicant, back }) {
                                         onChange={pob_city}
                                         class=" pa_province !text-xs !py-2.5 !text-gray-500 !rounded form-select !border-gray-300 form-select border-light-emphasis"
                                         aria-label="Default select example"
+                                        disabled
                                     >
                                         <option disabled>
                                             Select Province
@@ -685,6 +738,7 @@ export default function ViewApplicant({ applicant, back }) {
                                         onChange={pob_barangay}
                                         class=" pa_city !text-xs !py-2.5 !rounded form-select !border-gray-300 !text-gray-500 form-select border-light-emphasis"
                                         aria-label="Default select example"
+                                        disabled
                                     >
                                         <option disabled>Select City</option>
                                         {pob_cityData &&
@@ -717,6 +771,7 @@ export default function ViewApplicant({ applicant, back }) {
                                         onChange={pob_brgy}
                                         class=" pa_barangay !text-xs !rounded form-select !border-gray-300 !py-2.5 !text-gray-500 form-select border-light-emphasis"
                                         aria-label="Default select example"
+                                        disabled
                                     >
                                         <option disabled>
                                             Select Barangay
@@ -740,15 +795,19 @@ export default function ViewApplicant({ applicant, back }) {
                                     </select>
                                 </div>
                                 <div class="col-md-12 mb-4  d-flex flex-column justify-content-between">
-                                    <InputTextWrapper
-                                        stateValue={
-                                            pob_houseNumber_Street_Village
+                                <label
+                                        for="inputEmail4"
+                                        class="form-label !text-xs !text-gray-400 text-light-emphasis"
+                                    >
+                                        House No./ Street Village*
+                                        <span className="text-red-500">*</span>
+                                    </label>
+                                    <InputText
+                                        className="form-control !text-xs !py-2.5 !text-gray-900 border-light-emphasis pi_surname"
+                                        value={
+                                            applicant.applicant_address[0].house_no_or_street
                                         }
-                                        stateMethod={
-                                            pob_setHouseNumber_Street_Village
-                                        }
-                                        isRequired={false}
-                                        label={"House No./ Street Village"}
+                                        disabled
                                     />
                                 </div>
                             </div>
@@ -772,6 +831,7 @@ export default function ViewApplicant({ applicant, back }) {
                                         onSelect={pa_region}
                                         className=" pa_province !text-xs !py-2.5 !text-gray-500 !rounded form-select !border-gray-300"
                                         aria-label="Default select example"
+                                        disabled
                                     >
                                         <option disabled>Select Region</option>
                                         {pa_regionData &&
@@ -804,6 +864,7 @@ export default function ViewApplicant({ applicant, back }) {
                                         onChange={pa_city}
                                         class=" pa_province !text-xs !py-2.5 !text-gray-500 !rounded form-select !border-gray-300 form-select border-light-emphasis"
                                         aria-label="Default select example"
+                                        disabled
                                     >
                                         <option disabled>
                                             Select Province
@@ -838,6 +899,7 @@ export default function ViewApplicant({ applicant, back }) {
                                         onChange={pa_barangay}
                                         class=" pa_city !text-xs !py-2.5 !rounded form-select !border-gray-300 !text-gray-500 form-select border-light-emphasis"
                                         aria-label="Default select example"
+                                        disabled
                                     >
                                         <option disabled>Select City</option>
                                         {pa_cityData &&
@@ -870,6 +932,7 @@ export default function ViewApplicant({ applicant, back }) {
                                         onChange={pa_brgy}
                                         class=" pa_barangay !text-xs !rounded form-select !border-gray-300 !py-2.5 !text-gray-500 form-select border-light-emphasis"
                                         aria-label="Default select example"
+                                        disabled
                                     >
                                         <option disabled>
                                             Select Barangay
@@ -893,15 +956,19 @@ export default function ViewApplicant({ applicant, back }) {
                                     </select>
                                 </div>
                                 <div class="col-md-12 mb-4  d-flex flex-column justify-content-between">
-                                    <InputTextWrapper
-                                        stateValue={
-                                            pa_houseNumber_Street_Village
+                                <label
+                                        for="inputEmail4"
+                                        class="form-label !text-xs !text-gray-400 text-light-emphasis"
+                                    >
+                                        House No./ Street Village*
+                                        <span className="text-red-500">*</span>
+                                    </label>
+                                    <InputText
+                                        className="form-control !text-xs !py-2.5 !text-gray-900 border-light-emphasis pi_surname"
+                                        value={
+                                            applicant.applicant_address[1].house_no_or_street
                                         }
-                                        stateMethod={
-                                            pa_setHouseNumber_Street_Village
-                                        }
-                                        isRequired={false}
-                                        label={"House No./ Street Village"}
+                                        disabled
                                     />
                                 </div>
                             </div>
