@@ -56,7 +56,7 @@ export default function Welcome(props) {
                                     className="nav-link scrollto"
                                     href="#services"
                                 >
-                                    Services
+                                    Registration Forms
                                 </a>
                             </li>
                             <li>
@@ -171,15 +171,18 @@ export default function Welcome(props) {
                     <div className="carousel-item">
                         <div className="carousel-container">
                             <h2 className="animate__animated animate__fadeInDown">
-                                Lorem Ipsum Dolor
+                                Implementation of programme/ initiative
                             </h2>
                             <p className="animate__animated animate__fadeInUp">
-                                Ut velit est quam dolor ad a aliquid qui
-                                aliquid. Sequi ea ut et est quaerat sequi nihil
-                                ut aliquam. Occaecati alias dolorem mollitia ut.
-                                Similique ea voluptatem. Esse doloremque
-                                accusamus repellendus deleniti vel. Minus et
-                                tempore modi architecto.
+                            PESO is widely implemented across the country and its 
+                            general objectives guarantee the job seekers within its 
+                            locality that it will deliver updated information about 
+                            employment and other DOLE programmes.
+                            Concurrently, its specific objectives are to provide a venue 
+                            for employment assistance in every locale and to serve as a 
+                            referral or recruitment information centre by providing job vacancy 
+                            information. PESO is directed to follow up and monitor the status of 
+                            the referred job seekers who have been employed by different stakeholders nationwide.
                             </p>
                             <a
                                 href="#about"
@@ -193,15 +196,13 @@ export default function Welcome(props) {
                     <div className="carousel-item">
                         <div className="carousel-container">
                             <h2 className="animate__animated animate__fadeInDown">
-                                Sequi ea ut et est quaerat
+                                About this Employment Management Information System
                             </h2>
                             <p className="animate__animated animate__fadeInUp">
-                                Ut velit est quam dolor ad a aliquid qui
-                                aliquid. Sequi ea ut et est quaerat sequi nihil
-                                ut aliquam. Occaecati alias dolorem mollitia ut.
-                                Similique ea voluptatem. Esse doloremque
-                                accusamus repellendus deleniti vel. Minus et
-                                tempore modi architecto.
+                                This PESO-EMIS will help both jobseekers and establishment owners
+                                to smoothly register and file application to the Public Employment Service Office
+                                in the City of Valencia. This will help the Local Government monitor the applicants 
+                                registered per month and hopefully raise the employment rate among the city.
                             </p>
                             <a
                                 href="#about"
@@ -317,13 +318,8 @@ export default function Welcome(props) {
                             </div>
                             <div className="col-lg-6 pt-4 pt-lg-0">
                                 <p>
-                                    Ullamco laboris nisi ut aliquip ex ea
-                                    commodo consequat. Duis aute irure dolor in
-                                    reprehenderit in voluptate velit esse cillum
-                                    dolore eu fugiat nulla pariatur. Excepteur
-                                    sint occaecat cupidatat non proident, sunt
-                                    in culpa qui officia deserunt mollit anim id
-                                    est laborum.
+                                PESO is a free multi-employment service facility managed by Local Government Units (LGUs) and 
+                                State Universities and Colleges (SUCs) that upholds equal employment opportunities to every individual covered in the locality.
                                 </p>
                                 <a href="#" className="btn-learn-more">
                                     Learn More
@@ -524,39 +520,28 @@ export default function Welcome(props) {
                             <div className="tab-pane" id="tab-3">
                                 <div className="row">
                                     <div className="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                                        <h3>
-                                            Voluptatibus commodi ut accusamus ea
-                                            repudiandae ut autem dolor ut
-                                            assumenda
-                                        </h3>
                                         <p>
-                                            Ullamco laboris nisi ut aliquip ex
-                                            ea commodo consequat. Duis aute
-                                            irure dolor in reprehenderit in
-                                            voluptate velit esse cillum dolore
-                                            eu fugiat nulla pariatur. Excepteur
-                                            sint occaecat cupidatat non
-                                            proident, sunt in culpa qui officia
-                                            deserunt mollit anim id est laborum
+                                        To facilitate equal employment opportunities to the City’s 
+                                        constituents through Job Matching and Coaching, employability 
+                                        enhancement and referrals for livelihood or training, and promotion 
+                                        of industrial peace through tripartism.
                                         </p>
                                         <ul>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                Ullamco laboris nisi ut aliquip
-                                                ex ea commodo consequat.
+                                                To provide Labor Market Information to the clients 
+                                                (Job Seekers, Employers, OFW, Students, Displaced Workers, 
+                                                Unemployed, Seeking change in career, etc.)
                                             </li>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                Duis aute irure dolor in
-                                                reprehenderit in voluptate
-                                                velit.
+                                                To maintain a fresh, up to date, skills registry system of 
+                                                all households in the City.
                                             </li>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                Provident mollitia neque rerum
-                                                asperiores dolores quos qui a.
-                                                Ipsum neque dolor voluptate nisi
-                                                sed.
+                                                To provide employment facilitation services where people 
+                                                can explore various employment options.
                                             </li>
                                         </ul>
                                         <p className="fst-italic">
