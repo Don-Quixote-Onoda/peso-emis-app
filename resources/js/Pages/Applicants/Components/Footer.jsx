@@ -4,11 +4,9 @@ export default function Footer() {
     return (
         <footer id="footer">
                 <div class="container">
-                    <h3>Selecao</h3>
+                    <h3>PESO EMIS</h3>
                     <p>
-                        Et aut eum quis fuga eos sunt ipsa nihil. Labore
-                        corporis magni eligendi fuga maxime saepe commodi
-                        placeat.
+                        A smooth-sailing information system for both Establishments and Jobseekers.
                     </p>
                     <div class="social-links">
                         <a href="#" class="twitter">
@@ -30,13 +28,12 @@ export default function Footer() {
                     <div class="copyright">
                         &copy; Copyright{" "}
                         <strong>
-                            <span>Selecao</span>
+                            <span>PESO EMIS</span>
                         </strong>
                         . All Rights Reserved
                     </div>
                     <div class="credits">
-                        Designed by{" "}
-                        <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                        Designed by Archie Quintero
                     </div>
                 </div>
             </footer>

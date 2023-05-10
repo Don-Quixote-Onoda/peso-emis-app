@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { slice } from "lodash";
 
+
 export default function Welcome(props) {
     const [jobInfo, setJobInfo] = useState();
     const [isCompleted, setIsCompleted] = useState(false);
@@ -298,23 +299,7 @@ export default function Welcome(props) {
                                     as well as to provide timely information on
                                     labor market and DOLE Programs.
                                 </p>
-                                <ul>
-                                    <li>
-                                        <i className="ri-check-double-line"></i>
-                                        Ullamco laboris nisi ut aliquip ex ea
-                                        commodo consequat
-                                    </li>
-                                    <li>
-                                        <i className="ri-check-double-line"></i>
-                                        Duis aute irure dolor in reprehenderit
-                                        in voluptate velit
-                                    </li>
-                                    <li>
-                                        <i className="ri-check-double-line"></i>
-                                        Ullamco laboris nisi ut aliquip ex ea
-                                        commodo consequat
-                                    </li>
-                                </ul>
+                                
                             </div>
                             <div className="col-lg-6 pt-4 pt-lg-0">
                                 <p>
