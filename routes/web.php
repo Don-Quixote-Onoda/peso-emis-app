@@ -12,6 +12,7 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployerSettingsController;
 use App\Http\Controllers\JobPostingController;
+use App\Http\Controllers\SummaryReportsController;
 use App\Http\Controllers\WelcomeController;
 use App\Models\Employer;
 use App\Models\EmployerVacancyDetail;
@@ -46,6 +47,7 @@ Route::get('/admin-employers', [AdminEmployersController::class, 'index'])->midd
 Route::get('/admin-users', [AdminUserController::class, 'index'])->middleware(['auth', 'verified'])->name('admin-users');
 Route::get('/job-posting', [JobPostingController::class, 'index'])->middleware(['auth', 'verified'])->name('job-postings');
 Route::get('/employer-settings', [EmployerSettingsController::class, 'index'])->middleware(['auth', 'verified'])->name('employer-settings');
+Route::get('/summary-reports', [SummaryReportsController::class, 'index'])->middleware(['auth', 'verified'])->name('summary-reports');
 
 
 require __DIR__.'/auth.php';
