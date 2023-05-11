@@ -7,6 +7,7 @@ import { Column } from "primereact/column";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import Applicants from "./Admin/Applicants/Index";
+import NavLink from '../Components/NavLink';
 
 export default function Dashboard(props) {
     const buttonRef = useRef(null);
@@ -131,167 +132,167 @@ export default function Dashboard(props) {
     const header = renderHeader();
 
     return (
-        <AuthenticatedLayout
-            auth={props.auth}
-            errors={props.errors}
-            header={
-                <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    Dashboard
-                </h2>
-            }
-        >
-            <Head title="EMIS-Dashboard" />
+        props.auth.user.is_activated == 1 || props.auth.user.role == 1 ? <AuthenticatedLayout
+        auth={props.auth}
+        errors={props.errors}
+        header={
+            <h2 className="font-semibold text-xl text-gray-800 leading-tight">
+                Dashboard
+            </h2>
+        }
+    >
+        <Head title="EMIS-Dashboard" />
 
-            {
-                props.auth.user.role == 1 && <div className="py-12">
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div className=" overflow-hidden shadow-sm sm:rounded-lg">
-                        {type == "default" && (
-                            <div
-                                className="flex flex-wrap"
-                                style={{ gap: "1rem" }}
+        {
+            props.auth.user.role == 1 && <div className="py-12">
+            <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div className=" overflow-hidden shadow-sm sm:rounded-lg">
+                    {type == "default" && (
+                        <div
+                            className="flex flex-wrap"
+                            style={{ gap: "1rem" }}
+                        >
+                            {props.employers.map((employer) => (
+                                employer.user.is_activated == 1 && <a
+                                class="relative hover:bg-stone-200 transition flex items-start justify-between rounded-xl border border-gray-100 p-4 shadow-xl sm:p-6 lg:p-8"
+                                href="#"
+                                style={{
+                                    "flex-basis":
+                                        "calc(calc(100% / 4) - 1rem)",
+                                }}
+                                ref={buttonRef}
+                                onClick={() =>
+                                    showEmployerPostingDetails(employer)
+                                }
                             >
-                                {props.employers.map((employer) => (
-                                    <a
-                                        class="relative hover:bg-stone-200 transition flex items-start justify-between rounded-xl border border-gray-100 p-4 shadow-xl sm:p-6 lg:p-8"
-                                        href="#"
-                                        style={{
-                                            "flex-basis":
-                                                "calc(calc(100% / 4) - 1rem)",
-                                        }}
-                                        ref={buttonRef}
-                                        onClick={() =>
-                                            showEmployerPostingDetails(employer)
+                                <div class="pt-4 text-gray-500">
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAs0lEQVR4nO2XQQoCMRAE6+TXXR+q32gR9hQiJOKaxK2COWZJb89ME3jPBbgBDyCD6w5s+5262SYQkKKunwiZwYkU9bpTN5m0uhl94Sik4BSOtHDE2TSe/+rHFIKO1LG1VpqR/Mv6jULQkRiImOzrrN8WFIKO1BkdfDHZC0b/+ehIget3xxzBHKnjjKw0IzFHMBBja+HDap2t1YJC0JETt1YOfuFFIRV0BFtrrRn5xbJgWSFPw22Fit98xUkAAAAASUVORK5CYII=" />
+
+                                    <h3 class="mt-4 text-lg font-bold text-gray-900 sm:text-xl">
+                                        {
+                                            employer.establishment_accronym
                                         }
-                                    >
-                                        <div class="pt-4 text-gray-500">
-                                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAs0lEQVR4nO2XQQoCMRAE6+TXXR+q32gR9hQiJOKaxK2COWZJb89ME3jPBbgBDyCD6w5s+5262SYQkKKunwiZwYkU9bpTN5m0uhl94Sik4BSOtHDE2TSe/+rHFIKO1LG1VpqR/Mv6jULQkRiImOzrrN8WFIKO1BkdfDHZC0b/+ehIget3xxzBHKnjjKw0IzFHMBBja+HDap2t1YJC0JETt1YOfuFFIRV0BFtrrRn5xbJgWSFPw22Fit98xUkAAAAASUVORK5CYII=" />
+                                    </h3>
 
-                                            <h3 class="mt-4 text-lg font-bold text-gray-900 sm:text-xl">
-                                                {
-                                                    employer.establishment_accronym
-                                                }
-                                            </h3>
+                                    <p class="mt-2 hidden text-sm sm:block">
+                                        {employer.establishment_name}
+                                    </p>
+                                </div>
 
-                                            <p class="mt-2 hidden text-sm sm:block">
-                                                {employer.establishment_name}
-                                            </p>
-                                        </div>
-
-                                        <span class="rounded-full bg-green-100 px-3 py-1.5 text-xs font-medium text-green-600">
-                                            {
-                                                employer.employer_vacancy_detail
-                                                    .length
-                                            }
-                                        </span>
-                                    </a>
-                                ))}
-                            </div>
-                        )}
-                        {type == "show_posting_details" && (
-                            <DataTable
-                                value={jobPosts}
-                                paginator
-                                header={header}
-                                rows={10}
-                                paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-                                rowsPerPageOptions={[10, 25, 50]}
-                                dataKey="id"
-                                filters={filters}
-                                filterDisplay="menu"
-                                emptyMessage="No customers found."
-                                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                            >
-                                <Column
-                                    field="position_title"
-                                    header="Job Title"
-                                    sortable
-                                    filter
-                                    filterPlaceholder="Search by name"
-                                    style={{ minWidth: "14rem" }}
-                                />
-                                <Column
-                                    field="place_of_work"
-                                    header="Place of Work"
-                                    sortable
-                                    filter
-                                    filterPlaceholder="Search by name"
-                                    style={{ minWidth: "14rem" }}
-                                />
-                                <Column
-                                    field="job_description"
-                                    header="Description"
-                                    sortable
-                                    filter
-                                    filterPlaceholder="Search by name"
-                                    style={{ minWidth: "14rem" }}
-                                />
-                                <Column
-                                    field="salary"
-                                    header="Salary"
-                                    sortable
-                                    filter
-                                    filterPlaceholder="Search by name"
-                                    style={{ minWidth: "14rem" }}
-                                />
-                                <Column
-                                    field="vacancy_count"
-                                    header="Vacancy"
-                                    sortable
-                                    filter
-                                    filterPlaceholder="Search by name"
-                                    style={{ minWidth: "14rem" }}
-                                />
-                                <Column
-                                    body={actionBodyTemplate}
-                                    exportable={false}
-                                    style={{
-                                        minWidth: "12rem",
-                                        display: "flex",
-                                        gap: "0.5rem",
-                                    }}
-                                ></Column>
-                            </DataTable>
-                        )}
-                        {
-                            type == 'show_applicants' && <>
-                             <Button
-                        icon="pi pi-arrow-left"
-                        className="mr-2"
-                        label="Back"
-                        onClick={() => setType('show_posting_details')}
-                    />
-                            <Applicants applicants={applicantMatches} auth={props.auth} isMatches={true} />
-                            </>
-                        }
-                    </div>
+                                <span class="rounded-full bg-green-100 px-3 py-1.5 text-xs font-medium text-green-600">
+                                    {
+                                        employer.employer_vacancy_detail
+                                            .length
+                                    }
+                                </span>
+                            </a>
+                            ))}
+                        </div>
+                    )}
+                    {type == "show_posting_details" && (
+                        <DataTable
+                            value={jobPosts}
+                            paginator
+                            header={header}
+                            rows={10}
+                            paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+                            rowsPerPageOptions={[10, 25, 50]}
+                            dataKey="id"
+                            filters={filters}
+                            filterDisplay="menu"
+                            emptyMessage="No customers found."
+                            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                        >
+                            <Column
+                                field="position_title"
+                                header="Job Title"
+                                sortable
+                                filter
+                                filterPlaceholder="Search by name"
+                                style={{ minWidth: "14rem" }}
+                            />
+                            <Column
+                                field="place_of_work"
+                                header="Place of Work"
+                                sortable
+                                filter
+                                filterPlaceholder="Search by name"
+                                style={{ minWidth: "14rem" }}
+                            />
+                            <Column
+                                field="job_description"
+                                header="Description"
+                                sortable
+                                filter
+                                filterPlaceholder="Search by name"
+                                style={{ minWidth: "14rem" }}
+                            />
+                            <Column
+                                field="salary"
+                                header="Salary"
+                                sortable
+                                filter
+                                filterPlaceholder="Search by name"
+                                style={{ minWidth: "14rem" }}
+                            />
+                            <Column
+                                field="vacancy_count"
+                                header="Vacancy"
+                                sortable
+                                filter
+                                filterPlaceholder="Search by name"
+                                style={{ minWidth: "14rem" }}
+                            />
+                            <Column
+                                body={actionBodyTemplate}
+                                exportable={false}
+                                style={{
+                                    minWidth: "12rem",
+                                    display: "flex",
+                                    gap: "0.5rem",
+                                }}
+                            ></Column>
+                        </DataTable>
+                    )}
+                    {
+                        type == 'show_applicants' && <>
+                         <Button
+                    icon="pi pi-arrow-left"
+                    className="mr-2"
+                    label="Back"
+                    onClick={() => setType('show_posting_details')}
+                />
+                        <Applicants applicants={applicantMatches} auth={props.auth} isMatches={true} />
+                        </>
+                    }
                 </div>
             </div>
-            }
-            {
-    props.auth.user.role == 0 && jobPosts && <div className="py-12">
-    <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div className=" overflow-hidden shadow-sm sm:rounded-lg">
-            {type == "default" && (
-                <div
-                    className="flex flex-wrap"
-                    style={{ gap: "1rem" }}
+        </div>
+        }
+        {
+props.auth.user.role == 0 && jobPosts && <div className="py-12">
+<div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div className=" overflow-hidden shadow-sm sm:rounded-lg">
+        {type == "default" && (
+            <div
+                className="flex flex-wrap"
+                style={{ gap: "1rem" }}
+            >
+                {jobPosts.map((employer) => (
+                    employer.is_active == 1 && <a
+                    class="relative hover:bg-stone-200 transition flex items-start justify-between rounded-xl border border-gray-100 p-4 shadow-xl sm:p-6 lg:p-8"
+                    href="#"
+                    style={{
+                        "flex-basis":
+                            "calc(calc(100% / 4) - 1rem)",
+                    }}
+                    ref={buttonRef}
+                    onClick={() =>
+                        showEmployerPostingDetails(employer)
+                    }
                 >
-                    {jobPosts.map((employer) => (
-                        employer.is_active == 1 && <a
-                        class="relative hover:bg-stone-200 transition flex items-start justify-between rounded-xl border border-gray-100 p-4 shadow-xl sm:p-6 lg:p-8"
-                        href="#"
-                        style={{
-                            "flex-basis":
-                                "calc(calc(100% / 4) - 1rem)",
-                        }}
-                        ref={buttonRef}
-                        onClick={() =>
-                            showEmployerPostingDetails(employer)
-                        }
-                    >
-                        <div class="pt-4 text-gray-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" height="55px" width="55px" version="1.1" id="Capa_1" viewBox="0 0 512 512" xml:space="preserve">
+                    <div class="pt-4 text-gray-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" height="55px" width="55px" version="1.1" id="Capa_1" viewBox="0 0 512 512" xml:space="preserve">
 <g>
 <path d="M411.779,192.47c-4.166,1.472-6.35,6.043-4.877,10.208C412.939,219.763,416,237.703,416,256c0,88.225-71.776,160-160,160   S96,344.225,96,256S167.776,96,256,96c37.952,0,74.749,13.522,103.612,38.076c3.365,2.861,8.414,2.455,11.277-0.91   s2.456-8.414-0.91-11.277C338.226,94.876,297.747,80,256,80c-97.047,0-176,78.953-176,176s78.953,176,176,176s176-78.953,176-176   c0-20.118-3.369-39.852-10.012-58.652C420.516,193.182,415.946,190.997,411.779,192.47z"/>
 <path d="M392.307,172.166c1.512,2.453,4.133,3.804,6.818,3.804c1.432,0,2.881-0.385,4.19-1.19   c3.761-2.318,4.931-7.247,2.612-11.008c-3.55-5.76-7.478-11.377-11.673-16.695c-2.737-3.47-7.767-4.063-11.236-1.325   c-3.469,2.736-4.062,7.767-1.326,11.235C385.508,161.822,389.079,166.93,392.307,172.166z"/>
@@ -300,108 +301,121 @@ export default function Dashboard(props) {
 </g>
 </svg>
 
-                            <h3 class="mt-4 text-lg font-bold text-gray-900 sm:text-xl">
-                                {
-                                    employer.position_title
-                                }
-                            </h3>
-
-                            {/* <p class="mt-2 hidden text-sm sm:block">
-                                {employer.establishment_name}
-                            </p> */}
-                        </div>
-
-                        {/* <span class="rounded-full bg-green-100 px-3 py-1.5 text-xs font-medium text-green-600">
+                        <h3 class="mt-4 text-lg font-bold text-gray-900 sm:text-xl">
                             {
-                                employer.employer_vacancy_detail
-                                    .length
+                                employer.position_title
                             }
-                        </span> */}
-                    </a>
-                    ))}
-                </div>
-            )}
-            {type == "show_posting_details" && (
-                <DataTable
-                    value={jobPosts}
-                    paginator
-                    header={header}
-                    rows={10}
-                    paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-                    rowsPerPageOptions={[10, 25, 50]}
-                    dataKey="id"
-                    filters={filters}
-                    filterDisplay="menu"
-                    emptyMessage="No customers found."
-                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                >
-                    <Column
-                        field="position_title"
-                        header="Job Title"
-                        sortable
-                        filter
-                        filterPlaceholder="Search by name"
-                        style={{ minWidth: "14rem" }}
-                    />
-                    <Column
-                        field="place_of_work"
-                        header="Place of Work"
-                        sortable
-                        filter
-                        filterPlaceholder="Search by name"
-                        style={{ minWidth: "14rem" }}
-                    />
-                    <Column
-                        field="job_description"
-                        header="Description"
-                        sortable
-                        filter
-                        filterPlaceholder="Search by name"
-                        style={{ minWidth: "14rem" }}
-                    />
-                    <Column
-                        field="salary"
-                        header="Salary"
-                        sortable
-                        filter
-                        filterPlaceholder="Search by name"
-                        style={{ minWidth: "14rem" }}
-                    />
-                    <Column
-                        field="vacancy_count"
-                        header="Vacancy"
-                        sortable
-                        filter
-                        filterPlaceholder="Search by name"
-                        style={{ minWidth: "14rem" }}
-                    />
-                    <Column
-                        body={actionBodyTemplate}
-                        exportable={false}
-                        style={{
-                            minWidth: "12rem",
-                            display: "flex",
-                            gap: "0.5rem",
-                        }}
-                    ></Column>
-                </DataTable>
-            )}
-            {
-                type == 'show_applicants' && <>
-                 <Button
-            icon="pi pi-arrow-left"
-            className="mr-2"
-            label="Back"
-            onClick={() => setType('default')}
-        />
-                <Applicants applicants={applicantMatches} setDashBoardType={setType} auth={props.auth} isMatches={true} />
-                </>
-            }
-        </div>
+                        </h3>
+
+                        {/* <p class="mt-2 hidden text-sm sm:block">
+                            {employer.establishment_name}
+                        </p> */}
+                    </div>
+
+                    {/* <span class="rounded-full bg-green-100 px-3 py-1.5 text-xs font-medium text-green-600">
+                        {
+                            employer.employer_vacancy_detail
+                                .length
+                        }
+                    </span> */}
+                </a>
+                ))}
+            </div>
+        )}
+        {type == "show_posting_details" && (
+            <DataTable
+                value={jobPosts}
+                paginator
+                header={header}
+                rows={10}
+                paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+                rowsPerPageOptions={[10, 25, 50]}
+                dataKey="id"
+                filters={filters}
+                filterDisplay="menu"
+                emptyMessage="No customers found."
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            >
+                <Column
+                    field="position_title"
+                    header="Job Title"
+                    sortable
+                    filter
+                    filterPlaceholder="Search by name"
+                    style={{ minWidth: "14rem" }}
+                />
+                <Column
+                    field="place_of_work"
+                    header="Place of Work"
+                    sortable
+                    filter
+                    filterPlaceholder="Search by name"
+                    style={{ minWidth: "14rem" }}
+                />
+                <Column
+                    field="job_description"
+                    header="Description"
+                    sortable
+                    filter
+                    filterPlaceholder="Search by name"
+                    style={{ minWidth: "14rem" }}
+                />
+                <Column
+                    field="salary"
+                    header="Salary"
+                    sortable
+                    filter
+                    filterPlaceholder="Search by name"
+                    style={{ minWidth: "14rem" }}
+                />
+                <Column
+                    field="vacancy_count"
+                    header="Vacancy"
+                    sortable
+                    filter
+                    filterPlaceholder="Search by name"
+                    style={{ minWidth: "14rem" }}
+                />
+                <Column
+                    body={actionBodyTemplate}
+                    exportable={false}
+                    style={{
+                        minWidth: "12rem",
+                        display: "flex",
+                        gap: "0.5rem",
+                    }}
+                ></Column>
+            </DataTable>
+        )}
+        {
+            type == 'show_applicants' && <>
+             <Button
+        icon="pi pi-arrow-left"
+        className="mr-2"
+        label="Back"
+        onClick={() => setType('default')}
+    />
+            <Applicants applicants={applicantMatches} setDashBoardType={setType} auth={props.auth} isMatches={true} />
+            </>
+        }
     </div>
 </div>
+</div>
 }
+        
+    </AuthenticatedLayout> :
+        <> 
+            <Head title="EMIS-Dashboard" />
             
-        </AuthenticatedLayout>
+            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh'}}>
+            <h1 style={{fontSize: '32px', fontWeight: 'bold', textAlign: 'center'}}>
+                Please contact the administrator to activate your account.
+                <br />
+                <NavLink style={{backgroundColor: 'black', color: 'white', padding: '5px 20px !important', borderBottom: '0 !important'}}  method="post" href={route('logout')} as="button">
+                    Back
+                </NavLink>
+            </h1>
+            </div>
+        </>
     );
 }

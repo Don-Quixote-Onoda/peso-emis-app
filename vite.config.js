@@ -17,7 +17,7 @@ export default defineConfig({
 // export default {
 //   plugins: [reactRefresh()],
 //   build: {
-//     outDir: 'public', // Output directory for built files
+//     outDir: '../public', // Output directory for built files
 //     emptyOutDir: true, // Clear the output directory before building
 //     rollupOptions: {
 //       input: 'resources/js/app.jsx', // Entry file for your React app

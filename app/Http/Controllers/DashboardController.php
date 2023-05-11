@@ -20,7 +20,8 @@ class DashboardController extends Controller
         foreach($employers as $employer) {
             array_push($response, array(
                 $employer,
-                $employer->employer_vacancy_detail
+                $employer->employer_vacancy_detail,
+                $employer->user
             ));
         }
             return Inertia::render('Dashboard', [
