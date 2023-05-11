@@ -42,7 +42,9 @@ class Applicant extends Model
         "expiry_date",
         "skills_without_formal_training",
         "e_signature",
-        "is_authorization_accepted"
+        "is_authorization_accepted",
+        "is_hired",
+        "date_hired"
     ];
 
 

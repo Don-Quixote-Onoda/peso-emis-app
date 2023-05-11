@@ -179,6 +179,13 @@ export default function ViewApplicant({ employer, back }) {
             },
         });
     }
+
+    const moneyFormatBody = (rowData) => {
+        console.log(rowData);
+        return (
+            <span>{parseFloat(rowData.salary).toLocaleString('en-PH', { style: 'currency', currency: 'PHP' })}</span>
+        )
+    }
     const deleteJobPostingDialogFooter = (
         <React.Fragment>
             <Button
@@ -880,6 +887,7 @@ export default function ViewApplicant({ employer, back }) {
                     filter
                     filterPlaceholder="Search by name"
                     style={{ minWidth: "14rem" }}
+                    body={moneyFormatBody}
                 />
                 <Column
                     field="vacancy_count"

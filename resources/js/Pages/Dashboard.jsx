@@ -1,4 +1,4 @@
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import AuthenticatedLayout from '../Layouts/AuthenticatedLayout';
 import { Head } from "@inertiajs/react";
 import React, { useState, useEffect, useRef  } from "react";
 import { FilterMatchMode, FilterOperator } from "primereact/api";
@@ -140,7 +140,7 @@ export default function Dashboard(props) {
                 </h2>
             }
         >
-            <Head title="Dashboard" />
+            <Head title="EMIS-Dashboard" />
 
             {
                 props.auth.user.role == 1 && <div className="py-12">
@@ -394,7 +394,7 @@ export default function Dashboard(props) {
             label="Back"
             onClick={() => setType('default')}
         />
-                <Applicants applicants={applicantMatches} auth={props.auth} isMatches={true} />
+                <Applicants applicants={applicantMatches} setDashBoardType={setType} auth={props.auth} isMatches={true} />
                 </>
             }
         </div>

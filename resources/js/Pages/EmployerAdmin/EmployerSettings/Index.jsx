@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import EstablishmentContactDetails from "./EstablishmentContactDetails";
 import EstablishmentDetails from "./EstablishmentDetails";
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import AuthenticatedLayout from '../../../Layouts/AuthenticatedLayout';
 import { Head } from "@inertiajs/react";
 
 export default function Index(props) {

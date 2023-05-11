@@ -1,4 +1,4 @@
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import AuthenticatedLayout from '../../Layouts/AuthenticatedLayout';
 import { Head } from "@inertiajs/react";
 import React, { useState, useEffect } from "react";
 import { FilterMatchMode, FilterOperator } from "primereact/api";
@@ -14,7 +14,7 @@ import { Tag } from "primereact/tag";
 import { RadioButton } from "primereact/radiobutton";
 import { useSessionStorage, useLocalStorage } from "primereact/hooks";
 import { useForm } from '@inertiajs/react';
-import InputError from '@/Components/InputError';
+import InputError from '../../Components/InputError';
 
 
 export default function ViewJobPosting({props, back, setType, jobPostings}) {

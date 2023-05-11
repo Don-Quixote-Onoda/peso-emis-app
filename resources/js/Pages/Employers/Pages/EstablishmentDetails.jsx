@@ -15,7 +15,7 @@ import { Controller, set, useForm } from "react-hook-form";
 import { Button } from "primereact/button";
 import { classNames } from "primereact/utils";
 import { Toast } from "primereact/toast";
-import InputError from "@/Components/InputError";
+import InputError from "../../../Components/InputError";
 
 export default function EstablishmentDetails({
     activeIndex,

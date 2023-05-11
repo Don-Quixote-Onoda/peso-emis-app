@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import InputLabel from '@/Components/InputLabel';
-import TextInput from '@/Components/TextInput';
+import InputLabel from '../../../Components/InputLabel';
+import TextInput from '../../../Components/TextInput';
 import { Button } from "primereact/button";
 
 export default function ViewUser({back, user}) {

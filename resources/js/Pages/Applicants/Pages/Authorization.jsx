@@ -16,6 +16,13 @@ export default function Authorization({
         "authorizationAccepted"
     );
 
+    const [e_signature, setESignature] = useSessionStorage(
+        sessionStorage.getItem("e_signature"),
+        "e_signature"
+    );
+
+    const [isErrorImage, setErrorImage] = useState(false);
+
     const personalInformation = {
         personalDetails: {
             surname: sessionStorage.getItem("surname"),
@@ -63,13 +70,12 @@ export default function Authorization({
             pa_houseNumber_Street_Village: sessionStorage.getItem(
                 "pa_houseNumber_Street_Village"
             ),
-            authorizationAccepted: sessionStorage.getItem(
-                "authorizationAccepted"
-            ),
+            authorizationAccepted: sessionStorage.getItem("authorizationAccepted"),
             OtherSkills: sessionStorage.getItem("OtherSkills"),
             passportNumber: sessionStorage.getItem("passportNumber"),
             expectedSalary: sessionStorage.getItem("expectedSalary"),
             expiryDate: sessionStorage.getItem("expiryDate"),
+            e_signature: sessionStorage.getItem("e_signature"),
         },
         address: {
             placeOfBirth: {
@@ -369,8 +375,7 @@ export default function Authorization({
         useForm(personalInformation);
 
     useEffect(() => {
-        console.log(personalInformation);
-        console.log(personalInformation);
+  
     });
 
     const handleSubmit = (e) => {
@@ -385,6 +390,20 @@ export default function Authorization({
         );
     };
 
+    const handleFileUpload = (e, filename) => {
+        let fileExtension = e.target.value.split('.').pop();
+        if(fileExtension === 'png' || fileExtension === 'jpg')
+        {
+            setErrorImage(false);
+            console.log(JSON.stringify(e.target.files[0]));
+           sessionStorage.setItem('e_signature', JSON.stringify(e.target.files[0]));
+           setData('e_signature', e.target.files[0] );
+        }
+        else {
+            setErrorImage(true);
+        }
+    }
+
     return (
         <form onSubmit={(e) => handleSubmit(e)}>
             <div class="step-10">
@@ -398,9 +417,11 @@ export default function Authorization({
                                 <Checkbox
                                     className="mr-3"
                                     onChange={(e) =>
-                                        setAuthorizationAccepted(e.checked)
+                                        {
+                                            e.checked ? setAuthorizationAccepted(1) : setAuthorizationAccepted(0)
+                                        }
                                     }
-                                    checked={authorizationAccepted}
+                                    checked={authorizationAccepted == 1 ? true : false }
                                 ></Checkbox>
                                 This is to certify that all data/information
                                 that I have provided in this form are true to
@@ -443,7 +464,9 @@ export default function Authorization({
                       focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                     type="file"
                                     id="formFile"
+                                    onChange={(e) => handleFileUpload(e, "product_image")}
                                 />
+                                {isErrorImage && <span className="text-red-500 text-xs">File must be png or jpg.</span>}
                             </div>
                         </div>
                     </div>

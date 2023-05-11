@@ -9,7 +9,7 @@ import { Calendar } from "primereact/calendar";
 import { RadioButton } from "primereact/radiobutton";
 
 import { Dropdown } from "primereact/dropdown";
-import InputTextWrapper from "@/Pages/FormComponents/InputTextWrapper";
+import InputTextWrapper from "../../FormComponents/InputTextWrapper";
 
 import {
     regions,

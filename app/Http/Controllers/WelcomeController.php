@@ -16,7 +16,8 @@ class WelcomeController extends Controller
                 $jobpost,
                 $jobpost->employer,
                 $jobpost->employer->employer_address,
-                $jobpost->employer->employer_establishment_contact_detail
+                $jobpost->employer->employer_establishment_contact_detail,
+                $jobpost->employer->employer_qualification_requirement
             ));
         }
 

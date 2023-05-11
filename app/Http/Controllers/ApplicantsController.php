@@ -8,6 +8,7 @@ use App\Models\Applicant;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Models\EmployerVacancyDetail;
+use Illuminate\Support\Facades\Redirect;
 
 class ApplicantsController extends Controller
 {
@@ -16,7 +17,7 @@ class ApplicantsController extends Controller
      */
     public function index()
     {
-        $applicants = Applicant::all();
+        $applicants = Applicant::where('is_hired', 0)->get();
         return Inertia::render('Applicants/index', [
             'applicants' => $applicants
         ]);
@@ -35,6 +36,13 @@ class ApplicantsController extends Controller
      */
     public function store(Request $request)
     {
+        $e_signature = null;
+        if($request->hasFile('e_signature')) {
+            $filename = time().rand(3, 9). '.'.$request->file('e_signature')->getClientOriginalExtension();
+            $request->file('e_signature')->move('uploads/applicants/', $filename);
+            $e_signature = $filename;
+
+        }
         $applicant = Applicant::create([
             'surname' => trim($request->personalDetails['surname'], '"'),
             'firstname' => trim($request->personalDetails['firstname'], '"'),
@@ -63,8 +71,8 @@ class ApplicantsController extends Controller
             'passport_number' => trim($request->personalDetails['passportNumber'], '"'),
             'expiry_date' => date('Y-m-d', strtotime(trim($request->personalDetails['expiryDate'], '"'))),
             'skills_without_formal_training' => trim($request->personalDetails['OtherSkills'], '"'),
-            'e_signature' => 'johndoe_signature.png',
-            'is_authorization_accepted' => trim($request->personalDetails['authorizationAccepted'], '"') == "Yes" ? 1 : 0,
+            'e_signature' => $e_signature,
+            'is_authorization_accepted' => trim($request->personalDetails['authorizationAccepted'], '"'),
         ]);
 
         $applicant->applicant_address()->create([
@@ -332,5 +340,13 @@ class ApplicantsController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function hireApplicant(Request $request) {
+        $applicant = Applicant::find($request->id);
+        $applicant->is_hired = 1;
+        $applicant->date_hired = now();
+        $applicant->save();
+        return Redirect::route('dashboard');
     }
 }

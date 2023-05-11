@@ -1,4 +1,4 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import AuthenticatedLayout from '../../../Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import React, { useState, useEffect } from 'react';
 import { FilterMatchMode, FilterOperator } from 'primereact/api';
@@ -53,6 +53,28 @@ export default function Applicants(props) {
     }
 
     const [deleteApplicantDialog, setDeleteApplicantDialog] = useState(false);
+    const [hireApplicantDialog, setHireApplicantDialog] = useState(false);
+    const submitHiredApplicantData = () => {
+        console.log(data);
+        post(route('hire-applicant'), {
+            forceFormData: true,
+            onSuccess: () =>{
+                // console.log('success');
+                reset();
+                props.setDashBoardType('default');
+                setHireApplicantDialog(false);
+            },
+            onError: () => {
+                // console.log(errors);
+            },
+        });
+    }
+
+    const hireApplicant = (rowData) => {
+        setData({"id": rowData.id});
+        setHireApplicantDialog(true);
+        
+    }
 
     const confirmDeleteApplicant = (Applicant) => {
         setDeleteApplicantDialog(true);
@@ -67,9 +89,10 @@ export default function Applicants(props) {
         post(route('delete-applicant'), {
             forceFormData: true,
             onSuccess: () =>{
-                console.log('success');
                 reset();
                 setType('default');
+                console.log(type);
+
                 setDeleteApplicantDialog(false);
             },
             onError: () => {
@@ -94,6 +117,26 @@ export default function Applicants(props) {
             />
         </React.Fragment>
     );
+    const hideHiredApplicantDialog = () => {
+        setHireApplicantDialog(false);
+    }
+
+    const hiredApplicantDialogFooter = (
+        <React.Fragment>
+            <Button
+                label="No"
+                icon="pi pi-times"
+                outlined
+                onClick={hideHiredApplicantDialog}
+            />
+            <Button
+                label="Yes"
+                icon="pi pi-check"
+                severity="danger"
+                onClick={submitHiredApplicantData}
+            />
+        </React.Fragment>
+    );
 
     const renderHeader = () => {
         return (
@@ -112,6 +155,8 @@ export default function Applicants(props) {
     useEffect(() => {
         console.log(props);
     })
+
+    
     return (
         <>
             {
@@ -160,7 +205,7 @@ export default function Applicants(props) {
                 {
                     type == 'default' && <ApplicantsTable applicants={applicants} 
                     confirmDeleteApplicant={confirmDeleteApplicant} 
-                    viewApplicant={viewApplicant} editApplicant={editApplicant} />
+                    viewApplicant={viewApplicant} editApplicant={editApplicant} handleHiredApplicantData={hireApplicant} />
                 }
                 {
                     type == 'view' && <ViewApplicant applicant={applicant} back={back} />
@@ -184,6 +229,26 @@ export default function Applicants(props) {
                         />
                             <span>
                                 Are you sure you want to delete this applicant? <b></b>?
+                            </span>
+                    </div>
+                </Dialog>
+
+                <Dialog
+                    visible={hireApplicantDialog}
+                    style={{ width: "32rem" }}
+                    breakpoints={{ "960px": "75vw", "641px": "90vw" }}
+                    header="Confirm"
+                    modal
+                    footer={hiredApplicantDialogFooter}
+                    onHide={hideHiredApplicantDialog}
+                >
+                    <div className="confirmation-content">
+                        <i
+                            className="pi pi-exclamation-triangle mr-3"
+                            style={{ fontSize: "2rem" }}
+                        />
+                            <span>
+                                Are you sure you want to hire this applicant?
                             </span>
                     </div>
                 </Dialog>

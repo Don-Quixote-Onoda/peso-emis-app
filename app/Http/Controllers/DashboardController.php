@@ -77,6 +77,7 @@ class DashboardController extends Controller
     public function getMatchingApplicants(string $postion_title, string $salary) {
 
         $applicants = Applicant::where('expected_salary', $salary)
+            ->where('is_hired', 0)
             ->whereIn('id', function ($query) use ($postion_title) {
                 $query->select('applicant_id')
                     ->from('applicant_job_preferences')

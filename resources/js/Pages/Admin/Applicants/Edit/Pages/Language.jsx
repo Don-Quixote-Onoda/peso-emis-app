@@ -100,15 +100,13 @@ export default function Language({language}) {
                                 </div>
                             </div>
                         </div>
-                        {
-                            language.map((item) => (
+            
                                 <div class="row mb-4">
                             <div class="col-md-4">
                                 <input
                                     type="input"
-                                    value={item.language_spoken}
                                     class="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis"
-                                    disabled={item.language_spoken === 'english' || item.language_spoken === 'filipino'}
+                                    // disabled={item.language_spoken === 'english' || item.language_spoken === 'filipino'}
                                 />
                             </div>
                             <div class="col-md-8">
@@ -118,7 +116,7 @@ export default function Language({language}) {
                                             onChange={(e) =>
                                                 setReadEnglish(e.checked)
                                             }
-                                            checked={item.can_read == 1}
+                                            // checked={item.can_read == 1}
                                         ></Checkbox>
                                         <label className="pl-3 responsive-text-md-block">
                                             Read
@@ -129,7 +127,7 @@ export default function Language({language}) {
                                             onChange={(e) =>
                                                 setReadEnglish(e.checked)
                                             }
-                                            checked={item.can_write == 1}
+                                            // checked={item.can_write == 1}
                                         ></Checkbox>
                                         <label className="pl-3 responsive-text-md-block">
                                             Write
@@ -140,7 +138,7 @@ export default function Language({language}) {
                                             onChange={(e) =>
                                                 setReadEnglish(e.checked)
                                             }
-                                            checked={item.can_speak == 1}
+                                            // checked={item.can_speak == 1}
                                         ></Checkbox>
                                         <label className="pl-3 responsive-text-md-block">
                                             Speak
@@ -151,7 +149,7 @@ export default function Language({language}) {
                                             onChange={(e) =>
                                                 setUnderstandEnglish(e.checked)
                                             }
-                                            checked={item.can_understand == 1}
+                                            // checked={item.can_understand == 1}
                                         ></Checkbox>
                                         <label className="pl-3 responsive-text-md-block">
                                             Understand
@@ -160,8 +158,7 @@ export default function Language({language}) {
                                 </div>
                             </div>
                         </div>
-                            ))
-                        }
+                       
                     </div>
                 </div>
             </div>

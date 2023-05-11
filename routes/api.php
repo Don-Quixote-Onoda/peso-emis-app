@@ -41,5 +41,7 @@ Route::post('test', [TestController::class, 'testCreate'])->name('test-api-creat
 Route::post('users/add', [UsersController::class, 'store'])->name('add-user');
 Route::post('users/update', [UsersController::class, 'update'])->name('update-user');
 Route::post('users/delete', [UsersController::class, 'destroy'])->name('delete-user');
+Route::post('users/activate', [UsersController::class, 'activate'])->name('activate-user');
 Route::get('get-all-employer-job_posting/{id}', [DashboardController::class, 'getAllEmployerJobPosting'])->name('get-all-employer-job_posting');
 Route::get('get-matching-applicants/{position_title}/{salary}', [DashboardController::class, 'getMatchingApplicants'])->name('get-matching-applicants');
+Route::post('hire-applicant', [ApplicantsController::class, 'hireApplicant'])->name('hire-applicant');

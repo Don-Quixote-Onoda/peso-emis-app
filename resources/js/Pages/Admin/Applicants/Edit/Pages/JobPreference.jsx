@@ -167,9 +167,7 @@ export default function JobPreference({values, job_preference_location, personal
                                                 </div>
                                             </div>
                                            
-                                            {
-                                                job_preference_location.map((item) => (
-                                                    item.type == 1 &&  <div class="col-md-12 mb-4  d-flex flex-row align-items-center gap-3 ">
+                                                <div class="col-md-12 mb-4  d-flex flex-row align-items-center gap-3 ">
                                                     <label
                                                         for="inputEmail4"
                                                         class="form-label !text-xs !text-gray-600 mb-0 fw-bold text-light-emphasis"
@@ -178,8 +176,7 @@ export default function JobPreference({values, job_preference_location, personal
                                                     </label>
                                                     <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" disabled={!checkedOverseas} value={preferredWorkLocationOverseas1} onChange={(e) => setpreferredWorkLocationOverseas1(e.target.value)} />
                                                 </div>
-                                                ))
-                                            }
+                                                
                                             <span class="text-danger !text-xs isoverseas_preferred_work_location-error"></span>
                                         </div>
                                     </div>
@@ -192,7 +189,7 @@ export default function JobPreference({values, job_preference_location, personal
                                 >
                                     Expected Salary (Range){" "}
                                 </label>
-                                <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" value={personal_information.expected_salary} onChange={(e) => setExpectedSalary(e.target.value)} />
+                                <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"  onChange={(e) => setExpectedSalary(e.target.value)} />
                                 <span class="text-danger !text-xs expected_salary-error"></span>
                             </div>
                             <div class="col-md-4 mb-4">
@@ -202,7 +199,7 @@ export default function JobPreference({values, job_preference_location, personal
                                 >
                                     Passport No.
                                 </label>
-                                <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" value={personal_information.passport_number} onChange={(e) => setPassportNumber(e.target.value)} />
+                                <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"  onChange={(e) => setPassportNumber(e.target.value)} />
                                 <span class="text-danger !text-xs passport_number-error"></span>
                             </div>
                             <div class="col-md-4 mb-4">
@@ -212,7 +209,7 @@ export default function JobPreference({values, job_preference_location, personal
                                 >
                                     Expiry date
                                 </label>
-                                <Calendar className="form-control h-10 p-0 border-0" value={new Date(personal_information.expiry_date)} onChange={(e) => setExpiryDate(e.value)}  />
+                                <Calendar className="form-control h-10 p-0 border-0" value={new Date()} onChange={(e) => setExpiryDate(e.value)}  />
                                 <span class="text-danger !text-xs expiry_date-error"></span>
                             </div>
                         </div>

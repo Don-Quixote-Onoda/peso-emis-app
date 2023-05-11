@@ -1,4 +1,4 @@
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import AuthenticatedLayout from '../../../Layouts/AuthenticatedLayout';
 import { Head } from "@inertiajs/react";
 import React, { useState, useEffect } from "react";
 import { FilterMatchMode, FilterOperator } from "primereact/api";

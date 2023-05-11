@@ -7,7 +7,7 @@ import { RadioButton } from "primereact/radiobutton";
 import NavigatorButton from "../Components/NavigatorButton";
 import { Controller, set, useForm } from "react-hook-form";
 import { classNames } from "primereact/utils";
-import InputError from "@/Components/InputError";
+import InputError from "../../../Components/InputError";
 import { Toast } from "primereact/toast";
 
 export default function EstablishmentContactDetails({
