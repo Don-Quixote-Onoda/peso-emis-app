@@ -5,10 +5,10 @@ import { Column } from "primereact/column";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
-import InputError from "@/Components/InputError";
-import InputLabel from "@/Components/InputLabel";
-import PrimaryButton from "@/Components/PrimaryButton";
-import TextInput from "@/Components/TextInput";
+import InputError from "../../../Components/InputError";
+import InputLabel from "../../../Components/InputLabel";
+import PrimaryButton from "../../../Components/PrimaryButton";
+import TextInput from "../../../Components/TextInput";
 import { Head, Link, useForm } from "@inertiajs/react";
 import { Dropdown } from "primereact/dropdown";
 
@@ -25,6 +25,7 @@ export default function UsersTable({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
     });
     const [addNewJobPostingDialog, setAddNewJobPostingDialog] = useState(false);
+    const [activateAccountDialog, setActivateAccountDialog] = useState(false);
 
     const onGlobalFilterChange = (e) => {
         const value = e.target.value;
@@ -38,6 +39,10 @@ export default function UsersTable({
 
     const hideAddNewJobPostingDialog = () => {
         setAddNewJobPostingDialog(false);
+    };
+
+    const hideActivateAccount = () => {
+        setActivateAccountDialog(false);
     };
 
     const renderHeader = () => {
@@ -64,10 +69,47 @@ export default function UsersTable({
         );
     };
 
+    const activateAccountSubmit = () => {
+        post(route('activate-user'), {
+            onSuccess: () =>{
+                reset()
+                hideActivateAccount();
+            },
+        });
+    }
+
+    const activateAcountDialogFooter = (
+        <React.Fragment>
+            <Button
+                label="No"
+                icon="pi pi-times"
+                outlined
+                onClick={hideActivateAccount}
+            />
+            <Button
+                label="Yes"
+                icon="pi pi-check"
+                severity="danger"
+                onClick={activateAccountSubmit}
+            />
+        </React.Fragment>
+    );
+
     const deleteJobPostingDialogFooter = <React.Fragment></React.Fragment>;
 
     const userRoleTemplate = (rowData) => {
         return <span>{rowData.role == 1 ? "Admin" : "Employer"}</span>;
+    };
+
+    const activateAccount = (rowData) => {
+        setActivateAccountDialog(true);
+        setData(rowData);
+    }
+    const userActivatedTemplate = (rowData) => {
+        
+        return (
+            rowData.role == 0 ? (rowData.is_activated == 0 ? <Button label="Activate" onClick={e => activateAccount(rowData)} icon="pi pi-check" /> : <span></span>) : <span></span>
+        );
     };
 
     const actionBodyTemplate = (rowData) => {
@@ -103,7 +145,7 @@ export default function UsersTable({
         email: "",
         password: "",
         password_confirmation: "",
-        role: null,
+        role: 1,
     });
 
     useEffect(() => {
@@ -168,6 +210,15 @@ export default function UsersTable({
                     style={{ minWidth: "14rem" }}
                 />
                 <Column
+                    field="is_activated"
+                    header="Role"
+                    body={userActivatedTemplate}
+                    sortable
+                    filter
+                    filterPlaceholder="Search by name"
+                    style={{ minWidth: "14rem" }}
+                />
+                <Column
                     body={actionBodyTemplate}
                     exportable={false}
                     style={{
@@ -221,14 +272,14 @@ export default function UsersTable({
                         <InputError message={errors.email} className="mt-2" />
                     </div>
 
-                    <div className="mt-4">
+                    {/* <div className="mt-4">
                         <InputLabel htmlFor="role" value="Role" />
 
                         <Dropdown value={data.role} onChange={(e) => setData('role', e.value)} options={roles} optionLabel="name" 
                 editable placeholder="Select a Role" className="w-full md:w-14rem" required />
 
                         <InputError message={errors.role} className="mt-2" />
-                    </div>
+                    </div> */}
 
                     <div className="mt-4">
                         <InputLabel htmlFor="password" value="Password" />
@@ -283,6 +334,17 @@ export default function UsersTable({
                         </PrimaryButton>
                     </div>
                 </form>
+            </Dialog>
+            <Dialog
+                visible={activateAccountDialog}
+                style={{ width: "32rem" }}
+                breakpoints={{ "960px": "75vw", "641px": "90vw" }}
+                header="Add New"
+                modal
+                footer={activateAcountDialogFooter}
+                onHide={hideActivateAccount}
+            >
+                <h1>Are you sure you want to activate this account?</h1>
             </Dialog>
         </div>
     );

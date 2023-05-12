@@ -5,7 +5,7 @@ import { RadioButton } from "primereact/radiobutton";
 import { Dropdown } from "primereact/dropdown";
 import { Checkbox } from "primereact/checkbox";
 import { Button } from 'primereact/button';
-import InputTextWrapper from "@/Pages/FormComponents/InputTextWrapper";
+import InputTextWrapper from "../../../FormComponents/InputTextWrapper";
 import { useSessionStorage, useLocalStorage } from "primereact/hooks";
 import { useForm } from '@inertiajs/react';
 import {

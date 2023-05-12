@@ -12,7 +12,6 @@ import {
     cities,
     barangays,
 } from "select-philippines-address";
-import InputTextWrapper from "@/Pages/FormComponents/InputTextWrapper";
 
 export default function ViewApplicant({ applicant, back }) {
     useEffect(() => {
@@ -2611,6 +2610,12 @@ export default function ViewApplicant({ applicant, back }) {
                                 also aware that DOLE is not obliged to seek
                                 employment on my behalf.
                             </h6>
+                            <img
+                                src={`http://127.0.0.1:8000/uploads/applicants/${applicant.e_signature}`}
+                                alt={applicant.e_signature}
+                                className="shadow-2 border-round d-block mx-auto mt-5"
+                                style={{ width: "100px" }}
+                            />
                         </div>
                     </div>
                 </div>

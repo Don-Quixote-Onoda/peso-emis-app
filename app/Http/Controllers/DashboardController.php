@@ -20,7 +20,8 @@ class DashboardController extends Controller
         foreach($employers as $employer) {
             array_push($response, array(
                 $employer,
-                $employer->employer_vacancy_detail
+                $employer->employer_vacancy_detail,
+                $employer->user
             ));
         }
             return Inertia::render('Dashboard', [
@@ -77,6 +78,7 @@ class DashboardController extends Controller
     public function getMatchingApplicants(string $postion_title, string $salary) {
 
         $applicants = Applicant::where('expected_salary', $salary)
+            ->where('is_hired', 0)
             ->whereIn('id', function ($query) use ($postion_title) {
                 $query->select('applicant_id')
                     ->from('applicant_job_preferences')

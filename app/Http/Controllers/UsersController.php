@@ -35,7 +35,8 @@ class UsersController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => $request->role
+            'role' => $request->role,
+            'is_activate' => 0
         ]);
 
         event(new Registered($user));
@@ -86,6 +87,13 @@ class UsersController extends Controller
     public function destroy(Request $request)
     {
         User::find($request->user_id)->delete();
+        return Redirect::route('admin-users');
+    }
+
+    public function activate(Request $request) {
+        $user = User::find($request->id);
+        $user->is_activated = 1;
+        $user->save();
         return Redirect::route('admin-users');
     }
 }

@@ -1,9 +1,9 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import AuthenticatedLayout from '../../../Layouts/AuthenticatedLayout';
 import React, { useState, useEffect } from 'react';
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
+import InputError from '../../../Components/InputError';
+import InputLabel from '../../../Components/InputLabel';
+import PrimaryButton from '../../../Components/PrimaryButton';
+import TextInput from '../../../Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
 import { Button } from "primereact/button";
 import { Dropdown } from "primereact/dropdown";

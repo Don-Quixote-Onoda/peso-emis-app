@@ -1,19 +1,20 @@
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head } from "@inertiajs/react";
 import React, { useState, useEffect } from "react";
 import { FilterMatchMode, FilterOperator } from "primereact/api";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { InputText } from "primereact/inputtext";
 import { Button } from 'primereact/button';
+import { useForm } from '@inertiajs/react'
 
 export default function ApplicantsTable({
     applicants,
     confirmDeleteApplicant,
     viewApplicant,
     editApplicant,
-    isMatches
+    isMatches,
+    handleHiredApplicantData
 }) {
+    const { data, setData, post } = useForm();
     const [globalFilterValue, setGlobalFilterValue] = useState("");
 
     const [filters, setFilters] = useState({
@@ -50,6 +51,8 @@ export default function ApplicantsTable({
         return <span>{JSON.parse(rowData.civil_status).name}</span>
     }
 
+    
+
     const actionBodyTemplate = (rowData) => {
         return (
             <React.Fragment>
@@ -60,8 +63,9 @@ export default function ApplicantsTable({
                     className="mr-2"
                     onClick={() => viewApplicant(rowData)}
                 />
+               
                 {
-                    isMatches == false && <>
+                    isMatches == false ? <>
                     <Button
                     icon="pi pi-pencil"
                     rounded
@@ -75,6 +79,15 @@ export default function ApplicantsTable({
                     outlined
                     severity="danger"
                     onClick={() => confirmDeleteApplicant(rowData)}
+                />
+                </> : <>
+                <Button
+                    icon="pi pi-user-plus"
+                    rounded
+                    outlined
+                    className="mr-2"
+                    label="Hire"
+                    onClick={() => handleHiredApplicantData(rowData)}
                 />
                 </>
                 }
@@ -115,22 +128,6 @@ export default function ApplicantsTable({
                     style={{ minWidth: "14rem" }}
                 />
                 <Column
-                    field="middlename"
-                    header="Middle Name"
-                    sortable
-                    filter
-                    filterPlaceholder="Search by name"
-                    style={{ minWidth: "14rem" }}
-                />
-                <Column
-                    field="suffix"
-                    header="Suffix"
-                    sortable
-                    filter
-                    filterPlaceholder="Search by name"
-                    style={{ minWidth: "14rem" }}
-                />
-                <Column
                     field="email_address"
                     header="Email Address"
                     sortable
@@ -144,16 +141,7 @@ export default function ApplicantsTable({
                     sortable
                     filter
                     filterPlaceholder="Search by name"
-                    style={{ minWidth: "14rem" }}
-                />
-                <Column
-                    field="civil_status"
-                    header="Civil Statuss"
-                    sortable
-                    filter
-                    body={civilStatusBody}
-                    filterPlaceholder="Search by name"
-                    style={{ minWidth: "14rem" }}
+                    style={{ minWidth: "6rem" }}
                 />
                 <Column
                     body={actionBodyTemplate}

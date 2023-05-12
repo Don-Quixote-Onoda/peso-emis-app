@@ -10,6 +10,32 @@ export default function Welcome(props) {
     const [index, setIndex] = useState(5);
     const initialJobInfo = slice(props.jobs, 0, index);
 
+    function timeAgo(date) {
+        const seconds = Math.floor((new Date() - new Date(date)) / 1000);
+        let interval = Math.floor(seconds / 31536000);
+      
+        if (interval >= 1) {
+          return interval + " year" + (interval === 1 ? "" : "s") + " ago";
+        }
+        interval = Math.floor(seconds / 2592000);
+        if (interval >= 1) {
+          return interval + " month" + (interval === 1 ? "" : "s") + " ago";
+        }
+        interval = Math.floor(seconds / 86400);
+        if (interval >= 1) {
+          return interval + " day" + (interval === 1 ? "" : "s") + " ago";
+        }
+        interval = Math.floor(seconds / 3600);
+        if (interval >= 1) {
+          return interval + " hour" + (interval === 1 ? "" : "s") + " ago";
+        }
+        interval = Math.floor(seconds / 60);
+        if (interval >= 1) {
+          return interval + " minute" + (interval === 1 ? "" : "s") + " ago";
+        }
+        return Math.floor(seconds) + " second" + (seconds === 1 ? "" : "s") + " ago";
+      }
+
     const loadMore = () => {
         setIndex(index + 5);
         console.log(index);
@@ -26,6 +52,8 @@ export default function Welcome(props) {
 
     return (
         <>
+        <Head title="PESO-EMIS" />
+
             <header
                 id="header"
                 className="fixed-top d-flex align-items-center "
@@ -657,15 +685,9 @@ export default function Welcome(props) {
                                                             {job.place_of_work}
                                                         </p>
                                                         <p className="text-sm py-1">
-                                                            {Math.ceil(
-                                                                (new Date().getTime() -
-                                                                    new Date(
-                                                                        job.created_at
-                                                                    ).getTime()) /
-                                                                    (1000 *
-                                                                        3600 *
-                                                                        24)
-                                                            ) + " hours ago"}
+                                                            { 
+                                                            timeAgo(job.created_at)
+                                                            }
                                                         </p>
                                                     </div>
                                                 </div>
@@ -721,13 +743,9 @@ export default function Welcome(props) {
                                             Email your application
                                         </a>
                                         <p className="my-2">
-                                            {Math.ceil(
-                                                (new Date().getTime() -
-                                                    new Date(
-                                                        jobInfo.created_at
-                                                    ).getTime()) /
-                                                    (1000 * 3600 * 24)
-                                            ) + " hours ago"}
+                                            {
+                                                timeAgo(jobInfo.created_at)
+                                            }
                                         </p>
                                         <h4 className="text-md font-bold my-3">
                                             Qualifications:
@@ -739,14 +757,17 @@ export default function Welcome(props) {
                                             }}
                                             className=""
                                         >
-                                            <li>5 years work experience</li>
+                                            <li>{
+                                                    jobInfo.employer.employer_qualification_requirement[jobInfo.id-1].other_qualification
+                                                }</li>
                                         </ul>
                                         <p className="my-2">
-                                            Salary: Php70,000.00 - Php80,000.00
-                                            per month
+                                            Salary: {parseFloat(jobInfo.salary).toLocaleString('en-PH', { style: 'currency', currency: 'PHP' })} per month
                                         </p>
                                         <p className="text-md font-bold my-3">
-                                            Experience:
+                                            Experience: {
+                                                    jobInfo.employer.employer_qualification_requirement[jobInfo.id-1].work_of_experience
+                                                }
                                         </p>
                                         <ul
                                             style={{
@@ -756,7 +777,9 @@ export default function Welcome(props) {
                                             className=""
                                         >
                                             <li>
-                                                Developer: 5 years (Required)
+                                                {
+                                                    jobInfo.employer.employer_qualification_requirement[jobInfo.id-1].other_qualification
+                                                }
                                             </li>
                                         </ul>
                                     </div>

@@ -1,16 +1,19 @@
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import AuthenticatedLayout from '../Layouts/AuthenticatedLayout';
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Bar } from "react-chartjs-2";
 import { Chart } from "chart.js/auto";
 import { CategoryScale } from "chart.js";
 import html2canvas from "html2canvas";
-import pdfConverter from "jspdf";
+import jsPDF from "jspdf";
 import { Button } from "primereact/button";
 
 export default function SummaryReports(props) {
     const [monthData, setMonthData] = useState([]);
     const [weeksOfMonthData, setWeeksOfMonthData] = useState([]);
     const [daysOfMonthData, setDaysOfMonthData] = useState([]);
+    const [monthDataHired, setMonthDataHired] = useState([]);
+    const [weeksOfMonthDataHired, setWeeksOfMonthDataHired] = useState([]);
+    const [daysOfMonthDataHired, setDaysOfMonthDataHired] = useState([]);
     const currentDate = new Date();
     const currentMonth = currentDate.toLocaleString('default', { month: 'long' });
     const currentYear = currentDate.getFullYear();
@@ -19,7 +22,7 @@ export default function SummaryReports(props) {
  
     useEffect(() => {
         const applicants_report = props.applicants_report;
-        
+
         let filteredDaysOfMonthData = [];
         let filteredWeeksOfMonthData = [];
         let filterdMontData = [];
@@ -53,7 +56,6 @@ export default function SummaryReports(props) {
         setWeeksOfMonthData(filteredWeeksOfMonthData);
         setMonthData(filterdMontData);
     }, []);
-
     const daysOfMonthDataGraph = {
         labels: daysOfMonthData.map(data => data.day),
         datasets: [
@@ -94,7 +96,7 @@ export default function SummaryReports(props) {
         labels: monthData.map(data => data.month),
         datasets: [
             {
-                label: "Applicants Applied in "+currentYear,
+                label: "Applicants Hired in "+currentYear,
                 data: monthData.map(data => data.applicants),
                 backgroundColor: [
                     "#FF6384",
@@ -107,42 +109,204 @@ export default function SummaryReports(props) {
             },
         ],
     };
+    useEffect(() => {
+        const applicants_hired = props.applicants_hired;
+        
+        let filteredDaysOfMonthData = [];
+        let filteredWeeksOfMonthData = [];
+        let filterdMontData = [];
+        applicants_hired.map(monthData => {
+            let count = 0;
+            if(monthData.month === currentMonth)
+            {
+                monthData.weeks.map(weekData => {
+                    if(weekData.week === 'Week '+currentWeek) {
+                        weekData.days.map(dayData => {
+                            filteredWeeksOfMonthData.push(dayData);
+                        });
+                    }
+                    weekData.days.map(dayData => {
+                        filteredDaysOfMonthData.push(dayData);
+                    });
+                });
+            }
 
-    let ref = useRef(null);
+            monthData.weeks.map(weekData => {
+                weekData.days.map(dayData => {
+                    count += dayData.hired_applicants;
+                });
+            });
+            filterdMontData.push({
+                'month':monthData.month,
+                'applicants': count
+            });
+        });
+        setDaysOfMonthDataHired(filteredDaysOfMonthData);
+        setWeeksOfMonthDataHired(filteredWeeksOfMonthData);
+        console.log(filterdMontData);
 
-    const downloadChart = useCallback(() => {
-        const link = document.createElement("a");
-        link.download = "chart.png";
-        link.href = ref.current.toBase64Image();
-        link.click();
-        console.log(test);
+        setMonthDataHired(filterdMontData);
     }, []);
 
+
+
+    const hiredDaysOfMonthDataGraph = {
+        labels: daysOfMonthDataHired.map(data => data.day),
+        datasets: [
+            {
+                label: "Applicants Applied in "+currentMonth,
+                data: daysOfMonthDataHired.map(data => data.hired_applicants),
+                backgroundColor: [
+                    "#FFCE56",
+                    "#FF6384",
+                    "#36A2EB",
+                    "#ffce56",
+                    "#ffce56",
+                ],
+                hoverOffset: 4,
+            },
+        ],
+    };
+
+    const hiredDaysOfWeekMonthDataGraph = {
+        labels: weeksOfMonthDataHired.map(data => data.day),
+        datasets: [
+            {
+                label: "Applicants Hired in Week "+currentWeek,
+                data: weeksOfMonthDataHired.map(data => data.hired_applicants),
+                backgroundColor: [
+                    "#FFCE56",
+                    "#FF6384",
+                    "#36A2EB",
+                    "#ffce56",
+                    "#ffce56",
+                ],
+                hoverOffset: 4,
+            },
+        ],
+    };
+
+    const hiredMonthDataGraph = {
+        labels: monthDataHired.map(data => data.month),
+        datasets: [
+            {
+                label: "Applicants Hired in "+currentYear,
+                data: monthDataHired.map(data => data.applicants),
+                backgroundColor: [
+                    "#FFCE56",
+                    "#FF6384",
+                    "#36A2EB",
+                    "#ffce56",
+                    "#ffce56",
+                ],
+                hoverOffset: 4,
+            },
+        ],
+    };
+
+    let ref = useRef(null);
     Chart.register(CategoryScale);
 
-    const div2PDF = (e) => {
+    const div2PDF1 = (e) => {
         /////////////////////////////
         // Hide/show button if you need
         /////////////////////////////
 
+        const today = new Date();
+
+        // Get the month, day, year, hours, minutes, and seconds from the Date object
+        const month = today.toLocaleString('default', { month: 'long' });
+        const day = today.getDate();
+        const year = today.getFullYear();
+        const hours = today.getHours();
+        const minutes = today.getMinutes();
+        const seconds = today.getSeconds();
+        
+        // Format the date and time as "Month day, year at hours:minutes:seconds"
+        const formattedDate = `${month} ${day}, ${year}`;
+        
         const but = e.target;
         // but.style.display = "none";
-        let input = window.document.getElementsByClassName("div2PDF")[0];
-
-        html2canvas(input).then((canvas) => {
-            const img = canvas.toDataURL("image/png");
-            const pdf = new pdfConverter("l", "pt");
-            pdf.addImage(
-                img,
-                "png",
-                input.offsetLeft,
-                input.offsetTop,
-                input.clientWidth,
-                input.clientHeight
-            );
-            pdf.save("chart.pdf");
-            but.style.display = "block";
+        let input = window.document.getElementsByClassName("div2PDF1")[0];
+        console.log(input.offsetLeft);
+        console.log(input.offsetTop);
+        console.log(input.clientWidth);
+        console.log(input.clientHeight);
+        html2canvas(input)
+      .then((canvas) => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF({
+          orientation: 'landscape',
         });
+        const imgProps= pdf.getImageProperties(imgData);
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        pdf.save('Summary Report - Applicants Applied ('+formattedDate+').pdf');
+      });
+    };
+
+    const getCurrentDateFormat = () => {
+        const today = new Date();
+
+        // Get the month, day, year, hours, minutes, and seconds from the Date object
+        const month = today.toLocaleString('default', { month: 'long' });
+        const day = today.getDate();
+        const year = today.getFullYear();
+        let hours = today.getHours();
+        const minutes = today.getMinutes();
+        const seconds = today.getSeconds();
+
+        // Determine whether it is AM or PM
+        const meridiem = hours >= 12 ? 'PM' : 'AM';
+
+        // Convert hours from 24-hour to 12-hour format
+        if (hours > 12) {
+        hours -= 12;
+        }
+
+        // Format the date and time as "Month day, year at hours:minutes:seconds AM/PM"
+        const formattedDate = `${month} ${day}, ${year} at ${hours}:${minutes}:${seconds} ${meridiem}`;
+
+
+        return formattedDate;
+    }
+    const div2PDF2 = (e) => {
+        /////////////////////////////
+        // Hide/show button if you need
+        /////////////////////////////
+        const today = new Date();
+
+        // Get the month, day, year, hours, minutes, and seconds from the Date object
+        const month = today.toLocaleString('default', { month: 'long' });
+        const day = today.getDate();
+        const year = today.getFullYear();
+        const hours = today.getHours();
+        const minutes = today.getMinutes();
+        const seconds = today.getSeconds();
+        
+        // Format the date and time as "Month day, year at hours:minutes:seconds"
+        const formattedDate = `${month} ${day}, ${year}`;
+        
+        const but = e.target;
+        // but.style.display = "none";
+        let input = window.document.getElementsByClassName("div2PDF2")[0];
+        console.log(input.offsetLeft);
+        console.log(input.offsetTop);
+        console.log(input.clientWidth);
+        console.log(input.clientHeight);
+        html2canvas(input)
+      .then((canvas) => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF({
+          orientation: 'landscape',
+        });
+        const imgProps= pdf.getImageProperties(imgData);
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        pdf.save('Summary Report - Applicants Hired ('+formattedDate+').pdf');
+      });
     };
 
     return (
@@ -159,15 +323,21 @@ export default function SummaryReports(props) {
                 <h2 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
                     Summary Reports
                 </h2>
+                
+                <div className="">
                 <div
-                    className="flex justify-end pb-3"
-                    onClick={(e) => div2PDF(e)}
+                    className="flex justify-center pb-3"
+                    onClick={(e) => div2PDF1(e)}
                 >
-                    <Button label="Print"  />
+                    <Button label="Print Applicant Applied Report" style={{background: "#FF6384", border: "none"}} className="py-1 px-3 bg-red-900"  />
                 </div>
-                <div className="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
+                <div className="w-full mb-8 div2PDF1 overflow-hidden rounded-lg shadow-xs">
+                <h1 className="text-2xl text-center mb-0 font-bold">Applicants Applied</h1>
+                <span className="text-xs text-center mb-4 font-bold d-block">{"("+getCurrentDateFormat()+")"}</span>
+                
+
                     <div
-                        className="w-full overflow-x-auto card div2PDF flex p-5 flex-wrap gap-5 flex-row "
+                        className="w-full overflow-x-auto card flex p-5 flex-wrap gap-5 flex-row "
                         
                     >
                         <div style={{width: 'calc(calc(100% / 2) - 3rem)'}}>
@@ -181,141 +351,33 @@ export default function SummaryReports(props) {
                         </div>
                     </div>
                 </div>
+                <div
+                    className="flex justify-center pb-3"
+                    onClick={(e) => div2PDF2(e)}
+                >
+                    <Button label="Print Applicant Hired Report" style={{background: "#FF6384", border: "none"}} className="py-1 px-3 bg-red-900"  />
+                </div>
+                <div className="w-full mb-8 div2PDF2 overflow-hidden rounded-lg shadow-xs">
+                <h1 className="text-2xl text-center mb-0 font-bold">Applicants Hired</h1>
+                <span className="text-xs text-center mb-4 font-bold d-block">{"("+getCurrentDateFormat()+")"}</span>
+                    <div
+                        className="w-full overflow-x-auto card flex p-5 flex-wrap gap-5 flex-row "
+                        
+                    >
+                        <div style={{width: 'calc(calc(100% / 2) - 3rem)'}}>
+                            <Bar ref={ref} data={hiredDaysOfMonthDataGraph} style={{width: '100%', height: 'auto'}} />
+                        </div>
+                        <div style={{width: 'calc(calc(100% / 2) - 3rem)'}}>
+                            <Bar ref={ref} data={hiredDaysOfWeekMonthDataGraph} style={{width: '100%', height: 'auto'}} />
+                        </div>
+                        <div style={{width: 'calc(calc(100% / 2) - 3rem)'}}>
+                            <Bar ref={ref} data={hiredMonthDataGraph} style={{width: '100%', height: 'auto'}} />
+                        </div>
+                    </div>
+                </div>
+                </div>
+                
             </div>
         </AuthenticatedLayout>
     );
 }
-
-// const [filteredDaysOfMonthData, setFilteredDaysOfMonthData] = useState([]);
-
-//     useEffect(() => {
-//         const applicants_report = props.applicants_report;
-//         const currentDate = new Date();
-//         const currentMonth = currentDate.getMonth() + 1;
-//         const currentYear = currentDate.getFullYear();
-
-//         console.log(applicants_report);
-
-//         // Group by month
-//         const applicantsByMonth = applicants_report.reduce((acc, curr) => {
-//             const month = curr.month;
-//             const weeks = curr.weeks;
-//             const monthIndex = acc.findIndex((m) => m.month === month);
-//             if (monthIndex === -1) {
-//                 acc.push({
-//                     month: month,
-//                     weeks: weeks,
-//                 });
-//             } else {
-//                 acc[monthIndex].weeks = acc[monthIndex].weeks.concat(weeks);
-//             }
-//             return acc;
-//         }, []);
-
-//         // Group each month by year
-//         const applicantsByYear = applicantsByMonth.reduce((acc, curr) => {
-//             const month = curr.month;
-//             const weeks = curr.weeks;
-//             const monthYear = currentYear + (month <= currentMonth ? 0 : -1);
-//             const yearIndex = acc.findIndex((y) => y.year === monthYear);
-//             if (yearIndex === -1) {
-//                 acc.push({
-//                     year: monthYear,
-//                     months: [
-//                         {
-//                             month: month,
-//                             weeks: weeks,
-//                         },
-//                     ],
-//                 });
-//             } else {
-//                 const monthIndex = acc[yearIndex].months.findIndex(
-//                     (m) => m.month === month
-//                 );
-//                 if (monthIndex === -1) {
-//                     acc[yearIndex].months.push({
-//                         month: month,
-//                         weeks: weeks,
-//                     });
-//                 } else {
-//                     acc[yearIndex].months[monthIndex].weeks =
-//                         acc[yearIndex].months[monthIndex].weeks.concat(weeks);
-//                 }
-//             }
-//             return acc;
-//         }, []);
-
-//         setMonthData(applicantsByMonth);
-//         console.log('monthData');
-//         console.log(monthData);
-
-//         // Group each week by month
-//         const weeksOfMonth = applicantsByMonth.map((month) => {
-//             const weeks = month.weeks;
-//             const weeksByMonth = weeks.reduce((acc, curr) => {
-//                 const week = curr.week;
-//                 const days = curr.days;
-//                 const weekIndex = acc.findIndex((w) => w.week === week);
-//                 if (weekIndex === -1) {
-//                     acc.push({
-//                         week: week,
-//                         days: days,
-//                     });
-//                 } else {
-//                     acc[weekIndex].days = acc[weekIndex].days.concat(days);
-//                 }
-//                 return acc;
-//             }, []);
-//             return {
-//                 month: month.month,
-//                 weeks: weeksByMonth,
-//             };
-//         });
-
-//         let filteredMonthData = [];
-
-//         // weeksOfMonth.map((month) => {
-//         //     month.weeks.map((week) => {
-//         //         week.days.map((day) => {
-//         //             console.log(day);
-//         //         })
-//         //     })
-//         //     filteredMonthData.push({
-//         //         'month' : month.month
-//         //     });
-//         // });
-//         setWeeksOfMonthData(weeksOfMonth);
-//         // console.log(filteredMonthData);
-//         // filteredMonthData.map((data) => {
-//         //     console.log(data.month);
-//         // })
-//         console.log('weeksOfMonth');
-//         console.log(weeksOfMonthData);
-
-//         // Group each day by month
-//         const daysOfMonth = applicantsByMonth.map((month) => {
-//             const weeks = month.weeks;
-//             const days = weeks.reduce((acc, curr) => {
-//                 const days = curr.days;
-//                 acc = acc.concat(days);
-//                 return acc;
-//             }, []);
-//             return {
-//                 month: month.month,
-//                 days: days,
-//             };
-//         });
-
-        
-//         setDaysOfMonthData(daysOfMonth);
-
-//         daysOfMonthData.map((data, index) => {
-//             if((currentMonth-1) == index) {
-//                 setFilteredDaysOfMonthData(data);
-//             }
-//         })
-//         console.log('daysOfMonthData');
-//         console.log(daysOfMonthData);
-//         console.log(filteredDaysOfMonthData);
-
-//     }, []);

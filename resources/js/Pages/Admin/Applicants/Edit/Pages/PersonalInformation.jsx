@@ -8,7 +8,7 @@ import { Calendar } from "primereact/calendar";
 import { RadioButton } from "primereact/radiobutton";
 
 import { Dropdown } from "primereact/dropdown";
-import InputTextWrapper from "@/Pages/FormComponents/InputTextWrapper";
+import InputTextWrapper from "../../../../FormComponents/InputTextWrapper";
 
 import {
     regions,
@@ -597,19 +597,6 @@ export default function PersonalInformation({back, values}) {
     return (
             <div class="step-1">
                 <div class="card rounded-0 border-0">
-                    <div class=" bg-light mb-2 font-bold mt-10">
-                        <div className="flex justify-between">
-                        <h4 class="card-title fw-bold">
-                            1. Personal information
-                        </h4>
-                        <Button
-                    icon="pi pi-arrow-left"
-                    className="mr-2"
-                    label="Back"
-                    onClick={() => back()}
-                />
-                        </div>
-                    </div>
                     <div class="card-body pb-0 row">
                         <div class="col-md-6 mb-4">
                             <label
