@@ -73,49 +73,7 @@ export default function Welcome(props) {
                                     Team
                                 </a>
                             </li>
-                            <li className="dropdown">
-                                <a href="#">
-                                    <span>Drop Down</span>
-                                    <i className="bi bi-chevron-down"></i>
-                                </a>
-                                <ul>
-                                    <li>
-                                        <a href="#">Drop Down 1</a>
-                                    </li>
-                                    <li className="dropdown">
-                                        <a href="#">
-                                            <span>Deep Drop Down</span>
-                                            <i className="bi bi-chevron-right"></i>
-                                        </a>
-                                        <ul>
-                                            <li>
-                                                <a href="#">Deep Drop Down 1</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Deep Drop Down 2</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Deep Drop Down 3</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Deep Drop Down 4</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Deep Drop Down 5</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#">Drop Down 2</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Drop Down 3</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Drop Down 4</a>
-                                    </li>
-                                </ul>
-                            </li>
+                            
                             <li>
                                 <a
                                     className="nav-link scrollto"
@@ -529,12 +487,7 @@ export default function Welcome(props) {
                                                 can explore various employment options.
                                             </li>
                                         </ul>
-                                        <p className="fst-italic">
-                                            Lorem ipsum dolor sit amet,
-                                            consectetur adipiscing elit, sed do
-                                            eiusmod tempor incididunt ut labore
-                                            et dolore magna aliqua.
-                                        </p>
+                                     
                                     </div>
                                     <div className="col-lg-6 order-1 order-lg-2 text-center">
                                         <img
@@ -548,47 +501,28 @@ export default function Welcome(props) {
                             <div className="tab-pane" id="tab-4">
                                 <div className="row">
                                     <div className="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                                        <h3>
-                                            Omnis fugiat ea explicabo sunt
-                                            dolorum asperiores sequi inventore
-                                            rerum
-                                        </h3>
                                         <p>
-                                            Ullamco laboris nisi ut aliquip ex
-                                            ea commodo consequat. Duis aute
-                                            irure dolor in reprehenderit in
-                                            voluptate velit esse cillum dolore
-                                            eu fugiat nulla pariatur. Excepteur
-                                            sint occaecat cupidatat non
-                                            proident, sunt in culpa qui officia
-                                            deserunt mollit anim id est laborum
+                                            
                                         </p>
                                         <p className="fst-italic">
-                                            Lorem ipsum dolor sit amet,
-                                            consectetur adipiscing elit, sed do
-                                            eiusmod tempor incididunt ut labore
-                                            et dolore magna aliqua.
+                                            
                                         </p>
                                         <ul>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                Ullamco laboris nisi ut aliquip
-                                                ex ea commodo consequat.
+                                                    Ensure the speedy, equitable and efficient delivery of 
+                                                    employment services delivery to maximize the impact of various 
+                                                    employment programs and services at the grassroots level.
                                             </li>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                Duis aute irure dolor in
-                                                reprehenderit in voluptate
-                                                velit.
+                                                    To maintain a fresh, up to date, skills registry system of all 
+                                                    households in the City.
                                             </li>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                Ullamco laboris nisi ut aliquip
-                                                ex ea commodo consequat. Duis
-                                                aute irure dolor in
-                                                reprehenderit in voluptate
-                                                trideta storacalaperda mastiro
-                                                dolore eu fugiat nulla pariatur.
+                                                    To maintain a fresh, up to date, skills registry system of all 
+                                                    households in the City.
                                             </li>
                                         </ul>
                                     </div>
@@ -605,27 +539,7 @@ export default function Welcome(props) {
                     </div>
                 </section>
 
-                <section id="cta" className="cta">
-                    <div className="container">
-                        <div className="row" data-aos="zoom-out">
-                            <div className="col-lg-9 text-center text-lg-start">
-                                <h3>Call To Action</h3>
-                                <p>
-                                    Duis aute irure dolor in reprehenderit in
-                                    voluptate velit esse cillum dolore eu fugiat
-                                    nulla pariatur. Excepteur sint occaecat
-                                    cupidatat non proident, sunt in culpa qui
-                                    officia deserunt mollit anim id est laborum.
-                                </p>
-                            </div>
-                            <div className="col-lg-3 cta-btn-container text-center">
-                                <a className="cta-btn align-middle" href="#">
-                                    Call To Action
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                
 
                 <section id="services" className="services">
                     <div className="container">
