@@ -380,15 +380,26 @@ export default function Authorization({
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post("/api/applicants", {
-        onSuccess: () =>{
-            sessionStorage.clear();
-        },
-        onError: () => {
-            console.log(errors);
-        },}
-        );
+        setSubmitted(true);
+        if(
+            (data.e_signature !== undefined) &&
+            (authorizationAccepted !== false && authorizationAccepted !== null) &&
+            isErrorImage === false
+        )
+        {
+            post("/api/applicants", {
+            onSuccess: () =>{
+                sessionStorage.clear();
+            },
+            onError: () => {
+                console.log(errors);
+            },}
+            );
+        }
+        
     };
+
+    const [isSubmitted, setSubmitted] = useState(false);
 
     const handleFileUpload = (e, filename) => {
         let fileExtension = e.target.value.split('.').pop();
@@ -413,17 +424,19 @@ export default function Authorization({
                     </h4>
                     <div class="card-body pl-0 pt-3">
                         <div class="row">
-                            <h6 class="indent-16 !text-gray-500">
-                                <Checkbox
+                        <div className="col-md-1 flex justify-end">
+                        <Checkbox
                                     className="mr-3"
                                     onChange={(e) =>
-                                        {
-                                            e.checked ? setAuthorizationAccepted(1) : setAuthorizationAccepted(0)
-                                        }
+                                        setAuthorizationAccepted(e.checked)
                                     }
-                                    checked={authorizationAccepted == 1 ? true : false }
+                                    checked={authorizationAccepted}
                                 ></Checkbox>
-                                This is to certify that all data/information
+                        </div>
+                            <div className="col-md-11">
+                            <h6 class=" !text-gray-500">
+                            
+                            This is to certify that all data/information
                                 that I have provided in this form are true to
                                 the best of my knowledge.This Is also to
                                 authorized the DOLE to include my profile in the
@@ -433,7 +446,10 @@ export default function Authorization({
                                 employers who have access to the Registry. I am
                                 also aware that DOLE is not obliged to seek
                                 employment on my behalf.
-                            </h6>
+                        </h6>
+                        {(isSubmitted && (authorizationAccepted === null || authorizationAccepted === false)) && <span className="text-red-500 text-xs">Applicant Signature is required!.</span>}
+                            </div>
+                            
                         </div>
                     </div>
                     <div class="row mt-5">
@@ -467,6 +483,7 @@ export default function Authorization({
                                     onChange={(e) => handleFileUpload(e, "product_image")}
                                 />
                                 {isErrorImage && <span className="text-red-500 text-xs">File must be png or jpg.</span>}
+                                {(isSubmitted && data.e_signature === undefined) && <span className="text-red-500 text-xs">Applicant Signature is required!.</span>}
                             </div>
                         </div>
                     </div>

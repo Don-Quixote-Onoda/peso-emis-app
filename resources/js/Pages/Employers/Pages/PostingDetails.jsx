@@ -20,7 +20,8 @@ export default function EstablishmentContactDetails({
         sessionStorage.getItem("postingDate"),
         "postingDate"
     );
-
+    
+    const [isErrorImage, setErrorImage] = useState(false);
     const [validUntil, setValidUntil] = useSessionStorage(
         sessionStorage.getItem("validUntil"),
         "validUntil"
@@ -46,7 +47,7 @@ export default function EstablishmentContactDetails({
 
     const submit = (e) => {
         e.preventDefault()
-        if(authorizationAccepted)
+        if(authorizationAccepted && !isErrorImage)
             post('/api/employers', {
                 onSuccess: () =>{
                     sessionStorage.clear();
@@ -82,6 +83,19 @@ export default function EstablishmentContactDetails({
         className:
             "custom-cancel-btn p-button-danger p-button-rounded p-button-outlined",
     };
+
+    const handleFileUpload = (e, filename) => {
+        let fileExtension = e.target.value.split('.').pop();
+        if(fileExtension === 'png' || fileExtension === 'jpg')
+        {
+            setErrorImage(false);
+           sessionStorage.setItem('e_signature', JSON.stringify(e.target.files[0]));
+           setData('e_signature', e.target.files[0] );
+        }
+        else {
+            setErrorImage(true);
+        }
+    }
 
     return (
         <form onSubmit={(e) => submit(e)}>
@@ -158,49 +172,36 @@ export default function EstablishmentContactDetails({
                     </div>
                     <div class="row mt-5">
                         <div class="flex justify-center">
-                            {/* <div class="mb-3 w-96">
+                            <div class="mb-3 w-96">
                                 <label
                                     for="formFile"
                                     class="form-label inline-block mb-2 text-gray-700"
                                 >
-                                    Upload employer signature
+                                    Upload applicant signature
                                 </label>
-                                <Tooltip
-                                    target=".custom-choose-btn"
-                                    content="Choose"
-                                    position="bottom"
+                                <input
+                                    class="form-control
+                      block
+                      w-full
+                      px-3
+                      py-1.5
+                      text-base
+                      font-normal
+                      text-gray-700
+                      bg-white bg-clip-padding
+                      border border-solid border-gray-300
+                      rounded
+                      transition
+                      upload-applicant-signature
+                      ease-in-out
+                      m-0
+                      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                    type="file"
+                                    id="formFile"
+                                    onChange={(e) => handleFileUpload(e, "product_image")}
                                 />
-                                <Tooltip
-                                    target=".custom-upload-btn"
-                                    content="Upload"
-                                    position="bottom"
-                                />
-                                <Tooltip
-                                    target=".custom-cancel-btn"
-                                    content="Clear"
-                                    position="bottom"
-                                />
-
-                                <FileUpload
-                                    ref={fileUploadRef}
-                                    name="demo[]"
-                                    url="/api/upload"
-                                    multiple
-                                    accept="image/*"
-                                    maxFileSize={1000000}
-                                    onUpload={onTemplateUpload}
-                                    onSelect={onTemplateSelect}
-                                    onError={onTemplateClear}
-                                    onClear={onTemplateClear}
-                                    headerTemplate={headerTemplate}
-                                    itemTemplate={itemTemplate}
-                                    emptyTemplate={emptyTemplate}
-                                    chooseOptions={chooseOptions}
-                                    uploadOptions={uploadOptions}
-                                    cancelOptions={cancelOptions}
-                                />
-                                <span class="text-danger !text-xs upload-employer-signature-error"></span>
-                            </div> */}
+                                {isErrorImage && <span className="text-red-500 text-xs">File must be png or jpg.</span>}
+                            </div>
                         </div>
                     </div>
                 </div>

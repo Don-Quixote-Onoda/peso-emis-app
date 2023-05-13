@@ -1,57 +1,92 @@
 import { Link, Head } from "@inertiajs/react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { slice } from "lodash";
+import { slice, pick, uniqBy } from "lodash";
+import Footer from "./Applicants/Components/Footer";
 
 export default function Welcome(props) {
     const [jobInfo, setJobInfo] = useState();
     const [isCompleted, setIsCompleted] = useState(false);
     const [index, setIndex] = useState(5);
-    const initialJobInfo = slice(props.jobs, 0, index);
+    const [jobs, setJobs] = useState();
+    const [employers, setEmployers] = useState();
+    const [currentEmployer, setCurrentEmployer] = useState();
+    const initialJobInfo = slice(jobs, 0, index).reverse();
+
+    useEffect(() => {
+        let unfilteredEmployer = [];
+        props.jobs.map((job) => {
+            unfilteredEmployer.push(pick(job.employer, ["establishment_name"]));
+        });
+        setEmployers(uniqBy(unfilteredEmployer, "establishment_name"));
+
+        let currentJobs = [];
+        props.jobs.map((job) => {
+            if (job.employer.establishment_name == props.jobs[0].employer.establishment_name)
+                currentJobs.push(job);
+        });
+        setJobs(currentJobs);
+        console.log(currentEmployer);
+
+    },[]);
 
     function timeAgo(date) {
         const seconds = Math.floor((new Date() - new Date(date)) / 1000);
         let interval = Math.floor(seconds / 31536000);
-      
+
         if (interval >= 1) {
-          return interval + " year" + (interval === 1 ? "" : "s") + " ago";
+            return interval + " year" + (interval === 1 ? "" : "s") + " ago";
         }
         interval = Math.floor(seconds / 2592000);
         if (interval >= 1) {
-          return interval + " month" + (interval === 1 ? "" : "s") + " ago";
+            return interval + " month" + (interval === 1 ? "" : "s") + " ago";
         }
         interval = Math.floor(seconds / 86400);
         if (interval >= 1) {
-          return interval + " day" + (interval === 1 ? "" : "s") + " ago";
+            return interval + " day" + (interval === 1 ? "" : "s") + " ago";
         }
         interval = Math.floor(seconds / 3600);
         if (interval >= 1) {
-          return interval + " hour" + (interval === 1 ? "" : "s") + " ago";
+            return interval + " hour" + (interval === 1 ? "" : "s") + " ago";
         }
         interval = Math.floor(seconds / 60);
         if (interval >= 1) {
-          return interval + " minute" + (interval === 1 ? "" : "s") + " ago";
+            return interval + " minute" + (interval === 1 ? "" : "s") + " ago";
         }
-        return Math.floor(seconds) + " second" + (seconds === 1 ? "" : "s") + " ago";
-      }
+        return (
+            Math.floor(seconds) +
+            " second" +
+            (seconds === 1 ? "" : "s") +
+            " ago"
+        );
+    }
 
     const loadMore = () => {
         setIndex(index + 5);
-        console.log(index);
-        if (index >= post.length) {
+        let currentIndex = index + 5;
+        let post = props.jobs;
+        if (currentIndex >= post.length) {
             setIsCompleted(true);
         } else {
             setIsCompleted(false);
         }
     };
 
-    useEffect(() => {
-        console.log(initialJobInfo);
-    });
+    const setHandleCurrentEmployer = (name) => {
+        console.log(name);
+        setCurrentEmployer(name);
+        console.log(currentEmployer);
+        let currentJobs = [];
+        props.jobs.map((job) => {
+            if (job.employer.establishment_name == name)
+                currentJobs.push(job);
+        });
+        setJobs(currentJobs);
+    };
 
     return (
         <>
-        <Head title="PESO-EMIS" />
+            <Head title="PESO-EMIS" />
 
             <header
                 id="header"
@@ -60,7 +95,7 @@ export default function Welcome(props) {
                 <div className="container d-flex align-items-center justify-content-between">
                     <div className="logo">
                         <h1>
-                            <a href="index.html">PESO EMIS</a>
+                            <a href="/">PESO EMIS</a>
                         </h1>
                     </div>
 
@@ -388,7 +423,7 @@ export default function Welcome(props) {
                                 >
                                     <i className="ri-body-scan-line"></i>
                                     <h4 className="d-none d-lg-block">
-                                       Beneficiaries
+                                        Beneficiaries
                                     </h4>
                                 </a>
                             </li>
@@ -713,7 +748,9 @@ export default function Welcome(props) {
                                         </Link>
                                     </h4>
                                     <p className="description">
-                                        Registation Form for Establishments, Please fill out the form correctly and honestly.
+                                        Registation Form for Establishments,
+                                        Please fill out the form correctly and
+                                        honestly.
                                     </p>
                                 </div>
                             </div>
@@ -738,7 +775,9 @@ export default function Welcome(props) {
                                         </Link>
                                     </h4>
                                     <p className="description">
-                                    Registation Form for Jobseekers, Please fill out the form correctly and honestly.
+                                        Registation Form for Jobseekers, Please
+                                        fill out the form correctly and
+                                        honestly.
                                     </p>
                                 </div>
                             </div>
@@ -748,17 +787,48 @@ export default function Welcome(props) {
 
                 <section id="jobPosting" className="jobPosting">
                     <div className="container">
-                        <div className="section-title" data-aos="zoom-out">
+                        <div className="section-title pb-2" data-aos="zoom-out">
                             <h2>Job Posts</h2>
                             <p>Check out the latest Job Postings</p>
                         </div>
-
+                    </div>
+                    <div className="mx-5">
+                        <nav id="navbar" className="navbar mb-10 employer">
+                            <ul>
+                                {employers && employers.map((employer, index) => (
+                                    <li>
+                                        <a
+                                            onClick={(e) =>
+                                                setHandleCurrentEmployer(employer.establishment_name)
+                                            }
+                                            className={
+                                                (index == 0 ||
+                                                    currentEmployer ==
+                                                        employer.establishment_name) &&
+                                                "active"
+                                            }
+                                        >
+                                            {employer.establishment_name}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                            <i className="bi bi-list mobile-nav-toggle"></i>
+                        </nav>
                         <div class="row job-postings">
                             <div
                                 className={`job-posts ${
                                     jobInfo ? "basis-2/4 showJobInfo" : ""
                                 }`}
                             >
+                                {initialJobInfo.length == 0 && (
+                                    <div
+                                        style={{ height: "30vh" }}
+                                        className="flex items-center flex-column justify-center text-4xl"
+                                    >
+                                        <h1>No job posts available.</h1>
+                                    </div>
+                                )}
                                 {initialJobInfo.map(
                                     (job) =>
                                         job.is_active == 1 && (
@@ -801,9 +871,9 @@ export default function Welcome(props) {
                                                             {job.place_of_work}
                                                         </p>
                                                         <p className="text-sm py-1">
-                                                            { 
-                                                            timeAgo(job.created_at)
-                                                            }
+                                                            {timeAgo(
+                                                                job.created_at
+                                                            )}
                                                         </p>
                                                     </div>
                                                 </div>
@@ -859,9 +929,7 @@ export default function Welcome(props) {
                                             Email your application
                                         </a>
                                         <p className="my-2">
-                                            {
-                                                timeAgo(jobInfo.created_at)
-                                            }
+                                            {timeAgo(jobInfo.created_at)}
                                         </p>
                                         <h4 className="text-md font-bold my-3">
                                             Qualifications:
@@ -873,17 +941,33 @@ export default function Welcome(props) {
                                             }}
                                             className=""
                                         >
-                                            <li>{
-                                                    jobInfo.employer.employer_qualification_requirement[jobInfo.id-1].other_qualification
-                                                }</li>
+                                            <li>
+                                                {
+                                                    jobInfo.employer
+                                                        .employer_qualification_requirement[
+                                                        jobInfo.id - 1
+                                                    ].other_qualification
+                                                }
+                                            </li>
                                         </ul>
                                         <p className="my-2">
-                                            Salary: {parseFloat(jobInfo.salary).toLocaleString('en-PH', { style: 'currency', currency: 'PHP' })} per month
+                                            Salary:{" "}
+                                            {parseFloat(
+                                                jobInfo.salary
+                                            ).toLocaleString("en-PH", {
+                                                style: "currency",
+                                                currency: "PHP",
+                                            })}{" "}
+                                            per month
                                         </p>
                                         <p className="text-md font-bold my-3">
-                                            Experience: {
-                                                    jobInfo.employer.employer_qualification_requirement[jobInfo.id-1].work_of_experience
-                                                }
+                                            Experience:{" "}
+                                            {
+                                                jobInfo.employer
+                                                    .employer_qualification_requirement[
+                                                    jobInfo.id - 1
+                                                ].work_of_experience
+                                            }
                                         </p>
                                         <ul
                                             style={{
@@ -894,7 +978,10 @@ export default function Welcome(props) {
                                         >
                                             <li>
                                                 {
-                                                    jobInfo.employer.employer_qualification_requirement[jobInfo.id-1].other_qualification
+                                                    jobInfo.employer
+                                                        .employer_qualification_requirement[
+                                                        jobInfo.id - 1
+                                                    ].other_qualification
                                                 }
                                             </li>
                                         </ul>
@@ -902,20 +989,14 @@ export default function Welcome(props) {
                                 </div>
                             )}
                         </div>
-                        {isCompleted ? (
-                            <button 
-                            onClick={loadMore}
-                            className="cursor transition hover:bg-stone-400 my-5 bg-stone-500 p-3 rounded text-white">
-                            See Mores
-                        </button>
-                        ) : (
-                             <button 
-                            onClick={loadMore}
-                            className="cursor transition hover:bg-stone-400 my-5 bg-stone-500 p-3 rounded text-white">
-                            See More
-                        </button>
+                        {(!isCompleted && initialJobInfo.length > 0) && (
+                            <button
+                                onClick={loadMore}
+                                className="cursor transition hover:bg-stone-400 my-5 bg-stone-500 p-3 rounded text-white"
+                            >
+                                See More
+                            </button>
                         )}
-                        
                     </div>
                 </section>
 
@@ -1351,6 +1432,7 @@ export default function Welcome(props) {
                     </div>
                 </section>
             </main>
+            <Footer />
         </>
     );
 }
