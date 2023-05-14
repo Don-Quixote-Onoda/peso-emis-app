@@ -133,7 +133,7 @@ export default function Users(props) {
             errors={props.errors}
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Users</h2>}
         >
-            <Head title="users" />
+            <Head title="EMIS - Users" />
             <div className="mt-5 max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             {
                 type == 'default' && <UsersTable users={users} setType={setType} editUser={editUser} viewUser={viewUser} confirmDeleteUser={confirmDeleteUser} />

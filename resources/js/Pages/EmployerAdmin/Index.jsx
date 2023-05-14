@@ -135,7 +135,7 @@ export default function Index(props) {
                 </h2>
             }
         >
-            <Head title="Job Posting" />
+            <Head title="EMIS - Job Posting" />
             {type == "default" && (
                 <div className="card mt-5 max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     <JobPostingTable

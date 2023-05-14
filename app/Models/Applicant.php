@@ -44,7 +44,8 @@ class Applicant extends Model
         "e_signature",
         "is_authorization_accepted",
         "is_hired",
-        "date_hired"
+        "date_hired",
+        "is_deleted"
     ];
 
 

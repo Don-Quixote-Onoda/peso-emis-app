@@ -15,23 +15,24 @@ class AdminApplicantsController extends Controller
     {
         $response = array();
 
-        $applicants = Applicant::all();
+        $applicants = Applicant::where('is_deleted', 0)->orderByDesc('id')->get();
 
-        foreach($applicants as $applicant) {
-            array_push($response, array(
-                $applicant,
-                $applicant->applicant_address,
-                $applicant->applicant_educational_background,
-                $applicant->applicant_eligibility,
-                $applicant->applicant_job_preference,
-                $applicant->applicant_job_preference_location,
-                $applicant->applicant_language_spoken,
-                $applicant->applicant_status,
-                $applicant->applicant_work_experience,
-                $applicant->applicant_professional_license,
-                $applicant->applicant_vocational_course
-            ));
-        }
+foreach ($applicants as $applicant) {
+    array_push($response, array(
+        $applicant,
+        $applicant->applicant_address,
+        $applicant->applicant_educational_background,
+        $applicant->applicant_eligibility,
+        $applicant->applicant_job_preference,
+        $applicant->applicant_job_preference_location,
+        $applicant->applicant_language_spoken,
+        $applicant->applicant_status,
+        $applicant->applicant_work_experience,
+        $applicant->applicant_professional_license,
+        $applicant->applicant_vocational_course
+    ));
+}
+
 
         return Inertia::render('Admin/Applicants/Index', ['applicants' => $applicants,'isMatches'=>false]);
     }
@@ -81,7 +82,9 @@ class AdminApplicantsController extends Controller
      */
     public function destroy(Request $request)
     {
-        Applicant::find($request->id)->delete();
-        return Redirect::route('delete-applicant');
+        $applicant = Applicant::find($request->id);
+        $applicant->is_deleted = 1;
+        $applicant->save();
+        return Redirect::route('admin-applicants');
     }
 }

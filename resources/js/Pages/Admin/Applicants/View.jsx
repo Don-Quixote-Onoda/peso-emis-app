@@ -16,9 +16,7 @@ import {
 export default function ViewApplicant({ applicant, back }) {
     useEffect(() => {
         console.log(applicant);
-        console.log(
-            applicant.skills_without_formal_training.includes("Auto Mechanic")
-        );
+      
     }, []);
 
     const civilStatuses = [
@@ -104,6 +102,10 @@ export default function ViewApplicant({ applicant, back }) {
         });
     };
 
+    const moneyFormatBody = (val) => {
+        return parseFloat(val).toLocaleString('en-PH', { style: 'currency', currency: 'PHP' })
+    }
+
     const pob_barangay = (e) => {
         pob_setCityAddr(e.target.selectedOptions[0].text);
         barangays(e.target.value).then((response) => {
@@ -118,7 +120,7 @@ export default function ViewApplicant({ applicant, back }) {
     const [isValidated, setValidated] = useState(true);
 
     useEffect(() => {
-        pob_region();
+        pob_setRegionAddr(applicant.applicant_address[0].region);
         regions().then((response) => {
             response.map((region) => {
                 if(region.region_name === applicant.applicant_address[0].region) {
@@ -203,31 +205,7 @@ export default function ViewApplicant({ applicant, back }) {
 
     const pa_region = () => {
         regions().then((response) => {
-            response.map((region) => {
-                if(region.region_name === applicant.applicant_address[1].region) {
-                    provinces(region.region_code).then((response) => {
-                        pa_setProvince(response);
-                        pa_setCity([]);
-                        pa_setBarangay([]);
-                        response.map((province) => {
-                            if(province.province_name === applicant.applicant_address[1].province) {
-                                pa_setProvinceAddr(province.province_code);
-                                cities(province.province_code).then((response) => {
-                                    pa_setCity(response);
-                                    response.map((city) => {
-                                        if(city.city_name === applicant.applicant_address[1].municipality_or_city) {
-                                            pa_setCityAddr(city.city_code);
-                                            barangays(city.city_code).then((response) => {
-                                                pa_setBarangay(response);
-                                            });
-                                        }
-                                    });
-                                });
-                            }
-                        })
-                    });
-                }
-            });
+            pa_setRegion(response);
         });
     };
 
@@ -261,7 +239,40 @@ export default function ViewApplicant({ applicant, back }) {
 
     useEffect(() => {
         pa_region();
+        pa_setRegionAddr(applicant.applicant_address[1].region);
+        regions().then((response) => {
+            response.map((region) => {
+                if(region.region_name === applicant.applicant_address[1].region) {
+                    provinces(region.region_code).then((response) => {
+                        pa_setProvince(response);
+                        pa_setCity([]);
+                        pa_setBarangay([]);
+                        response.map((province) => {
+                            if(province.province_name === applicant.applicant_address[1].province) {
+                                pa_setProvinceAddr(province.province_code);
+                                cities(province.province_code).then((response) => {
+                                    pa_setCity(response);
+                                    response.map((city) => {
+                                        if(city.city_name === applicant.applicant_address[1].municipality_or_city) {
+                                            pa_setCityAddr(city.city_code);
+                                            barangays(city.city_code).then((response) => {
+                                                pa_setBarangay(response);
+                                            });
+                                        }
+                                    });
+                                });
+                            }
+                        })
+                    });
+                }
+            });
+        });
     }, []);
+
+    const filterNameText = (val) => {
+        return val.split(':')[1].replace(/["}]/g, '');
+        
+    }
 
     return (
         <>
@@ -422,7 +433,7 @@ export default function ViewApplicant({ applicant, back }) {
 
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-900 border-light-emphasis pi_surname"
-                                value={applicant.civil_status}
+                                value={filterNameText(applicant.civil_status)}
                                 disabled
                             />
                             <span class="text-danger !text-xs pi_civil_status-error h-10"></span>
@@ -1233,7 +1244,7 @@ export default function ViewApplicant({ applicant, back }) {
                                 </label>
                                 <InputText
                                     className="form-control !text-xs !py-2.5 !text-gray-900 border-light-emphasis pi_surname"
-                                    value={applicant.disability}
+                                    value={applicant.disability !== ''? filterNameText(applicant.disability) : ''}
                                     disabled
                                 />
                                 <span class="text-danger !text-xs pi_disability-error"></span>
@@ -1305,8 +1316,7 @@ export default function ViewApplicant({ applicant, back }) {
                                                     checked={
                                                         applicant
                                                             .applicant_status
-                                                            .applicant_status_type ===
-                                                        "Wage Employed"
+                                                            .applicant_status_type.includes("Wage Employed")
                                                     }
                                                     disabled
                                                 />
@@ -1329,8 +1339,7 @@ export default function ViewApplicant({ applicant, back }) {
                                                     checked={
                                                         applicant
                                                             .applicant_status
-                                                            .applicant_status_type ===
-                                                        "Self Employed"
+                                                            .applicant_status_type.includes("Self Employed")
                                                     }
                                                     disabled
                                                 />
@@ -1359,8 +1368,7 @@ export default function ViewApplicant({ applicant, back }) {
                                                     checked={
                                                         applicant
                                                             .applicant_status
-                                                            .applicant_status_type ===
-                                                        "New Entrant/Fresh Graduate"
+                                                            .applicant_status_type.includes("New Entrant/Fresh Graduate")
                                                     }
                                                     disabled
                                                 />
@@ -1383,8 +1391,7 @@ export default function ViewApplicant({ applicant, back }) {
                                                     checked={
                                                         applicant
                                                             .applicant_status
-                                                            .applicant_status_type ===
-                                                        "Finished Contract"
+                                                            .applicant_status_type.includes("Finished Contract")
                                                     }
                                                     disabled
                                                 />
@@ -1407,8 +1414,7 @@ export default function ViewApplicant({ applicant, back }) {
                                                     checked={
                                                         applicant
                                                             .applicant_status
-                                                            .applicant_status_type ===
-                                                        "Resigned"
+                                                            .applicant_status_type.includes("Resigned")
                                                     }
                                                     disabled
                                                 />
@@ -1430,8 +1436,7 @@ export default function ViewApplicant({ applicant, back }) {
                                                     checked={
                                                         applicant
                                                             .applicant_status
-                                                            .applicant_status_type ===
-                                                        "Retired"
+                                                            .applicant_status_type.includes("Retired")
                                                     }
                                                     disabled
                                                 />
@@ -1454,8 +1459,7 @@ export default function ViewApplicant({ applicant, back }) {
                                                     checked={
                                                         applicant
                                                             .applicant_status
-                                                            .applicant_status_type ===
-                                                        "Terminated/Laidoff(local)"
+                                                            .applicant_status_type.includes("Terminated/Laidoff(local)")
                                                     }
                                                     disabled
                                                 />
@@ -1478,8 +1482,7 @@ export default function ViewApplicant({ applicant, back }) {
                                                     checked={
                                                         applicant
                                                             .applicant_status
-                                                            .applicant_status_type ===
-                                                        "Teminated/Laidoff(abroad)"
+                                                            .applicant_status_type.includes("Teminated/Laidoff(abroad)")
                                                     }
                                                     disabled
                                                 />
@@ -1509,8 +1512,7 @@ export default function ViewApplicant({ applicant, back }) {
                                                     checked={
                                                         applicant
                                                             .applicant_status
-                                                            .applicant_status_type ===
-                                                        "Others, specify"
+                                                            .applicant_status_type.includes("Others, specify")
                                                     }
                                                     disabled
                                                 />
@@ -1657,7 +1659,7 @@ export default function ViewApplicant({ applicant, back }) {
                                 </label>
                                 <InputText
                                     className="form-control !text-xs !py-2.5 !text-gray-900 border-light-emphasis pi_surname"
-                                    value={applicant.expected_salary}
+                                    value={moneyFormatBody(applicant.expected_salary)}
                                     disabled
                                 />
                                 <span class="text-danger !text-xs expected_salary-error"></span>
@@ -2191,7 +2193,7 @@ export default function ViewApplicant({ applicant, back }) {
                                                 </label>
                                                 <InputText
                                                     className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-900 border-light-emphasis"
-                                                    value={data.status}
+                                                    value={data.status !== '' ? filterNameText(data.status): ''}
                                                     placeholder="Position"
                                                     disabled
                                                 />
@@ -2596,7 +2598,7 @@ export default function ViewApplicant({ applicant, back }) {
                                     value="Auto Mechanic"
                                     disabled
                                     checked={
-                                        applicant.is_authorization_accepted
+                                        applicant.is_authorization_accepted === 0
                                     }
                                 />
                                 This is to certify that all data/information

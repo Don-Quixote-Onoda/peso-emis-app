@@ -9,7 +9,7 @@ import { useForm } from '@inertiajs/react';
 import EditApplicant from './Edit/Edit';
 import { Dialog } from "primereact/dialog";
 import { Button } from "primereact/button";
-
+import { reverse } from 'lodash';
 export default function Applicants(props) {
 
     const [applicants, setApplicants] = useState([]);
@@ -165,7 +165,7 @@ export default function Applicants(props) {
                 errors={props.errors}
                 header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Applicants</h2>}
             >
-                <Head title="Applicants" />
+                <Head title="EMIS - Applicants" />
                 <div className=" mt-5 max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 {
                     type == 'default' && <ApplicantsTable applicants={applicants} 

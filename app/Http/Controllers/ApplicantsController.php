@@ -74,6 +74,7 @@ class ApplicantsController extends Controller
             'skills_without_formal_training' => trim($request->personalDetails['OtherSkills'], '"'),
             'e_signature' => $e_signature,
             'is_authorization_accepted' => trim($request->personalDetails['authorizationAccepted'], '"') == true? 1: 0,
+            "is_deleted" => 0
         ]);
 
         $applicant->applicant_address()->create([
