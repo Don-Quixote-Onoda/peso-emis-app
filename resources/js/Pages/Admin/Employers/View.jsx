@@ -144,7 +144,7 @@ export default function ViewApplicant({ employer, back }) {
     const brgy = (e) => {
         setBarangayAddr(e.target.selectedOptions[0].text);
     };
-
+     
     useEffect(() => {
         region();
         setRegionAddr(employer.employer_address.region);
