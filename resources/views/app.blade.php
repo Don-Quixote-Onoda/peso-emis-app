@@ -11,13 +11,8 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Favicons -->
-<<<<<<< HEAD
-    <link href="{{ asset('img\homepage\peso_icon_1.png') }}" rel="icon">
-    <link href="{{ asset('img\homepage\apple-touch-icon.png') }}" rel="apple-touch-icon">
-=======
     <link href="{{ asset('favicon.ico') }}" rel="icon">
     <link href="{{ asset('favicon.ico') }}" rel="apple-touch-icon">
->>>>>>> 581e239e676eadfe9323370522ce29020f0bd269
 
     <!-- Google Fonts -->
     <link
