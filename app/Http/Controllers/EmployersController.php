@@ -47,7 +47,7 @@ class EmployersController extends Controller
             'email' => trim($request->email, '"'),
             'password' => Hash::make(trim($request->password, '"')),
             'role' => 0,
-            'is_activate' => 0
+            'is_activated' => 0
         ]);
 
         $employer = Employer::create([

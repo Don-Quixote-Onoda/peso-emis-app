@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'pesoadmin@admin.com',
             'password' => Hash::make('pesoadmin'),
             'role' => 1,
-            'is_activate' => 0
+            'is_activated' => 0
         ]);
 
         event(new Registered($user));
