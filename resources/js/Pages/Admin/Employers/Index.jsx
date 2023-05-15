@@ -123,7 +123,7 @@ export default function employers(props) {
                 </h2>
             }
         >
-            <Head title="employers" />
+            <Head title="EMIS - Employers" />
             <div className="mt-5 max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 {type == "default" && (
                     <EmployersTable

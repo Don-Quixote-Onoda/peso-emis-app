@@ -40,6 +40,7 @@ export default function InteractiveDemo() {
     return (
         <>
             <Head title="EMIS - Employer Forms" />
+            <Header />
             <Content>
                 <div class="d-flex applicant-container max-w-screen-lg mx-auto">
                     <div class="basis-full applicant-content pr-1">

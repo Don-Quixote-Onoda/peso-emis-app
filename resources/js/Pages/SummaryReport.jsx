@@ -6,6 +6,7 @@ import { CategoryScale } from "chart.js";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { Button } from "primereact/button";
+import { Head } from '@inertiajs/react';
 
 export default function SummaryReports(props) {
     const [monthData, setMonthData] = useState([]);
@@ -319,6 +320,7 @@ export default function SummaryReports(props) {
                 </h2>
             }
         >
+            <Head title="EMIS - Summary Reports" />
             <div className="container px-6 mx-auto grid">
                 <h2 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
                     Summary Reports

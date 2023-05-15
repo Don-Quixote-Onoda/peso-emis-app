@@ -142,7 +142,6 @@ export default function Dashboard(props) {
         }
     >
         <Head title="EMIS-Dashboard" />
-
         {
             props.auth.user.role == 1 && <div className="py-12">
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -411,7 +410,7 @@ props.auth.user.role == 0 && jobPosts && <div className="py-12">
             <h1 style={{fontSize: '32px', fontWeight: 'bold', textAlign: 'center'}}>
                 Please contact the administrator to activate your account.
                 <br />
-                <NavLink style={{backgroundColor: 'black', color: 'white', padding: '5px 20px !important', borderBottom: '0 !important'}}  method="post" href={route('logout')} as="button">
+                <NavLink style={{backgroundColor: 'black', color: 'white', padding: '5px 30px', borderBottom: '0', borderRadius: '5px'}}  method="post" href={route('logout')} as="button">
                     Back
                 </NavLink>
             </h1>

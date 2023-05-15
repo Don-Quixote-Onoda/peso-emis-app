@@ -21,7 +21,7 @@ export default function Index(props) {
                 </h2>
             }
         >
-            <Head title="Employer Settings" />
+           <Head title="EMIS - Employer Settings" />
             <div className="card mt-5 max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
            {
             employer &&  <EstablishmentDetails employer={employer}  />

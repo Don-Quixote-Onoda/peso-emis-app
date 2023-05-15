@@ -355,9 +355,37 @@ export default function PersonalInformation({
         { name: "Others" },
     ];
 
+    const [isSubmitted, setSubmitted] = useState(false);
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        setActiveIndex(activeIndex + 1);
+        setSubmitted(true);
+        if(
+            (surname !== null && surname !== '') &&
+            (firstname !== null && firstname !== '') && 
+            (middlename !== null && middlename !== '') && 
+            (birthdate !== null && birthdate !== '') && 
+            (religion !== null && religion !== '') && 
+            (sex !== null && sex !== '') && 
+            (civilStatus !== null && civilStatus !== '') && 
+            (willingToWorkImmediately !== null && willingToWorkImmediately !== '') && 
+            (activelyLookingForWork !== null && activelyLookingForWork !== '') && 
+            (emailAddress !== null && emailAddress !== '') && 
+            (phoneNumber !== null && phoneNumber !== '') && 
+            (employementStatus !== null && employementStatus !== '') && 
+            (pob_regionData !== null && pob_regionData !== '') && 
+            (pob_provinceData !== null && pob_provinceData !== '') && 
+            (pob_cityData !== null && pob_cityData !== '') && 
+            (pob_barangayData !== null && pob_barangayData !== '') && 
+            (pob_houseNumber_Street_Village !== null && pob_houseNumber_Street_Village !== '') &&
+            (pa_regionData !== null && pa_regionData !== '') && 
+            (pa_provinceData !== null && pa_provinceData !== '') && 
+            (pa_cityData !== null && pa_cityData !== '') && 
+            (pa_barangayData !== null && pa_barangayData !== '') && 
+            (pa_houseNumber_Street_Village !== null && pa_houseNumber_Street_Village !== '')
+        )
+            setActiveIndex(activeIndex + 1);
+
     };
 
     const [teminated_Laidoff_abroad, setTeminated_Laidoff_abroad] =
@@ -616,7 +644,9 @@ export default function PersonalInformation({
                                 value={surname}
                                 onChange={(e) => setSurname(e.target.value)}
                             />
-                            <span class="text-danger !text-xs pi_surname-error"></span>
+                            {
+                                (isSubmitted && (surname === null || surname === '')) && <span class="text-danger !text-xs pi_firstname-error">Last Name is required!</span>
+                            }
                         </div>
                         <div class="col-md-6 mb-4">
                             <label
@@ -631,7 +661,9 @@ export default function PersonalInformation({
                                 onChange={(e) => setFirstname(e.target.value)}
                             />
 
-                            <span class="text-danger !text-xs pi_firstname-error"></span>
+{
+                                (isSubmitted && (firstname === null || firstname === '')) && <span class="text-danger !text-xs pi_firstname-error">First Name is required!</span>
+                            }
                         </div>
                         <div class="col-md-6 mb-4">
                             <label
@@ -645,7 +677,9 @@ export default function PersonalInformation({
                                 value={middlename}
                                 onChange={(e) => setMiddlename(e.target.value)}
                             />
-                            <span class="text-danger !text-xs pi_middlename-error"></span>
+                            {
+                                (isSubmitted && (middlename === null || middlename === '')) && <span class="text-danger !text-xs pi_firstname-error">Middle Name is required!</span>
+                            }
                         </div>
                         <div class="col-md-6 mb-4">
                             <label
@@ -674,7 +708,9 @@ export default function PersonalInformation({
                                 onChange={(e) => setBithdate(e.value)}
                                 dateFormat="dd/mm/yy"
                             />
-                            <span class="text-danger !text-xs pi_date_of_birth-error"></span>
+                            {
+                                (isSubmitted && (birthdate === null || birthdate === '')) && <span class="text-danger !text-xs pi_firstname-error">Date of Birth is required!</span>
+                            }
                         </div>
                         <div class="col-md-6 mb-4">
                             <label
@@ -688,7 +724,9 @@ export default function PersonalInformation({
                                 value={religion}
                                 onChange={(e) => setReligion(e.target.value)}
                             />
-                            <span class="text-danger !text-xs pi_religion-error"></span>
+                            {
+                                (isSubmitted && (religion === null || religion === '')) && <span class="text-danger !text-xs pi_firstname-error">Religion is required!</span>
+                            }
                         </div>
                         <div class="col-md-4 mb-4">
                             <label
@@ -734,7 +772,9 @@ export default function PersonalInformation({
                                     </div>
                                 </div>
                             </div>
-                            <span class="text-danger !text-xs pi_sex-error"></span>
+                            {
+                                (isSubmitted && (sex === null || sex === '')) && <span class="text-danger !text-xs pi_firstname-error">Sex is required!</span>
+                            }
                         </div>
                         <div class="col-md-4 mb-4">
                             <label
@@ -751,9 +791,11 @@ export default function PersonalInformation({
                                 optionLabel="name"
                                 editable
                                 placeholder="Select a Civil Status"
-                                className="form-select h-10 !text-xs pi_civil_status !text-gray-500 !py-2.5 border-light-emphasis"
+                                className="form-select !text-xs pi_civil_status !text-gray-500 !py-2.5 border-light-emphasis"
                             />
-                            <span class="text-danger !text-xs pi_civil_status-error h-10"></span>
+                            {
+                                (isSubmitted && (civilStatus === null || civilStatus === '')) && <span class="text-danger !text-xs pi_firstname-error">Civil Status is required!</span>
+                            }
                         </div>
                         <div class="col-md-4 mb-4">
                             <label
@@ -772,7 +814,9 @@ export default function PersonalInformation({
                                     cm
                                 </span>
                             </div>
-                            <span class="text-danger !text-xs pi_height-error"></span>
+                            {
+                                (isSubmitted && (height === null || height === '')) && <span class="text-danger !text-xs pi_firstname-error">Height is required!</span>
+                            }
                         </div>
                         <div class="col-md-4 mb-4">
                             <div class="row">
@@ -832,6 +876,9 @@ export default function PersonalInformation({
                                         </div>
                                     </div>
                                 </div>
+                                {
+                                (isSubmitted && (activelyLookingForWork === null || activelyLookingForWork === '')) && <span class="text-danger !text-xs pi_firstname-error">Are you actively looking for work field is required!</span>
+                            }
                                 <span class="text-danger !text-xs pi_looking_for_work-error"></span>
                                 {activelyLookingForWork == "Yes" && (
                                     <div class="col-md-12 mb-4 is_actively_looking_for_work">
@@ -933,6 +980,9 @@ export default function PersonalInformation({
                                     </div>
                                 )}
                             </div>
+                            {
+                                (isSubmitted && (willingToWorkImmediately === null || willingToWorkImmediately === '')) && <span class="text-danger !text-xs pi_firstname-error">Willing to work immediately field is required!</span>
+                            }
                         </div>
                         <div class="col-md-4 mb-4">
                             <label
@@ -1002,6 +1052,9 @@ export default function PersonalInformation({
                                     </div>
                                 )}
                             </div>
+                            {
+                                (isSubmitted && (is4psBeneficiary === null || is4psBeneficiary === '')) && <span class="text-danger !text-xs pi_firstname-error">4Ps beneficiary field is required!</span>
+                            }
                         </div>
                         <div class="col-md-6 mb-4">
                             <h5 class="fw-bold text-dark-emphasis mb-4 text-gray-500 !text-md">
@@ -1116,7 +1169,7 @@ export default function PersonalInformation({
                                         <span className="text-red-500">*</span>
                                     </label>
                                     <select
-                                        onChange={pob_brgy}
+                                        onChange={pa_brgy}
                                         class=" pa_barangay !text-xs !rounded form-select !border-gray-300 !py-2.5 !text-gray-500 form-select border-light-emphasis"
                                         aria-label="Default select example"
                                     >
@@ -1154,6 +1207,9 @@ export default function PersonalInformation({
                                     />
                                 </div>
                             </div>
+                            {
+                                (isSubmitted && (pob_regionData === null || pob_provinceData === null || pob_cityData === null || pob_barangayData === null || pob_houseNumber_Street_Village === null || pob_houseNumber_Street_Village === '')) && <span class="text-danger !text-xs pi_firstname-error">Place of Birth is required!</span>
+                            }
                         </div>
 
                         <div class="col-md-6 mb-4">
@@ -1307,6 +1363,9 @@ export default function PersonalInformation({
                                     />
                                 </div>
                             </div>
+                            {
+                                (isSubmitted && (pa_regionData === null || pa_provinceData === null || pa_cityData === null || pa_barangayData === null || pa_houseNumber_Street_Village === null || pa_houseNumber_Street_Village === '')) && <span class="text-danger !text-xs pi_firstname-error">Present Address is required!</span>
+                            }
                         </div>
                     </div>
                     <div class="card-body pt-0 row">
@@ -1324,7 +1383,9 @@ export default function PersonalInformation({
                                     setEmailAddress(e.target.value)
                                 }
                             />
-                            <span class="text-danger !text-xs pi_email_address-error"></span>
+                            {
+                                (isSubmitted && (emailAddress === null || emailAddress === '')) && <span class="text-danger !text-xs pi_firstname-error">Email Address is required!</span>
+                            }
                         </div>
                         <div class="col-md-6 mb-4">
                             <label
@@ -1338,7 +1399,9 @@ export default function PersonalInformation({
                                 value={phoneNumber}
                                 onChange={(e) => setPhoneNumber(e.target.value)}
                             />
-                            <span class="text-danger !text-xs pi_celphone_number-error"></span>
+                            {
+                                (isSubmitted && (phoneNumber === null || phoneNumber === '')) && <span class="text-danger !text-xs pi_firstname-error">Cellphone is required!</span>
+                            }
                         </div>
                         <div class="col-md-6 mb-4">
                             <label
@@ -1431,7 +1494,7 @@ export default function PersonalInformation({
                                     optionLabel="name"
                                     editable
                                     placeholder="Select a Disability"
-                                    className="form-select h-10 !text-xs pi_civil_status !text-gray-500 !py-2.5 border-light-emphasis"
+                                    className="form-select !text-xs pi_civil_status !text-gray-500 !py-2.5 border-light-emphasis"
                                 />
                                 <span class="text-danger !text-xs pi_disability-error"></span>
                             </div>
@@ -1495,7 +1558,9 @@ export default function PersonalInformation({
                                     </div>
                                     <span class="text-danger !text-xs pi_employed-error"></span>
                                 </div>
-
+                                {
+                                (isSubmitted && (employementStatus === null || employementStatus === '')) && <span class="text-danger !text-xs pi_firstname-error">Employment Status is required!</span>
+                            }
                                 {employementStatus === "Employed" && (
                                     <div class="row ">
                                         <div class="col-md-12">

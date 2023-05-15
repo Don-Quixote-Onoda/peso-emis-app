@@ -700,23 +700,43 @@ export default function EstablishmentDetails({
                                             ))}
                                     </select>
                                 </div>
-                                <div class="col-md-12 mb-4  d-flex flex-column justify-content-between">
-                                    <InputTextWrapper
-                                        stateValue={houseNumber_Street_Village}
-                                        stateMethod={
-                                            setHouseNumber_Street_Village
-                                        }
-                                        isRequired={false}
-                                        label={"House No./ Street Village"}
+                                <div class="col-md-12 mb-4">
+                                        <label
+                                            for="inputEmail4"
+                                            className={`form-label !text-xs ${classNames(
+                                                { "p-error": errors.value }
+                                            )} !text-gray-400 fw-bold text-light-emphasis`}
+                                        >
+                                            {" "}
+                                            House No./ Street Village
+                                            <span className="text-red-500">
+                                                *
+                                            </span>{" "}
+                                        </label>
+                                        <InputText
+                                            value={houseNumber_Street_Village}
+                                            className={`form-control !text-xs !py-2.5 ${classNames(
+                                                {
+                                                    "p-invalid":
+                                                    isSubmitted &&
+                                                    (houseNumber_Street_Village == "" ||
+                                                        houseNumber_Street_Village == null),
+                                                }
+                                            )} !text-gray-500 border-light-emphasis establishment-name`}
+                                            onChange={(e) =>
+                                                setHouseNumber_Street_Village(e.target.value)
+                                            }
+                                        />
+                                        {isSubmitted &&
+                                (houseNumber_Street_Village == "" ||
+                                    houseNumber_Street_Village == null) && (
+                                    <InputError
+                                        message="House No./ Street Village is required!"
+                                        className="mt-2 text-xs"
                                     />
-                                    {isSubmitted && !isCompleteAddress && (
-                                <InputError
-                                    message="Complete Address is required!"
-                                    className="mt-2"
-                                />
-                            )}
-                                </div>
-                                
+                                )}
+                        </div>
+                               
                             </div>
                             
                         </div>

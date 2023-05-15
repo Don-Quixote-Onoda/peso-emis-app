@@ -79,6 +79,7 @@ class DashboardController extends Controller
 
         $applicants = Applicant::where('expected_salary', $salary)
             ->where('is_hired', 0)
+            ->where('is_deleted', 0)
             ->whereIn('id', function ($query) use ($postion_title) {
                 $query->select('applicant_id')
                     ->from('applicant_job_preferences')

@@ -13,7 +13,15 @@ export default function JobPreference({
 }) {
     const handleSubmit = (e) => {
         e.preventDefault();
-        setActiveIndex(activeIndex + 1);
+        setSubmitted(true);
+        if(
+            (expectedSalary !== null && expectedSalary !== '') &&
+            ((preferredOccupation1 !== null && preferredOccupation1 !== '') || (preferredOccupation2 !== null && preferredOccupation2 !== '') || (preferredOccupation3 !== null && preferredOccupation3 !== '') || (preferredOccupation4 !== null && preferredOccupation4 !== '')) &&
+            ((preferredWorkLocationLocal1 !== null && preferredWorkLocationLocal1 !== '') || (preferredWorkLocationLocal2 !== null && preferredWorkLocationLocal2 !== '') || (preferredOccupation3 !== null && preferredOccupation3 !== '') ) ||
+            ((preferredWorkLocationOverseas1 !== null && preferredWorkLocationOverseas1 !== '') || (preferredWorkLocationOverseas2 !== null && preferredWorkLocationOverseas2 !== '') || (preferredWorkLocationOverseas3 !== null && preferredWorkLocationOverseas3 !== '') )
+        )
+            setActiveIndex(activeIndex + 1);
+
     };
 
     const [checkedLocal, setCheckedLocal] = useSessionStorage(
@@ -69,6 +77,8 @@ export default function JobPreference({
         sessionStorage.getItem("preferredWorkLocationOverseas2"),
         "preferredWorkLocationOverseas2"
     );
+
+    const [isSubmitted, setSubmitted] = useState(false);
 
     const [preferredWorkLocationOverseas3, setpreferredWorkLocationOverseas3] = useSessionStorage(
         sessionStorage.getItem("preferredWorkLocationOverseas3"),
@@ -142,6 +152,9 @@ export default function JobPreference({
                                     </div>
                                     <span class="text-danger !text-xs preferred_occupation-error"></span>
                                 </div>
+                                {
+                                (isSubmitted && ((preferredOccupation1 === null || preferredOccupation1 === '') && (preferredOccupation2 === null || preferredOccupation2 === '') && (preferredOccupation3 === null || preferredOccupation3 === '') && (preferredOccupation4 === null || preferredOccupation4 === ''))) && <span class="text-danger !text-xs pi_firstname-error">Preferred Occupation is required!</span>
+                            }
                             </div>
 
                             <div class="col-md-12 mb-4">
@@ -238,6 +251,9 @@ export default function JobPreference({
                                         </div>
                                     </div>
                                 </div>
+                                {
+                                (isSubmitted && ((preferredWorkLocationLocal1 === null || preferredWorkLocationLocal1 === '') && (preferredWorkLocationLocal2 === null || preferredWorkLocationLocal2 === '') && (preferredOccupation3 === null || preferredOccupation3 === '') ) && ((preferredWorkLocationOverseas1 === null || preferredWorkLocationOverseas1 === '') && (preferredWorkLocationOverseas2 === null || preferredWorkLocationOverseas2 === '') && (preferredWorkLocationOverseas3 === null || preferredWorkLocationOverseas3 === '') )) && <span class="text-danger !text-xs pi_firstname-error">Preferred Work Location is required!</span>
+                            }
                             </div>
                             <div class="col-md-4 mb-4">
                                 <label
@@ -247,7 +263,9 @@ export default function JobPreference({
                                     Expected Salary (Range){" "}
                                 </label>
                                 <InputText className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname" value={expectedSalary} onChange={(e) => setExpectedSalary(e.target.value)} />
-                                <span class="text-danger !text-xs expected_salary-error"></span>
+                                {
+                                (isSubmitted && (expectedSalary === null || expectedSalary === '')) && <span class="text-danger !text-xs pi_firstname-error">Expected Salary is required!</span>
+                            }
                             </div>
                             <div class="col-md-4 mb-4">
                                 <label

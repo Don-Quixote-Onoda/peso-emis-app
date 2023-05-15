@@ -49,7 +49,7 @@ export default function RegisterEmployer({
 
     const submit = (e) => {
         e.preventDefault();
-
+        setSubmitted(true);
         if(password === confirmPassword) 
             setActiveIndex(activeIndex + 1);
     };
@@ -124,7 +124,7 @@ export default function RegisterEmployer({
                     />
 
                     {
-                        (password !== confirmPassword) && <InputError message="Password don't match!" className="mt-2" />
+                        (password !== confirmPassword && isSubmitted) && <InputError message="Password don't match!" className="mt-2" />
                     }
                 </div>
 

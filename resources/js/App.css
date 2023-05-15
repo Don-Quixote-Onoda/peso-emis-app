@@ -78,3 +78,14 @@
     flex-basis: 100%;
 }
 
+.employer a{
+    background-color: #ef66038a;
+    color: #fff;
+    cursor: pointer;
+}
+
+.employer :is(.active) {
+    background-color: #ef6603;
+    color: #fff;
+    cursor: pointer;
+}

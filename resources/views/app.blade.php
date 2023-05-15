@@ -11,8 +11,13 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Favicons -->
+<<<<<<< HEAD
     <link href="{{ asset('img\homepage\peso_icon_1.png') }}" rel="icon">
     <link href="{{ asset('img\homepage\apple-touch-icon.png') }}" rel="apple-touch-icon">
+=======
+    <link href="{{ asset('favicon.ico') }}" rel="icon">
+    <link href="{{ asset('favicon.ico') }}" rel="apple-touch-icon">
+>>>>>>> 581e239e676eadfe9323370522ce29020f0bd269
 
     <!-- Google Fonts -->
     <link
@@ -46,6 +51,7 @@
         class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
+<script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('vendor\homevendor\aos\aos.js') }}"></script>
 <script src="{{ asset('vendor\homevendor\bootstrap\js\bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('vendor\homevendor\glightbox\js\glightbox.min.js') }}"></script>

@@ -35,12 +35,19 @@ class EmployersController extends Controller
      */
     public function store(Request $request)
     {
+        $e_signature = null;
+        if($request->hasFile('e_signature')) {
+            $filename = time().rand(3, 9). '.'.$request->file('e_signature')->getClientOriginalExtension();
+            $request->file('e_signature')->move('uploads/applicants/', $filename);
+            $e_signature = $filename;
 
+        }
         $user = User::create([
             'name' => trim($request->username, '"'),
             'email' => trim($request->email, '"'),
             'password' => Hash::make(trim($request->password, '"')),
-            'role' => 0
+            'role' => 0,
+            'is_activate' => 0
         ]);
 
         $employer = Employer::create([
@@ -50,7 +57,7 @@ class EmployersController extends Controller
             "employer_type" => trim($request->employerType, '"'),
             "total_work_force" => trim($request->totalWorkForce, '"'),
             "line_of_business" => trim($request->lineOfBusiness, '"'),
-            "e_signature" => 'brightlocal_esignature.png',
+            "e_signature" => $e_signature,
             "is_authorization_accepted" => 1,
             'user_id' => $user->id
         ]);

@@ -12,7 +12,14 @@ export default function Language({
 }) {
     const handleSubmit = (e) => {
         e.preventDefault();
-        setActiveIndex(activeIndex + 1);
+        setSubmitted(true);
+        if(
+            ((readEnglish !== null && readEnglish !== false) || (writeEnglish !== null && writeEnglish !== false) || (speakEnglish !== null && speakEnglish !== false) || (understandEnglish !== null && understandEnglish !== false)) ||
+            ((readFilipino !== null && readFilipino !== false) || (writeFilipino !== null && writeFilipino !== false) || (speakFilipino !== null && speakFilipino !== false) || (understandFilipino !== null && understandFilipino !== false)) ||
+            (((readOthers !== null && readOthers !== false) || (writeOthers !== null && writeOthers !== false) || (speakOthers !== null && speakOthers !== false) || (understandOthers !== null && understandOthers !== false)) && (othersLanguage !== null && othersLanguage !== ''))
+        )
+            setActiveIndex(activeIndex + 1);
+
     };
 
     const [othersLanguage, setOthersLangauge] = useSessionStorage(
@@ -70,6 +77,8 @@ export default function Language({
         sessionStorage.getItem("understandOthers"),
         "understandOthers"
     );
+
+    const [isSubmitted, setSubmitted] = useState(false);
 
     return (
         <form onSubmit={(e) => handleSubmit(e)}>
@@ -288,6 +297,10 @@ export default function Language({
                             </div>
                         </div>
                     </div>
+                    {
+                                (isSubmitted && ((readEnglish === null || readEnglish === false) && (writeEnglish === null || writeEnglish === false) && (speakEnglish === null || speakEnglish === false) && (understandEnglish === null || understandEnglish === false)) && ((readFilipino === null || readFilipino === false) && (writeFilipino === null || writeFilipino === false) && (speakFilipino === null || speakFilipino === false) && (understandFilipino === null || understandFilipino === false)) && ((readOthers === null || readOthers === false) && (writeOthers === null || writeOthers === false) && (speakOthers === null || speakOthers === false) && (understandOthers === null || understandOthers === false) || (othersLanguage === null || othersLanguage === '')) ) &&
+                                 <span class="text-danger !text-xs pi_firstname-error">Language or Dialect Proficiency is required!</span>
+                            }
                 </div>
             </div>
             <NavigatorButton
