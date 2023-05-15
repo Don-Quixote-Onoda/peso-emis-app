@@ -637,7 +637,6 @@ export default function Welcome(props) {
                             <h2>Job Posts</h2>
                             <p>Check out the latest Job Postings</p>
                         </div>
-
                         <div class="row job-postings">
                             <div
                                 className={`job-posts ${
