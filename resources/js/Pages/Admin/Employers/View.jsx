@@ -40,8 +40,11 @@ export default function ViewApplicant({ employer, back }) {
     });
 
     useEffect(() => {
-        setPostingDetails(employer.employer_vacancy_detail);
-    })
+       
+        setPostingDetails(employer.employer_vacancy_detail.filter(item => {
+            return item.is_active == 1;
+        }));
+    },[]);
     const onGlobalFilterChange = (e) => {
         const value = e.target.value;
         let _filters = { ...filters };
@@ -80,16 +83,13 @@ export default function ViewApplicant({ employer, back }) {
             "houseNumber_Street_Village"
         );
 
-    const [regionData, setRegion] = useState([]);
-    const [provinceData, setProvince] = useSessionStorage(
-        sessionStorage.getItem("provinceData"),
-        "provinceData"
-    );
-    const [cityData, setCity] = useSessionStorage(
+    const [regionData, setRegionData] = useState([]);
+    const [provinceData, setProvinceData] = useState([]);
+    const [cityData, setCityData] = useSessionStorage(
         sessionStorage.getItem("cityData"),
         "cityData"
     );
-    const [barangayData, setBarangay] = useSessionStorage(
+    const [barangayData, setBarangayData] = useSessionStorage(
         sessionStorage.getItem("barangayData"),
         "barangayData"
     );
@@ -113,7 +113,7 @@ export default function ViewApplicant({ employer, back }) {
 
     const region = () => {
         regions().then((response) => {
-            setRegion(response);
+            setRegionData(response);
         });
     };
 
@@ -148,30 +148,34 @@ export default function ViewApplicant({ employer, back }) {
     useEffect(() => {
         region();
         setRegionAddr(employer.employer_address.region);
+        setProvinceAddr(employer.employer_address.province);
+        setCityAddr(employer.employer_address.city_or_municipality);
+        setBarangayAddr(employer.employer_address.barangay);
+        setHouseNumber_Street_Village(employer.employer_address.address);
         regions().then((response) => {
             response.map((region) => {
-                if(region.region_name === employer.employer_address.region) {
+                if(region.region_name === regionAddr) {
                     provinces(region.region_code).then((response) => {
-                        setProvince(response);
-                        console.log(province);
-                        setCity([]);
-                        setBarangay([]);
-                        // response.map((province) => {
-                        //     if(province.province_name === employer.employer_address.province) {
-                        //         setProvinceAddr(province.province_code);
-                        //         cities(province.province_code).then((response) => {
-                        //             setCity(response);
-                        //             response.map((city) => {
-                        //                 if(city.city_name === employer.employer_address.municipality_or_city) {
-                        //                     setCityAddr(city.city_code);
-                        //                     barangays(city.city_code).then((response) => {
-                        //                         setBarangay(response);
-                        //                     });
-                        //                 }
-                        //             });
-                        //         });
-                        //     }
-                        // })
+                        setProvinceData(response);
+                        setCityData([]);
+                        setBarangayData([]);
+                        response.map((province) => {
+                            if(province.province_name === provinceAddr) {
+
+                                cities(province.province_code).then((response) => {
+                                setCityData(response);
+
+                                    response.map((city) => {
+                                        if(city.city_name === cityAddr) {
+                                            barangays(city.city_code).then((response) => {
+                                                setBarangayData(response);
+
+                                            });
+                                        }
+                                    });
+                                });
+                            }
+                        })
 
                     });
                 }
@@ -299,11 +303,11 @@ export default function ViewApplicant({ employer, back }) {
         setDeleteJobPostingDialog(false);
     };
     const deleteJobPosting = () => {
-        post(route('delete-job-posting'), {
+        post(route('delete-employer-jobposting'), {
             forceFormData: true,
             onSuccess: () =>{
                 reset();
-                setType('default');
+                back();
                 setDeleteJobPostingDialog(false);
             },
             onError: () => {
@@ -327,10 +331,6 @@ export default function ViewApplicant({ employer, back }) {
             />
         </React.Fragment>
     );
-
-    
-    
-
 
     return (
         <>
@@ -622,6 +622,7 @@ export default function ViewApplicant({ employer, back }) {
                                     onSelect={region}
                                     className=" province !text-xs !py-2.5 !text-gray-500 !rounded form-select !border-gray-300"
                                     aria-label="Default select example"
+                                    disabled
                                 >
                                     <option disabled>Select Region</option>
                                     {regionData &&
@@ -655,6 +656,8 @@ export default function ViewApplicant({ employer, back }) {
                                     onChange={city}
                                     class=" province !text-xs !py-2.5 !text-gray-500 !rounded form-select !border-gray-300 form-select border-light-emphasis"
                                     aria-label="Default select example"
+                                    disabled
+
                                 >
                                     <option disabled>Select Province</option>
                                     {provinceData &&
@@ -688,6 +691,8 @@ export default function ViewApplicant({ employer, back }) {
                                     onChange={barangay}
                                     class=" city !text-xs !py-2.5 !rounded form-select !border-gray-300 !text-gray-500 form-select border-light-emphasis"
                                     aria-label="Default select example"
+                                    disabled
+
                                 >
                                     <option disabled>Select City</option>
                                     {cityData &&
@@ -720,6 +725,8 @@ export default function ViewApplicant({ employer, back }) {
                                     onChange={brgy}
                                     class=" barangay !text-xs !rounded form-select !border-gray-300 !py-2.5 !text-gray-500 form-select border-light-emphasis"
                                     aria-label="Default select example"
+                                    disabled
+
                                 >
                                     <option disabled>Select Barangay</option>
                                     {barangayData &&

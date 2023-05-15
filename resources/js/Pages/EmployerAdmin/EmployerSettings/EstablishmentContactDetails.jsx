@@ -53,18 +53,8 @@ export default function EstablishmentContactDetails({ employer, back, setType })
     const onSubmit = (e) => {
         setSubmitted(true);
         
-        if(
-            data.establishment_accronym &&
-            data.establishment_name &&
-            data.is_authorization_accepted &&
-            data.line_of_business &&
-            data.total_work_force &&
-            data.TIN_number &&
-            data.e_signature &&
-            data.employer_type
-        )
-         {
-            post('/api/update-employer-establishment-details', {
+       
+            post(route('update-establishment-contact-details'), {
                 forceFormData: true,
                 onSuccess: () =>{
                     console.log('success');
@@ -77,8 +67,6 @@ export default function EstablishmentContactDetails({ employer, back, setType })
                     // console.log(errors);
                 },
             });
-         }
-    
         
     };
 

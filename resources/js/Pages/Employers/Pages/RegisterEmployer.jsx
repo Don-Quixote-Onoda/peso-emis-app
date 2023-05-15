@@ -55,7 +55,7 @@ export default function RegisterEmployer({
     };
 
     return (
-        <form className="w-50 mx-auto mt-5" onSubmit={submit}>
+        <form className="w-full mx-auto mt-5" onSubmit={submit}>
                 <div>
                     <InputLabel htmlFor="name" value="Name" />
 

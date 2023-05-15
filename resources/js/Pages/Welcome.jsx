@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { slice } from "lodash";
 import Footer from "./Employers/Components/Footer";
+import '../App.css';
 
 export default function Welcome(props) {
     const [jobInfo, setJobInfo] = useState();
@@ -38,7 +39,6 @@ export default function Welcome(props) {
 
     const loadMore = () => {
         setIndex(index + 5);
-        console.log(index);
         if (index >= post.length) {
             setIsCompleted(true);
         } else {
@@ -46,10 +46,11 @@ export default function Welcome(props) {
         }
     };
 
-    useEffect(() => {
-        console.log(initialJobInfo);
-    });
+    const [isMobile, setMobile] = useState(false);
 
+    const showMobile = () => {
+        setMobile(!isMobile);
+    }
     return (
         <>
         <Head title="PESO-EMIS" />
@@ -65,8 +66,8 @@ export default function Welcome(props) {
                         </h1>
                     </div>
 
-                    <nav id="navbar" className="navbar">
-                        <ul>
+                    <nav id="navbar" className={`navbar ${isMobile? 'is-mobile':''}`}>
+                        <ul className="mobile-list">
                             <li>
                                 <a
                                     className="nav-link scrollto active"
@@ -114,7 +115,7 @@ export default function Welcome(props) {
                                 Login
                             </Link>
                         </ul>
-                        <i className="bi bi-list mobile-nav-toggle"></i>
+                        <i className={`bi ${isMobile ? 'bi-x-lg':'bi-list'} mobile-nav-toggle`} onClick={e => showMobile()}></i>
                     </nav>
                 </div>
             </header>
@@ -244,7 +245,7 @@ export default function Welcome(props) {
                             x="50"
                             y="3"
                             fill="rgba(255,255,255, .1)"
-                        ></use>
+                        />
                     </g>
                     <g className="wave2">
                         <use
@@ -252,7 +253,7 @@ export default function Welcome(props) {
                             x="50"
                             y="0"
                             fill="rgba(255,255,255, .2)"
-                        ></use>
+                        />
                     </g>
                     <g className="wave3">
                         <use
@@ -260,7 +261,7 @@ export default function Welcome(props) {
                             x="50"
                             y="9"
                             fill="#fff"
-                        ></use>
+                        />
                     </g>
                 </svg>
             </section>

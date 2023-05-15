@@ -339,16 +339,16 @@ export default function SummaryReports(props) {
                 
 
                     <div
-                        className="w-full overflow-x-auto card flex p-5 flex-wrap gap-5 flex-row "
+                        className="w-full overflow-x-auto card flex p-5 flex-wrap gap-5 flex-row summary-report"
                         
                     >
-                        <div style={{width: 'calc(calc(100% / 2) - 3rem)'}}>
+                        <div>
                             <Bar ref={ref} data={daysOfMonthDataGraph} style={{width: '100%', height: 'auto'}} />
                         </div>
-                        <div style={{width: 'calc(calc(100% / 2) - 3rem)'}}>
+                        <div>
                             <Bar ref={ref} data={daysOfWeekMonthDataGraph} style={{width: '100%', height: 'auto'}} />
                         </div>
-                        <div style={{width: 'calc(calc(100% / 2) - 3rem)'}}>
+                        <div>
                             <Bar ref={ref} data={monthDataGraph} style={{width: '100%', height: 'auto'}} />
                         </div>
                     </div>
@@ -363,16 +363,16 @@ export default function SummaryReports(props) {
                 <h1 className="text-2xl text-center mb-0 font-bold">Applicants Hired</h1>
                 <span className="text-xs text-center mb-4 font-bold d-block">{"("+getCurrentDateFormat()+")"}</span>
                     <div
-                        className="w-full overflow-x-auto card flex p-5 flex-wrap gap-5 flex-row "
+                        className="w-full overflow-x-auto card flex p-5 flex-wrap gap-5 flex-row summary-report "
                         
                     >
-                        <div style={{width: 'calc(calc(100% / 2) - 3rem)'}}>
+                        <div>
                             <Bar ref={ref} data={hiredDaysOfMonthDataGraph} style={{width: '100%', height: 'auto'}} />
                         </div>
-                        <div style={{width: 'calc(calc(100% / 2) - 3rem)'}}>
+                        <div>
                             <Bar ref={ref} data={hiredDaysOfWeekMonthDataGraph} style={{width: '100%', height: 'auto'}} />
                         </div>
-                        <div style={{width: 'calc(calc(100% / 2) - 3rem)'}}>
+                        <div>
                             <Bar ref={ref} data={hiredMonthDataGraph} style={{width: '100%', height: 'auto'}} />
                         </div>
                     </div>

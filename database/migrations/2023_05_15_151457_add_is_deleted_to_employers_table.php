@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('applicants', function (Blueprint $table) {
-                $table->integer('is_hired')->default(0);
+        Schema::table('employers', function (Blueprint $table) {
+            $table->boolean('is_deleted')->default(false);
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('applicants', function (Blueprint $table) {
-            $table->dropColumn('is_hired');
+        Schema::table('employers', function (Blueprint $table) {
+            $table->dropColumn('is_deleted');
         });
     }
 };

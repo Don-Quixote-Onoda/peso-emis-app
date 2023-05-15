@@ -1075,7 +1075,7 @@ export default function PersonalInformation({
                                         className=" pa_province !text-xs !py-2.5 !text-gray-500 !rounded form-select !border-gray-300"
                                         aria-label="Default select example"
                                     >
-                                        <option disabled>Select Region</option>
+                                        <option selected>Select Region</option>
                                         {pob_regionData &&
                                             pob_regionData.length > 0 &&
                                             pob_regionData.map((item) => (
@@ -1107,7 +1107,7 @@ export default function PersonalInformation({
                                         class=" pa_province !text-xs !py-2.5 !text-gray-500 !rounded form-select !border-gray-300 form-select border-light-emphasis"
                                         aria-label="Default select example"
                                     >
-                                        <option disabled>
+                                        <option selected>
                                             Select Province
                                         </option>
                                         {pob_provinceData &&
@@ -1141,7 +1141,7 @@ export default function PersonalInformation({
                                         class=" pa_city !text-xs !py-2.5 !rounded form-select !border-gray-300 !text-gray-500 form-select border-light-emphasis"
                                         aria-label="Default select example"
                                     >
-                                        <option disabled>Select City</option>
+                                        <option selected>Select City</option>
                                         {pob_cityData &&
                                             pob_cityData.length > 0 &&
                                             pob_cityData.map((item) => (
@@ -1173,7 +1173,7 @@ export default function PersonalInformation({
                                         class=" pa_barangay !text-xs !rounded form-select !border-gray-300 !py-2.5 !text-gray-500 form-select border-light-emphasis"
                                         aria-label="Default select example"
                                     >
-                                        <option disabled>
+                                        <option selected>
                                             Select Barangay
                                         </option>
                                         {pob_barangayData &&
@@ -1231,7 +1231,7 @@ export default function PersonalInformation({
                                         className=" pa_province !text-xs !py-2.5 !text-gray-500 !rounded form-select !border-gray-300"
                                         aria-label="Default select example"
                                     >
-                                        <option disabled>Select Region</option>
+                                        <option selected>Select Region</option>
                                         {pa_regionData &&
                                             pa_regionData.length > 0 &&
                                             pa_regionData.map((item) => (
@@ -1263,7 +1263,7 @@ export default function PersonalInformation({
                                         class=" pa_province !text-xs !py-2.5 !text-gray-500 !rounded form-select !border-gray-300 form-select border-light-emphasis"
                                         aria-label="Default select example"
                                     >
-                                        <option disabled>
+                                        <option selected>
                                             Select Province
                                         </option>
                                         {pa_provinceData &&
@@ -1297,7 +1297,7 @@ export default function PersonalInformation({
                                         class=" pa_city !text-xs !py-2.5 !rounded form-select !border-gray-300 !text-gray-500 form-select border-light-emphasis"
                                         aria-label="Default select example"
                                     >
-                                        <option disabled>Select City</option>
+                                        <option selected>Select City</option>
                                         {pa_cityData &&
                                             pa_cityData.length > 0 &&
                                             pa_cityData.map((item) => (
@@ -1329,7 +1329,7 @@ export default function PersonalInformation({
                                         class=" pa_barangay !text-xs !rounded form-select !border-gray-300 !py-2.5 !text-gray-500 form-select border-light-emphasis"
                                         aria-label="Default select example"
                                     >
-                                        <option disabled>
+                                        <option selected>
                                             Select Barangay
                                         </option>
                                         {pa_barangayData &&

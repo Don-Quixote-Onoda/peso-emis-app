@@ -581,7 +581,7 @@ export default function EstablishmentDetails({
                                         className=" pa_province !text-xs !py-2.5 !text-gray-500 !rounded form-select !border-gray-300"
                                         aria-label="Default select example"
                                     >
-                                        <option disabled>Select Region</option>
+                                        <option selected>Select Region</option>
                                         {regionData &&
                                             regionData.length > 0 &&
                                             regionData.map((item) => (
@@ -613,7 +613,7 @@ export default function EstablishmentDetails({
                                         class=" pa_province !text-xs !py-2.5 !text-gray-500 !rounded form-select !border-gray-300 form-select border-light-emphasis"
                                         aria-label="Default select example"
                                     >
-                                        <option disabled>
+                                        <option selected>
                                             Select Province
                                         </option>
                                         {provinceData &&
@@ -647,7 +647,7 @@ export default function EstablishmentDetails({
                                         class=" pa_city !text-xs !py-2.5 !rounded form-select !border-gray-300 !text-gray-500 form-select border-light-emphasis"
                                         aria-label="Default select example"
                                     >
-                                        <option disabled>Select City</option>
+                                        <option selected>Select City</option>
                                         {cityData &&
                                             cityData.length > 0 &&
                                             cityData.map((item) => (
@@ -679,7 +679,7 @@ export default function EstablishmentDetails({
                                         class=" pa_barangay !text-xs !rounded form-select !border-gray-300 !py-2.5 !text-gray-500 form-select border-light-emphasis"
                                         aria-label="Default select example"
                                     >
-                                        <option disabled>
+                                        <option selected>
                                             Select Barangay
                                         </option>
                                         {barangayData &&

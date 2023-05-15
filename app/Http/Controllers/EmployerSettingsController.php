@@ -28,6 +28,7 @@ class EmployerSettingsController extends Controller
             array_push($response, $employer[0]->employer_posting_detail);
             array_push($response, $employer[0]->employer_qualification_requirement);
             array_push($response, $employer[0]->employer_establishment_contact_detail);
+            array_push($response, $employer[0]->employer_address);
         return Inertia::render('EmployerAdmin/EmployerSettings/Index', [
             'employers' => $employer
         ]);
@@ -39,6 +40,40 @@ class EmployerSettingsController extends Controller
     public function create()
     {
         //
+    }
+
+    public function updateEstablishmentDetails(Request $request) {
+        $employer = Employer::find($request->id);
+        $employer->establishment_accronym = $request->establishment_accronym;
+        $employer->establishment_name = $request->establishment_name;
+        $employer->is_authorization_accepted = $request->is_authorization_accepted;
+        $employer->line_of_business = $request->line_of_business;
+        $employer->total_work_force = $request->total_work_force;
+        $employer->TIN_number = $request->TIN_number;
+        $employer->e_signature = $request->e_signature;
+        $employer->employer_type = $request->employer_type;
+        $employer->save();
+        $employer->employer_address->region = $request->region;
+        $employer->employer_address->province = $request->province;
+        $employer->employer_address->city_or_municipality = $request->city_or_municipality;
+        $employer->employer_address->barangay = $request->barangay;
+        $employer->employer_address->address = $request->address;
+        $employer->employer_address->save();
+
+        return Redirect::route('dashboard');
+    }
+
+    public function updateEstablishmentContactDetails(Request $request) {
+        $employer = Employer::find($request->id);
+        $employer->employer_establishment_contact_detail->email_address = $request->email_address;
+        $employer->employer_establishment_contact_detail->fax_number = $request->fax_number;
+        $employer->employer_establishment_contact_detail->fullname = $request->fullname;
+        $employer->employer_establishment_contact_detail->mobile_number = $request->mobile_number;
+        $employer->employer_establishment_contact_detail->position = $request->position;
+        $employer->employer_establishment_contact_detail->telephone_number = $request->telephone_number;
+        $employer->employer_establishment_contact_detail->title = $request->title;
+        $employer->employer_establishment_contact_detail->save();
+        return Redirect::route('dashboard');
     }
 
     /**

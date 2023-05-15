@@ -4,6 +4,9 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,9 +24,15 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        $this->call([
-            ApplicantSeeder::class,
-            EmployerSeeder::class,
+        $user = User::create([
+            'name' => 'PESO Admin',
+            'email' => 'pesoadmin@admin.com',
+            'password' => Hash::make('pesoadmin'),
+            'role' => 1,
+            'is_activate' => 0
         ]);
+
+        event(new Registered($user));
+       
     }
 }

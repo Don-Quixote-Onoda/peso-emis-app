@@ -152,8 +152,11 @@ class JobPostingController extends Controller
         $employer_qualification_requirement = EmployerQualificationRequirement::find($request->id);
         $employer_posting_detail = EmployerPostingDetail::find($request->id);
         $current_status = $employer_vacancy_detail->is_active == 0 ? 1 : 0;
+
         $employer_vacancy_detail->is_active = $current_status;
+
         $employer_vacancy_detail->save();
+
         // $employer_qualification_requirement->delete();
         // $employer_posting_detail->delete();
         return Redirect::route('job-postings');

@@ -6,6 +6,8 @@ import InputLabel from '../../Components/InputLabel';
 import PrimaryButton from '../../Components/PrimaryButton';
 import TextInput from '../../Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
+import Header from '../Applicants/Components/Header';
+import Footer from '../Applicants/Components/Footer';
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -31,10 +33,11 @@ export default function Login({ status, canResetPassword }) {
     };
 
     return (
+        <>
         <GuestLayout>
             <Head title="EMIS - Login" />
-
-            {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
+            <Header />
+            {status && <div className="mb-4 font-medium text-sm text-green-600 mt-5">{status}</div>}
 
             <form onSubmit={submit}>
                 <div>
@@ -92,6 +95,11 @@ export default function Login({ status, canResetPassword }) {
                     </PrimaryButton>
                 </div>
             </form>
+
         </GuestLayout>
+        <Footer />
+
+        </>
+        
     );
 }

@@ -91,12 +91,7 @@ export default function EstablishmentContactDetails({ employer, back, setType })
                         <h4 class="card-title fw-bold">
                         II. ESTABLISHMENT CONTACT DETAILS
                         </h4>
-                        <Button
-                    icon="pi pi-arrow-left"
-                    className="mr-2"
-                    label="Back"
-                    onClick={() => back()}
-                />
+                        
                         </div>
                     </div>
                     <div class="card-body row">

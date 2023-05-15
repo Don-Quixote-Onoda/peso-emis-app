@@ -163,6 +163,59 @@ export default function Authenticated({ auth, header, children }) {
                         </div>
 
                         <div className="mt-3 space-y-1">
+                        {
+                                auth.user.role == 1 && 
+                                <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
+                                    Dashboard
+                                </ResponsiveNavLink>
+                            }
+
+                            {
+                                auth.user.role == 0 &&
+                                <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
+                                    Dashboard
+                                </ResponsiveNavLink>
+                            }
+                            {
+                                auth.user.role == 1 && 
+                                <ResponsiveNavLink href={route('admin-applicants')} active={route().current('admin-applicants')}>
+                                    Applicants
+                                </ResponsiveNavLink>
+                            }
+
+                            {
+                                auth.user.role == 1 && 
+                                    <ResponsiveNavLink href={route('admin-employers')} active={route().current('admin-employers')}>
+                                        Employers
+                                    </ResponsiveNavLink>
+                            }
+
+{
+                                auth.user.role == 1 && 
+                               
+                                    <ResponsiveNavLink href={route('admin-users')} active={route().current('admin-users')}>
+                                        Users
+                                    </ResponsiveNavLink>
+                            }
+
+                            {
+                                auth.user.role == 0 &&
+                                <ResponsiveNavLink href={route('job-postings')} active={route().current('job-postings')}>
+                                    Job Posting
+                                </ResponsiveNavLink>
+                            }
+                            {
+                                auth.user.role == 0 && 
+                                <ResponsiveNavLink href={route('employer-settings')} active={route().current('employer-settings')}>
+                                    Employer's Setting
+                                </ResponsiveNavLink>
+                            }
+                            {
+                                auth.user.role == 1 &&
+                                <ResponsiveNavLink href={route('summary-reports')} active={route().current('summary-reports')}>
+                                    Summary Reports
+                                </ResponsiveNavLink>
+                            }
                             <ResponsiveNavLink href={route('profile.edit')}>Profile</ResponsiveNavLink>
                             <ResponsiveNavLink method="post" href={route('logout')} as="button">
                                 Log Out

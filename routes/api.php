@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployersController;
+use App\Http\Controllers\EmployerSettingsController;
 use App\Http\Controllers\JobPostingController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UsersController;
@@ -45,3 +46,7 @@ Route::post('users/activate', [UsersController::class, 'activate'])->name('activ
 Route::get('get-all-employer-job_posting/{id}', [DashboardController::class, 'getAllEmployerJobPosting'])->name('get-all-employer-job_posting');
 Route::get('get-matching-applicants/{position_title}/{salary}', [DashboardController::class, 'getMatchingApplicants'])->name('get-matching-applicants');
 Route::post('hire-applicant', [ApplicantsController::class, 'hireApplicant'])->name('hire-applicant');
+Route::post('delete-employer', [AdminEmployersController::class, 'destroy'])->name('delete-employer');
+Route::post('delete-employer-jobposting', [AdminEmployersController::class, 'deleteJobPosting'])->name('delete-employer-jobposting');
+Route::post('update-establishment-details', [EmployerSettingsController::class, 'updateEstablishmentDetails'])->name('update-establishment-details');
+Route::post('update-establishment-contact-details', [EmployerSettingsController::class, 'updateEstablishmentContactDetails'])->name('update-establishment-contact-details');
