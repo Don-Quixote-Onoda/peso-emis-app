@@ -10,7 +10,7 @@ class WelcomeController extends Controller
 {
     public function index() {
         $jobposts = array();
-        $vacancy = EmployerVacancyDetail::all();
+        $vacancy = EmployerVacancyDetail::where('is_active', 1)->get();
         foreach($vacancy as $jobpost) {
             array_push($jobposts, array(
                 $jobpost,

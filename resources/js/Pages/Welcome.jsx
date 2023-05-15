@@ -39,7 +39,7 @@ export default function Welcome(props) {
 
     const loadMore = () => {
         setIndex(index + 5);
-        if (index >= post.length) {
+        if (index >= initialJobInfo) {
             setIsCompleted(true);
         } else {
             setIsCompleted(false);
@@ -646,7 +646,6 @@ export default function Welcome(props) {
                             >
                                 {initialJobInfo.map(
                                     (job) =>
-                                        job.is_active == 1 && (
                                             <div
                                                 class="card"
                                                 onClick={() => {
@@ -693,7 +692,6 @@ export default function Welcome(props) {
                                                     </div>
                                                 </div>
                                             </div>
-                                        )
                                 )}
                             </div>
                             {jobInfo && (
@@ -788,13 +786,14 @@ export default function Welcome(props) {
                             )}
                         </div>
                         {isCompleted ? (
-                            <button 
-                            onClick={loadMore}
-                            className="cursor transition hover:bg-stone-400 my-5 bg-stone-500 p-3 rounded text-white">
-                            See Mores
-                        </button>
+                        //     <button 
+                        //     onClick={loadMore}
+                        //     className="cursor transition hover:bg-stone-400 my-5 bg-stone-500 p-3 rounded text-white">
+                        //     See Mores
+                        // </button>
+                        <span></span>
                         ) : (
-                             <button 
+                            initialJobInfo.length > 5 &&  <button 
                             onClick={loadMore}
                             className="cursor transition hover:bg-stone-400 my-5 bg-stone-500 p-3 rounded text-white">
                             See More
