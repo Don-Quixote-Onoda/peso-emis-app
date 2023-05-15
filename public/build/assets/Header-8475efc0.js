@@ -1,1 +1,0 @@
-import{a as e}from"./app-0bb05a73.js";function n(){return e("header",{id:"header",class:"fixed-top d-flex align-items-center ",children:e("div",{class:"container d-flex align-items-center justify-content-between",children:e("div",{class:"logo",children:e("h1",{children:e("a",{href:"/",children:"PESO EMIS"})})})})})}export{n as default};
