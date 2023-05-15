@@ -2,7 +2,7 @@ import { Link, Head } from "@inertiajs/react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { slice } from "lodash";
-
+import Footer from "./Employers/Components/Footer";
 
 export default function Welcome(props) {
     const [jobInfo, setJobInfo] = useState();
@@ -61,7 +61,7 @@ export default function Welcome(props) {
                 <div className="container d-flex align-items-center justify-content-between">
                     <div className="logo">
                         <h1>
-                            <a href="index.html">PESO EMIS</a>
+                            <a href="/">PESO EMIS</a>
                         </h1>
                     </div>
 
@@ -1235,6 +1235,7 @@ export default function Welcome(props) {
                     </div>
                 </section>
             </main>
+            <Footer />
         </>
     );
 }
