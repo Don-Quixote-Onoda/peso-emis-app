@@ -598,7 +598,7 @@ export default function Welcome(props) {
                                         </Link>
                                     </h4>
                                     <p className="description">
-                                        Registation Form for Establishments, Please fill out the form correctly and honestly.
+                                        Registration Form for Establishments, Please fill out the form correctly and honestly.
                                     </p>
                                 </div>
                             </div>
@@ -623,7 +623,7 @@ export default function Welcome(props) {
                                         </Link>
                                     </h4>
                                     <p className="description">
-                                    Registation Form for Jobseekers, Please fill out the form correctly and honestly.
+                                    Registration Form for Jobseekers, Please fill out the form correctly and honestly.
                                     </p>
                                 </div>
                             </div>
@@ -1020,8 +1020,9 @@ export default function Welcome(props) {
                                         </div>
                                     </div>
                                     <div className="member-info">
-                                        <h4>Walter White</h4>
-                                        <span>Chief Executive Officer</span>
+                                        <h4>Elna B. Guzman, MPSM</h4>
+                                        <span>Supervising Labor Employment Office (SLEO)</span>
+                                        <span>PESO Manager</span>
                                     </div>
                                 </div>
                             </div>
@@ -1054,8 +1055,8 @@ export default function Welcome(props) {
                                         </div>
                                     </div>
                                     <div className="member-info">
-                                        <h4>Sarah Jhonson</h4>
-                                        <span>Product Manager</span>
+                                        <h4>Kristine Janice T. Guden</h4>
+                                        <span>Administrative Assistant III</span>
                                     </div>
                                 </div>
                             </div>
@@ -1153,13 +1154,13 @@ export default function Welcome(props) {
                                     <div className="email">
                                         <i className="bi bi-envelope"></i>
                                         <h4>Email:</h4>
-                                        <p>pesovalencia@gmail.com</p>
+                                        <p>pepsd.pesovalencia@gmail.com</p>
                                     </div>
 
                                     <div className="phone">
                                         <i className="bi bi-phone"></i>
                                         <h4>Call:</h4>
-                                        <p>00000000000</p>
+                                        <p>088 828 6105</p>
                                     </div>
                                 </div>
                             </div>
