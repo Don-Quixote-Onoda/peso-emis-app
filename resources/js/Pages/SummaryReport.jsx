@@ -580,7 +580,7 @@ export default function SummaryReports(props) {
                                                         </p>
                                                         <p className="underline">
                                                             {new Date(
-                                                                dateTo
+                                                                dateFrom
                                                             ).toLocaleDateString(
                                                                 "en-US",
                                                                 {
