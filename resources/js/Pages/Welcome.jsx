@@ -802,7 +802,7 @@ export default function Welcome(props) {
                     </div>
                 </section>
 
-                <section id="faq" className="faq">
+                {/*<section id="faq" className="faq">
                     <div className="container">
                         <div className="section-title" data-aos="zoom-out">
                             <h2>F.A.Q</h2>
@@ -986,7 +986,7 @@ export default function Welcome(props) {
                             </li>
                         </ul>
                     </div>
-                </section>
+                </section>*/}
 
                 <section id="team" className="team">
                     <div className="container">
@@ -1057,6 +1057,7 @@ export default function Welcome(props) {
                                     <div className="member-info">
                                         <h4>Kristine Janice T. Guden</h4>
                                         <span>Administrative Assistant III</span>
+                                        <span>Computer Operator II</span>
                                     </div>
                                 </div>
                             </div>
