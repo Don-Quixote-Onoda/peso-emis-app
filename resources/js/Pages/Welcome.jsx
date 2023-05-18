@@ -1000,7 +1000,7 @@ export default function Welcome(props) {
                                 <div className="member" data-aos="fade-up">
                                     <div className="member-img">
                                         <img
-                                            src="img/homepage/team/team-1.jpg"
+                                            src="img/homepage/team/elna-guzman.png"
                                             className="img-fluid"
                                             alt=""
                                         />
@@ -1035,7 +1035,7 @@ export default function Welcome(props) {
                                 >
                                     <div className="member-img">
                                         <img
-                                            src="img/homepage/team/team-2.jpg"
+                                            src="img/homepage/team/kristine-guden.png"
                                             className="img-fluid"
                                             alt=""
                                         />
@@ -1070,7 +1070,7 @@ export default function Welcome(props) {
                                 >
                                     <div className="member-img">
                                         <img
-                                            src="img/homepage/team/team-3.jpg"
+                                            src="img/homepage/team/merazel-cena.png"
                                             className="img-fluid"
                                             alt=""
                                         />
@@ -1090,8 +1090,9 @@ export default function Welcome(props) {
                                         </div>
                                     </div>
                                     <div className="member-info">
-                                        <h4>William Anderson</h4>
-                                        <span>CTO</span>
+                                        <h4>Merazel C. Cena</h4>
+                                        <span>Administrative Officer V</span>
+                                        <span>OFW Helpdesk</span>
                                     </div>
                                 </div>
                             </div>
@@ -1104,7 +1105,7 @@ export default function Welcome(props) {
                                 >
                                     <div className="member-img">
                                         <img
-                                            src="img/homepage/team/team-4.jpg"
+                                            src="img/homepage/team/remedios-flores.png"
                                             className="img-fluid"
                                             alt=""
                                         />
@@ -1124,8 +1125,8 @@ export default function Welcome(props) {
                                         </div>
                                     </div>
                                     <div className="member-info">
-                                        <h4>Amanda Jepson</h4>
-                                        <span>Accountant</span>
+                                        <h4>Remedios L. Flores</h4>
+                                        <span>Labor Employment Assistant</span>
                                     </div>
                                 </div>
                             </div>
