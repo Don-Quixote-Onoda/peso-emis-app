@@ -1,10 +1,20 @@
 {
+<<<<<<< HEAD
   "_ApplicationLogo-ed52fb62.js": {
     "file": "assets/ApplicationLogo-ed52fb62.js",
+=======
+  "SummaryReport.css": {
+    "file": "assets/SummaryReport-f5128a35.css",
+    "src": "SummaryReport.css"
+  },
+  "_ApplicationLogo-89714c0c.js": {
+    "file": "assets/ApplicationLogo-89714c0c.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     "imports": [
       "resources/js/app.jsx"
     ]
   },
+<<<<<<< HEAD
   "_AuthenticatedLayout-88f32476.js": {
     "file": "assets/AuthenticatedLayout-88f32476.js",
     "imports": [
@@ -29,27 +39,71 @@
   },
   "_InputError-1bce495b.js": {
     "file": "assets/InputError-1bce495b.js",
+=======
+  "_AuthenticatedLayout-0dd41591.js": {
+    "file": "assets/AuthenticatedLayout-0dd41591.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_ApplicationLogo-89714c0c.js",
+      "_Dropdown-9100581f.js"
+    ]
+  },
+  "_Dropdown-9100581f.js": {
+    "file": "assets/Dropdown-9100581f.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_transition-981f0865.js"
+    ]
+  },
+  "_GuestLayout-ee76f25d.js": {
+    "file": "assets/GuestLayout-ee76f25d.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_ApplicationLogo-89714c0c.js"
+    ]
+  },
+  "_InputError-86e20703.js": {
+    "file": "assets/InputError-86e20703.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     "imports": [
       "resources/js/app.jsx"
     ]
   },
+<<<<<<< HEAD
   "_InputLabel-98066509.js": {
     "file": "assets/InputLabel-98066509.js",
+=======
+  "_InputLabel-356cc7dc.js": {
+    "file": "assets/InputLabel-356cc7dc.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     "imports": [
       "resources/js/app.jsx"
     ]
   },
+<<<<<<< HEAD
   "_PrimaryButton-d95510c8.js": {
     "file": "assets/PrimaryButton-d95510c8.js",
+=======
+  "_PrimaryButton-a2aaaee0.js": {
+    "file": "assets/PrimaryButton-a2aaaee0.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     "imports": [
       "resources/js/app.jsx"
     ]
   },
+<<<<<<< HEAD
   "_SummaryReport-24614363.js": {
+=======
+  "_SummaryReport-2df3f58d.js": {
+    "css": [
+      "assets/SummaryReport-f5128a35.css"
+    ],
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     "dynamicImports": [
       "node_modules/dompurify/dist/purify.es.js",
       "node_modules/canvg/lib/index.es.js"
     ],
+<<<<<<< HEAD
     "file": "assets/SummaryReport-24614363.js",
     "imports": [
       "resources/js/app.jsx",
@@ -60,10 +114,27 @@
   },
   "_TextInput-303b570a.js": {
     "file": "assets/TextInput-303b570a.js",
+=======
+    "file": "assets/SummaryReport-2df3f58d.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_AuthenticatedLayout-0dd41591.js",
+      "_button.esm-05f78bae.js",
+      "_calendar.esm-cb3b71b7.js",
+      "_dialog.esm-3f5249a5.js",
+      "_inputtext.esm-e8014367.js",
+      "_column.esm-cb6db663.js"
+    ],
+    "isDynamicEntry": true
+  },
+  "_TextInput-49748f3b.js": {
+    "file": "assets/TextInput-49748f3b.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     "imports": [
       "resources/js/app.jsx"
     ]
   },
+<<<<<<< HEAD
   "_button.esm-ce7d9b02.js": {
     "file": "assets/button.esm-ce7d9b02.js",
     "imports": [
@@ -139,6 +210,83 @@
   },
   "_hooks.esm-336a0b9f.js": {
     "file": "assets/hooks.esm-336a0b9f.js",
+=======
+  "_button.esm-05f78bae.js": {
+    "file": "assets/button.esm-05f78bae.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_ripple.esm-4f3f9eec.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_hooks.esm-beec91a3.js"
+    ]
+  },
+  "_calendar.esm-cb3b71b7.js": {
+    "file": "assets/calendar.esm-cb3b71b7.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_tooltip.esm-61b54ee6.js",
+      "_button.esm-05f78bae.js",
+      "_hooks.esm-beec91a3.js",
+      "_inputtext.esm-e8014367.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_csstransition.esm-96c88e67.js"
+    ]
+  },
+  "_checkbox.esm-dd32c24d.js": {
+    "file": "assets/checkbox.esm-dd32c24d.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_hooks.esm-beec91a3.js",
+      "_tooltip.esm-61b54ee6.js"
+    ]
+  },
+  "_column.esm-cb6db663.js": {
+    "file": "assets/column.esm-cb6db663.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_tooltip.esm-61b54ee6.js",
+      "_hooks.esm-beec91a3.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_inputtext.esm-e8014367.js",
+      "_dropdown.esm-36a0a53f.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_button.esm-05f78bae.js",
+      "_csstransition.esm-96c88e67.js"
+    ]
+  },
+  "_csstransition.esm-96c88e67.js": {
+    "file": "assets/csstransition.esm-96c88e67.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_tooltip.esm-61b54ee6.js",
+      "_hooks.esm-beec91a3.js"
+    ]
+  },
+  "_dialog.esm-3f5249a5.js": {
+    "file": "assets/dialog.esm-3f5249a5.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_tooltip.esm-61b54ee6.js",
+      "_csstransition.esm-96c88e67.js",
+      "_hooks.esm-beec91a3.js",
+      "_ripple.esm-4f3f9eec.js"
+    ]
+  },
+  "_dropdown.esm-36a0a53f.js": {
+    "file": "assets/dropdown.esm-36a0a53f.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_tooltip.esm-61b54ee6.js",
+      "_hooks.esm-beec91a3.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_csstransition.esm-96c88e67.js",
+      "_ripple.esm-4f3f9eec.js"
+    ]
+  },
+  "_hooks.esm-beec91a3.js": {
+    "file": "assets/hooks.esm-beec91a3.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     "imports": [
       "resources/js/app.jsx"
     ]
@@ -152,12 +300,18 @@
       "_index-419cf3fb.js"
     ]
   },
+<<<<<<< HEAD
   "_index.esm-eff08cd7.js": {
     "file": "assets/index.esm-eff08cd7.js",
+=======
+  "_index.esm-19b701f2.js": {
+    "file": "assets/index.esm-19b701f2.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     "imports": [
       "resources/js/app.jsx"
     ]
   },
+<<<<<<< HEAD
   "_inputtext.esm-3956e564.js": {
     "file": "assets/inputtext.esm-3956e564.js",
     "imports": [
@@ -168,10 +322,23 @@
   },
   "_lodash-71dfdf00.js": {
     "file": "assets/lodash-71dfdf00.js",
+=======
+  "_inputtext.esm-e8014367.js": {
+    "file": "assets/inputtext.esm-e8014367.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_tooltip.esm-61b54ee6.js",
+      "_hooks.esm-beec91a3.js"
+    ]
+  },
+  "_lodash-3df483cd.js": {
+    "file": "assets/lodash-3df483cd.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     "imports": [
       "resources/js/app.jsx"
     ]
   },
+<<<<<<< HEAD
   "_overlayservice.esm-85bb445a.js": {
     "file": "assets/overlayservice.esm-85bb445a.js",
     "imports": [
@@ -213,11 +380,55 @@
   },
   "_transition-36641a52.js": {
     "file": "assets/transition-36641a52.js",
+=======
+  "_overlayservice.esm-4726dc53.js": {
+    "file": "assets/overlayservice.esm-4726dc53.js",
+    "imports": [
+      "_hooks.esm-beec91a3.js"
+    ]
+  },
+  "_radiobutton.esm-7d4a1520.js": {
+    "file": "assets/radiobutton.esm-7d4a1520.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_tooltip.esm-61b54ee6.js",
+      "_hooks.esm-beec91a3.js"
+    ]
+  },
+  "_ripple.esm-4f3f9eec.js": {
+    "file": "assets/ripple.esm-4f3f9eec.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_tooltip.esm-61b54ee6.js",
+      "_hooks.esm-beec91a3.js"
+    ]
+  },
+  "_toast.esm-bf2aad27.js": {
+    "file": "assets/toast.esm-bf2aad27.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_tooltip.esm-61b54ee6.js",
+      "_csstransition.esm-96c88e67.js",
+      "_hooks.esm-beec91a3.js",
+      "_ripple.esm-4f3f9eec.js"
+    ]
+  },
+  "_tooltip.esm-61b54ee6.js": {
+    "file": "assets/tooltip.esm-61b54ee6.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_hooks.esm-beec91a3.js"
+    ]
+  },
+  "_transition-981f0865.js": {
+    "file": "assets/transition-981f0865.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     "imports": [
       "resources/js/app.jsx"
     ]
   },
   "node_modules/canvg/lib/index.es.js": {
+<<<<<<< HEAD
     "file": "assets/index.es-267ea699.js",
     "imports": [
       "resources/js/app.jsx",
@@ -230,6 +441,27 @@
       "_ripple.esm-279372dc.js",
       "_tooltip.esm-6a5d9820.js",
       "_hooks.esm-336a0b9f.js"
+=======
+    "file": "assets/index.es-9945dada.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_SummaryReport-2df3f58d.js",
+      "_AuthenticatedLayout-0dd41591.js",
+      "_ApplicationLogo-89714c0c.js",
+      "_Dropdown-9100581f.js",
+      "_transition-981f0865.js",
+      "_button.esm-05f78bae.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_hooks.esm-beec91a3.js",
+      "_calendar.esm-cb3b71b7.js",
+      "_inputtext.esm-e8014367.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_csstransition.esm-96c88e67.js",
+      "_dialog.esm-3f5249a5.js",
+      "_column.esm-cb6db663.js",
+      "_dropdown.esm-36a0a53f.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "node_modules/canvg/lib/index.es.js"
@@ -260,10 +492,17 @@
     "src": "node_modules/primeicons/fonts/primeicons.woff2"
   },
   "resources/js/Pages/Admin/Applicants/Edit/Edit.jsx": {
+<<<<<<< HEAD
     "file": "assets/Edit-31b0f043.js",
     "imports": [
       "resources/js/app.jsx",
       "_button.esm-ce7d9b02.js",
+=======
+    "file": "assets/Edit-25e47f60.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_button.esm-05f78bae.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
       "_index-419cf3fb.js",
       "resources/js/Pages/Admin/Applicants/Edit/Pages/PersonalInformation.jsx",
       "resources/js/Pages/Admin/Applicants/Edit/Pages/Authorization.jsx",
@@ -273,6 +512,7 @@
       "resources/js/Pages/Admin/Applicants/Edit/Pages/Vocational.jsx",
       "resources/js/Pages/Admin/Applicants/Edit/Pages/WorkExperience.jsx",
       "resources/js/Pages/Admin/Applicants/Edit/Pages/Education.jsx",
+<<<<<<< HEAD
       "_ripple.esm-279372dc.js",
       "_tooltip.esm-6a5d9820.js",
       "_hooks.esm-336a0b9f.js",
@@ -285,31 +525,62 @@
       "resources/js/Pages/FormComponents/InputTextWrapper.jsx",
       "_index-4355d5a8.js",
       "_checkbox.esm-d730124a.js"
+=======
+      "_ripple.esm-4f3f9eec.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_hooks.esm-beec91a3.js",
+      "_inputtext.esm-e8014367.js",
+      "_calendar.esm-cb3b71b7.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_csstransition.esm-96c88e67.js",
+      "_radiobutton.esm-7d4a1520.js",
+      "_dropdown.esm-36a0a53f.js",
+      "resources/js/Pages/FormComponents/InputTextWrapper.jsx",
+      "_index-4355d5a8.js",
+      "_checkbox.esm-dd32c24d.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Admin/Applicants/Edit/Edit.jsx"
   },
   "resources/js/Pages/Admin/Applicants/Edit/Pages/Authorization.jsx": {
+<<<<<<< HEAD
     "file": "assets/Authorization-b1014269.js",
     "imports": [
       "resources/js/app.jsx",
       "_hooks.esm-336a0b9f.js",
       "_checkbox.esm-d730124a.js",
       "_tooltip.esm-6a5d9820.js"
+=======
+    "file": "assets/Authorization-d950e4d9.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_hooks.esm-beec91a3.js",
+      "_checkbox.esm-dd32c24d.js",
+      "_tooltip.esm-61b54ee6.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Admin/Applicants/Edit/Pages/Authorization.jsx"
   },
   "resources/js/Pages/Admin/Applicants/Edit/Pages/Education.jsx": {
+<<<<<<< HEAD
     "file": "assets/Education-5ce35666.js",
     "imports": [
       "resources/js/app.jsx",
       "_hooks.esm-336a0b9f.js"
+=======
+    "file": "assets/Education-0fb02040.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_hooks.esm-beec91a3.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Admin/Applicants/Edit/Pages/Education.jsx"
   },
   "resources/js/Pages/Admin/Applicants/Edit/Pages/JobPreference.jsx": {
+<<<<<<< HEAD
     "file": "assets/JobPreference-48992edf.js",
     "imports": [
       "resources/js/app.jsx",
@@ -322,31 +593,62 @@
       "_ripple.esm-279372dc.js",
       "_overlayservice.esm-85bb445a.js",
       "_csstransition.esm-b4a123c5.js"
+=======
+    "file": "assets/JobPreference-36812bb0.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_inputtext.esm-e8014367.js",
+      "_checkbox.esm-dd32c24d.js",
+      "_hooks.esm-beec91a3.js",
+      "_calendar.esm-cb3b71b7.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_button.esm-05f78bae.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_csstransition.esm-96c88e67.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Admin/Applicants/Edit/Pages/JobPreference.jsx"
   },
   "resources/js/Pages/Admin/Applicants/Edit/Pages/Language.jsx": {
+<<<<<<< HEAD
     "file": "assets/Language-04836997.js",
     "imports": [
       "resources/js/app.jsx",
       "_checkbox.esm-d730124a.js",
       "_hooks.esm-336a0b9f.js",
       "_tooltip.esm-6a5d9820.js"
+=======
+    "file": "assets/Language-688531b2.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_checkbox.esm-dd32c24d.js",
+      "_hooks.esm-beec91a3.js",
+      "_tooltip.esm-61b54ee6.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Admin/Applicants/Edit/Pages/Language.jsx"
   },
   "resources/js/Pages/Admin/Applicants/Edit/Pages/OtherSkills.jsx": {
+<<<<<<< HEAD
     "file": "assets/OtherSkills-7a74085a.js",
     "imports": [
       "resources/js/app.jsx",
       "_hooks.esm-336a0b9f.js"
+=======
+    "file": "assets/OtherSkills-d2781fb5.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_hooks.esm-beec91a3.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Admin/Applicants/Edit/Pages/OtherSkills.jsx"
   },
   "resources/js/Pages/Admin/Applicants/Edit/Pages/PersonalInformation.jsx": {
+<<<<<<< HEAD
     "file": "assets/PersonalInformation-f40522e2.js",
     "imports": [
       "resources/js/app.jsx",
@@ -362,12 +664,30 @@
       "_ripple.esm-279372dc.js",
       "_overlayservice.esm-85bb445a.js",
       "_csstransition.esm-b4a123c5.js",
+=======
+    "file": "assets/PersonalInformation-7c54fef0.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_inputtext.esm-e8014367.js",
+      "_hooks.esm-beec91a3.js",
+      "_calendar.esm-cb3b71b7.js",
+      "_radiobutton.esm-7d4a1520.js",
+      "_dropdown.esm-36a0a53f.js",
+      "resources/js/Pages/FormComponents/InputTextWrapper.jsx",
+      "_index-4355d5a8.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_button.esm-05f78bae.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_csstransition.esm-96c88e67.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
       "_index-419cf3fb.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Admin/Applicants/Edit/Pages/PersonalInformation.jsx"
   },
   "resources/js/Pages/Admin/Applicants/Edit/Pages/Vocational.jsx": {
+<<<<<<< HEAD
     "file": "assets/Vocational-12764623.js",
     "imports": [
       "resources/js/app.jsx",
@@ -379,11 +699,25 @@
       "_ripple.esm-279372dc.js",
       "_overlayservice.esm-85bb445a.js",
       "_csstransition.esm-b4a123c5.js"
+=======
+    "file": "assets/Vocational-dde70a6b.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_inputtext.esm-e8014367.js",
+      "_calendar.esm-cb3b71b7.js",
+      "_hooks.esm-beec91a3.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_button.esm-05f78bae.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_csstransition.esm-96c88e67.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Admin/Applicants/Edit/Pages/Vocational.jsx"
   },
   "resources/js/Pages/Admin/Applicants/Edit/Pages/WorkExperience.jsx": {
+<<<<<<< HEAD
     "file": "assets/WorkExperience-0d9dfdd7.js",
     "imports": [
       "resources/js/app.jsx",
@@ -396,11 +730,26 @@
       "_ripple.esm-279372dc.js",
       "_overlayservice.esm-85bb445a.js",
       "_csstransition.esm-b4a123c5.js"
+=======
+    "file": "assets/WorkExperience-3783aa85.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_inputtext.esm-e8014367.js",
+      "_calendar.esm-cb3b71b7.js",
+      "_hooks.esm-beec91a3.js",
+      "_dropdown.esm-36a0a53f.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_button.esm-05f78bae.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_csstransition.esm-96c88e67.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Admin/Applicants/Edit/Pages/WorkExperience.jsx"
   },
   "resources/js/Pages/Admin/Applicants/Index.jsx": {
+<<<<<<< HEAD
     "file": "assets/Index-17761d2b.js",
     "imports": [
       "resources/js/app.jsx",
@@ -425,6 +774,32 @@
       "_calendar.esm-3744c823.js",
       "_radiobutton.esm-f9988d29.js",
       "_checkbox.esm-d730124a.js",
+=======
+    "file": "assets/Index-17e3d2a4.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_AuthenticatedLayout-0dd41591.js",
+      "_tooltip.esm-61b54ee6.js",
+      "resources/js/Pages/Admin/Applicants/Table.jsx",
+      "resources/js/Pages/Admin/Applicants/View.jsx",
+      "resources/js/Pages/Admin/Applicants/Edit/Edit.jsx",
+      "_dialog.esm-3f5249a5.js",
+      "_button.esm-05f78bae.js",
+      "_lodash-3df483cd.js",
+      "_ApplicationLogo-89714c0c.js",
+      "_Dropdown-9100581f.js",
+      "_transition-981f0865.js",
+      "_hooks.esm-beec91a3.js",
+      "_column.esm-cb6db663.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_inputtext.esm-e8014367.js",
+      "_dropdown.esm-36a0a53f.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_csstransition.esm-96c88e67.js",
+      "_calendar.esm-cb3b71b7.js",
+      "_radiobutton.esm-7d4a1520.js",
+      "_checkbox.esm-dd32c24d.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
       "_index-4355d5a8.js",
       "_index-419cf3fb.js",
       "resources/js/Pages/Admin/Applicants/Edit/Pages/PersonalInformation.jsx",
@@ -441,6 +816,7 @@
     "src": "resources/js/Pages/Admin/Applicants/Index.jsx"
   },
   "resources/js/Pages/Admin/Applicants/Table.jsx": {
+<<<<<<< HEAD
     "file": "assets/Table-a7d30178.js",
     "imports": [
       "resources/js/app.jsx",
@@ -453,11 +829,26 @@
       "_dropdown.esm-602ca74d.js",
       "_overlayservice.esm-85bb445a.js",
       "_csstransition.esm-b4a123c5.js"
+=======
+    "file": "assets/Table-b7435342.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_tooltip.esm-61b54ee6.js",
+      "_column.esm-cb6db663.js",
+      "_inputtext.esm-e8014367.js",
+      "_button.esm-05f78bae.js",
+      "_hooks.esm-beec91a3.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_dropdown.esm-36a0a53f.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_csstransition.esm-96c88e67.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Admin/Applicants/Table.jsx"
   },
   "resources/js/Pages/Admin/Applicants/View.jsx": {
+<<<<<<< HEAD
     "file": "assets/View-7a3a37e3.js",
     "imports": [
       "resources/js/app.jsx",
@@ -472,12 +863,29 @@
       "_overlayservice.esm-85bb445a.js",
       "_ripple.esm-279372dc.js",
       "_csstransition.esm-b4a123c5.js",
+=======
+    "file": "assets/View-da97ea05.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_inputtext.esm-e8014367.js",
+      "_calendar.esm-cb3b71b7.js",
+      "_radiobutton.esm-7d4a1520.js",
+      "_checkbox.esm-dd32c24d.js",
+      "_button.esm-05f78bae.js",
+      "_hooks.esm-beec91a3.js",
+      "_index-4355d5a8.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_csstransition.esm-96c88e67.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
       "_index-419cf3fb.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Admin/Applicants/View.jsx"
   },
   "resources/js/Pages/Admin/Employers.jsx": {
+<<<<<<< HEAD
     "file": "assets/Employers-db79b935.js",
     "imports": [
       "resources/js/app.jsx",
@@ -494,16 +902,39 @@
       "_overlayservice.esm-85bb445a.js",
       "_csstransition.esm-b4a123c5.js",
       "_button.esm-ce7d9b02.js"
+=======
+    "file": "assets/Employers-611ea858.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_AuthenticatedLayout-0dd41591.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_column.esm-cb6db663.js",
+      "_inputtext.esm-e8014367.js",
+      "_ApplicationLogo-89714c0c.js",
+      "_Dropdown-9100581f.js",
+      "_transition-981f0865.js",
+      "_hooks.esm-beec91a3.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_dropdown.esm-36a0a53f.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_csstransition.esm-96c88e67.js",
+      "_button.esm-05f78bae.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Admin/Employers.jsx"
   },
   "resources/js/Pages/Admin/Employers/Edit.jsx": {
+<<<<<<< HEAD
     "file": "assets/Edit-6bdc1522.js",
+=======
+    "file": "assets/Edit-49aceeda.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Admin/Employers/Pages/EstablishmentDetails.jsx",
       "resources/js/Pages/Admin/Employers/Pages/EstablishmentContactDetails.jsx",
+<<<<<<< HEAD
       "_tooltip.esm-6a5d9820.js",
       "_column.esm-7a606514.js",
       "_inputtext.esm-3956e564.js",
@@ -523,11 +954,33 @@
       "_transition-36641a52.js",
       "_calendar.esm-3744c823.js",
       "_InputError-1bce495b.js"
+=======
+      "_tooltip.esm-61b54ee6.js",
+      "_column.esm-cb6db663.js",
+      "_inputtext.esm-e8014367.js",
+      "_button.esm-05f78bae.js",
+      "resources/js/Pages/Admin/Employers/JobPosting/Add.jsx",
+      "resources/js/Pages/Admin/Employers/JobPosting/Edit.jsx",
+      "resources/js/Pages/Admin/Employers/JobPosting/View.jsx",
+      "_dialog.esm-3f5249a5.js",
+      "_radiobutton.esm-7d4a1520.js",
+      "_hooks.esm-beec91a3.js",
+      "_index-419cf3fb.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_dropdown.esm-36a0a53f.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_csstransition.esm-96c88e67.js",
+      "_Dropdown-9100581f.js",
+      "_transition-981f0865.js",
+      "_calendar.esm-cb3b71b7.js",
+      "_InputError-86e20703.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Admin/Employers/Edit.jsx"
   },
   "resources/js/Pages/Admin/Employers/Index.jsx": {
+<<<<<<< HEAD
     "file": "assets/Index-92a84c40.js",
     "imports": [
       "resources/js/app.jsx",
@@ -552,6 +1005,32 @@
       "resources/js/Pages/Admin/Employers/JobPosting/Add.jsx",
       "_calendar.esm-3744c823.js",
       "_InputError-1bce495b.js",
+=======
+    "file": "assets/Index-d3e7d62e.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_AuthenticatedLayout-0dd41591.js",
+      "_tooltip.esm-61b54ee6.js",
+      "resources/js/Pages/Admin/Employers/Table.jsx",
+      "resources/js/Pages/Admin/Employers/View.jsx",
+      "resources/js/Pages/Admin/Employers/Edit.jsx",
+      "_dialog.esm-3f5249a5.js",
+      "_button.esm-05f78bae.js",
+      "_ApplicationLogo-89714c0c.js",
+      "_Dropdown-9100581f.js",
+      "_transition-981f0865.js",
+      "_hooks.esm-beec91a3.js",
+      "_column.esm-cb6db663.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_inputtext.esm-e8014367.js",
+      "_dropdown.esm-36a0a53f.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_csstransition.esm-96c88e67.js",
+      "_radiobutton.esm-7d4a1520.js",
+      "resources/js/Pages/Admin/Employers/JobPosting/Add.jsx",
+      "_calendar.esm-cb3b71b7.js",
+      "_InputError-86e20703.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
       "resources/js/Pages/Admin/Employers/JobPosting/Edit.jsx",
       "resources/js/Pages/Admin/Employers/JobPosting/View.jsx",
       "_index-4355d5a8.js",
@@ -563,6 +1042,7 @@
     "src": "resources/js/Pages/Admin/Employers/Index.jsx"
   },
   "resources/js/Pages/Admin/Employers/JobPosting/Add.jsx": {
+<<<<<<< HEAD
     "file": "assets/Add-1964e8c2.js",
     "imports": [
       "resources/js/app.jsx",
@@ -578,11 +1058,29 @@
       "_ripple.esm-279372dc.js",
       "_overlayservice.esm-85bb445a.js",
       "_csstransition.esm-b4a123c5.js"
+=======
+    "file": "assets/Add-8de912a4.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_Dropdown-9100581f.js",
+      "_inputtext.esm-e8014367.js",
+      "_button.esm-05f78bae.js",
+      "_calendar.esm-cb3b71b7.js",
+      "_radiobutton.esm-7d4a1520.js",
+      "_hooks.esm-beec91a3.js",
+      "_InputError-86e20703.js",
+      "_transition-981f0865.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_csstransition.esm-96c88e67.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Admin/Employers/JobPosting/Add.jsx"
   },
   "resources/js/Pages/Admin/Employers/JobPosting/Edit.jsx": {
+<<<<<<< HEAD
     "file": "assets/Edit-e832cdd1.js",
     "imports": [
       "resources/js/app.jsx",
@@ -598,11 +1096,29 @@
       "_ripple.esm-279372dc.js",
       "_overlayservice.esm-85bb445a.js",
       "_csstransition.esm-b4a123c5.js"
+=======
+    "file": "assets/Edit-826082e9.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_Dropdown-9100581f.js",
+      "_inputtext.esm-e8014367.js",
+      "_button.esm-05f78bae.js",
+      "_calendar.esm-cb3b71b7.js",
+      "_radiobutton.esm-7d4a1520.js",
+      "_hooks.esm-beec91a3.js",
+      "_InputError-86e20703.js",
+      "_transition-981f0865.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_csstransition.esm-96c88e67.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Admin/Employers/JobPosting/Edit.jsx"
   },
   "resources/js/Pages/Admin/Employers/JobPosting/View.jsx": {
+<<<<<<< HEAD
     "file": "assets/View-0a9b0662.js",
     "imports": [
       "resources/js/app.jsx",
@@ -617,11 +1133,28 @@
       "_ripple.esm-279372dc.js",
       "_overlayservice.esm-85bb445a.js",
       "_csstransition.esm-b4a123c5.js"
+=======
+    "file": "assets/View-c08cd263.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_Dropdown-9100581f.js",
+      "_inputtext.esm-e8014367.js",
+      "_button.esm-05f78bae.js",
+      "_calendar.esm-cb3b71b7.js",
+      "_radiobutton.esm-7d4a1520.js",
+      "_transition-981f0865.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_hooks.esm-beec91a3.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_csstransition.esm-96c88e67.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Admin/Employers/JobPosting/View.jsx"
   },
   "resources/js/Pages/Admin/Employers/Pages/EstablishmentContactDetails.jsx": {
+<<<<<<< HEAD
     "file": "assets/EstablishmentContactDetails-b9c7f360.js",
     "imports": [
       "resources/js/app.jsx",
@@ -632,11 +1165,24 @@
       "_hooks.esm-336a0b9f.js",
       "_tooltip.esm-6a5d9820.js",
       "_ripple.esm-279372dc.js"
+=======
+    "file": "assets/EstablishmentContactDetails-a2461334.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_inputtext.esm-e8014367.js",
+      "_radiobutton.esm-7d4a1520.js",
+      "_button.esm-05f78bae.js",
+      "_index-419cf3fb.js",
+      "_hooks.esm-beec91a3.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_ripple.esm-4f3f9eec.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Admin/Employers/Pages/EstablishmentContactDetails.jsx"
   },
   "resources/js/Pages/Admin/Employers/Pages/EstablishmentDetails.jsx": {
+<<<<<<< HEAD
     "file": "assets/EstablishmentDetails-85124b3c.js",
     "imports": [
       "resources/js/app.jsx",
@@ -647,11 +1193,24 @@
       "_hooks.esm-336a0b9f.js",
       "_tooltip.esm-6a5d9820.js",
       "_ripple.esm-279372dc.js"
+=======
+    "file": "assets/EstablishmentDetails-2f584b6e.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_inputtext.esm-e8014367.js",
+      "_radiobutton.esm-7d4a1520.js",
+      "_button.esm-05f78bae.js",
+      "_index-419cf3fb.js",
+      "_hooks.esm-beec91a3.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_ripple.esm-4f3f9eec.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Admin/Employers/Pages/EstablishmentDetails.jsx"
   },
   "resources/js/Pages/Admin/Employers/Table.jsx": {
+<<<<<<< HEAD
     "file": "assets/Table-a7c4d1da.js",
     "imports": [
       "resources/js/app.jsx",
@@ -664,11 +1223,26 @@
       "_dropdown.esm-602ca74d.js",
       "_overlayservice.esm-85bb445a.js",
       "_csstransition.esm-b4a123c5.js"
+=======
+    "file": "assets/Table-33f78276.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_tooltip.esm-61b54ee6.js",
+      "_column.esm-cb6db663.js",
+      "_inputtext.esm-e8014367.js",
+      "_button.esm-05f78bae.js",
+      "_hooks.esm-beec91a3.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_dropdown.esm-36a0a53f.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_csstransition.esm-96c88e67.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Admin/Employers/Table.jsx"
   },
   "resources/js/Pages/Admin/Employers/View.jsx": {
+<<<<<<< HEAD
     "file": "assets/View-a1006df8.js",
     "imports": [
       "resources/js/app.jsx",
@@ -691,12 +1265,37 @@
       "_transition-36641a52.js",
       "_calendar.esm-3744c823.js",
       "_InputError-1bce495b.js",
+=======
+    "file": "assets/View-00e15f5b.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_inputtext.esm-e8014367.js",
+      "_radiobutton.esm-7d4a1520.js",
+      "_button.esm-05f78bae.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_column.esm-cb6db663.js",
+      "resources/js/Pages/Admin/Employers/JobPosting/Add.jsx",
+      "resources/js/Pages/Admin/Employers/JobPosting/Edit.jsx",
+      "resources/js/Pages/Admin/Employers/JobPosting/View.jsx",
+      "_dialog.esm-3f5249a5.js",
+      "_hooks.esm-beec91a3.js",
+      "_index-4355d5a8.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_dropdown.esm-36a0a53f.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_csstransition.esm-96c88e67.js",
+      "_Dropdown-9100581f.js",
+      "_transition-981f0865.js",
+      "_calendar.esm-cb3b71b7.js",
+      "_InputError-86e20703.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
       "_index-419cf3fb.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Admin/Employers/View.jsx"
   },
   "resources/js/Pages/Admin/Users/Edit.jsx": {
+<<<<<<< HEAD
     "file": "assets/Edit-1ad94795.js",
     "imports": [
       "resources/js/app.jsx",
@@ -713,11 +1312,30 @@
       "_hooks.esm-336a0b9f.js",
       "_overlayservice.esm-85bb445a.js",
       "_csstransition.esm-b4a123c5.js"
+=======
+    "file": "assets/Edit-3df8d7ea.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_Dropdown-9100581f.js",
+      "_InputError-86e20703.js",
+      "_InputLabel-356cc7dc.js",
+      "_PrimaryButton-a2aaaee0.js",
+      "_TextInput-49748f3b.js",
+      "_button.esm-05f78bae.js",
+      "_dropdown.esm-36a0a53f.js",
+      "_transition-981f0865.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_hooks.esm-beec91a3.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_csstransition.esm-96c88e67.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Admin/Users/Edit.jsx"
   },
   "resources/js/Pages/Admin/Users/Index.jsx": {
+<<<<<<< HEAD
     "file": "assets/Index-8c478f74.js",
     "imports": [
       "resources/js/app.jsx",
@@ -742,11 +1360,38 @@
       "_InputLabel-98066509.js",
       "_PrimaryButton-d95510c8.js",
       "_TextInput-303b570a.js"
+=======
+    "file": "assets/Index-7ee3c6b7.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_AuthenticatedLayout-0dd41591.js",
+      "_tooltip.esm-61b54ee6.js",
+      "resources/js/Pages/Admin/Users/Table.jsx",
+      "_dialog.esm-3f5249a5.js",
+      "_button.esm-05f78bae.js",
+      "resources/js/Pages/Admin/Users/ViewUser.jsx",
+      "resources/js/Pages/Admin/Users/Edit.jsx",
+      "_ApplicationLogo-89714c0c.js",
+      "_Dropdown-9100581f.js",
+      "_transition-981f0865.js",
+      "_hooks.esm-beec91a3.js",
+      "_column.esm-cb6db663.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_inputtext.esm-e8014367.js",
+      "_dropdown.esm-36a0a53f.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_csstransition.esm-96c88e67.js",
+      "_InputError-86e20703.js",
+      "_InputLabel-356cc7dc.js",
+      "_PrimaryButton-a2aaaee0.js",
+      "_TextInput-49748f3b.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Admin/Users/Index.jsx"
   },
   "resources/js/Pages/Admin/Users/Table.jsx": {
+<<<<<<< HEAD
     "file": "assets/Table-b71703b2.js",
     "imports": [
       "resources/js/app.jsx",
@@ -764,11 +1409,31 @@
       "_dropdown.esm-602ca74d.js",
       "_overlayservice.esm-85bb445a.js",
       "_csstransition.esm-b4a123c5.js"
+=======
+    "file": "assets/Table-590b5104.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_tooltip.esm-61b54ee6.js",
+      "_column.esm-cb6db663.js",
+      "_inputtext.esm-e8014367.js",
+      "_button.esm-05f78bae.js",
+      "_dialog.esm-3f5249a5.js",
+      "_InputError-86e20703.js",
+      "_InputLabel-356cc7dc.js",
+      "_PrimaryButton-a2aaaee0.js",
+      "_TextInput-49748f3b.js",
+      "_hooks.esm-beec91a3.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_dropdown.esm-36a0a53f.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_csstransition.esm-96c88e67.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Admin/Users/Table.jsx"
   },
   "resources/js/Pages/Admin/Users/ViewUser.jsx": {
+<<<<<<< HEAD
     "file": "assets/ViewUser-6fe23c0b.js",
     "imports": [
       "resources/js/app.jsx",
@@ -778,12 +1443,27 @@
       "_ripple.esm-279372dc.js",
       "_tooltip.esm-6a5d9820.js",
       "_hooks.esm-336a0b9f.js"
+=======
+    "file": "assets/ViewUser-29b6b602.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_InputLabel-356cc7dc.js",
+      "_TextInput-49748f3b.js",
+      "_button.esm-05f78bae.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_hooks.esm-beec91a3.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Admin/Users/ViewUser.jsx"
   },
   "resources/js/Pages/Applicants/Components/Content.jsx": {
+<<<<<<< HEAD
     "file": "assets/Content-1f88d6cd.js",
+=======
+    "file": "assets/Content-90e78957.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -791,7 +1471,11 @@
     "src": "resources/js/Pages/Applicants/Components/Content.jsx"
   },
   "resources/js/Pages/Applicants/Components/Footer.jsx": {
+<<<<<<< HEAD
     "file": "assets/Footer-9b647fde.js",
+=======
+    "file": "assets/Footer-156d3d33.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -799,7 +1483,11 @@
     "src": "resources/js/Pages/Applicants/Components/Footer.jsx"
   },
   "resources/js/Pages/Applicants/Components/Header.jsx": {
+<<<<<<< HEAD
     "file": "assets/Header-ad4b980f.js",
+=======
+    "file": "assets/Header-ac907f5e.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -807,7 +1495,11 @@
     "src": "resources/js/Pages/Applicants/Components/Header.jsx"
   },
   "resources/js/Pages/Applicants/Components/NavigatorButton.jsx": {
+<<<<<<< HEAD
     "file": "assets/NavigatorButton-b0e39515.js",
+=======
+    "file": "assets/NavigatorButton-56a6a2cd.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -815,7 +1507,11 @@
     "src": "resources/js/Pages/Applicants/Components/NavigatorButton.jsx"
   },
   "resources/js/Pages/Applicants/Components/NavigatorPage.jsx": {
+<<<<<<< HEAD
     "file": "assets/NavigatorPage-486308f0.js",
+=======
+    "file": "assets/NavigatorPage-de13e13a.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -823,6 +1519,7 @@
     "src": "resources/js/Pages/Applicants/Components/NavigatorPage.jsx"
   },
   "resources/js/Pages/Applicants/Pages/Authorization.jsx": {
+<<<<<<< HEAD
     "file": "assets/Authorization-df918990.js",
     "imports": [
       "resources/js/app.jsx",
@@ -830,11 +1527,21 @@
       "_hooks.esm-336a0b9f.js",
       "_checkbox.esm-d730124a.js",
       "_tooltip.esm-6a5d9820.js"
+=======
+    "file": "assets/Authorization-c0104020.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "resources/js/Pages/Applicants/Components/NavigatorButton.jsx",
+      "_hooks.esm-beec91a3.js",
+      "_checkbox.esm-dd32c24d.js",
+      "_tooltip.esm-61b54ee6.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Applicants/Pages/Authorization.jsx"
   },
   "resources/js/Pages/Applicants/Pages/Education.jsx": {
+<<<<<<< HEAD
     "file": "assets/Education-191bbcdc.js",
     "imports": [
       "resources/js/app.jsx",
@@ -847,11 +1554,26 @@
       "_ripple.esm-279372dc.js",
       "_overlayservice.esm-85bb445a.js",
       "_csstransition.esm-b4a123c5.js"
+=======
+    "file": "assets/Education-7c5b8993.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "resources/js/Pages/Applicants/Components/NavigatorButton.jsx",
+      "_inputtext.esm-e8014367.js",
+      "_calendar.esm-cb3b71b7.js",
+      "_hooks.esm-beec91a3.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_button.esm-05f78bae.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_csstransition.esm-96c88e67.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Applicants/Pages/Education.jsx"
   },
   "resources/js/Pages/Applicants/Pages/JobPreference.jsx": {
+<<<<<<< HEAD
     "file": "assets/JobPreference-80fcff97.js",
     "imports": [
       "resources/js/app.jsx",
@@ -865,11 +1587,27 @@
       "_ripple.esm-279372dc.js",
       "_overlayservice.esm-85bb445a.js",
       "_csstransition.esm-b4a123c5.js"
+=======
+    "file": "assets/JobPreference-c606a593.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "resources/js/Pages/Applicants/Components/NavigatorButton.jsx",
+      "_inputtext.esm-e8014367.js",
+      "_checkbox.esm-dd32c24d.js",
+      "_hooks.esm-beec91a3.js",
+      "_calendar.esm-cb3b71b7.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_button.esm-05f78bae.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_csstransition.esm-96c88e67.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Applicants/Pages/JobPreference.jsx"
   },
   "resources/js/Pages/Applicants/Pages/Language.jsx": {
+<<<<<<< HEAD
     "file": "assets/Language-138d83ed.js",
     "imports": [
       "resources/js/app.jsx",
@@ -878,21 +1616,40 @@
       "_checkbox.esm-d730124a.js",
       "_hooks.esm-336a0b9f.js",
       "_tooltip.esm-6a5d9820.js"
+=======
+    "file": "assets/Language-b4119b6f.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "resources/js/Pages/Applicants/Components/NavigatorButton.jsx",
+      "_inputtext.esm-e8014367.js",
+      "_checkbox.esm-dd32c24d.js",
+      "_hooks.esm-beec91a3.js",
+      "_tooltip.esm-61b54ee6.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Applicants/Pages/Language.jsx"
   },
   "resources/js/Pages/Applicants/Pages/OtherSkills.jsx": {
+<<<<<<< HEAD
     "file": "assets/OtherSkills-2578dd65.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Applicants/Components/NavigatorButton.jsx",
       "_hooks.esm-336a0b9f.js"
+=======
+    "file": "assets/OtherSkills-7becff4f.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "resources/js/Pages/Applicants/Components/NavigatorButton.jsx",
+      "_hooks.esm-beec91a3.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Applicants/Pages/OtherSkills.jsx"
   },
   "resources/js/Pages/Applicants/Pages/PersonalInformation.jsx": {
+<<<<<<< HEAD
     "file": "assets/PersonalInformation-5ebcd579.js",
     "imports": [
       "resources/js/app.jsx",
@@ -909,12 +1666,31 @@
       "_ripple.esm-279372dc.js",
       "_overlayservice.esm-85bb445a.js",
       "_csstransition.esm-b4a123c5.js",
+=======
+    "file": "assets/PersonalInformation-d947bce6.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "resources/js/Pages/Applicants/Components/NavigatorButton.jsx",
+      "_inputtext.esm-e8014367.js",
+      "_hooks.esm-beec91a3.js",
+      "_calendar.esm-cb3b71b7.js",
+      "_radiobutton.esm-7d4a1520.js",
+      "_dropdown.esm-36a0a53f.js",
+      "resources/js/Pages/FormComponents/InputTextWrapper.jsx",
+      "_index-4355d5a8.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_button.esm-05f78bae.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_csstransition.esm-96c88e67.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
       "_index-419cf3fb.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Applicants/Pages/PersonalInformation.jsx"
   },
   "resources/js/Pages/Applicants/Pages/Vocational.jsx": {
+<<<<<<< HEAD
     "file": "assets/Vocational-24b6cf96.js",
     "imports": [
       "resources/js/app.jsx",
@@ -927,11 +1703,26 @@
       "_ripple.esm-279372dc.js",
       "_overlayservice.esm-85bb445a.js",
       "_csstransition.esm-b4a123c5.js"
+=======
+    "file": "assets/Vocational-818f11e8.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "resources/js/Pages/Applicants/Components/NavigatorButton.jsx",
+      "_inputtext.esm-e8014367.js",
+      "_calendar.esm-cb3b71b7.js",
+      "_hooks.esm-beec91a3.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_button.esm-05f78bae.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_csstransition.esm-96c88e67.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Applicants/Pages/Vocational.jsx"
   },
   "resources/js/Pages/Applicants/Pages/WorkExperience.jsx": {
+<<<<<<< HEAD
     "file": "assets/WorkExperience-79eba125.js",
     "imports": [
       "resources/js/app.jsx",
@@ -945,12 +1736,31 @@
       "_ripple.esm-279372dc.js",
       "_overlayservice.esm-85bb445a.js",
       "_csstransition.esm-b4a123c5.js"
+=======
+    "file": "assets/WorkExperience-bafc6838.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "resources/js/Pages/Applicants/Components/NavigatorButton.jsx",
+      "_inputtext.esm-e8014367.js",
+      "_calendar.esm-cb3b71b7.js",
+      "_hooks.esm-beec91a3.js",
+      "_dropdown.esm-36a0a53f.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_button.esm-05f78bae.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_csstransition.esm-96c88e67.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Applicants/Pages/WorkExperience.jsx"
   },
   "resources/js/Pages/Applicants/index.jsx": {
+<<<<<<< HEAD
     "file": "assets/index-e27a7924.js",
+=======
+    "file": "assets/index-b69a8006.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Applicants/Components/Header.jsx",
@@ -966,6 +1776,7 @@
       "resources/js/Pages/Applicants/Pages/WorkExperience.jsx",
       "resources/js/Pages/Applicants/Components/NavigatorPage.jsx",
       "resources/js/Pages/Applicants/Components/NavigatorButton.jsx",
+<<<<<<< HEAD
       "_inputtext.esm-3956e564.js",
       "_tooltip.esm-6a5d9820.js",
       "_hooks.esm-336a0b9f.js",
@@ -980,11 +1791,28 @@
       "_index-4355d5a8.js",
       "_index-419cf3fb.js",
       "_checkbox.esm-d730124a.js"
+=======
+      "_inputtext.esm-e8014367.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_hooks.esm-beec91a3.js",
+      "_calendar.esm-cb3b71b7.js",
+      "_button.esm-05f78bae.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_csstransition.esm-96c88e67.js",
+      "_radiobutton.esm-7d4a1520.js",
+      "_dropdown.esm-36a0a53f.js",
+      "resources/js/Pages/FormComponents/InputTextWrapper.jsx",
+      "_index-4355d5a8.js",
+      "_index-419cf3fb.js",
+      "_checkbox.esm-dd32c24d.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Applicants/index.jsx"
   },
   "resources/js/Pages/Auth/ConfirmPassword.jsx": {
+<<<<<<< HEAD
     "file": "assets/ConfirmPassword-8fa6eb7f.js",
     "imports": [
       "resources/js/app.jsx",
@@ -994,11 +1822,23 @@
       "_PrimaryButton-d95510c8.js",
       "_TextInput-303b570a.js",
       "_ApplicationLogo-ed52fb62.js"
+=======
+    "file": "assets/ConfirmPassword-670c438e.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_GuestLayout-ee76f25d.js",
+      "_InputError-86e20703.js",
+      "_InputLabel-356cc7dc.js",
+      "_PrimaryButton-a2aaaee0.js",
+      "_TextInput-49748f3b.js",
+      "_ApplicationLogo-89714c0c.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Auth/ConfirmPassword.jsx"
   },
   "resources/js/Pages/Auth/ForgotPassword.jsx": {
+<<<<<<< HEAD
     "file": "assets/ForgotPassword-f41ee0be.js",
     "imports": [
       "resources/js/app.jsx",
@@ -1007,11 +1847,22 @@
       "_PrimaryButton-d95510c8.js",
       "_TextInput-303b570a.js",
       "_ApplicationLogo-ed52fb62.js"
+=======
+    "file": "assets/ForgotPassword-de3dd8d2.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_GuestLayout-ee76f25d.js",
+      "_InputError-86e20703.js",
+      "_PrimaryButton-a2aaaee0.js",
+      "_TextInput-49748f3b.js",
+      "_ApplicationLogo-89714c0c.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Auth/ForgotPassword.jsx"
   },
   "resources/js/Pages/Auth/Login.jsx": {
+<<<<<<< HEAD
     "file": "assets/Login-58614ab0.js",
     "imports": [
       "resources/js/app.jsx",
@@ -1023,11 +1874,25 @@
       "resources/js/Pages/Applicants/Components/Header.jsx",
       "resources/js/Pages/Applicants/Components/Footer.jsx",
       "_ApplicationLogo-ed52fb62.js"
+=======
+    "file": "assets/Login-0ff3a3ab.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_GuestLayout-ee76f25d.js",
+      "_InputError-86e20703.js",
+      "_InputLabel-356cc7dc.js",
+      "_PrimaryButton-a2aaaee0.js",
+      "_TextInput-49748f3b.js",
+      "resources/js/Pages/Applicants/Components/Header.jsx",
+      "resources/js/Pages/Applicants/Components/Footer.jsx",
+      "_ApplicationLogo-89714c0c.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Auth/Login.jsx"
   },
   "resources/js/Pages/Auth/Register.jsx": {
+<<<<<<< HEAD
     "file": "assets/Register-69c2ef09.js",
     "imports": [
       "resources/js/app.jsx",
@@ -1037,11 +1902,23 @@
       "_PrimaryButton-d95510c8.js",
       "_TextInput-303b570a.js",
       "_ApplicationLogo-ed52fb62.js"
+=======
+    "file": "assets/Register-d486757f.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_GuestLayout-ee76f25d.js",
+      "_InputError-86e20703.js",
+      "_InputLabel-356cc7dc.js",
+      "_PrimaryButton-a2aaaee0.js",
+      "_TextInput-49748f3b.js",
+      "_ApplicationLogo-89714c0c.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Auth/Register.jsx"
   },
   "resources/js/Pages/Auth/ResetPassword.jsx": {
+<<<<<<< HEAD
     "file": "assets/ResetPassword-4e5092fc.js",
     "imports": [
       "resources/js/app.jsx",
@@ -1051,22 +1928,43 @@
       "_PrimaryButton-d95510c8.js",
       "_TextInput-303b570a.js",
       "_ApplicationLogo-ed52fb62.js"
+=======
+    "file": "assets/ResetPassword-7568c5cc.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_GuestLayout-ee76f25d.js",
+      "_InputError-86e20703.js",
+      "_InputLabel-356cc7dc.js",
+      "_PrimaryButton-a2aaaee0.js",
+      "_TextInput-49748f3b.js",
+      "_ApplicationLogo-89714c0c.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Auth/ResetPassword.jsx"
   },
   "resources/js/Pages/Auth/VerifyEmail.jsx": {
+<<<<<<< HEAD
     "file": "assets/VerifyEmail-35a1e959.js",
     "imports": [
       "resources/js/app.jsx",
       "_GuestLayout-76dd1e1e.js",
       "_PrimaryButton-d95510c8.js",
       "_ApplicationLogo-ed52fb62.js"
+=======
+    "file": "assets/VerifyEmail-4ab5b31b.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_GuestLayout-ee76f25d.js",
+      "_PrimaryButton-a2aaaee0.js",
+      "_ApplicationLogo-89714c0c.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Auth/VerifyEmail.jsx"
   },
   "resources/js/Pages/Dashboard.jsx": {
+<<<<<<< HEAD
     "file": "assets/Dashboard-ab49d8c1.js",
     "imports": [
       "resources/js/app.jsx",
@@ -1089,6 +1987,30 @@
       "_calendar.esm-3744c823.js",
       "_radiobutton.esm-f9988d29.js",
       "_checkbox.esm-d730124a.js",
+=======
+    "file": "assets/Dashboard-eb93c962.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_AuthenticatedLayout-0dd41591.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_column.esm-cb6db663.js",
+      "_inputtext.esm-e8014367.js",
+      "_button.esm-05f78bae.js",
+      "resources/js/Pages/Admin/Applicants/Index.jsx",
+      "_ApplicationLogo-89714c0c.js",
+      "_Dropdown-9100581f.js",
+      "_transition-981f0865.js",
+      "_hooks.esm-beec91a3.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_dropdown.esm-36a0a53f.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_csstransition.esm-96c88e67.js",
+      "resources/js/Pages/Admin/Applicants/Table.jsx",
+      "resources/js/Pages/Admin/Applicants/View.jsx",
+      "_calendar.esm-cb3b71b7.js",
+      "_radiobutton.esm-7d4a1520.js",
+      "_checkbox.esm-dd32c24d.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
       "_index-4355d5a8.js",
       "_index-419cf3fb.js",
       "resources/js/Pages/Admin/Applicants/Edit/Edit.jsx",
@@ -1101,13 +2023,19 @@
       "resources/js/Pages/Admin/Applicants/Edit/Pages/Vocational.jsx",
       "resources/js/Pages/Admin/Applicants/Edit/Pages/WorkExperience.jsx",
       "resources/js/Pages/Admin/Applicants/Edit/Pages/Education.jsx",
+<<<<<<< HEAD
       "_dialog.esm-0166fcc1.js",
       "_lodash-71dfdf00.js"
+=======
+      "_dialog.esm-3f5249a5.js",
+      "_lodash-3df483cd.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Dashboard.jsx"
   },
   "resources/js/Pages/EmployerAdmin/Add.jsx": {
+<<<<<<< HEAD
     "file": "assets/Add-fcfcad61.js",
     "imports": [
       "resources/js/app.jsx",
@@ -1123,11 +2051,29 @@
       "_ripple.esm-279372dc.js",
       "_overlayservice.esm-85bb445a.js",
       "_csstransition.esm-b4a123c5.js"
+=======
+    "file": "assets/Add-15de508b.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_Dropdown-9100581f.js",
+      "_inputtext.esm-e8014367.js",
+      "_button.esm-05f78bae.js",
+      "_calendar.esm-cb3b71b7.js",
+      "_radiobutton.esm-7d4a1520.js",
+      "_hooks.esm-beec91a3.js",
+      "_InputError-86e20703.js",
+      "_transition-981f0865.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_csstransition.esm-96c88e67.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/EmployerAdmin/Add.jsx"
   },
   "resources/js/Pages/EmployerAdmin/Edit.jsx": {
+<<<<<<< HEAD
     "file": "assets/Edit-dab6db64.js",
     "imports": [
       "resources/js/app.jsx",
@@ -1143,11 +2089,29 @@
       "_ripple.esm-279372dc.js",
       "_overlayservice.esm-85bb445a.js",
       "_csstransition.esm-b4a123c5.js"
+=======
+    "file": "assets/Edit-7c269baf.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_Dropdown-9100581f.js",
+      "_inputtext.esm-e8014367.js",
+      "_button.esm-05f78bae.js",
+      "_calendar.esm-cb3b71b7.js",
+      "_radiobutton.esm-7d4a1520.js",
+      "_hooks.esm-beec91a3.js",
+      "_InputError-86e20703.js",
+      "_transition-981f0865.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_csstransition.esm-96c88e67.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/EmployerAdmin/Edit.jsx"
   },
   "resources/js/Pages/EmployerAdmin/EmployerSettings/EstablishmentContactDetails.jsx": {
+<<<<<<< HEAD
     "file": "assets/EstablishmentContactDetails-4676a608.js",
     "imports": [
       "resources/js/app.jsx",
@@ -1158,11 +2122,24 @@
       "_hooks.esm-336a0b9f.js",
       "_tooltip.esm-6a5d9820.js",
       "_ripple.esm-279372dc.js"
+=======
+    "file": "assets/EstablishmentContactDetails-a5180754.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_inputtext.esm-e8014367.js",
+      "_radiobutton.esm-7d4a1520.js",
+      "_button.esm-05f78bae.js",
+      "_index-419cf3fb.js",
+      "_hooks.esm-beec91a3.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_ripple.esm-4f3f9eec.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/EmployerAdmin/EmployerSettings/EstablishmentContactDetails.jsx"
   },
   "resources/js/Pages/EmployerAdmin/EmployerSettings/EstablishmentDetails.jsx": {
+<<<<<<< HEAD
     "file": "assets/EstablishmentDetails-b01d7201.js",
     "imports": [
       "resources/js/app.jsx",
@@ -1173,17 +2150,34 @@
       "_index-4355d5a8.js",
       "_tooltip.esm-6a5d9820.js",
       "_ripple.esm-279372dc.js",
+=======
+    "file": "assets/EstablishmentDetails-f4d1e116.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_inputtext.esm-e8014367.js",
+      "_radiobutton.esm-7d4a1520.js",
+      "_button.esm-05f78bae.js",
+      "_hooks.esm-beec91a3.js",
+      "_index-4355d5a8.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_ripple.esm-4f3f9eec.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
       "_index-419cf3fb.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/EmployerAdmin/EmployerSettings/EstablishmentDetails.jsx"
   },
   "resources/js/Pages/EmployerAdmin/EmployerSettings/Index.jsx": {
+<<<<<<< HEAD
     "file": "assets/Index-e9323a9a.js",
+=======
+    "file": "assets/Index-fe474578.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/EmployerAdmin/EmployerSettings/EstablishmentContactDetails.jsx",
       "resources/js/Pages/EmployerAdmin/EmployerSettings/EstablishmentDetails.jsx",
+<<<<<<< HEAD
       "_AuthenticatedLayout-88f32476.js",
       "_inputtext.esm-3956e564.js",
       "_tooltip.esm-6a5d9820.js",
@@ -1196,19 +2190,41 @@
       "_ApplicationLogo-ed52fb62.js",
       "_Dropdown-a0a29dcf.js",
       "_transition-36641a52.js"
+=======
+      "_AuthenticatedLayout-0dd41591.js",
+      "_inputtext.esm-e8014367.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_hooks.esm-beec91a3.js",
+      "_radiobutton.esm-7d4a1520.js",
+      "_button.esm-05f78bae.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_index-419cf3fb.js",
+      "_index-4355d5a8.js",
+      "_ApplicationLogo-89714c0c.js",
+      "_Dropdown-9100581f.js",
+      "_transition-981f0865.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/EmployerAdmin/EmployerSettings/Index.jsx"
   },
   "resources/js/Pages/EmployerAdmin/Index.jsx": {
+<<<<<<< HEAD
     "file": "assets/Index-df91f0ea.js",
     "imports": [
       "resources/js/app.jsx",
       "_AuthenticatedLayout-88f32476.js",
+=======
+    "file": "assets/Index-da671b7f.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_AuthenticatedLayout-0dd41591.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
       "resources/js/Pages/EmployerAdmin/Table.jsx",
       "resources/js/Pages/EmployerAdmin/Add.jsx",
       "resources/js/Pages/EmployerAdmin/View.jsx",
       "resources/js/Pages/EmployerAdmin/Edit.jsx",
+<<<<<<< HEAD
       "_dialog.esm-0166fcc1.js",
       "_button.esm-ce7d9b02.js",
       "_ApplicationLogo-ed52fb62.js",
@@ -1225,11 +2241,30 @@
       "_calendar.esm-3744c823.js",
       "_radiobutton.esm-f9988d29.js",
       "_InputError-1bce495b.js"
+=======
+      "_dialog.esm-3f5249a5.js",
+      "_button.esm-05f78bae.js",
+      "_ApplicationLogo-89714c0c.js",
+      "_Dropdown-9100581f.js",
+      "_transition-981f0865.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_hooks.esm-beec91a3.js",
+      "_column.esm-cb6db663.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_inputtext.esm-e8014367.js",
+      "_dropdown.esm-36a0a53f.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_csstransition.esm-96c88e67.js",
+      "_calendar.esm-cb3b71b7.js",
+      "_radiobutton.esm-7d4a1520.js",
+      "_InputError-86e20703.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/EmployerAdmin/Index.jsx"
   },
   "resources/js/Pages/EmployerAdmin/Table.jsx": {
+<<<<<<< HEAD
     "file": "assets/Table-d1833796.js",
     "imports": [
       "resources/js/app.jsx",
@@ -1244,11 +2279,28 @@
       "_dropdown.esm-602ca74d.js",
       "_overlayservice.esm-85bb445a.js",
       "_csstransition.esm-b4a123c5.js"
+=======
+    "file": "assets/Table-dab19ac1.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_Dropdown-9100581f.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_column.esm-cb6db663.js",
+      "_inputtext.esm-e8014367.js",
+      "_button.esm-05f78bae.js",
+      "_transition-981f0865.js",
+      "_hooks.esm-beec91a3.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_dropdown.esm-36a0a53f.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_csstransition.esm-96c88e67.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/EmployerAdmin/Table.jsx"
   },
   "resources/js/Pages/EmployerAdmin/View.jsx": {
+<<<<<<< HEAD
     "file": "assets/View-389e10bc.js",
     "imports": [
       "resources/js/app.jsx",
@@ -1263,12 +2315,32 @@
       "_ripple.esm-279372dc.js",
       "_overlayservice.esm-85bb445a.js",
       "_csstransition.esm-b4a123c5.js"
+=======
+    "file": "assets/View-e002758e.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_Dropdown-9100581f.js",
+      "_inputtext.esm-e8014367.js",
+      "_button.esm-05f78bae.js",
+      "_calendar.esm-cb3b71b7.js",
+      "_radiobutton.esm-7d4a1520.js",
+      "_transition-981f0865.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_hooks.esm-beec91a3.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_overlayservice.esm-4726dc53.js",
+      "_csstransition.esm-96c88e67.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/EmployerAdmin/View.jsx"
   },
   "resources/js/Pages/Employers/Components/Content.jsx": {
+<<<<<<< HEAD
     "file": "assets/Content-e29d130e.js",
+=======
+    "file": "assets/Content-d888e907.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -1276,7 +2348,11 @@
     "src": "resources/js/Pages/Employers/Components/Content.jsx"
   },
   "resources/js/Pages/Employers/Components/Footer.jsx": {
+<<<<<<< HEAD
     "file": "assets/Footer-21b5d01d.js",
+=======
+    "file": "assets/Footer-06a737f4.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -1284,6 +2360,7 @@
     "src": "resources/js/Pages/Employers/Components/Footer.jsx"
   },
   "resources/js/Pages/Employers/Components/FormWrapper.jsx": {
+<<<<<<< HEAD
     "file": "assets/FormWrapper-56b02fb4.js",
     "imports": [
       "resources/js/app.jsx",
@@ -1294,12 +2371,28 @@
       "_tooltip.esm-6a5d9820.js",
       "_csstransition.esm-b4a123c5.js",
       "_ripple.esm-279372dc.js"
+=======
+    "file": "assets/FormWrapper-10807377.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_index.esm-19b701f2.js",
+      "_hooks.esm-beec91a3.js",
+      "_toast.esm-bf2aad27.js",
+      "_inputtext.esm-e8014367.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_csstransition.esm-96c88e67.js",
+      "_ripple.esm-4f3f9eec.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Employers/Components/FormWrapper.jsx"
   },
   "resources/js/Pages/Employers/Components/Header.jsx": {
+<<<<<<< HEAD
     "file": "assets/Header-6d312e9a.js",
+=======
+    "file": "assets/Header-4947f992.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -1307,7 +2400,11 @@
     "src": "resources/js/Pages/Employers/Components/Header.jsx"
   },
   "resources/js/Pages/Employers/Components/NavigatorButton.jsx": {
+<<<<<<< HEAD
     "file": "assets/NavigatorButton-059f2de2.js",
+=======
+    "file": "assets/NavigatorButton-64e5bc64.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -1315,7 +2412,11 @@
     "src": "resources/js/Pages/Employers/Components/NavigatorButton.jsx"
   },
   "resources/js/Pages/Employers/Components/NavigatorPage.jsx": {
+<<<<<<< HEAD
     "file": "assets/NavigatorPage-90f7700a.js",
+=======
+    "file": "assets/NavigatorPage-1ed79497.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -1323,6 +2424,7 @@
     "src": "resources/js/Pages/Employers/Components/NavigatorPage.jsx"
   },
   "resources/js/Pages/Employers/Pages/EstablishmentContactDetails.jsx": {
+<<<<<<< HEAD
     "file": "assets/EstablishmentContactDetails-ba147a6d.js",
     "imports": [
       "resources/js/app.jsx",
@@ -1336,11 +2438,27 @@
       "_tooltip.esm-6a5d9820.js",
       "_csstransition.esm-b4a123c5.js",
       "_ripple.esm-279372dc.js"
+=======
+    "file": "assets/EstablishmentContactDetails-7ef363df.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_hooks.esm-beec91a3.js",
+      "_inputtext.esm-e8014367.js",
+      "_radiobutton.esm-7d4a1520.js",
+      "resources/js/Pages/Employers/Components/NavigatorButton.jsx",
+      "_index.esm-19b701f2.js",
+      "_InputError-86e20703.js",
+      "_toast.esm-bf2aad27.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_csstransition.esm-96c88e67.js",
+      "_ripple.esm-4f3f9eec.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Employers/Pages/EstablishmentContactDetails.jsx"
   },
   "resources/js/Pages/Employers/Pages/EstablishmentDetails.jsx": {
+<<<<<<< HEAD
     "file": "assets/EstablishmentDetails-c1b4c086.js",
     "imports": [
       "resources/js/app.jsx",
@@ -1356,11 +2474,29 @@
       "_tooltip.esm-6a5d9820.js",
       "_csstransition.esm-b4a123c5.js",
       "_ripple.esm-279372dc.js"
+=======
+    "file": "assets/EstablishmentDetails-e8b07fc2.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_index-4355d5a8.js",
+      "_hooks.esm-beec91a3.js",
+      "_inputtext.esm-e8014367.js",
+      "_radiobutton.esm-7d4a1520.js",
+      "resources/js/Pages/Employers/Components/NavigatorButton.jsx",
+      "_index.esm-19b701f2.js",
+      "_toast.esm-bf2aad27.js",
+      "_InputError-86e20703.js",
+      "_index-419cf3fb.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_csstransition.esm-96c88e67.js",
+      "_ripple.esm-4f3f9eec.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Employers/Pages/EstablishmentDetails.jsx"
   },
   "resources/js/Pages/Employers/Pages/PostingDetails.jsx": {
+<<<<<<< HEAD
     "file": "assets/PostingDetails-4eefe263.js",
     "imports": [
       "resources/js/app.jsx",
@@ -1371,11 +2507,24 @@
       "_tooltip.esm-6a5d9820.js",
       "_csstransition.esm-b4a123c5.js",
       "_ripple.esm-279372dc.js"
+=======
+    "file": "assets/PostingDetails-51256736.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_hooks.esm-beec91a3.js",
+      "resources/js/Pages/Employers/Components/NavigatorButton.jsx",
+      "_toast.esm-bf2aad27.js",
+      "_checkbox.esm-dd32c24d.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_csstransition.esm-96c88e67.js",
+      "_ripple.esm-4f3f9eec.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Employers/Pages/PostingDetails.jsx"
   },
   "resources/js/Pages/Employers/Pages/QualificationRequirements.jsx": {
+<<<<<<< HEAD
     "file": "assets/QualificationRequirements-8e31adc5.js",
     "imports": [
       "resources/js/app.jsx",
@@ -1388,11 +2537,26 @@
       "_tooltip.esm-6a5d9820.js",
       "_csstransition.esm-b4a123c5.js",
       "_ripple.esm-279372dc.js"
+=======
+    "file": "assets/QualificationRequirements-e258c5a3.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_hooks.esm-beec91a3.js",
+      "_inputtext.esm-e8014367.js",
+      "_radiobutton.esm-7d4a1520.js",
+      "resources/js/Pages/Employers/Components/NavigatorButton.jsx",
+      "_index.esm-19b701f2.js",
+      "_toast.esm-bf2aad27.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_csstransition.esm-96c88e67.js",
+      "_ripple.esm-4f3f9eec.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Employers/Pages/QualificationRequirements.jsx"
   },
   "resources/js/Pages/Employers/Pages/RegisterEmployer.jsx": {
+<<<<<<< HEAD
     "file": "assets/RegisterEmployer-e25c3d31.js",
     "imports": [
       "resources/js/app.jsx",
@@ -1401,11 +2565,22 @@
       "_InputLabel-98066509.js",
       "_PrimaryButton-d95510c8.js",
       "_TextInput-303b570a.js"
+=======
+    "file": "assets/RegisterEmployer-d175e2ea.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_hooks.esm-beec91a3.js",
+      "_InputError-86e20703.js",
+      "_InputLabel-356cc7dc.js",
+      "_PrimaryButton-a2aaaee0.js",
+      "_TextInput-49748f3b.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Employers/Pages/RegisterEmployer.jsx"
   },
   "resources/js/Pages/Employers/Pages/VacancyDetails.jsx": {
+<<<<<<< HEAD
     "file": "assets/VacancyDetails-70a7f103.js",
     "imports": [
       "resources/js/app.jsx",
@@ -1417,12 +2592,29 @@
       "_tooltip.esm-6a5d9820.js",
       "_csstransition.esm-b4a123c5.js",
       "_ripple.esm-279372dc.js"
+=======
+    "file": "assets/VacancyDetails-7f405d41.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_hooks.esm-beec91a3.js",
+      "_inputtext.esm-e8014367.js",
+      "resources/js/Pages/Employers/Components/NavigatorButton.jsx",
+      "_index.esm-19b701f2.js",
+      "_toast.esm-bf2aad27.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_csstransition.esm-96c88e67.js",
+      "_ripple.esm-4f3f9eec.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Employers/Pages/VacancyDetails.jsx"
   },
   "resources/js/Pages/Employers/index.jsx": {
+<<<<<<< HEAD
     "file": "assets/index-3efacf10.js",
+=======
+    "file": "assets/index-bf2e99d2.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Employers/Components/Header.jsx",
@@ -1435,6 +2627,7 @@
       "resources/js/Pages/Employers/Pages/RegisterEmployer.jsx",
       "_index-4355d5a8.js",
       "_index-419cf3fb.js",
+<<<<<<< HEAD
       "_hooks.esm-336a0b9f.js",
       "_inputtext.esm-3956e564.js",
       "_tooltip.esm-6a5d9820.js",
@@ -1449,22 +2642,48 @@
       "_InputLabel-98066509.js",
       "_PrimaryButton-d95510c8.js",
       "_TextInput-303b570a.js"
+=======
+      "_hooks.esm-beec91a3.js",
+      "_inputtext.esm-e8014367.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_radiobutton.esm-7d4a1520.js",
+      "resources/js/Pages/Employers/Components/NavigatorButton.jsx",
+      "_index.esm-19b701f2.js",
+      "_toast.esm-bf2aad27.js",
+      "_csstransition.esm-96c88e67.js",
+      "_ripple.esm-4f3f9eec.js",
+      "_InputError-86e20703.js",
+      "_checkbox.esm-dd32c24d.js",
+      "_InputLabel-356cc7dc.js",
+      "_PrimaryButton-a2aaaee0.js",
+      "_TextInput-49748f3b.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Employers/index.jsx"
   },
   "resources/js/Pages/FormComponents/InputTextWrapper.jsx": {
+<<<<<<< HEAD
     "file": "assets/InputTextWrapper-8abe5064.js",
     "imports": [
       "resources/js/app.jsx",
       "_inputtext.esm-3956e564.js",
       "_tooltip.esm-6a5d9820.js",
       "_hooks.esm-336a0b9f.js"
+=======
+    "file": "assets/InputTextWrapper-274bd94d.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_inputtext.esm-e8014367.js",
+      "_tooltip.esm-61b54ee6.js",
+      "_hooks.esm-beec91a3.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/FormComponents/InputTextWrapper.jsx"
   },
   "resources/js/Pages/Profile/Edit.jsx": {
+<<<<<<< HEAD
     "file": "assets/Edit-7e9b5347.js",
     "imports": [
       "resources/js/app.jsx",
@@ -1479,11 +2698,28 @@
       "_InputLabel-98066509.js",
       "_TextInput-303b570a.js",
       "_PrimaryButton-d95510c8.js"
+=======
+    "file": "assets/Edit-e172f4bc.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_AuthenticatedLayout-0dd41591.js",
+      "resources/js/Pages/Profile/Partials/DeleteUserForm.jsx",
+      "resources/js/Pages/Profile/Partials/UpdatePasswordForm.jsx",
+      "resources/js/Pages/Profile/Partials/UpdateProfileInformationForm.jsx",
+      "_ApplicationLogo-89714c0c.js",
+      "_Dropdown-9100581f.js",
+      "_transition-981f0865.js",
+      "_InputError-86e20703.js",
+      "_InputLabel-356cc7dc.js",
+      "_TextInput-49748f3b.js",
+      "_PrimaryButton-a2aaaee0.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Profile/Edit.jsx"
   },
   "resources/js/Pages/Profile/Partials/DeleteUserForm.jsx": {
+<<<<<<< HEAD
     "file": "assets/DeleteUserForm-070b2d9e.js",
     "imports": [
       "resources/js/app.jsx",
@@ -1491,11 +2727,21 @@
       "_InputLabel-98066509.js",
       "_transition-36641a52.js",
       "_TextInput-303b570a.js"
+=======
+    "file": "assets/DeleteUserForm-77b87c7c.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_InputError-86e20703.js",
+      "_InputLabel-356cc7dc.js",
+      "_transition-981f0865.js",
+      "_TextInput-49748f3b.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Profile/Partials/DeleteUserForm.jsx"
   },
   "resources/js/Pages/Profile/Partials/UpdatePasswordForm.jsx": {
+<<<<<<< HEAD
     "file": "assets/UpdatePasswordForm-c965e38b.js",
     "imports": [
       "resources/js/app.jsx",
@@ -1504,11 +2750,22 @@
       "_PrimaryButton-d95510c8.js",
       "_TextInput-303b570a.js",
       "_transition-36641a52.js"
+=======
+    "file": "assets/UpdatePasswordForm-fc92591f.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_InputError-86e20703.js",
+      "_InputLabel-356cc7dc.js",
+      "_PrimaryButton-a2aaaee0.js",
+      "_TextInput-49748f3b.js",
+      "_transition-981f0865.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Profile/Partials/UpdatePasswordForm.jsx"
   },
   "resources/js/Pages/Profile/Partials/UpdateProfileInformationForm.jsx": {
+<<<<<<< HEAD
     "file": "assets/UpdateProfileInformationForm-de08137f.js",
     "imports": [
       "resources/js/app.jsx",
@@ -1517,22 +2774,43 @@
       "_PrimaryButton-d95510c8.js",
       "_TextInput-303b570a.js",
       "_transition-36641a52.js"
+=======
+    "file": "assets/UpdateProfileInformationForm-d570a895.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_InputError-86e20703.js",
+      "_InputLabel-356cc7dc.js",
+      "_PrimaryButton-a2aaaee0.js",
+      "_TextInput-49748f3b.js",
+      "_transition-981f0865.js"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Profile/Partials/UpdateProfileInformationForm.jsx"
   },
   "resources/js/Pages/Welcome.jsx": {
+<<<<<<< HEAD
     "file": "assets/Welcome-82a96b15.js",
     "imports": [
       "resources/js/app.jsx",
       "_lodash-71dfdf00.js",
+=======
+    "file": "assets/Welcome-48e28e69.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_lodash-3df483cd.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
       "resources/js/Pages/Employers/Components/Footer.jsx"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Welcome.jsx"
   },
   "resources/js/app.css": {
+<<<<<<< HEAD
     "file": "assets/app-848b8020.css",
+=======
+    "file": "assets/app-ad9d04f2.css",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     "src": "resources/js/app.css"
   },
   "resources/js/app.jsx": {
@@ -1544,7 +2822,11 @@
       "assets/primeicons-5e10f102.svg"
     ],
     "css": [
+<<<<<<< HEAD
       "assets/app-848b8020.css"
+=======
+      "assets/app-ad9d04f2.css"
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     ],
     "dynamicImports": [
       "resources/js/Pages/Admin/Applicants/Edit/Edit.jsx",
@@ -1620,10 +2902,17 @@
       "resources/js/Pages/Profile/Partials/DeleteUserForm.jsx",
       "resources/js/Pages/Profile/Partials/UpdatePasswordForm.jsx",
       "resources/js/Pages/Profile/Partials/UpdateProfileInformationForm.jsx",
+<<<<<<< HEAD
       "_SummaryReport-24614363.js",
       "resources/js/Pages/Welcome.jsx"
     ],
     "file": "assets/app-795d5ab7.js",
+=======
+      "_SummaryReport-2df3f58d.js",
+      "resources/js/Pages/Welcome.jsx"
+    ],
+    "file": "assets/app-e30f9f78.js",
+>>>>>>> 3769a2dc8d43bb95264cb390435b9dadd026943e
     "isEntry": true,
     "src": "resources/js/app.jsx"
   }

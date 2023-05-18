@@ -186,4 +186,17 @@ class SummaryReportsController extends Controller
             'applicants_hired' => $hired_result
         ]);
     }
+
+    public function getApplicantsTimeRange(Request $request) {
+        $applicants = Applicant::with('applicant_status')
+        ->selectRaw("*, CONCAT(surname, ', ', firstname, ' ', middlename, ' ', suffix) AS full_name")
+    ->where('is_deleted', 0)
+    ->whereBetween('created_at', [
+        Carbon::parse($request->dateFrom)->startOfDay(),
+        Carbon::parse($request->dateTo)->endOfDay()
+    ])
+    ->orderByDesc('id')
+    ->get();
+        return $applicants;
+    }
 }

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployersController;
 use App\Http\Controllers\EmployerSettingsController;
 use App\Http\Controllers\JobPostingController;
+use App\Http\Controllers\SummaryReportsController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UsersController;
 
@@ -50,3 +51,4 @@ Route::post('delete-employer', [AdminEmployersController::class, 'destroy'])->na
 Route::post('delete-employer-jobposting', [AdminEmployersController::class, 'deleteJobPosting'])->name('delete-employer-jobposting');
 Route::post('update-establishment-details', [EmployerSettingsController::class, 'updateEstablishmentDetails'])->name('update-establishment-details');
 Route::post('update-establishment-contact-details', [EmployerSettingsController::class, 'updateEstablishmentContactDetails'])->name('update-establishment-contact-details');
+Route::post('getApplicantsTimeRange', [SummaryReportsController::class, 'getApplicantsTimeRange'])->name('getApplicantsTimeRange');
