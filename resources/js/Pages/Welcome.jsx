@@ -598,7 +598,7 @@ export default function Welcome(props) {
                                         </Link>
                                     </h4>
                                     <p className="description">
-                                        Registation Form for Establishments, Please fill out the form correctly and honestly.
+                                        Registration Form for Establishments, Please fill out the form correctly and honestly.
                                     </p>
                                 </div>
                             </div>
@@ -623,7 +623,7 @@ export default function Welcome(props) {
                                         </Link>
                                     </h4>
                                     <p className="description">
-                                    Registation Form for Jobseekers, Please fill out the form correctly and honestly.
+                                    Registration Form for Jobseekers, Please fill out the form correctly and honestly.
                                     </p>
                                 </div>
                             </div>
@@ -802,7 +802,7 @@ export default function Welcome(props) {
                     </div>
                 </section>
 
-                <section id="faq" className="faq">
+                {/*<section id="faq" className="faq">
                     <div className="container">
                         <div className="section-title" data-aos="zoom-out">
                             <h2>F.A.Q</h2>
@@ -986,7 +986,7 @@ export default function Welcome(props) {
                             </li>
                         </ul>
                     </div>
-                </section>
+                </section>*/}
 
                 <section id="team" className="team">
                     <div className="container">
@@ -1000,7 +1000,7 @@ export default function Welcome(props) {
                                 <div className="member" data-aos="fade-up">
                                     <div className="member-img">
                                         <img
-                                            src="img/homepage/team/team-1.jpg"
+                                            src="img/homepage/team/elna-guzman.png"
                                             className="img-fluid"
                                             alt=""
                                         />
@@ -1020,8 +1020,9 @@ export default function Welcome(props) {
                                         </div>
                                     </div>
                                     <div className="member-info">
-                                        <h4>Walter White</h4>
-                                        <span>Chief Executive Officer</span>
+                                        <h4>Elna B. Guzman, MPSM</h4>
+                                        <span>Supervising Labor Employment Office (SLEO)</span>
+                                        <span>PESO Manager</span>
                                     </div>
                                 </div>
                             </div>
@@ -1034,7 +1035,7 @@ export default function Welcome(props) {
                                 >
                                     <div className="member-img">
                                         <img
-                                            src="img/homepage/team/team-2.jpg"
+                                            src="img/homepage/team/kristine-guden.png"
                                             className="img-fluid"
                                             alt=""
                                         />
@@ -1054,8 +1055,9 @@ export default function Welcome(props) {
                                         </div>
                                     </div>
                                     <div className="member-info">
-                                        <h4>Sarah Jhonson</h4>
-                                        <span>Product Manager</span>
+                                        <h4>Kristine Janice T. Guden</h4>
+                                        <span>Administrative Assistant III</span>
+                                        <span>Computer Operator II</span>
                                     </div>
                                 </div>
                             </div>
@@ -1068,7 +1070,7 @@ export default function Welcome(props) {
                                 >
                                     <div className="member-img">
                                         <img
-                                            src="img/homepage/team/team-3.jpg"
+                                            src="img/homepage/team/merazel-cena.png"
                                             className="img-fluid"
                                             alt=""
                                         />
@@ -1088,8 +1090,9 @@ export default function Welcome(props) {
                                         </div>
                                     </div>
                                     <div className="member-info">
-                                        <h4>William Anderson</h4>
-                                        <span>CTO</span>
+                                        <h4>Merazel C. Cena</h4>
+                                        <span>Administrative Officer V</span>
+                                        <span>OFW Helpdesk</span>
                                     </div>
                                 </div>
                             </div>
@@ -1102,7 +1105,7 @@ export default function Welcome(props) {
                                 >
                                     <div className="member-img">
                                         <img
-                                            src="img/homepage/team/team-4.jpg"
+                                            src="img/homepage/team/remedios-flores.png"
                                             className="img-fluid"
                                             alt=""
                                         />
@@ -1122,8 +1125,8 @@ export default function Welcome(props) {
                                         </div>
                                     </div>
                                     <div className="member-info">
-                                        <h4>Amanda Jepson</h4>
-                                        <span>Accountant</span>
+                                        <h4>Remedios L. Flores</h4>
+                                        <span>Labor Employment Assistant</span>
                                     </div>
                                 </div>
                             </div>
@@ -1153,13 +1156,13 @@ export default function Welcome(props) {
                                     <div className="email">
                                         <i className="bi bi-envelope"></i>
                                         <h4>Email:</h4>
-                                        <p>pesovalencia@gmail.com</p>
+                                        <p>pepsd.pesovalencia@gmail.com</p>
                                     </div>
 
                                     <div className="phone">
                                         <i className="bi bi-phone"></i>
                                         <h4>Call:</h4>
-                                        <p>00000000000</p>
+                                        <p>088 828 6105</p>
                                     </div>
                                 </div>
                             </div>
