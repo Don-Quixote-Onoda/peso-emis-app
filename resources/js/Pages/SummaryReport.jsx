@@ -22,6 +22,9 @@ export default function SummaryReports(props) {
     const [monthData, setMonthData] = useState([]);
     const [weeksOfMonthData, setWeeksOfMonthData] = useState([]);
     const [daysOfMonthData, setDaysOfMonthData] = useState([]);
+    const [monthDataEmployer, setMonthDataEmployer] = useState([]);
+    const [weeksOfMonthDataEmployer, setWeeksOfMonthDataEmployer] = useState([]);
+    const [daysOfMonthDataEmployer, setDaysOfMonthDataEmployer] = useState([]);
     const [monthDataHired, setMonthDataHired] = useState([]);
     const [weeksOfMonthDataHired, setWeeksOfMonthDataHired] = useState([]);
     const [daysOfMonthDataHired, setDaysOfMonthDataHired] = useState([]);
@@ -45,7 +48,6 @@ export default function SummaryReports(props) {
 
     const handlePreviewShow = async (event) => {
         
-
         event.preventDefault();
     NProgress.start(); // Start the progress indicator
 
@@ -162,6 +164,99 @@ export default function SummaryReports(props) {
             },
         ],
     };
+
+    useEffect(() => {
+        const employer_applied_report = props.employer_applied_report;
+
+        let filteredDaysOfMonthData = [];
+        let filteredWeeksOfMonthData = [];
+        let filterdMontData = [];
+        employer_applied_report.map((monthData) => {
+            let count = 0;
+            if (monthData.month === currentMonth) {
+                monthData.weeks.map((weekData) => {
+                    if (weekData.week === "Week " + currentWeek) {
+                        weekData.days.map((dayData) => {
+                            filteredWeeksOfMonthData.push(dayData);
+                        });
+                    }
+                    weekData.days.map((dayData) => {
+                        filteredDaysOfMonthData.push(dayData);
+                    });
+                });
+            }
+
+            monthData.weeks.map((weekData) => {
+                weekData.days.map((dayData) => {
+                    count += dayData.employers;
+                });
+            });
+            filterdMontData.push({
+                month: monthData.month,
+                employers: count,
+            });
+        });
+        setDaysOfMonthDataEmployer(filteredDaysOfMonthData);
+        setWeeksOfMonthDataEmployer(filteredWeeksOfMonthData);
+        setMonthDataEmployer(filterdMontData);
+        console.log(daysOfMonthDataEmployer);
+        console.log(weeksOfMonthDataEmployer);
+        console.log(monthDataEmployer);
+    }, []);
+    const daysOfMonthDataGraphEmployer = {
+        labels: daysOfMonthDataEmployer.map((data) => data.day),
+        datasets: [
+            {
+                label: "Establishments in " + currentMonth,
+                data: daysOfMonthDataEmployer.map((data) => data.employers),
+                backgroundColor: [
+                    "#FF6384",
+                    "#36A2EB",
+                    "#FFCE56",
+                    "#ccc",
+                    "#ccc",
+                ],
+                hoverOffset: 4,
+            },
+        ],
+    };
+
+    const daysOfWeekMonthDataGraphEmployer = {
+        labels: weeksOfMonthDataEmployer.map((data) => data.day),
+        datasets: [
+            {
+                label: "Establishments in Week " + currentWeek,
+                data: weeksOfMonthDataEmployer.map((data) => data.employers),
+                backgroundColor: [
+                    "#FF6384",
+                    "#36A2EB",
+                    "#FFCE56",
+                    "#ccc",
+                    "#ccc",
+                ],
+                hoverOffset: 4,
+            },
+        ],
+    };
+
+    const monthDataGraphEmployer = {
+        labels: monthDataEmployer.map((data) => data.month),
+        datasets: [
+            {
+                label: "Establishments in " + currentYear,
+                data: monthDataEmployer.map((data) => data.employers),
+                backgroundColor: [
+                    "#FF6384",
+                    "#36A2EB",
+                    "#FFCE56",
+                    "#ccc",
+                    "#ccc",
+                ],
+                hoverOffset: 4,
+            },
+        ],
+    };
+
     useEffect(() => {
         const applicants_hired = props.applicants_hired;
 
@@ -418,9 +513,14 @@ export default function SummaryReports(props) {
                     >
                         Summary Reports
                     </h2>
-                    <div className="card flex w-60 justify-content-center">
+                    <div className="gap-2 flex flex-row justify-content-start">
                         <Button
                             label="Print Applicants"
+                            icon="pi pi-external-link"
+                            onClick={() => setVisibleDate(true)}
+                        />
+                        <Button
+                            label="Print Establishment"
                             icon="pi pi-external-link"
                             onClick={() => setVisibleDate(true)}
                         />
@@ -720,6 +820,52 @@ export default function SummaryReports(props) {
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div className="">
+                    <div
+                        className="flex justify-center pb-3"
+                        onClick={(e) => div2PDF1(e)}
+                    >
+                        <Button
+                            label="Print Establishments Report"
+                            style={{ background: "#FF6384", border: "none" }}
+                            className="py-1 px-3 bg-red-900"
+                        />
+                    </div>
+                    <div className="w-full mb-8 div2PDF1 overflow-hidden rounded-lg shadow-xs">
+                        <h1 className="text-2xl text-center mb-0 font-bold">
+                            Establishment
+                        </h1>
+                        <span className="text-xs text-center mb-4 font-bold d-block">
+                            {"(" + getCurrentDateFormat() + ")"}
+                        </span>
+
+                        <div className="w-full overflow-x-auto card flex p-5 flex-wrap gap-5 flex-row summary-report">
+                            <div>
+                                <Bar
+                                    ref={ref}
+                                    data={daysOfMonthDataGraphEmployer}
+                                    style={{ width: "100%", height: "auto" }}
+                                />
+                            </div>
+                            <div>
+                                <Bar
+                                    ref={ref}
+                                    data={daysOfWeekMonthDataGraphEmployer}
+                                    style={{ width: "100%", height: "auto" }}
+                                />
+                            </div>
+                            <div>
+                                <Bar
+                                    ref={ref}
+                                    data={monthDataGraphEmployer}
+                                    style={{ width: "100%", height: "auto" }}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                   
                 </div>
             </div>
         </AuthenticatedLayout>
