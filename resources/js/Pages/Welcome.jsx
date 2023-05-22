@@ -792,7 +792,7 @@ export default function Welcome(props) {
                         // </button>
                         <span></span>
                         ) : (
-                            initialJobInfo.length > 5 &&  <button 
+                            initialJobInfo.length > 4 &&  <button 
                             onClick={loadMore}
                             className="cursor transition hover:bg-stone-400 my-5 bg-stone-500 p-3 rounded text-white">
                             See More
