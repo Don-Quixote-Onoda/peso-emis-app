@@ -1,4 +1,4 @@
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import AuthenticatedLayout from '../../Layouts/AuthenticatedLayout';
 import { Head } from "@inertiajs/react";
 import React, { useState, useEffect } from "react";
 import JobPostingTable from "./Table";
@@ -117,7 +117,7 @@ export default function Index(props) {
             <Button
                 label="Yes"
                 icon="pi pi-check"
-                severity="danger"
+                severity="success"
                 onClick={deleteJobPosting}
             />
         </React.Fragment>
@@ -135,7 +135,7 @@ export default function Index(props) {
                 </h2>
             }
         >
-            <Head title="Job Posting" />
+            <Head title="EMIS - Job Posting" />
             {type == "default" && (
                 <div className="card mt-5 max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     <JobPostingTable
@@ -173,7 +173,7 @@ export default function Index(props) {
                         style={{ fontSize: "2rem" }}
                     />
                         <span>
-                            Are you sure you want to delete <b></b>?
+                            Are you sure you want to change active status?
                         </span>
                 </div>
             </Dialog>

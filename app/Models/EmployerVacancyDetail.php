@@ -20,7 +20,8 @@ class EmployerVacancyDetail extends Model
         "job_description",
         "salary",
         "vacancy_count",
-        "employer_id"
+        "employer_id",
+        "is_active"
     ];
 
     public function employer() {

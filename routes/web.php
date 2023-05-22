@@ -9,7 +9,11 @@ use App\Http\Controllers\EmployersController;
 use App\Http\Controllers\AdminApplicantsController;
 use App\Http\Controllers\AdminEmployersController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EmployerSettingsController;
 use App\Http\Controllers\JobPostingController;
+use App\Http\Controllers\SummaryReportsController;
+use App\Http\Controllers\WelcomeController;
 use App\Models\Employer;
 use App\Models\EmployerVacancyDetail;
 
@@ -23,22 +27,13 @@ use App\Models\EmployerVacancyDetail;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Route::get('/{any}', function () {
+//     return view('app');
+// })->where('any', '.*');
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-        'jobs' => EmployerVacancyDetail::all()
-    ]);
-})->name('home');
+Route::get('/', [WelcomeController::class, 'index'])->name('home');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard', [
-        'employers' => Employer::all()
-    ]);
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -54,6 +49,8 @@ Route::get('/admin-applicants', [AdminApplicantsController::class, 'index'])->mi
 Route::get('/admin-employers', [AdminEmployersController::class, 'index'])->middleware(['auth', 'verified'])->name('admin-employers');
 Route::get('/admin-users', [AdminUserController::class, 'index'])->middleware(['auth', 'verified'])->name('admin-users');
 Route::get('/job-posting', [JobPostingController::class, 'index'])->middleware(['auth', 'verified'])->name('job-postings');
+Route::get('/employer-settings', [EmployerSettingsController::class, 'index'])->middleware(['auth', 'verified'])->name('employer-settings');
+Route::get('/summary-reports', [SummaryReportsController::class, 'index'])->middleware(['auth', 'verified'])->name('summary-reports');
 
 
 require __DIR__.'/auth.php';

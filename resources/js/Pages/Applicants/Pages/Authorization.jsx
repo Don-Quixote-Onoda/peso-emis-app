@@ -16,6 +16,13 @@ export default function Authorization({
         "authorizationAccepted"
     );
 
+    const [e_signature, setESignature] = useSessionStorage(
+        sessionStorage.getItem("e_signature"),
+        "e_signature"
+    );
+
+    const [isErrorImage, setErrorImage] = useState(false);
+
     const personalInformation = {
         personalDetails: {
             surname: sessionStorage.getItem("surname"),
@@ -63,13 +70,12 @@ export default function Authorization({
             pa_houseNumber_Street_Village: sessionStorage.getItem(
                 "pa_houseNumber_Street_Village"
             ),
-            authorizationAccepted: sessionStorage.getItem(
-                "authorizationAccepted"
-            ),
+            authorizationAccepted: sessionStorage.getItem("authorizationAccepted"),
             OtherSkills: sessionStorage.getItem("OtherSkills"),
             passportNumber: sessionStorage.getItem("passportNumber"),
             expectedSalary: sessionStorage.getItem("expectedSalary"),
             expiryDate: sessionStorage.getItem("expiryDate"),
+            e_signature: sessionStorage.getItem("e_signature"),
         },
         address: {
             placeOfBirth: {
@@ -369,21 +375,45 @@ export default function Authorization({
         useForm(personalInformation);
 
     useEffect(() => {
-        console.log(personalInformation);
-        console.log(personalInformation);
+  
     });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post("/api/applicants", {
-        onSuccess: () =>{
-            sessionStorage.clear();
-        },
-        onError: () => {
-            console.log(errors);
-        },}
-        );
+        setSubmitted(true);
+        if(
+            (data.e_signature !== undefined) &&
+            (authorizationAccepted !== false && authorizationAccepted !== null) &&
+            isErrorImage === false
+        )
+        {
+            post("/api/applicants", {
+            onSuccess: () =>{
+                sessionStorage.clear();
+            },
+            onError: () => {
+                console.log(errors);
+            },}
+            );
+        }
+        
     };
+
+    const [isSubmitted, setSubmitted] = useState(false);
+
+    const handleFileUpload = (e, filename) => {
+        let fileExtension = e.target.value.split('.').pop();
+        if(fileExtension === 'png' || fileExtension === 'jpg')
+        {
+            setErrorImage(false);
+            console.log(JSON.stringify(e.target.files[0]));
+           sessionStorage.setItem('e_signature', JSON.stringify(e.target.files[0]));
+           setData('e_signature', e.target.files[0] );
+        }
+        else {
+            setErrorImage(true);
+        }
+    }
 
     return (
         <form onSubmit={(e) => handleSubmit(e)}>
@@ -394,15 +424,19 @@ export default function Authorization({
                     </h4>
                     <div class="card-body pl-0 pt-3">
                         <div class="row">
-                            <h6 class="indent-16 !text-gray-500">
-                                <Checkbox
+                        <div className="col-md-1 flex justify-end">
+                        <Checkbox
                                     className="mr-3"
                                     onChange={(e) =>
                                         setAuthorizationAccepted(e.checked)
                                     }
                                     checked={authorizationAccepted}
                                 ></Checkbox>
-                                This is to certify that all data/information
+                        </div>
+                            <div className="col-md-11">
+                            <h6 class=" !text-gray-500">
+                            
+                            This is to certify that all data/information
                                 that I have provided in this form are true to
                                 the best of my knowledge.This Is also to
                                 authorized the DOLE to include my profile in the
@@ -412,7 +446,10 @@ export default function Authorization({
                                 employers who have access to the Registry. I am
                                 also aware that DOLE is not obliged to seek
                                 employment on my behalf.
-                            </h6>
+                        </h6>
+                        {(isSubmitted && (authorizationAccepted === null || authorizationAccepted === false)) && <span className="text-red-500 text-xs">Applicant Signature is required!.</span>}
+                            </div>
+                            
                         </div>
                     </div>
                     <div class="row mt-5">
@@ -443,7 +480,10 @@ export default function Authorization({
                       focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                     type="file"
                                     id="formFile"
+                                    onChange={(e) => handleFileUpload(e, "product_image")}
                                 />
+                                {isErrorImage && <span className="text-red-500 text-xs">File must be png or jpg.</span>}
+                                {(isSubmitted && data.e_signature === undefined) && <span className="text-red-500 text-xs">Applicant Signature is required!.</span>}
                             </div>
                         </div>
                     </div>

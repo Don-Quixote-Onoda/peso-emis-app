@@ -3,7 +3,7 @@ import { InputText } from "primereact/inputtext";
 import { Checkbox } from "primereact/checkbox";
 import { useSessionStorage, useLocalStorage } from "primereact/hooks";
 
-export default function Language(props) {
+export default function Language({language}) {
 
 
     const [othersLanguage, setOthersLangauge] = useSessionStorage(
@@ -100,13 +100,13 @@ export default function Language(props) {
                                 </div>
                             </div>
                         </div>
-                        <div class="row mb-4">
+            
+                                <div class="row mb-4">
                             <div class="col-md-4">
                                 <input
                                     type="input"
-                                    value="English"
                                     class="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis"
-                                    disabled="disabled"
+                                    // disabled={item.language_spoken === 'english' || item.language_spoken === 'filipino'}
                                 />
                             </div>
                             <div class="col-md-8">
@@ -116,7 +116,7 @@ export default function Language(props) {
                                             onChange={(e) =>
                                                 setReadEnglish(e.checked)
                                             }
-                                            checked={readEnglish}
+                                            // checked={item.can_read == 1}
                                         ></Checkbox>
                                         <label className="pl-3 responsive-text-md-block">
                                             Read
@@ -125,9 +125,9 @@ export default function Language(props) {
                                     <div class="col-md-3">
                                         <Checkbox
                                             onChange={(e) =>
-                                                setWriteEnglish(e.checked)
+                                                setReadEnglish(e.checked)
                                             }
-                                            checked={writeEnglish}
+                                            // checked={item.can_write == 1}
                                         ></Checkbox>
                                         <label className="pl-3 responsive-text-md-block">
                                             Write
@@ -136,9 +136,9 @@ export default function Language(props) {
                                     <div class="col-md-3">
                                         <Checkbox
                                             onChange={(e) =>
-                                                setSpeakEnglish(e.checked)
+                                                setReadEnglish(e.checked)
                                             }
-                                            checked={speakEnglish}
+                                            // checked={item.can_speak == 1}
                                         ></Checkbox>
                                         <label className="pl-3 responsive-text-md-block">
                                             Speak
@@ -149,7 +149,7 @@ export default function Language(props) {
                                             onChange={(e) =>
                                                 setUnderstandEnglish(e.checked)
                                             }
-                                            checked={understandEnglish}
+                                            // checked={item.can_understand == 1}
                                         ></Checkbox>
                                         <label className="pl-3 responsive-text-md-block">
                                             Understand
@@ -158,125 +158,7 @@ export default function Language(props) {
                                 </div>
                             </div>
                         </div>
-                        <div class="row mb-4">
-                            <div class="col-md-4">
-                                <input
-                                    type="input"
-                                    value="Filipino"
-                                    class="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis"
-                                    disabled="disabled"
-                                />
-                            </div>
-                            <div class="col-md-8">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <Checkbox
-                                            onChange={(e) =>
-                                                setReadFilipino(e.checked)
-                                            }
-                                            checked={readFilipino}
-                                        ></Checkbox>
-                                        <label className="pl-3 responsive-text-md-block">
-                                            Read
-                                        </label>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <Checkbox
-                                            onChange={(e) =>
-                                                setWriteFilipino(e.checked)
-                                            }
-                                            checked={writeFilipino}
-                                        ></Checkbox>
-                                        <label className="pl-3 responsive-text-md-block">
-                                            Write
-                                        </label>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <Checkbox
-                                            onChange={(e) =>
-                                                setSpeakFilipino(e.checked)
-                                            }
-                                            checked={speakFilipino}
-                                        ></Checkbox>
-                                        <label className="pl-3 responsive-text-md-block">
-                                            Speak
-                                        </label>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <Checkbox
-                                            onChange={(e) =>
-                                                setUnderstandFilipino(e.checked)
-                                            }
-                                            checked={understandFilipino}
-                                        ></Checkbox>
-                                        <label className="pl-3 responsive-text-md-block">
-                                            Understand
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mb-4">
-                            <div class="col-md-4">
-                                <InputText
-                                    className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                    placeholder="Others"
-                                    value={othersLanguage}
-                                    onChange={(e) =>
-                                        setOthersLangauge(e.target.value)
-                                    }
-                                />
-                                <span class="text-danger !text-xs language_or_dialect_proficiency-error"></span>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <Checkbox
-                                            onChange={(e) =>
-                                                setReadOthers(e.checked)
-                                            }
-                                            checked={readOthers}
-                                        ></Checkbox>
-                                        <label className="pl-3 responsive-text-md-block">
-                                            Read
-                                        </label>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <Checkbox
-                                            onChange={(e) =>
-                                                setWriteOthers(e.checked)
-                                            }
-                                            checked={writeOthers}
-                                        ></Checkbox>
-                                        <label className="pl-3 responsive-text-md-block">
-                                            Write
-                                        </label>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <Checkbox
-                                            onChange={(e) =>
-                                                setSpeakOthers(e.checked)
-                                            }
-                                            checked={speakOthers}
-                                        ></Checkbox>
-                                        <label className="pl-3 responsive-text-md-block">
-                                            Speak
-                                        </label>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <Checkbox
-                                            onChange={(e) =>
-                                                setUnderstandOthers(e.checked)
-                                            }
-                                            checked={understandOthers}
-                                        ></Checkbox>
-                                        <label className="pl-3 responsive-text-md-block">
-                                            Understand
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                       
                     </div>
                 </div>
             </div>

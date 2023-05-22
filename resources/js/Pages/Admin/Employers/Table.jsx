@@ -1,5 +1,3 @@
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head } from "@inertiajs/react";
 import React, { useState, useEffect } from "react";
 import { FilterMatchMode, FilterOperator } from "primereact/api";
 import { DataTable } from "primereact/datatable";
@@ -32,7 +30,7 @@ export default function EmployersTable({
     const renderHeader = () => {
         return (
             <div className="flex flex-wrap gap-2 justify-content-between align-items-center">
-                <h4 className="m-0">employers</h4>
+                <h4 className="m-0">Employers</h4>
                 <span className="p-input-icon-left">
                     <i className="pi pi-search" />
                     <InputText
@@ -82,7 +80,6 @@ export default function EmployersTable({
                     rowsPerPageOptions={[10, 25, 50]} dataKey="id" 
                     filters={filters} filterDisplay="menu"
                     emptyMessage="No customers found." currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
-                <Column selectionMode="multiple" headerStyle={{ width: '3rem' }}></Column>
                 <Column field="establishment_name" header="Establishment Accronym" sortable filter filterPlaceholder="Search by name" style={{ minWidth: '14rem' }} />
                 <Column field="employer_type" header="Employer Type" sortable filter filterPlaceholder="Search by name" style={{ minWidth: '14rem' }} />
                 <Column field="line_of_business" header="Line of Business" sortable filter filterPlaceholder="Search by name" style={{ minWidth: '14rem' }} />

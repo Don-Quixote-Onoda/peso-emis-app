@@ -5,13 +5,18 @@ import { RadioButton } from "primereact/radiobutton";
 import { Dropdown } from "primereact/dropdown";
 import { Checkbox } from "primereact/checkbox";
 import { Button } from 'primereact/button';
+import { useSessionStorage, useLocalStorage } from "primereact/hooks";
+import {
+    regions,
+    provinces,
+    cities,
+    barangays,
+} from "select-philippines-address";
 
 export default function ViewApplicant({ applicant, back }) {
     useEffect(() => {
         console.log(applicant);
-        console.log(
-            applicant.skills_without_formal_training.includes("Auto Mechanic")
-        );
+      
     }, []);
 
     const civilStatuses = [
@@ -33,6 +38,241 @@ export default function ViewApplicant({ applicant, back }) {
     const handleChecked = (val) => {
         return true;
     };
+
+    const [pob_regionAddr, pob_setRegionAddr] = useSessionStorage(
+        sessionStorage.getItem("pob_regionAddr"),
+        "pob_regionAddr"
+    );
+    const [pob_provinceAddr, pob_setProvinceAddr] = useSessionStorage(
+        sessionStorage.getItem("pob_provinceAddr"),
+        "pob_provinceAddr"
+    );
+    const [pob_cityAddr, pob_setCityAddr] = useSessionStorage(
+        "pob_cityAddr",
+        "pob_cityAddr"
+    );
+    const [pob_barangayAddr, pob_setBarangayAddr] = useSessionStorage(
+        sessionStorage.getItem("pob_barangayAddr"),
+        "pob_barangayAddr"
+    );
+    const [pob_houseNumber_Street_Village, pob_setHouseNumber_Street_Village] =
+        useSessionStorage(
+            sessionStorage.getItem("pob_houseNumber_Street_Village"),
+            "pob_houseNumber_Street_Village"
+        );
+
+    const [pob_regionData, pob_setRegion] = useState([]);
+    const [pob_provinceData, pob_setProvince] = useSessionStorage(
+        sessionStorage.getItem("provinceData"),
+        "provinceData"
+    );
+    const [pob_cityData, pob_setCity] = useSessionStorage(
+        sessionStorage.getItem("cityData"),
+        "cityData"
+    );
+    const [pob_barangayData, pob_setBarangay] = useSessionStorage(
+        sessionStorage.getItem("barangayData"),
+        "barangayData"
+    );
+    const [pob_regionCode, pob_setRegionCode] = useSessionStorage(
+        sessionStorage.getItem("regionCode"),
+        "regionCode"
+    );
+
+    const pob_region = () => {
+        regions().then((response) => {
+            pob_setRegion(response);
+        });
+    };
+
+    const pob_province = (e) => {
+        pob_setRegionAddr(e.target.selectedOptions[0].text);
+        provinces(e.target.value).then((response) => {
+            pob_setProvince(response);
+            pob_setCity([]);
+            pob_setBarangay([]);
+            pob_setRegionCode(e.target.value);
+        });
+    };
+
+    const pob_city = (e) => {
+        pob_setProvinceAddr(e.target.selectedOptions[0].text);
+        cities(e.target.value).then((response) => {
+            pob_setCity(response);
+        });
+    };
+
+    const moneyFormatBody = (val) => {
+        return parseFloat(val).toLocaleString('en-PH', { style: 'currency', currency: 'PHP' })
+    }
+
+    const pob_barangay = (e) => {
+        pob_setCityAddr(e.target.selectedOptions[0].text);
+        barangays(e.target.value).then((response) => {
+            pob_setBarangay(response);
+        });
+    };
+
+    const pob_brgy = (e) => {
+        pob_setBarangayAddr(e.target.selectedOptions[0].text);
+    };
+
+    const [isValidated, setValidated] = useState(true);
+
+    useEffect(() => {
+        pob_setRegionAddr(applicant.applicant_address[0].region);
+        regions().then((response) => {
+            response.map((region) => {
+                if(region.region_name === applicant.applicant_address[0].region) {
+                    provinces(region.region_code).then((response) => {
+                        pob_setProvince(response);
+                        pob_setCity([]);
+                        pob_setBarangay([]);
+                        response.map((province) => {
+                            if(province.province_name === applicant.applicant_address[0].province) {
+                                pob_setProvinceAddr(province.province_code);
+                                cities(province.province_code).then((response) => {
+                                    pob_setCity(response);
+                                    response.map((city) => {
+                                        if(city.city_name === applicant.applicant_address[0].municipality_or_city) {
+                                            pob_setCityAddr(city.city_code);
+                                            barangays(city.city_code).then((response) => {
+                                                pob_setBarangay(response);
+                                            });
+                                        }
+                                    });
+                                });
+                            }
+                        })
+                    });
+                }
+            });
+        });
+    }, []);
+
+    const [pa_regionAddr, pa_setRegionAddr] = useSessionStorage(
+        sessionStorage.getItem("pa_regionAddr"),
+        "pa_regionAddr"
+    );
+    const [pa_provinceAddr, pa_setProvinceAddr] = useSessionStorage(
+        sessionStorage.getItem("pa_provinceAddr"),
+        "pa_provinceAddr"
+    );
+    const [pa_cityAddr, pa_setCityAddr] = useSessionStorage(
+        "pa_cityAddr",
+        "pa_cityAddr"
+    );
+    const [pa_barangayAddr, pa_setBarangayAddr] = useSessionStorage(
+        sessionStorage.getItem("pa_barangayAddr"),
+        "pa_barangayAddr"
+    );
+    const [pa_houseNumber_Street_Village, pa_setHouseNumber_Street_Village] =
+        useSessionStorage(
+            sessionStorage.getItem("pa_houseNumber_Street_Village"),
+            "pa_houseNumber_Street_Village"
+        );
+
+    const [pa_regionData, pa_setRegion] = useState([]);
+    const [pa_provinceData, pa_setProvince] = useSessionStorage(
+        sessionStorage.getItem("provinceData"),
+        "provinceData"
+    );
+    const [pa_cityData, pa_setCity] = useSessionStorage(
+        sessionStorage.getItem("cityData"),
+        "cityData"
+    );
+    const [pa_barangayData, pa_setBarangay] = useSessionStorage(
+        sessionStorage.getItem("barangayData"),
+        "barangayData"
+    );
+    const [pa_regionCode, pa_setRegionCode] = useSessionStorage(
+        sessionStorage.getItem("regionCode"),
+        "regionCode"
+    );
+
+    const [employedStatusType, setEmployedStatusType] = useSessionStorage(
+        sessionStorage.getItem("employedStatusType"),
+        "employedStatusType"
+    );
+
+    const [unEmployedStatusType, setUnEmployedStatusType] = useState("");
+
+
+    const [unEmployedStatusTypes, setUnEmployedStatusTypes] = useSessionStorage(
+        sessionStorage.getItem("unEmployedStatusTypes"),
+        "unEmployedStatusTypes"
+    );
+
+    const pa_region = () => {
+        regions().then((response) => {
+            pa_setRegion(response);
+        });
+    };
+
+    const pa_province = (e) => {
+        pa_setRegionAddr(e.target.selectedOptions[0].text);
+        provinces(e.target.value).then((response) => {
+            pa_setProvince(response);
+            pa_setCity([]);
+            pa_setBarangay([]);
+            pa_setRegionCode(e.target.value);
+        });
+    };
+
+    const pa_city = (e) => {
+        pa_setProvinceAddr(e.target.selectedOptions[0].text);
+        cities(e.target.value).then((response) => {
+            pa_setCity(response);
+        });
+    };
+
+    const pa_barangay = (e) => {
+        pa_setCityAddr(e.target.selectedOptions[0].text);
+        barangays(e.target.value).then((response) => {
+            pa_setBarangay(response);
+        });
+    };
+
+    const pa_brgy = (e) => {
+        pa_setBarangayAddr(e.target.selectedOptions[0].text);
+    };
+
+    useEffect(() => {
+        pa_region();
+        pa_setRegionAddr(applicant.applicant_address[1].region);
+        regions().then((response) => {
+            response.map((region) => {
+                if(region.region_name === applicant.applicant_address[1].region) {
+                    provinces(region.region_code).then((response) => {
+                        pa_setProvince(response);
+                        pa_setCity([]);
+                        pa_setBarangay([]);
+                        response.map((province) => {
+                            if(province.province_name === applicant.applicant_address[1].province) {
+                                pa_setProvinceAddr(province.province_code);
+                                cities(province.province_code).then((response) => {
+                                    pa_setCity(response);
+                                    response.map((city) => {
+                                        if(city.city_name === applicant.applicant_address[1].municipality_or_city) {
+                                            pa_setCityAddr(city.city_code);
+                                            barangays(city.city_code).then((response) => {
+                                                pa_setBarangay(response);
+                                            });
+                                        }
+                                    });
+                                });
+                            }
+                        })
+                    });
+                }
+            });
+        });
+    }, []);
+
+    const filterNameText = (val) => {
+        return val.split(':')[1].replace(/["}]/g, '');
+        
+    }
 
     return (
         <>
@@ -193,7 +433,7 @@ export default function ViewApplicant({ applicant, back }) {
 
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-900 border-light-emphasis pi_surname"
-                                value={applicant.civil_status}
+                                value={filterNameText(applicant.civil_status)}
                                 disabled
                             />
                             <span class="text-danger !text-xs pi_civil_status-error h-10"></span>
@@ -420,6 +660,327 @@ export default function ViewApplicant({ applicant, back }) {
                                         <span class="text-danger !text-xs pi_4ps_household_id-error"></span>
                                     </div>
                                 )}
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <h5 class="fw-bold text-dark-emphasis mb-4 text-gray-500 !text-md">
+                                Place of Birth
+                            </h5>
+                            <div class="row">
+                                <div class="col-md-12 mb-4 d-flex flex-column justify-content-between">
+                                    <label
+                                        for="inputEmail4"
+                                        class="form-label !text-xs !text-gray-400 text-light-emphasis"
+                                    >
+                                        Region
+                                        <span className="text-red-500">*</span>
+                                    </label>
+                                    <select
+                                        onChange={pob_province}
+                                        onSelect={pob_region}
+                                        className=" pa_province !text-xs !py-2.5 !text-gray-500 !rounded form-select !border-gray-300"
+                                        aria-label="Default select example"
+                                        disabled
+                                    >
+                                        <option disabled>Select Region</option>
+                                        {pob_regionData &&
+                                            pob_regionData.length > 0 &&
+                                            pob_regionData.map((item) => (
+                                                <option
+                                                    key={item.region_code}
+                                                    value={item.region_code}
+                                                    selected={
+                                                        pob_regionAddr ==
+                                                        item.region_name
+                                                            ? true
+                                                            : null
+                                                    }
+                                                >
+                                                    {item.region_name}
+                                                </option>
+                                            ))}
+                                    </select>
+                                </div>
+                                <div class="col-md-12 mb-4 d-flex flex-column justify-content-between">
+                                    <label
+                                        for="inputEmail4"
+                                        class="form-label !text-xs !text-gray-400 text-light-emphasis"
+                                    >
+                                        Province
+                                        <span className="text-red-500">*</span>
+                                    </label>
+                                    <select
+                                        onChange={pob_city}
+                                        class=" pa_province !text-xs !py-2.5 !text-gray-500 !rounded form-select !border-gray-300 form-select border-light-emphasis"
+                                        aria-label="Default select example"
+                                        disabled
+                                    >
+                                        <option disabled>
+                                            Select Province
+                                        </option>
+                                        {pob_provinceData &&
+                                            pob_provinceData.length > 0 &&
+                                            pob_provinceData.map((item) => (
+                                                <option
+                                                    key={item.province_code}
+                                                    value={item.province_code}
+                                                    selected={
+                                                        pob_provinceAddr ==
+                                                        item.province_name
+                                                            ? true
+                                                            : null
+                                                    }
+                                                >
+                                                    {item.province_name}
+                                                </option>
+                                            ))}
+                                    </select>
+                                </div>
+                                <div class="col-md-12 mb-4  d-flex flex-column justify-content-between">
+                                    <label
+                                        for="inputEmail4"
+                                        class="form-label !text-xs !text-gray-400 text-light-emphasis"
+                                    >
+                                        Municipality/City
+                                        <span className="text-red-500">*</span>
+                                    </label>
+                                    <select
+                                        onChange={pob_barangay}
+                                        class=" pa_city !text-xs !py-2.5 !rounded form-select !border-gray-300 !text-gray-500 form-select border-light-emphasis"
+                                        aria-label="Default select example"
+                                        disabled
+                                    >
+                                        <option disabled>Select City</option>
+                                        {pob_cityData &&
+                                            pob_cityData.length > 0 &&
+                                            pob_cityData.map((item) => (
+                                                <option
+                                                    key={item.city_code}
+                                                    value={item.city_code}
+                                                    selected={
+                                                        pob_cityAddr ==
+                                                        item.city_name
+                                                            ? true
+                                                            : null
+                                                    }
+                                                >
+                                                    {item.city_name}
+                                                </option>
+                                            ))}
+                                    </select>
+                                </div>
+                                <div class="col-md-12 mb-4  d-flex flex-column justify-content-between">
+                                    <label
+                                        for="inputEmail4"
+                                        class="form-label !text-xs !text-gray-400 text-light-emphasis"
+                                    >
+                                        Barangay
+                                        <span className="text-red-500">*</span>
+                                    </label>
+                                    <select
+                                        onChange={pob_brgy}
+                                        class=" pa_barangay !text-xs !rounded form-select !border-gray-300 !py-2.5 !text-gray-500 form-select border-light-emphasis"
+                                        aria-label="Default select example"
+                                        disabled
+                                    >
+                                        <option disabled>
+                                            Select Barangay
+                                        </option>
+                                        {pob_barangayData &&
+                                            pob_barangayData.length > 0 &&
+                                            pob_barangayData.map((item) => (
+                                                <option
+                                                    key={item.brgy_code}
+                                                    value={item.brgy_code}
+                                                    selected={
+                                                        pob_barangayAddr ==
+                                                        item.brgy_name
+                                                            ? true
+                                                            : null
+                                                    }
+                                                >
+                                                    {item.brgy_name}
+                                                </option>
+                                            ))}
+                                    </select>
+                                </div>
+                                <div class="col-md-12 mb-4  d-flex flex-column justify-content-between">
+                                <label
+                                        for="inputEmail4"
+                                        class="form-label !text-xs !text-gray-400 text-light-emphasis"
+                                    >
+                                        House No./ Street Village*
+                                        <span className="text-red-500">*</span>
+                                    </label>
+                                    <InputText
+                                        className="form-control !text-xs !py-2.5 !text-gray-900 border-light-emphasis pi_surname"
+                                        value={
+                                            applicant.applicant_address[0].house_no_or_street
+                                        }
+                                        disabled
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <h5 class="fw-bold text-gray-500 text-dark-emphasis mb-4">
+                                Present Address
+                            </h5>
+                            <div class="row">
+                                <div class="col-md-12 mb-4 d-flex flex-column justify-content-between">
+                                    <label
+                                        for="inputEmail4"
+                                        class="form-label !text-xs !text-gray-400 text-light-emphasis"
+                                    >
+                                        Region
+                                        <span className="text-red-500">*</span>
+                                    </label>
+                                    <select
+                                        onChange={pa_province}
+                                        onSelect={pa_region}
+                                        className=" pa_province !text-xs !py-2.5 !text-gray-500 !rounded form-select !border-gray-300"
+                                        aria-label="Default select example"
+                                        disabled
+                                    >
+                                        <option disabled>Select Region</option>
+                                        {pa_regionData &&
+                                            pa_regionData.length > 0 &&
+                                            pa_regionData.map((item) => (
+                                                <option
+                                                    key={item.region_code}
+                                                    value={item.region_code}
+                                                    selected={
+                                                        pa_regionAddr ==
+                                                        item.region_name
+                                                            ? true
+                                                            : null
+                                                    }
+                                                >
+                                                    {item.region_name}
+                                                </option>
+                                            ))}
+                                    </select>
+                                </div>
+                                <div class="col-md-12 mb-4 d-flex flex-column justify-content-between">
+                                    <label
+                                        for="inputEmail4"
+                                        class="form-label !text-xs !text-gray-400 text-light-emphasis"
+                                    >
+                                        Province
+                                        <span className="text-red-500">*</span>
+                                    </label>
+                                    <select
+                                        onChange={pa_city}
+                                        class=" pa_province !text-xs !py-2.5 !text-gray-500 !rounded form-select !border-gray-300 form-select border-light-emphasis"
+                                        aria-label="Default select example"
+                                        disabled
+                                    >
+                                        <option disabled>
+                                            Select Province
+                                        </option>
+                                        {pa_provinceData &&
+                                            pa_provinceData.length > 0 &&
+                                            pa_provinceData.map((item) => (
+                                                <option
+                                                    key={item.province_code}
+                                                    value={item.province_code}
+                                                    selected={
+                                                        pa_provinceAddr ==
+                                                        item.province_name
+                                                            ? true
+                                                            : null
+                                                    }
+                                                >
+                                                    {item.province_name}
+                                                </option>
+                                            ))}
+                                    </select>
+                                </div>
+                                <div class="col-md-12 mb-4  d-flex flex-column justify-content-between">
+                                    <label
+                                        for="inputEmail4"
+                                        class="form-label !text-xs !text-gray-400 text-light-emphasis"
+                                    >
+                                        Municipality/City
+                                        <span className="text-red-500">*</span>
+                                    </label>
+                                    <select
+                                        onChange={pa_barangay}
+                                        class=" pa_city !text-xs !py-2.5 !rounded form-select !border-gray-300 !text-gray-500 form-select border-light-emphasis"
+                                        aria-label="Default select example"
+                                        disabled
+                                    >
+                                        <option disabled>Select City</option>
+                                        {pa_cityData &&
+                                            pa_cityData.length > 0 &&
+                                            pa_cityData.map((item) => (
+                                                <option
+                                                    key={item.city_code}
+                                                    value={item.city_code}
+                                                    selected={
+                                                        pa_cityAddr ==
+                                                        item.city_name
+                                                            ? true
+                                                            : null
+                                                    }
+                                                >
+                                                    {item.city_name}
+                                                </option>
+                                            ))}
+                                    </select>
+                                </div>
+                                <div class="col-md-12 mb-4  d-flex flex-column justify-content-between">
+                                    <label
+                                        for="inputEmail4"
+                                        class="form-label !text-xs !text-gray-400 text-light-emphasis"
+                                    >
+                                        Barangay
+                                        <span className="text-red-500">*</span>
+                                    </label>
+                                    <select
+                                        onChange={pa_brgy}
+                                        class=" pa_barangay !text-xs !rounded form-select !border-gray-300 !py-2.5 !text-gray-500 form-select border-light-emphasis"
+                                        aria-label="Default select example"
+                                        disabled
+                                    >
+                                        <option disabled>
+                                            Select Barangay
+                                        </option>
+                                        {pa_barangayData &&
+                                            pa_barangayData.length > 0 &&
+                                            pa_barangayData.map((item) => (
+                                                <option
+                                                    key={item.brgy_code}
+                                                    value={item.brgy_code}
+                                                    selected={
+                                                        pa_barangayAddr ==
+                                                        item.brgy_name
+                                                            ? true
+                                                            : null
+                                                    }
+                                                >
+                                                    {item.brgy_name}
+                                                </option>
+                                            ))}
+                                    </select>
+                                </div>
+                                <div class="col-md-12 mb-4  d-flex flex-column justify-content-between">
+                                <label
+                                        for="inputEmail4"
+                                        class="form-label !text-xs !text-gray-400 text-light-emphasis"
+                                    >
+                                        House No./ Street Village*
+                                        <span className="text-red-500">*</span>
+                                    </label>
+                                    <InputText
+                                        className="form-control !text-xs !py-2.5 !text-gray-900 border-light-emphasis pi_surname"
+                                        value={
+                                            applicant.applicant_address[1].house_no_or_street
+                                        }
+                                        disabled
+                                    />
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">
@@ -683,7 +1244,7 @@ export default function ViewApplicant({ applicant, back }) {
                                 </label>
                                 <InputText
                                     className="form-control !text-xs !py-2.5 !text-gray-900 border-light-emphasis pi_surname"
-                                    value={applicant.disability}
+                                    value={applicant.disability !== ''? filterNameText(applicant.disability) : ''}
                                     disabled
                                 />
                                 <span class="text-danger !text-xs pi_disability-error"></span>
@@ -755,8 +1316,7 @@ export default function ViewApplicant({ applicant, back }) {
                                                     checked={
                                                         applicant
                                                             .applicant_status
-                                                            .applicant_status_type ===
-                                                        "Wage Employed"
+                                                            .applicant_status_type.includes("Wage Employed")
                                                     }
                                                     disabled
                                                 />
@@ -779,8 +1339,7 @@ export default function ViewApplicant({ applicant, back }) {
                                                     checked={
                                                         applicant
                                                             .applicant_status
-                                                            .applicant_status_type ===
-                                                        "Self Employed"
+                                                            .applicant_status_type.includes("Self Employed")
                                                     }
                                                     disabled
                                                 />
@@ -809,8 +1368,7 @@ export default function ViewApplicant({ applicant, back }) {
                                                     checked={
                                                         applicant
                                                             .applicant_status
-                                                            .applicant_status_type ===
-                                                        "New Entrant/Fresh Graduate"
+                                                            .applicant_status_type.includes("New Entrant/Fresh Graduate")
                                                     }
                                                     disabled
                                                 />
@@ -833,8 +1391,7 @@ export default function ViewApplicant({ applicant, back }) {
                                                     checked={
                                                         applicant
                                                             .applicant_status
-                                                            .applicant_status_type ===
-                                                        "Finished Contract"
+                                                            .applicant_status_type.includes("Finished Contract")
                                                     }
                                                     disabled
                                                 />
@@ -857,8 +1414,7 @@ export default function ViewApplicant({ applicant, back }) {
                                                     checked={
                                                         applicant
                                                             .applicant_status
-                                                            .applicant_status_type ===
-                                                        "Resigned"
+                                                            .applicant_status_type.includes("Resigned")
                                                     }
                                                     disabled
                                                 />
@@ -880,8 +1436,7 @@ export default function ViewApplicant({ applicant, back }) {
                                                     checked={
                                                         applicant
                                                             .applicant_status
-                                                            .applicant_status_type ===
-                                                        "Retired"
+                                                            .applicant_status_type.includes("Retired")
                                                     }
                                                     disabled
                                                 />
@@ -904,8 +1459,7 @@ export default function ViewApplicant({ applicant, back }) {
                                                     checked={
                                                         applicant
                                                             .applicant_status
-                                                            .applicant_status_type ===
-                                                        "Terminated/Laidoff(local)"
+                                                            .applicant_status_type.includes("Terminated/Laidoff(local)")
                                                     }
                                                     disabled
                                                 />
@@ -928,8 +1482,7 @@ export default function ViewApplicant({ applicant, back }) {
                                                     checked={
                                                         applicant
                                                             .applicant_status
-                                                            .applicant_status_type ===
-                                                        "Teminated/Laidoff(abroad)"
+                                                            .applicant_status_type.includes("Teminated/Laidoff(abroad)")
                                                     }
                                                     disabled
                                                 />
@@ -959,8 +1512,7 @@ export default function ViewApplicant({ applicant, back }) {
                                                     checked={
                                                         applicant
                                                             .applicant_status
-                                                            .applicant_status_type ===
-                                                        "Others, specify"
+                                                            .applicant_status_type.includes("Others, specify")
                                                     }
                                                     disabled
                                                 />
@@ -1107,7 +1659,7 @@ export default function ViewApplicant({ applicant, back }) {
                                 </label>
                                 <InputText
                                     className="form-control !text-xs !py-2.5 !text-gray-900 border-light-emphasis pi_surname"
-                                    value={applicant.expected_salary}
+                                    value={moneyFormatBody(applicant.expected_salary)}
                                     disabled
                                 />
                                 <span class="text-danger !text-xs expected_salary-error"></span>
@@ -1641,7 +2193,7 @@ export default function ViewApplicant({ applicant, back }) {
                                                 </label>
                                                 <InputText
                                                     className="form-control pi_is_actively_looking_for_work !py-2.5 !text-xs !text-gray-900 border-light-emphasis"
-                                                    value={data.status}
+                                                    value={data.status !== '' ? filterNameText(data.status): ''}
                                                     placeholder="Position"
                                                     disabled
                                                 />
@@ -2046,7 +2598,7 @@ export default function ViewApplicant({ applicant, back }) {
                                     value="Auto Mechanic"
                                     disabled
                                     checked={
-                                        applicant.is_authorization_accepted
+                                        applicant.is_authorization_accepted === 0
                                     }
                                 />
                                 This is to certify that all data/information
@@ -2060,6 +2612,12 @@ export default function ViewApplicant({ applicant, back }) {
                                 also aware that DOLE is not obliged to seek
                                 employment on my behalf.
                             </h6>
+                            <img
+                                src={`/uploads/applicants/${applicant.e_signature}`}
+                                alt={applicant.e_signature}
+                                className="shadow-2 border-round d-block mx-auto mt-5"
+                                style={{ width: "100px" }}
+                            />
                         </div>
                     </div>
                 </div>

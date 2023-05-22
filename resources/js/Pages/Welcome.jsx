@@ -1,13 +1,60 @@
 import { Link, Head } from "@inertiajs/react";
+import { useState } from "react";
 import { useEffect } from "react";
+import { slice } from "lodash";
+import Footer from "./Employers/Components/Footer";
+import '../App.css';
 
 export default function Welcome(props) {
+    const [jobInfo, setJobInfo] = useState();
+    const [isCompleted, setIsCompleted] = useState(false);
+    const [index, setIndex] = useState(5);
+    const initialJobInfo = slice(props.jobs, 0, index);
 
-    useEffect(() => {
-        console.log(props);
-    })
+    function timeAgo(date) {
+        const seconds = Math.floor((new Date() - new Date(date)) / 1000);
+        let interval = Math.floor(seconds / 31536000);
+      
+        if (interval >= 1) {
+          return interval + " year" + (interval === 1 ? "" : "s") + " ago";
+        }
+        interval = Math.floor(seconds / 2592000);
+        if (interval >= 1) {
+          return interval + " month" + (interval === 1 ? "" : "s") + " ago";
+        }
+        interval = Math.floor(seconds / 86400);
+        if (interval >= 1) {
+          return interval + " day" + (interval === 1 ? "" : "s") + " ago";
+        }
+        interval = Math.floor(seconds / 3600);
+        if (interval >= 1) {
+          return interval + " hour" + (interval === 1 ? "" : "s") + " ago";
+        }
+        interval = Math.floor(seconds / 60);
+        if (interval >= 1) {
+          return interval + " minute" + (interval === 1 ? "" : "s") + " ago";
+        }
+        return Math.floor(seconds) + " second" + (seconds === 1 ? "" : "s") + " ago";
+      }
+
+    const loadMore = () => {
+        setIndex(index + 5);
+        if (index >= initialJobInfo) {
+            setIsCompleted(true);
+        } else {
+            setIsCompleted(false);
+        }
+    };
+
+    const [isMobile, setMobile] = useState(false);
+
+    const showMobile = () => {
+        setMobile(!isMobile);
+    }
     return (
         <>
+        <Head title="PESO-EMIS" />
+
             <header
                 id="header"
                 className="fixed-top d-flex align-items-center "
@@ -15,12 +62,12 @@ export default function Welcome(props) {
                 <div className="container d-flex align-items-center justify-content-between">
                     <div className="logo">
                         <h1>
-                            <a href="index.html">PESO EMIS</a>
+                            <a href="/">PESO EMIS</a>
                         </h1>
                     </div>
 
-                    <nav id="navbar" className="navbar">
-                        <ul>
+                    <nav id="navbar" className={`navbar ${isMobile? 'is-mobile':''}`}>
+                        <ul className="mobile-list">
                             <li>
                                 <a
                                     className="nav-link scrollto active"
@@ -39,7 +86,7 @@ export default function Welcome(props) {
                                     className="nav-link scrollto"
                                     href="#services"
                                 >
-                                    Services
+                                    Registration Forms
                                 </a>
                             </li>
                             <li>
@@ -55,49 +102,7 @@ export default function Welcome(props) {
                                     Team
                                 </a>
                             </li>
-                            <li className="dropdown">
-                                <a href="#">
-                                    <span>Drop Down</span>
-                                    <i className="bi bi-chevron-down"></i>
-                                </a>
-                                <ul>
-                                    <li>
-                                        <a href="#">Drop Down 1</a>
-                                    </li>
-                                    <li className="dropdown">
-                                        <a href="#">
-                                            <span>Deep Drop Down</span>
-                                            <i className="bi bi-chevron-right"></i>
-                                        </a>
-                                        <ul>
-                                            <li>
-                                                <a href="#">Deep Drop Down 1</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Deep Drop Down 2</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Deep Drop Down 3</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Deep Drop Down 4</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Deep Drop Down 5</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#">Drop Down 2</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Drop Down 3</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Drop Down 4</a>
-                                    </li>
-                                </ul>
-                            </li>
+                            
                             <li>
                                 <a
                                     className="nav-link scrollto"
@@ -106,8 +111,11 @@ export default function Welcome(props) {
                                     Contact
                                 </a>
                             </li>
+                            <Link href={route("login")} className="nav-link">
+                                Login
+                            </Link>
                         </ul>
-                        <i className="bi bi-list mobile-nav-toggle"></i>
+                        <i className={`bi ${isMobile ? 'bi-x-lg':'bi-list'} mobile-nav-toggle`} onClick={e => showMobile()}></i>
                     </nav>
                 </div>
             </header>
@@ -124,10 +132,9 @@ export default function Welcome(props) {
                     <div className="carousel-item active">
                         <div className="carousel-container">
                             <h2 className="animate__animated animate__fadeInDown">
-                                Welcome to
                                 <span>
-                                    Valencia City PESO Employment Management
-                                    Information System
+                                    Welcome to Valencia City PESO Employment
+                                    Management Information System
                                 </span>
                             </h2>
                             <p className="animate__animated fanimate__adeInUp">
@@ -152,15 +159,18 @@ export default function Welcome(props) {
                     <div className="carousel-item">
                         <div className="carousel-container">
                             <h2 className="animate__animated animate__fadeInDown">
-                                Lorem Ipsum Dolor
+                                Implementation of programme/ initiative
                             </h2>
                             <p className="animate__animated animate__fadeInUp">
-                                Ut velit est quam dolor ad a aliquid qui
-                                aliquid. Sequi ea ut et est quaerat sequi nihil
-                                ut aliquam. Occaecati alias dolorem mollitia ut.
-                                Similique ea voluptatem. Esse doloremque
-                                accusamus repellendus deleniti vel. Minus et
-                                tempore modi architecto.
+                            PESO is widely implemented across the country and its 
+                            general objectives guarantee the job seekers within its 
+                            locality that it will deliver updated information about 
+                            employment and other DOLE programmes.
+                            Concurrently, its specific objectives are to provide a venue 
+                            for employment assistance in every locale and to serve as a 
+                            referral or recruitment information centre by providing job vacancy 
+                            information. PESO is directed to follow up and monitor the status of 
+                            the referred job seekers who have been employed by different stakeholders nationwide.
                             </p>
                             <a
                                 href="#about"
@@ -174,15 +184,13 @@ export default function Welcome(props) {
                     <div className="carousel-item">
                         <div className="carousel-container">
                             <h2 className="animate__animated animate__fadeInDown">
-                                Sequi ea ut et est quaerat
+                                About this Employment Management Information System
                             </h2>
                             <p className="animate__animated animate__fadeInUp">
-                                Ut velit est quam dolor ad a aliquid qui
-                                aliquid. Sequi ea ut et est quaerat sequi nihil
-                                ut aliquam. Occaecati alias dolorem mollitia ut.
-                                Similique ea voluptatem. Esse doloremque
-                                accusamus repellendus deleniti vel. Minus et
-                                tempore modi architecto.
+                                This PESO-EMIS will help both jobseekers and establishment owners
+                                to smoothly register and file application to the Public Employment Service Office
+                                in the City of Valencia. This will help the Local Government monitor the applicants 
+                                registered per month and hopefully raise the employment rate among the city.
                             </p>
                             <a
                                 href="#about"
@@ -237,7 +245,7 @@ export default function Welcome(props) {
                             x="50"
                             y="3"
                             fill="rgba(255,255,255, .1)"
-                        ></use>
+                        />
                     </g>
                     <g className="wave2">
                         <use
@@ -245,7 +253,7 @@ export default function Welcome(props) {
                             x="50"
                             y="0"
                             fill="rgba(255,255,255, .2)"
-                        ></use>
+                        />
                     </g>
                     <g className="wave3">
                         <use
@@ -253,7 +261,7 @@ export default function Welcome(props) {
                             x="50"
                             y="9"
                             fill="#fff"
-                        ></use>
+                        />
                     </g>
                 </svg>
             </section>
@@ -272,33 +280,18 @@ export default function Welcome(props) {
                                     Office (PESO) is an office that serves the
                                     public in the employment sector.
                                 </p>
-                                <ul>
-                                    <li>
-                                        <i className="ri-check-double-line"></i>
-                                        Ullamco laboris nisi ut aliquip ex ea
-                                        commodo consequat
-                                    </li>
-                                    <li>
-                                        <i className="ri-check-double-line"></i>
-                                        Duis aute irure dolor in reprehenderit
-                                        in voluptate velit
-                                    </li>
-                                    <li>
-                                        <i className="ri-check-double-line"></i>
-                                        Ullamco laboris nisi ut aliquip ex ea
-                                        commodo consequat
-                                    </li>
-                                </ul>
+                                <p>
+                                    The PESO aims to ensure prompt and efficient
+                                    delivery of employment facilitation services
+                                    as well as to provide timely information on
+                                    labor market and DOLE Programs.
+                                </p>
+                                
                             </div>
                             <div className="col-lg-6 pt-4 pt-lg-0">
                                 <p>
-                                    Ullamco laboris nisi ut aliquip ex ea
-                                    commodo consequat. Duis aute irure dolor in
-                                    reprehenderit in voluptate velit esse cillum
-                                    dolore eu fugiat nulla pariatur. Excepteur
-                                    sint occaecat cupidatat non proident, sunt
-                                    in culpa qui officia deserunt mollit anim id
-                                    est laborum.
+                                PESO is a free multi-employment service facility managed by Local Government Units (LGUs) and 
+                                State Universities and Colleges (SUCs) that upholds equal employment opportunities to every individual covered in the locality.
                                 </p>
                                 <a href="#" className="btn-learn-more">
                                     Learn More
@@ -319,7 +312,7 @@ export default function Welcome(props) {
                                 >
                                     <i className="ri-gps-line"></i>
                                     <h4 className="d-none d-lg-block">
-                                        Modi sit est dela pireda nest
+                                        PESO Programs
                                     </h4>
                                 </a>
                             </li>
@@ -335,7 +328,7 @@ export default function Welcome(props) {
                                 >
                                     <i className="ri-body-scan-line"></i>
                                     <h4 className="d-none d-lg-block">
-                                        Unde praesenti mara setra le
+                                       Beneficiaries
                                     </h4>
                                 </a>
                             </li>
@@ -351,7 +344,7 @@ export default function Welcome(props) {
                                 >
                                     <i className="ri-sun-line"></i>
                                     <h4 className="d-none d-lg-block">
-                                        Pariatur explica nitro dela
+                                        VISION
                                     </h4>
                                 </a>
                             </li>
@@ -367,7 +360,7 @@ export default function Welcome(props) {
                                 >
                                     <i className="ri-store-line"></i>
                                     <h4 className="d-none d-lg-block">
-                                        Nostrum qui dile node
+                                        MISSION
                                     </h4>
                                 </a>
                             </li>
@@ -377,49 +370,54 @@ export default function Welcome(props) {
                             <div className="tab-pane active show" id="tab-1">
                                 <div className="row">
                                     <div className="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                                        <h3>
-                                            Voluptatem dignissimos provident
-                                            quasi corporis voluptates sit
-                                            assumenda.
-                                        </h3>
-                                        <p className="fst-italic">
-                                            Lorem ipsum dolor sit amet,
-                                            consectetur adipiscing elit, sed do
-                                            eiusmod tempor incididunt ut labore
-                                            et dolore magna aliqua.
-                                        </p>
+                                        <h3>Programs Implemented:</h3>
                                         <ul>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                Ullamco laboris nisi ut aliquip
-                                                ex ea commodo consequat.
+                                                Special Program for the
+                                                Employment of Students (SPES)
                                             </li>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                Duis aute irure dolor in
-                                                reprehenderit in voluptate
-                                                velit.
+                                                Job Fairs
                                             </li>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                Ullamco laboris nisi ut aliquip
-                                                ex ea commodo consequat. Duis
-                                                aute irure dolor in
-                                                reprehenderit in voluptate
-                                                trideta storacalaperda mastiro
-                                                dolore eu fugiat nulla pariatur.
+                                                PhilJobnet / PESO Employment
+                                                Information System (PEIS)
+                                            </li>
+                                            <li>
+                                                <i className="ri-check-double-line"></i>
+                                                National Skills Registry Program
+                                                (NSRP)
+                                            </li>
+                                            <li>
+                                                <i className="ri-check-double-line"></i>
+                                                DOLE Government Internship
+                                                Program (DOLE-GIP)
+                                            </li>
+                                            <li>
+                                                <i className="ri-check-double-line"></i>
+                                                Tulong Pangkabuhayan para sa
+                                                Ating Disadvantaged Workers
+                                                (TUPAD)
+                                            </li>
+                                            <li>
+                                                <i className="ri-check-double-line"></i>
+                                                DOLE Integrated Livelihood and
+                                                Emergency Employment Program
+                                                (DILEEP)
+                                            </li>
+                                            <li>
+                                                <i className="ri-check-double-line"></i>
+                                                JOBSTART
+                                            </li>
+                                            <li>
+                                                <i className="ri-check-double-line"></i>
+                                                Pre-Employment Orientation
+                                                Seminar (PAOS)
                                             </li>
                                         </ul>
-                                        <p>
-                                            Ullamco laboris nisi ut aliquip ex
-                                            ea commodo consequat. Duis aute
-                                            irure dolor in reprehenderit in
-                                            voluptate velit esse cillum dolore
-                                            eu fugiat nulla pariatur. Excepteur
-                                            sint occaecat cupidatat non
-                                            proident, sunt in culpa qui officia
-                                            deserunt mollit anim id est laborum
-                                        </p>
                                     </div>
                                     <div className="col-lg-6 order-1 order-lg-2 text-center">
                                         <img
@@ -433,54 +431,52 @@ export default function Welcome(props) {
                             <div className="tab-pane" id="tab-2">
                                 <div className="row">
                                     <div className="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                                        <h3>
-                                            Neque exercitationem debitis soluta
-                                            quos debitis quo mollitia officia
-                                            est
-                                        </h3>
-                                        <p>
-                                            Ullamco laboris nisi ut aliquip ex
-                                            ea commodo consequat. Duis aute
-                                            irure dolor in reprehenderit in
-                                            voluptate velit esse cillum dolore
-                                            eu fugiat nulla pariatur. Excepteur
-                                            sint occaecat cupidatat non
-                                            proident, sunt in culpa qui officia
-                                            deserunt mollit anim id est laborum
-                                        </p>
-                                        <p className="fst-italic">
-                                            Lorem ipsum dolor sit amet,
-                                            consectetur adipiscing elit, sed do
-                                            eiusmod tempor incididunt ut labore
-                                            et dolore magna aliqua.
-                                        </p>
+                                        <h3>Who does the PESO cater to?</h3>
                                         <ul>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                Ullamco laboris nisi ut aliquip
-                                                ex ea commodo consequat.
+                                                Jobseekers
                                             </li>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                Duis aute irure dolor in
-                                                reprehenderit in voluptate
-                                                velit.
+                                                Employers
                                             </li>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                Provident mollitia neque rerum
-                                                asperiores dolores quos qui a.
-                                                Ipsum neque dolor voluptate nisi
-                                                sed.
+                                                Students
                                             </li>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                Ullamco laboris nisi ut aliquip
-                                                ex ea commodo consequat. Duis
-                                                aute irure dolor in
-                                                reprehenderit in voluptate
-                                                trideta storacalaperda mastiro
-                                                dolore eu fugiat nulla pariatur.
+                                                Out-of-School Yout (OSY)
+                                            </li>
+                                            <li>
+                                                <i className="ri-check-double-line"></i>
+                                                Migrant Workers
+                                            </li>
+                                            <li>
+                                                <i className="ri-check-double-line"></i>
+                                                Persons with Disabilities (PWDs)
+                                            </li>
+                                            <li>
+                                                <i className="ri-check-double-line"></i>
+                                                Returning OFWs
+                                            </li>
+                                            <li>
+                                                <i className="ri-check-double-line"></i>
+                                                Displaced Workers
+                                            </li>
+                                            <li>
+                                                <i className="ri-check-double-line"></i>
+                                                Researchers and Planners
+                                            </li>
+                                            <li>
+                                                <i className="ri-check-double-line"></i>
+                                                Senior Citizens
+                                            </li>
+                                            <li>
+                                                <i className="ri-check-double-line"></i>
+                                                Other PESOs and Government
+                                                Entities
                                             </li>
                                         </ul>
                                     </div>
@@ -496,47 +492,31 @@ export default function Welcome(props) {
                             <div className="tab-pane" id="tab-3">
                                 <div className="row">
                                     <div className="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                                        <h3>
-                                            Voluptatibus commodi ut accusamus ea
-                                            repudiandae ut autem dolor ut
-                                            assumenda
-                                        </h3>
                                         <p>
-                                            Ullamco laboris nisi ut aliquip ex
-                                            ea commodo consequat. Duis aute
-                                            irure dolor in reprehenderit in
-                                            voluptate velit esse cillum dolore
-                                            eu fugiat nulla pariatur. Excepteur
-                                            sint occaecat cupidatat non
-                                            proident, sunt in culpa qui officia
-                                            deserunt mollit anim id est laborum
+                                        To facilitate equal employment opportunities to the City’s 
+                                        constituents through Job Matching and Coaching, employability 
+                                        enhancement and referrals for livelihood or training, and promotion 
+                                        of industrial peace through tripartism.
                                         </p>
                                         <ul>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                Ullamco laboris nisi ut aliquip
-                                                ex ea commodo consequat.
+                                                To provide Labor Market Information to the clients 
+                                                (Job Seekers, Employers, OFW, Students, Displaced Workers, 
+                                                Unemployed, Seeking change in career, etc.)
                                             </li>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                Duis aute irure dolor in
-                                                reprehenderit in voluptate
-                                                velit.
+                                                To maintain a fresh, up to date, skills registry system of 
+                                                all households in the City.
                                             </li>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                Provident mollitia neque rerum
-                                                asperiores dolores quos qui a.
-                                                Ipsum neque dolor voluptate nisi
-                                                sed.
+                                                To provide employment facilitation services where people 
+                                                can explore various employment options.
                                             </li>
                                         </ul>
-                                        <p className="fst-italic">
-                                            Lorem ipsum dolor sit amet,
-                                            consectetur adipiscing elit, sed do
-                                            eiusmod tempor incididunt ut labore
-                                            et dolore magna aliqua.
-                                        </p>
+                                     
                                     </div>
                                     <div className="col-lg-6 order-1 order-lg-2 text-center">
                                         <img
@@ -550,47 +530,28 @@ export default function Welcome(props) {
                             <div className="tab-pane" id="tab-4">
                                 <div className="row">
                                     <div className="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                                        <h3>
-                                            Omnis fugiat ea explicabo sunt
-                                            dolorum asperiores sequi inventore
-                                            rerum
-                                        </h3>
                                         <p>
-                                            Ullamco laboris nisi ut aliquip ex
-                                            ea commodo consequat. Duis aute
-                                            irure dolor in reprehenderit in
-                                            voluptate velit esse cillum dolore
-                                            eu fugiat nulla pariatur. Excepteur
-                                            sint occaecat cupidatat non
-                                            proident, sunt in culpa qui officia
-                                            deserunt mollit anim id est laborum
+                                            
                                         </p>
                                         <p className="fst-italic">
-                                            Lorem ipsum dolor sit amet,
-                                            consectetur adipiscing elit, sed do
-                                            eiusmod tempor incididunt ut labore
-                                            et dolore magna aliqua.
+                                            
                                         </p>
                                         <ul>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                Ullamco laboris nisi ut aliquip
-                                                ex ea commodo consequat.
+                                                    Ensure the speedy, equitable and efficient delivery of 
+                                                    employment services delivery to maximize the impact of various 
+                                                    employment programs and services at the grassroots level.
                                             </li>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                Duis aute irure dolor in
-                                                reprehenderit in voluptate
-                                                velit.
+                                                    To maintain a fresh, up to date, skills registry system of all 
+                                                    households in the City.
                                             </li>
                                             <li>
                                                 <i className="ri-check-double-line"></i>
-                                                Ullamco laboris nisi ut aliquip
-                                                ex ea commodo consequat. Duis
-                                                aute irure dolor in
-                                                reprehenderit in voluptate
-                                                trideta storacalaperda mastiro
-                                                dolore eu fugiat nulla pariatur.
+                                                    To maintain a fresh, up to date, skills registry system of all 
+                                                    households in the City.
                                             </li>
                                         </ul>
                                     </div>
@@ -607,33 +568,13 @@ export default function Welcome(props) {
                     </div>
                 </section>
 
-                <section id="cta" className="cta">
-                    <div className="container">
-                        <div className="row" data-aos="zoom-out">
-                            <div className="col-lg-9 text-center text-lg-start">
-                                <h3>Call To Action</h3>
-                                <p>
-                                    Duis aute irure dolor in reprehenderit in
-                                    voluptate velit esse cillum dolore eu fugiat
-                                    nulla pariatur. Excepteur sint occaecat
-                                    cupidatat non proident, sunt in culpa qui
-                                    officia deserunt mollit anim id est laborum.
-                                </p>
-                            </div>
-                            <div className="col-lg-3 cta-btn-container text-center">
-                                <a className="cta-btn align-middle" href="#">
-                                    Call To Action
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                
 
                 <section id="services" className="services">
                     <div className="container">
                         <div className="section-title" data-aos="zoom-out">
                             <h2>Services</h2>
-                            <p>What we do offer</p>
+                            <p>REGISTRATION FORMS</p>
                         </div>
 
                         <div className="row">
@@ -657,9 +598,7 @@ export default function Welcome(props) {
                                         </Link>
                                     </h4>
                                     <p className="description">
-                                        Voluptatum deleniti atque corrupti quos
-                                        dolores et quas molestias excepturi sint
-                                        occaecati cupiditate non provident
+                                        Registration Form for Establishments, Please fill out the form correctly and honestly.
                                     </p>
                                 </div>
                             </div>
@@ -684,9 +623,7 @@ export default function Welcome(props) {
                                         </Link>
                                     </h4>
                                     <p className="description">
-                                        Minim veniam, quis nostrud exercitation
-                                        ullamco laboris nisi ut aliquip ex ea
-                                        commodo consequat tarad limino ata
+                                    Registration Form for Jobseekers, Please fill out the form correctly and honestly.
                                     </p>
                                 </div>
                             </div>
@@ -698,29 +635,174 @@ export default function Welcome(props) {
                     <div className="container">
                         <div className="section-title" data-aos="zoom-out">
                             <h2>Job Posts</h2>
-                            <p>What we've done</p>
+                            <p>Check out the latest Job Postings</p>
                         </div>
-
-                        <div class="row">
-        {
-            props.jobs.map((job) => (
-                <div class="col-sm-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">{job.position_title}</h5>
-        <p class="card-text">{job.job_description}</p>
-        <a href="#" class="btn btn-primary">See Details</a>
-      </div>
-    </div>
-  </div>    
-            ))
-        }
-  
-</div>
+                        <div class="row job-postings">
+                            <div
+                                className={`job-posts ${
+                                    jobInfo ? "basis-2/4 showJobInfo" : ""
+                                }`}
+                            >
+                                {initialJobInfo.map(
+                                    (job) =>
+                                            <div
+                                                class="card"
+                                                onClick={() => {
+                                                    setJobInfo(job);
+                                                }}
+                                            >
+                                                <div class="card-body">
+                                                    <h5
+                                                        class="card-title"
+                                                        style={{
+                                                            backgroundColor:
+                                                                "rgb(157, 198, 218)",
+                                                        }}
+                                                    >
+                                                        {
+                                                            job.employer
+                                                                .establishment_accronym
+                                                        }
+                                                    </h5>
+                                                    <div class="card-text">
+                                                        <p className="text-md font-bold py-1">
+                                                            {job.position_title}
+                                                        </p>
+                                                        <p className="text-sm py-1">
+                                                            {
+                                                                job.employer
+                                                                    .establishment_name
+                                                            }
+                                                        </p>
+                                                        <p
+                                                            className="text-sm py-1"
+                                                            style={{
+                                                                textTransform:
+                                                                    "capitalize",
+                                                            }}
+                                                        >
+                                                            {job.place_of_work}
+                                                        </p>
+                                                        <p className="text-sm py-1">
+                                                            { 
+                                                            timeAgo(job.created_at)
+                                                            }
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                )}
+                            </div>
+                            {jobInfo && (
+                                <div
+                                    className={`job-post-description basis-2/4 ${
+                                        jobInfo ? "basis-2/4" : ""
+                                    }`}
+                                >
+                                    <div className="desc-title">
+                                        <h1 className="text-xl font-bold mb-3">
+                                            {jobInfo.position_title}
+                                        </h1>
+                                        <div className="card mb-3">
+                                            <div class="card-body">
+                                                <h5
+                                                    class="card-title"
+                                                    style={{
+                                                        backgroundColor:
+                                                            "rgb(157, 198, 218)",
+                                                    }}
+                                                >
+                                                    {
+                                                        jobInfo.employer
+                                                            .establishment_accronym
+                                                    }
+                                                </h5>
+                                                <div class="card-text">
+                                                    <p className="text-sm py-1">
+                                                        {jobInfo.position_title}
+                                                    </p>
+                                                    <p
+                                                        className="text-sm py-1"
+                                                        style={{
+                                                            textTransform:
+                                                                "capitalize",
+                                                        }}
+                                                    >
+                                                        {jobInfo.place_of_work}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a
+                                            className="cursor !my-3 inline-flex gap-2 items-center transition hover:bg-rose-400 my-5 bg-rose-500 p-3 rounded text-white"
+                                            href={`mailto:${jobInfo.employer.employer_establishment_contact_detail.email_address}`}
+                                        >
+                                            <i className="pi pi-envelope "></i>
+                                            Email your application
+                                        </a>
+                                        <p className="my-2">
+                                            {
+                                                timeAgo(jobInfo.created_at)
+                                            }
+                                        </p>
+                                        <h4 className="text-md font-bold my-3">
+                                            Qualifications:
+                                        </h4>
+                                        <ul
+                                            style={{
+                                                listStyleType: "disc",
+                                                marginLeft: "1rem",
+                                            }}
+                                            className=""
+                                        >
+                                            <li>{
+                                                    jobInfo.employer.employer_qualification_requirement[jobInfo.id-1].other_qualification
+                                                }</li>
+                                        </ul>
+                                        <p className="my-2">
+                                            Salary: {parseFloat(jobInfo.salary).toLocaleString('en-PH', { style: 'currency', currency: 'PHP' })} per month
+                                        </p>
+                                        <p className="text-md font-bold my-3">
+                                            Experience: {
+                                                    jobInfo.employer.employer_qualification_requirement[jobInfo.id-1].work_of_experience
+                                                }
+                                        </p>
+                                        <ul
+                                            style={{
+                                                listStyleType: "disc",
+                                                marginLeft: "1rem",
+                                            }}
+                                            className=""
+                                        >
+                                            <li>
+                                                {
+                                                    jobInfo.employer.employer_qualification_requirement[jobInfo.id-1].other_qualification
+                                                }
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                        {isCompleted ? (
+                        //     <button 
+                        //     onClick={loadMore}
+                        //     className="cursor transition hover:bg-stone-400 my-5 bg-stone-500 p-3 rounded text-white">
+                        //     See Mores
+                        // </button>
+                        <span></span>
+                        ) : (
+                            initialJobInfo.length > 4 &&  <button 
+                            onClick={loadMore}
+                            className="cursor transition hover:bg-stone-400 my-5 bg-stone-500 p-3 rounded text-white">
+                            See More
+                        </button>
+                        )}
+                        
                     </div>
                 </section>
 
-                <section id="faq" className="faq">
+                {/*<section id="faq" className="faq">
                     <div className="container">
                         <div className="section-title" data-aos="zoom-out">
                             <h2>F.A.Q</h2>
@@ -904,12 +986,12 @@ export default function Welcome(props) {
                             </li>
                         </ul>
                     </div>
-                </section>
+                </section>*/}
 
                 <section id="team" className="team">
                     <div className="container">
                         <div className="section-title" data-aos="zoom-out">
-                            <h2>Team</h2>
+                            <h2>Organizational Chart</h2>
                             <p>Our Hardworking Team</p>
                         </div>
 
@@ -918,7 +1000,7 @@ export default function Welcome(props) {
                                 <div className="member" data-aos="fade-up">
                                     <div className="member-img">
                                         <img
-                                            src="img/homepage/team/team-1.jpg"
+                                            src="img/homepage/team/elna-guzman.png"
                                             className="img-fluid"
                                             alt=""
                                         />
@@ -938,8 +1020,9 @@ export default function Welcome(props) {
                                         </div>
                                     </div>
                                     <div className="member-info">
-                                        <h4>Walter White</h4>
-                                        <span>Chief Executive Officer</span>
+                                        <h4>Elna B. Guzman, MPSM</h4>
+                                        <span>Supervising Labor Employment Office (SLEO)</span>
+                                        <span>PESO Manager</span>
                                     </div>
                                 </div>
                             </div>
@@ -952,7 +1035,7 @@ export default function Welcome(props) {
                                 >
                                     <div className="member-img">
                                         <img
-                                            src="img/homepage/team/team-2.jpg"
+                                            src="img/homepage/team/kristine-guden.png"
                                             className="img-fluid"
                                             alt=""
                                         />
@@ -972,8 +1055,9 @@ export default function Welcome(props) {
                                         </div>
                                     </div>
                                     <div className="member-info">
-                                        <h4>Sarah Jhonson</h4>
-                                        <span>Product Manager</span>
+                                        <h4>Kristine Janice T. Guden</h4>
+                                        <span>Administrative Assistant III</span>
+                                        <span>Computer Operator II</span>
                                     </div>
                                 </div>
                             </div>
@@ -986,7 +1070,7 @@ export default function Welcome(props) {
                                 >
                                     <div className="member-img">
                                         <img
-                                            src="img/homepage/team/team-3.jpg"
+                                            src="img/homepage/team/merazel-cena.png"
                                             className="img-fluid"
                                             alt=""
                                         />
@@ -1006,8 +1090,9 @@ export default function Welcome(props) {
                                         </div>
                                     </div>
                                     <div className="member-info">
-                                        <h4>William Anderson</h4>
-                                        <span>CTO</span>
+                                        <h4>Merazel C. Cena</h4>
+                                        <span>Administrative Officer V</span>
+                                        <span>OFW Helpdesk</span>
                                     </div>
                                 </div>
                             </div>
@@ -1020,7 +1105,7 @@ export default function Welcome(props) {
                                 >
                                     <div className="member-img">
                                         <img
-                                            src="img/homepage/team/team-4.jpg"
+                                            src="img/homepage/team/remedios-flores.png"
                                             className="img-fluid"
                                             alt=""
                                         />
@@ -1040,8 +1125,8 @@ export default function Welcome(props) {
                                         </div>
                                     </div>
                                     <div className="member-info">
-                                        <h4>Amanda Jepson</h4>
-                                        <span>Accountant</span>
+                                        <h4>Remedios L. Flores</h4>
+                                        <span>Labor Employment Assistant</span>
                                     </div>
                                 </div>
                             </div>
@@ -1063,21 +1148,21 @@ export default function Welcome(props) {
                                         <i className="bi bi-geo-alt"></i>
                                         <h4>Location:</h4>
                                         <p>
-                                            A108 Adam Street, New York, NY
-                                            535022
+                                            Catarata Street, Brgy. Poblacion,
+                                            City of Valencia, Bukidnon
                                         </p>
                                     </div>
 
                                     <div className="email">
                                         <i className="bi bi-envelope"></i>
                                         <h4>Email:</h4>
-                                        <p>info@example.com</p>
+                                        <p>pepsd.pesovalencia@gmail.com</p>
                                     </div>
 
                                     <div className="phone">
                                         <i className="bi bi-phone"></i>
                                         <h4>Call:</h4>
-                                        <p>+1 5589 55488 55s</p>
+                                        <p>088 828 6105</p>
                                     </div>
                                 </div>
                             </div>
@@ -1152,6 +1237,7 @@ export default function Welcome(props) {
                     </div>
                 </section>
             </main>
+            <Footer />
         </>
     );
 }

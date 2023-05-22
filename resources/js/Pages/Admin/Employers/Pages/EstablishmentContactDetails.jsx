@@ -5,7 +5,7 @@ import { RadioButton } from "primereact/radiobutton";
 import { Dropdown } from "primereact/dropdown";
 import { Checkbox } from "primereact/checkbox";
 import { Button } from 'primereact/button';
-import InputTextWrapper from "@/Pages/FormComponents/InputTextWrapper";
+import InputTextWrapper from "../../../FormComponents/InputTextWrapper";
 import { useSessionStorage, useLocalStorage } from "primereact/hooks";
 import { useForm } from '@inertiajs/react';
 import {
@@ -91,12 +91,7 @@ export default function EstablishmentContactDetails({ employer, back, setType })
                         <h4 class="card-title fw-bold">
                         II. ESTABLISHMENT CONTACT DETAILS
                         </h4>
-                        <Button
-                    icon="pi pi-arrow-left"
-                    className="mr-2"
-                    label="Back"
-                    onClick={() => back()}
-                />
+                        
                         </div>
                     </div>
                     <div class="card-body row">

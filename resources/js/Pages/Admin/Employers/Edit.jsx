@@ -32,8 +32,9 @@ export default function EditApplicant({ employer, back, setType }) {
     const [deleteJobPostingDialog, setDeleteJobPostingDialog] = useState(false);
 
     useEffect(() => {
-        setPostingDetails(employer.employer_vacancy_detail);
-        console.log(employer.employer_vacancy_detail)
+        setPostingDetails(employer.employer_vacancy_detail.filter(item => {
+            return item.is_active == 1;
+        }));
     })
     const onGlobalFilterChange = (e) => {
         const value = e.target.value;

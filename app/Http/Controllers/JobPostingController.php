@@ -71,6 +71,8 @@ class JobPostingController extends Controller
             "place_of_work" => $request->placeOfWork,
             "salary" => $request->salary,
             "vacancy_count" => $request->vacancyCount,
+            'is_active' => 1
+
         ]);
 
         $employer[0]->employer_posting_detail()->create([
@@ -110,6 +112,8 @@ class JobPostingController extends Controller
             "place_of_work" => $request->placeOfWork,
             "salary" => $request->salary,
             "vacancy_count" => $request->vacancyCount,
+            'is_active' => 1
+
         ]);
 
         $employer_qualification_requirement = EmployerQualificationRequirement::find($request->id);
@@ -147,9 +151,14 @@ class JobPostingController extends Controller
         $employer_vacancy_detail = EmployerVacancyDetail::find($request->id);
         $employer_qualification_requirement = EmployerQualificationRequirement::find($request->id);
         $employer_posting_detail = EmployerPostingDetail::find($request->id);
-        $employer_vacancy_detail->delete();
-        $employer_qualification_requirement->delete();
-        $employer_posting_detail->delete();
+        $current_status = $employer_vacancy_detail->is_active == 0 ? 1 : 0;
+
+        $employer_vacancy_detail->is_active = $current_status;
+
+        $employer_vacancy_detail->save();
+
+        // $employer_qualification_requirement->delete();
+        // $employer_posting_detail->delete();
         return Redirect::route('job-postings');
     }
 }

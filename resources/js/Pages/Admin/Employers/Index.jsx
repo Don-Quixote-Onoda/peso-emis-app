@@ -1,4 +1,4 @@
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import AuthenticatedLayout from '../../../Layouts/AuthenticatedLayout';
 import { Head } from "@inertiajs/react";
 import React, { useState, useEffect } from "react";
 import { FilterMatchMode, FilterOperator } from "primereact/api";
@@ -23,7 +23,6 @@ export default function employers(props) {
     });
     useEffect(() => {
         setEmployers(props.employers);
-        console.log(employers);
     });
 
     const onGlobalFilterChange = (e) => {
@@ -55,7 +54,7 @@ export default function employers(props) {
 
     const confirmDeleteEmployer = (Employer) => {
         setDeleteEmployerDialog(true);
-        setData({"id": Employer.id});
+        setData("id", Employer.id);
     };
 
     const hideDeleteEmployerDialog = () => {
@@ -63,18 +62,15 @@ export default function employers(props) {
     };
 
     const deleteEmployer = () => {
-        // post(route('delete-job-posting'), {
-        //     forceFormData: true,
-        //     onSuccess: () =>{
-        //         console.log('success');
-        //         reset();
-        //         setType('default');
-        //         setDeleteJobPostingDialog(false);
-        //     },
-        //     onError: () => {
-        //         // console.log(errors);
-        //     },
-        // });
+        post(route('delete-employer'), {
+            onSuccess: () =>{
+                reset();
+                setType('default');
+                setDeleteEmployerDialog(false);
+            },
+            onError: () => {
+            },
+        });
     }
 
     const deleteEmployerDialogFooter = (
@@ -123,8 +119,8 @@ export default function employers(props) {
                 </h2>
             }
         >
-            <Head title="employers" />
-            <div className="card mt-5 max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <Head title="EMIS - Employers" />
+            <div className="mt-5 max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 {type == "default" && (
                     <EmployersTable
                         employers={employers}
@@ -135,7 +131,7 @@ export default function employers(props) {
                     />
                 )}
                 {type == "view" && (
-                    <ViewEmployer employer={employer} back={back} />
+                    <ViewEmployer employer={employer} back={back}  />
                 )}
                 {type == "edit" && (
                     <EditEmployer employer={data} setData={setData} back={back} setType={setType} />
@@ -155,7 +151,7 @@ export default function employers(props) {
                         style={{ fontSize: "2rem" }}
                     />
                         <span>
-                            Are you sure you want to delete <b></b>?
+                            Are you sure you want to delete this employer <b></b>?
                         </span>
                 </div>
             </Dialog>

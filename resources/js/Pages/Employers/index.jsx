@@ -9,6 +9,7 @@ import QualificationRequirement from "./Pages/QualificationRequirements";
 import VacancyDetails from "./Pages/VacancyDetails";
 import EstablishmentContactDetails from "./Pages/EstablishmentContactDetails";
 import RegisterEmployer from "./Pages/RegisterEmployer";
+import { Head } from "@inertiajs/react";
 
 import { Steps } from "primereact/steps";
 
@@ -38,6 +39,7 @@ export default function InteractiveDemo() {
 
     return (
         <>
+            <Head title="EMIS - Employer Forms" />
             <Header />
             <Content>
                 <div class="d-flex applicant-container max-w-screen-lg mx-auto">

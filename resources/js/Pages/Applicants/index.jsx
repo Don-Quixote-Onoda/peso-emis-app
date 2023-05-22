@@ -11,6 +11,7 @@ import OtherSkills from "./Pages/OtherSkills";
 import Vocational from "./Pages/Vocational";
 import WorkExperience from "./Pages/WorkExperience";
 import NavigatorPage from "../Applicants/Components/NavigatorPage";
+import { Head } from "@inertiajs/react";
 
 import { Steps } from "primereact/steps";
 
@@ -46,7 +47,8 @@ export default function InteractiveDemo() {
 
     return (
         <>
-            <Header />
+           <Head title="EMIS - Applicant Forms" />
+           <Header />
             <Content>
                 <div class="d-flex applicant-container">
                     <div class="basis-full applicant-content pr-1">

@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useSessionStorage, useLocalStorage } from "primereact/hooks";
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
+import InputError from '../../../Components/InputError';
+import InputLabel from '../../../Components/InputLabel';
+import PrimaryButton from '../../../Components/PrimaryButton';
+import TextInput from '../../../Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
 
 export default function RegisterEmployer({
@@ -49,13 +49,13 @@ export default function RegisterEmployer({
 
     const submit = (e) => {
         e.preventDefault();
-
+        setSubmitted(true);
         if(password === confirmPassword) 
             setActiveIndex(activeIndex + 1);
     };
 
     return (
-        <form className="w-50 mx-auto mt-5" onSubmit={submit}>
+        <form className="w-full mx-auto mt-5" onSubmit={submit}>
                 <div>
                     <InputLabel htmlFor="name" value="Name" />
 
@@ -124,7 +124,7 @@ export default function RegisterEmployer({
                     />
 
                     {
-                        (password !== confirmPassword) && <InputError message="Password don't match!" className="mt-2" />
+                        (password !== confirmPassword && isSubmitted) && <InputError message="Password don't match!" className="mt-2" />
                     }
                 </div>
 

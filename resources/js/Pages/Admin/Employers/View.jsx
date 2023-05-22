@@ -13,10 +13,16 @@ import EditJobPosting from "./JobPosting/Edit";
 import ViewJobPosting from "./JobPosting/View";
 import { useForm } from '@inertiajs/react';
 import { Dialog } from "primereact/dialog";
+import { useSessionStorage, useLocalStorage } from "primereact/hooks";
+import {
+    regions,
+    provinces,
+    cities,
+    barangays,
+} from "select-philippines-address";
 
 export default function ViewApplicant({ employer, back }) {
     useEffect(() => {
-        console.log(employer);
     }, []);
 
     const [postingDetails, setPostingDetails] = useState();
@@ -34,9 +40,11 @@ export default function ViewApplicant({ employer, back }) {
     });
 
     useEffect(() => {
-        setPostingDetails(employer.employer_vacancy_detail);
-        console.log(employer.employer_vacancy_detail)
-    })
+       
+        setPostingDetails(employer.employer_vacancy_detail.filter(item => {
+            return item.is_active == 1;
+        }));
+    },[]);
     const onGlobalFilterChange = (e) => {
         const value = e.target.value;
         let _filters = { ...filters };
@@ -46,6 +54,135 @@ export default function ViewApplicant({ employer, back }) {
         setFilters(_filters);
         setGlobalFilterValue(value);
     };
+
+    const moneyFormatBody = (val) => {
+        return parseFloat(val).toLocaleString('en-PH', { style: 'currency', currency: 'PHP' })
+    }
+
+
+
+    const [regionAddr, setRegionAddr] = useSessionStorage(
+        sessionStorage.getItem("regionAddr"),
+        "regionAddr"
+    );
+    const [provinceAddr, setProvinceAddr] = useSessionStorage(
+        sessionStorage.getItem("provinceAddr"),
+        "provinceAddr"
+    );
+    const [cityAddr, setCityAddr] = useSessionStorage(
+        "cityAddr",
+        "cityAddr"
+    );
+    const [barangayAddr, setBarangayAddr] = useSessionStorage(
+        sessionStorage.getItem("barangayAddr"),
+        "barangayAddr"
+    );
+    const [houseNumber_Street_Village, setHouseNumber_Street_Village] =
+        useSessionStorage(
+            sessionStorage.getItem("houseNumber_Street_Village"),
+            "houseNumber_Street_Village"
+        );
+
+    const [regionData, setRegionData] = useState([]);
+    const [provinceData, setProvinceData] = useState([]);
+    const [cityData, setCityData] = useSessionStorage(
+        sessionStorage.getItem("cityData"),
+        "cityData"
+    );
+    const [barangayData, setBarangayData] = useSessionStorage(
+        sessionStorage.getItem("barangayData"),
+        "barangayData"
+    );
+    const [regionCode, setRegionCode] = useSessionStorage(
+        sessionStorage.getItem("regionCode"),
+        "regionCode"
+    );
+
+    const [employedStatusType, setEmployedStatusType] = useSessionStorage(
+        sessionStorage.getItem("employedStatusType"),
+        "employedStatusType"
+    );
+
+    const [unEmployedStatusType, setUnEmployedStatusType] = useState("");
+
+
+    const [unEmployedStatusTypes, setUnEmployedStatusTypes] = useSessionStorage(
+        sessionStorage.getItem("unEmployedStatusTypes"),
+        "unEmployedStatusTypes"
+    );
+
+    const region = () => {
+        regions().then((response) => {
+            setRegionData(response);
+        });
+    };
+
+    const province = (e) => {
+        setRegionAddr(e.target.selectedOptions[0].text);
+        provinces(e.target.value).then((response) => {
+            setProvince(response);
+            setCity([]);
+            setBarangay([]);
+            setRegionCode(e.target.value);
+        });
+    };
+
+    const city = (e) => {
+        setProvinceAddr(e.target.selectedOptions[0].text);
+        cities(e.target.value).then((response) => {
+            setCity(response);
+        });
+    };
+
+    const barangay = (e) => {
+        setCityAddr(e.target.selectedOptions[0].text);
+        barangays(e.target.value).then((response) => {
+            setBarangay(response);
+        });
+    };
+
+    const brgy = (e) => {
+        setBarangayAddr(e.target.selectedOptions[0].text);
+    };
+     
+    useEffect(() => {
+        region();
+        setRegionAddr(employer.employer_address.region);
+        setProvinceAddr(employer.employer_address.province);
+        setCityAddr(employer.employer_address.city_or_municipality);
+        setBarangayAddr(employer.employer_address.barangay);
+        setHouseNumber_Street_Village(employer.employer_address.address);
+        regions().then((response) => {
+            response.map((region) => {
+                if(region.region_name === regionAddr) {
+                    provinces(region.region_code).then((response) => {
+                        setProvinceData(response);
+                        setCityData([]);
+                        setBarangayData([]);
+                        response.map((province) => {
+                            if(province.province_name === provinceAddr) {
+
+                                cities(province.province_code).then((response) => {
+                                setCityData(response);
+
+                                    response.map((city) => {
+                                        if(city.city_name === cityAddr) {
+                                            barangays(city.city_code).then((response) => {
+                                                setBarangayData(response);
+
+                                            });
+                                        }
+                                    });
+                                });
+                            }
+                        })
+
+                    });
+                }
+            });
+        });
+
+    }, []);
     
     const [editType, setEditType] = useState('default');
 
@@ -166,19 +303,18 @@ export default function ViewApplicant({ employer, back }) {
         setDeleteJobPostingDialog(false);
     };
     const deleteJobPosting = () => {
-        post(route('delete-job-posting'), {
+        post(route('delete-employer-jobposting'), {
             forceFormData: true,
             onSuccess: () =>{
-                console.log('success');
                 reset();
-                setType('default');
+                back();
                 setDeleteJobPostingDialog(false);
             },
             onError: () => {
-                // console.log(errors);
             },
         });
     }
+
     const deleteJobPostingDialogFooter = (
         <React.Fragment>
             <Button
@@ -195,10 +331,6 @@ export default function ViewApplicant({ employer, back }) {
             />
         </React.Fragment>
     );
-
-    
-    
-
 
     return (
         <>
@@ -475,7 +607,7 @@ export default function ViewApplicant({ employer, back }) {
                         </div>
                     </div>
 
-                    {/* <div class="col-md-12 mb-4">
+                    <div class="col-md-12 mb-4">
                         <div class="row">
                             <div class="col-md-6 mb-4 d-flex flex-column justify-content-between">
                                 <label
@@ -488,8 +620,9 @@ export default function ViewApplicant({ employer, back }) {
                                 <select
                                     onChange={province}
                                     onSelect={region}
-                                    className=" pa_province !text-xs !py-2.5 !text-gray-500 !rounded form-select !border-gray-300"
+                                    className=" province !text-xs !py-2.5 !text-gray-500 !rounded form-select !border-gray-300"
                                     aria-label="Default select example"
+                                    disabled
                                 >
                                     <option disabled>Select Region</option>
                                     {regionData &&
@@ -521,8 +654,10 @@ export default function ViewApplicant({ employer, back }) {
                                 </label>
                                 <select
                                     onChange={city}
-                                    class=" pa_province !text-xs !py-2.5 !text-gray-500 !rounded form-select !border-gray-300 form-select border-light-emphasis"
+                                    class=" province !text-xs !py-2.5 !text-gray-500 !rounded form-select !border-gray-300 form-select border-light-emphasis"
                                     aria-label="Default select example"
+                                    disabled
+
                                 >
                                     <option disabled>Select Province</option>
                                     {provinceData &&
@@ -554,8 +689,10 @@ export default function ViewApplicant({ employer, back }) {
                                 </label>
                                 <select
                                     onChange={barangay}
-                                    class=" pa_city !text-xs !py-2.5 !rounded form-select !border-gray-300 !text-gray-500 form-select border-light-emphasis"
+                                    class=" city !text-xs !py-2.5 !rounded form-select !border-gray-300 !text-gray-500 form-select border-light-emphasis"
                                     aria-label="Default select example"
+                                    disabled
+
                                 >
                                     <option disabled>Select City</option>
                                     {cityData &&
@@ -586,8 +723,10 @@ export default function ViewApplicant({ employer, back }) {
                                 </label>
                                 <select
                                     onChange={brgy}
-                                    class=" pa_barangay !text-xs !rounded form-select !border-gray-300 !py-2.5 !text-gray-500 form-select border-light-emphasis"
+                                    class=" barangay !text-xs !rounded form-select !border-gray-300 !py-2.5 !text-gray-500 form-select border-light-emphasis"
                                     aria-label="Default select example"
+                                    disabled
+
                                 >
                                     <option disabled>Select Barangay</option>
                                     {barangayData &&
@@ -609,23 +748,25 @@ export default function ViewApplicant({ employer, back }) {
                                         ))}
                                 </select>
                             </div>
+                            
                             <div class="col-md-12 mb-4  d-flex flex-column justify-content-between">
-                                <InputTextWrapper
+                                <label
+                                        for="inputEmail4"
+                                        class="form-label !text-xs !text-gray-400 text-light-emphasis"
+                                    >
+                                        House No./ Street Village*
+                                        <span className="text-red-500">*</span>
+                                    </label>
+                                    <InputText
+                                        className="form-control !text-xs !py-2.5 !text-gray-900 border-light-emphasis pi_surname"
+                                        value={
+                                            houseNumber_Street_Village
+                                        }
                                         disabled
-                                    stateValue={houseNumber_Street_Village}
-                                    stateMethod={setHouseNumber_Street_Village}
-                                    isRequired={false}
-                                    label={"House No./ Street Village"}
-                                />
-                                {isSubmitted && !isCompleteAddress && (
-                                    <InputError
-                                        message="Complete Address is required!"
-                                        className="mt-2"
                                     />
-                                )}
-                            </div>
+                                </div>
                         </div>
-                    </div> */}
+                    </div>
                 </div>
             </div>
             <div class="step-2">
@@ -880,6 +1021,7 @@ export default function ViewApplicant({ employer, back }) {
                     filter
                     filterPlaceholder="Search by name"
                     style={{ minWidth: "14rem" }}
+                    body={moneyFormatBody}
                 />
                 <Column
                     field="vacancy_count"

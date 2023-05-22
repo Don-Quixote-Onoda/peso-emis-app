@@ -15,7 +15,7 @@ import { Controller, set, useForm } from "react-hook-form";
 import { Button } from "primereact/button";
 import { classNames } from "primereact/utils";
 import { Toast } from "primereact/toast";
-import InputError from "@/Components/InputError";
+import InputError from "../../../Components/InputError";
 
 export default function EstablishmentDetails({
     activeIndex,
@@ -581,7 +581,7 @@ export default function EstablishmentDetails({
                                         className=" pa_province !text-xs !py-2.5 !text-gray-500 !rounded form-select !border-gray-300"
                                         aria-label="Default select example"
                                     >
-                                        <option disabled>Select Region</option>
+                                        <option selected>Select Region</option>
                                         {regionData &&
                                             regionData.length > 0 &&
                                             regionData.map((item) => (
@@ -613,7 +613,7 @@ export default function EstablishmentDetails({
                                         class=" pa_province !text-xs !py-2.5 !text-gray-500 !rounded form-select !border-gray-300 form-select border-light-emphasis"
                                         aria-label="Default select example"
                                     >
-                                        <option disabled>
+                                        <option selected>
                                             Select Province
                                         </option>
                                         {provinceData &&
@@ -647,7 +647,7 @@ export default function EstablishmentDetails({
                                         class=" pa_city !text-xs !py-2.5 !rounded form-select !border-gray-300 !text-gray-500 form-select border-light-emphasis"
                                         aria-label="Default select example"
                                     >
-                                        <option disabled>Select City</option>
+                                        <option selected>Select City</option>
                                         {cityData &&
                                             cityData.length > 0 &&
                                             cityData.map((item) => (
@@ -679,7 +679,7 @@ export default function EstablishmentDetails({
                                         class=" pa_barangay !text-xs !rounded form-select !border-gray-300 !py-2.5 !text-gray-500 form-select border-light-emphasis"
                                         aria-label="Default select example"
                                     >
-                                        <option disabled>
+                                        <option selected>
                                             Select Barangay
                                         </option>
                                         {barangayData &&
@@ -700,23 +700,43 @@ export default function EstablishmentDetails({
                                             ))}
                                     </select>
                                 </div>
-                                <div class="col-md-12 mb-4  d-flex flex-column justify-content-between">
-                                    <InputTextWrapper
-                                        stateValue={houseNumber_Street_Village}
-                                        stateMethod={
-                                            setHouseNumber_Street_Village
-                                        }
-                                        isRequired={false}
-                                        label={"House No./ Street Village"}
+                                <div class="col-md-12 mb-4">
+                                        <label
+                                            for="inputEmail4"
+                                            className={`form-label !text-xs ${classNames(
+                                                { "p-error": errors.value }
+                                            )} !text-gray-400 fw-bold text-light-emphasis`}
+                                        >
+                                            {" "}
+                                            House No./ Street Village
+                                            <span className="text-red-500">
+                                                *
+                                            </span>{" "}
+                                        </label>
+                                        <InputText
+                                            value={houseNumber_Street_Village}
+                                            className={`form-control !text-xs !py-2.5 ${classNames(
+                                                {
+                                                    "p-invalid":
+                                                    isSubmitted &&
+                                                    (houseNumber_Street_Village == "" ||
+                                                        houseNumber_Street_Village == null),
+                                                }
+                                            )} !text-gray-500 border-light-emphasis establishment-name`}
+                                            onChange={(e) =>
+                                                setHouseNumber_Street_Village(e.target.value)
+                                            }
+                                        />
+                                        {isSubmitted &&
+                                (houseNumber_Street_Village == "" ||
+                                    houseNumber_Street_Village == null) && (
+                                    <InputError
+                                        message="House No./ Street Village is required!"
+                                        className="mt-2 text-xs"
                                     />
-                                    {isSubmitted && !isCompleteAddress && (
-                                <InputError
-                                    message="Complete Address is required!"
-                                    className="mt-2"
-                                />
-                            )}
-                                </div>
-                                
+                                )}
+                        </div>
+                               
                             </div>
                             
                         </div>

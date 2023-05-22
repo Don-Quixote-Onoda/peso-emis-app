@@ -2,13 +2,13 @@ import React, { useState, useRef, useEffect } from "react";
 import { Button } from 'primereact/button';
 import { InputText } from "primereact/inputtext";
 import { useSessionStorage, useLocalStorage } from "primereact/hooks";
-
+import { useForm } from "@inertiajs/react";
 import { Calendar } from "primereact/calendar";
 
 import { RadioButton } from "primereact/radiobutton";
 
 import { Dropdown } from "primereact/dropdown";
-import InputTextWrapper from "@/Pages/FormComponents/InputTextWrapper";
+import InputTextWrapper from "../../../../FormComponents/InputTextWrapper";
 
 import {
     regions,
@@ -17,7 +17,14 @@ import {
     barangays,
 } from "select-philippines-address";
 
-export default function PersonalInformation({back}) {
+export default function PersonalInformation({back, values}) {
+    const { data, setData, post, processing, errors } =
+    useForm(values);
+
+    useEffect(() => {
+        console.log('data');
+        console.log(data);
+    },[])
     const [surname, setSurname] = useSessionStorage(
         sessionStorage.getItem("surname"),
         "surname"
@@ -590,19 +597,6 @@ export default function PersonalInformation({back}) {
     return (
             <div class="step-1">
                 <div class="card rounded-0 border-0">
-                    <div class=" bg-light mb-2 font-bold mt-10">
-                        <div className="flex justify-between">
-                        <h4 class="card-title fw-bold">
-                            1. Personal information
-                        </h4>
-                        <Button
-                    icon="pi pi-arrow-left"
-                    className="mr-2"
-                    label="Back"
-                    onClick={() => back()}
-                />
-                        </div>
-                    </div>
                     <div class="card-body pb-0 row">
                         <div class="col-md-6 mb-4">
                             <label
@@ -613,8 +607,8 @@ export default function PersonalInformation({back}) {
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={surname}
-                                onChange={(e) => setSurname(e.target.value)}
+                                value={data.surname}
+                                onChange={(e) => setData('surname', e.target.value)}
                             />
                             <span class="text-danger !text-xs pi_surname-error"></span>
                         </div>
@@ -627,8 +621,8 @@ export default function PersonalInformation({back}) {
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={firstname}
-                                onChange={(e) => setFirstname(e.target.value)}
+                                value={data.firstname}
+                                onChange={(e) => setData('firstname',e.target.value)}
                             />
 
                             <span class="text-danger !text-xs pi_firstname-error"></span>
@@ -642,8 +636,8 @@ export default function PersonalInformation({back}) {
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={middlename}
-                                onChange={(e) => setMiddlename(e.target.value)}
+                                value={data.middlename}
+                                onChange={(e) => setData('middlename', e.target.value)}
                             />
                             <span class="text-danger !text-xs pi_middlename-error"></span>
                         </div>
@@ -656,8 +650,8 @@ export default function PersonalInformation({back}) {
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={suffix}
-                                onChange={(e) => setSuffix(e.target.value)}
+                                value={data.suffix}
+                                onChange={(e) => setData('suffix', e.target.value)}
                             />
                             <span class="text-danger !text-xs pi_suffix-error"></span>
                         </div>
@@ -670,9 +664,8 @@ export default function PersonalInformation({back}) {
                             </label>
                             <Calendar
                                 className="form-control h-10 p-0 border-0"
-                                value={birthdate}
-                                onChange={(e) => setBithdate(e.value)}
-                                dateFormat="dd/mm/yy"
+                                value={new Date(data.birthdate)}
+                                onChange={(e) => setData('birthdate', e.value)}
                             />
                             <span class="text-danger !text-xs pi_date_of_birth-error"></span>
                         </div>
@@ -685,8 +678,8 @@ export default function PersonalInformation({back}) {
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={religion}
-                                onChange={(e) => setReligion(e.target.value)}
+                                value={data.religion}
+                                onChange={(e) => setData('religion', e.target.value)}
                             />
                             <span class="text-danger !text-xs pi_religion-error"></span>
                         </div>
@@ -704,8 +697,8 @@ export default function PersonalInformation({back}) {
                                             inputId="ingredient1"
                                             name="sex"
                                             value="Male"
-                                            onChange={(e) => setSex(e.value)}
-                                            checked={sex === "Male"}
+                                            onChange={(e) => setData('sex', e.value)}
+                                            checked={data.sex === "Male"}
                                         />
                                         <label
                                             class="form-check-label !text-xs !text-gray-500"
@@ -721,8 +714,8 @@ export default function PersonalInformation({back}) {
                                             inputId="ingredient1"
                                             name="sex"
                                             value="Female"
-                                            onChange={(e) => setSex(e.value)}
-                                            checked={sex === "Female"}
+                                            onChange={(e) => setData('sex', e.value)}
+                                            checked={data.sex === "Female"}
                                         />
 
                                         <label
@@ -745,8 +738,8 @@ export default function PersonalInformation({back}) {
                             </label>
 
                             <Dropdown
-                                value={civilStatus}
-                                onChange={(e) => setCivilStatus(e.value)}
+                                value={data.civil_status}
+                                onChange={(e) => setData('civil_status', e.value)}
                                 options={civilStatuses}
                                 optionLabel="name"
                                 editable
@@ -765,8 +758,8 @@ export default function PersonalInformation({back}) {
                             <div class="input-group mb-3">
                                 <InputText
                                     className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                    value={height}
-                                    onChange={(e) => setHeight(e.target.value)}
+                                    value={data.height}
+                                    onChange={(e) => setData('height', e.target.value)}
                                 />
                                 <span class="input-group-text !text-gray-500 !text-xs border-light-emphasis">
                                     cm
@@ -790,13 +783,13 @@ export default function PersonalInformation({back}) {
                                                 name="activilyLookingForWork"
                                                 value="Yes"
                                                 onChange={(e) =>
-                                                    setActivelyLookingForWork(
+                                                    setData(
                                                         e.value
                                                     )
                                                 }
                                                 checked={
-                                                    activelyLookingForWork ===
-                                                    "Yes"
+                                                    data.is_actively_looking_for_work ===
+                                                    1
                                                 }
                                             />
                                             <label
@@ -1319,9 +1312,9 @@ export default function PersonalInformation({back}) {
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={emailAddress}
+                                value={data.email_address}
                                 onChange={(e) =>
-                                    setEmailAddress(e.target.value)
+                                    setData('email_address', e.target.value)
                                 }
                             />
                             <span class="text-danger !text-xs pi_email_address-error"></span>
@@ -1335,8 +1328,8 @@ export default function PersonalInformation({back}) {
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={phoneNumber}
-                                onChange={(e) => setPhoneNumber(e.target.value)}
+                                value={data.phone_number}
+                                onChange={(e) => setData('phone_number', e.target.value)}
                             />
                             <span class="text-danger !text-xs pi_celphone_number-error"></span>
                         </div>
@@ -1349,9 +1342,9 @@ export default function PersonalInformation({back}) {
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={landlineNumber}
+                                value={data.landline_number}
                                 onChange={(e) =>
-                                    setLandlineNumber(e.target.value)
+                                    setData('landline_number', e.target.value)
                                 }
                             />
                             <span class="text-danger !text-xs pi_landine_number-error"></span>
@@ -1365,8 +1358,8 @@ export default function PersonalInformation({back}) {
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={GSISNumber}
-                                onChange={(e) => setGSISNumber(e.target.value)}
+                                value={data.GSIS_SSS_id}
+                                onChange={(e) => setData('GSIS_SSS_id', e.target.value)}
                             />
                             <span class="text-danger !text-xs pi_sss_number-error"></span>
                         </div>
@@ -1379,9 +1372,9 @@ export default function PersonalInformation({back}) {
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={pagIbigNumber}
+                                value={data.pag_ibig_number}
                                 onChange={(e) =>
-                                    setPagIbigNumber(e.target.value)
+                                    setData('pag_ibig_number', e.target.value)
                                 }
                             />
                             <span class="text-danger !text-xs pi_pag_ibig_number-error"></span>
@@ -1395,9 +1388,9 @@ export default function PersonalInformation({back}) {
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={philhealthNumber}
+                                value={data.philhealth_id}
                                 onChange={(e) =>
-                                    setPhilhealthNumber(e.target.value)
+                                    setData('philhealth_id', e.target.value)
                                 }
                             />
                             <span class="text-danger !text-xs pi_philheath_number-error"></span>
@@ -1411,8 +1404,8 @@ export default function PersonalInformation({back}) {
                             </label>
                             <InputText
                                 className="form-control !text-xs !py-2.5 !text-gray-500 border-light-emphasis pi_surname"
-                                value={TINNumber}
-                                onChange={(e) => setTINNumber(e.target.value)}
+                                value={data.TIN_number}
+                                onChange={(e) => setData('TIN_number', e.target.value)}
                             />
                             <span class="text-danger !text-xs pi_philheath_number-error"></span>
                         </div>
@@ -1425,8 +1418,8 @@ export default function PersonalInformation({back}) {
                                     Disability
                                 </label>
                                 <Dropdown
-                                    value={disability}
-                                    onChange={(e) => setDisability(e.value)}
+                                    value={data.disability}
+                                    onChange={(e) => setData('disability', e.value)}
                                     options={disabilities}
                                     optionLabel="name"
                                     editable

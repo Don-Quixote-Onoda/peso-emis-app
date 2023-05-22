@@ -1,4 +1,4 @@
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import AuthenticatedLayout from '../../Layouts/AuthenticatedLayout';
 import { Head } from "@inertiajs/react";
 import React, { useState, useEffect } from "react";
 import { FilterMatchMode, FilterOperator } from "primereact/api";
@@ -50,13 +50,40 @@ export default function JobPostingTable({
                     onClick={() => editJobPosting(rowData)}
                 />
                 <Button
-                    icon="pi pi-trash"
+                    icon={`pi pi-${rowData.is_active == 0? 'times': 'check'}`}
                     rounded
                     outlined
-                    severity="danger"
+                    severity={`${rowData.is_active == 0? 'danger': 'success'}`}
                     onClick={() => confirmDeleteJobPosting(rowData)}
                 />
             </React.Fragment>
+        );
+    };
+
+    const priceBodyTemplate = (rowData) => {
+        const formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'PHP',
+          
+            // These options are needed to round to whole numbers if that's what you want.
+            //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+            //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+          });
+          console.log();
+        return <>{formatter.format(rowData.salary)}</>;
+    };
+
+
+    const isActiveStatus = (rowData) => {
+        return (
+            <span>{rowData.is_active == 1? 'Active': 'Not Active'}</span>
+        );
+    };
+
+    const removeComma = (rowData) => {
+        console.log(rowData);
+        return (
+            <>{rowData.nature_of_work.replace(", ", " ")}</>
         );
     };
 
@@ -116,6 +143,7 @@ export default function JobPostingTable({
                             filter
                             filterPlaceholder="Search by name"
                             style={{ minWidth: "14rem" }}
+                            body={removeComma}
                         />
                         <Column
                             field="place_of_work"
@@ -132,6 +160,7 @@ export default function JobPostingTable({
                             filter
                             filterPlaceholder="Search by name"
                             style={{ minWidth: "14rem" }}
+                            body={priceBodyTemplate}
                         />
                         <Column
                             field="vacancy_count"
@@ -148,6 +177,15 @@ export default function JobPostingTable({
                             filter
                             filterPlaceholder="Search by name"
                             style={{ minWidth: "14rem" }}
+                        />
+                        <Column
+                            field="is_active"
+                            header="Active Status"
+                            sortable
+                            filter
+                            filterPlaceholder="Search by name"
+                            style={{ minWidth: "14rem" }}
+                            body={isActiveStatus}
                         />
                         <Column
                 body={actionBodyTemplate}
