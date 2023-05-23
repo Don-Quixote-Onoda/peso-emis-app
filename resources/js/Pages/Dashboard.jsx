@@ -43,8 +43,8 @@ export default function Dashboard(props) {
 
     const showEmployerPostingDetails = (cardData) => {
         buttonRef.current.style.cursor = 'progress';
-        console.log(props.auth.user.role);
-        (props.auth.user.role === 1) ? fetchEmployerJobPosting(cardData.id) : fetchMatchingApplicants(cardData);
+        console.log(cardData);
+        (props.auth.user.role === 1) ? fetchEmployerJobPosting(cardData) : fetchMatchingApplicants(cardData);
     };
 
     const [globalFilterValue, setGlobalFilterValue] = useState("");
