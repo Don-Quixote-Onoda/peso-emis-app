@@ -898,7 +898,7 @@ export default function SummaryReports(props) {
                                 <div className="card my-3">
             <DataTable value={establishmentsDataReports} tableStyle={{ minWidth: '50rem' }}>
                     <Column field='id' header='No.' />
-                    <Column field='establishment_name' header='Establishement Name' />
+                    <Column field='establishment_name' header='Establishment Name' />
                     <Column field='employer_establishment_contact_detail.email_address' header='Email Address' />
                     <Column field='employer_establishment_contact_detail.mobile_number' header='Contact Person' />
                     <Column field='employer_vacancy_detail.length' header='Number of Jobs Posted' />
