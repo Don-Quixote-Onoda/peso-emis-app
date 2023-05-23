@@ -52,3 +52,4 @@ Route::post('delete-employer-jobposting', [AdminEmployersController::class, 'del
 Route::post('update-establishment-details', [EmployerSettingsController::class, 'updateEstablishmentDetails'])->name('update-establishment-details');
 Route::post('update-establishment-contact-details', [EmployerSettingsController::class, 'updateEstablishmentContactDetails'])->name('update-establishment-contact-details');
 Route::post('getApplicantsTimeRange', [SummaryReportsController::class, 'getApplicantsTimeRange'])->name('getApplicantsTimeRange');
+Route::post('getEstablishmentsTimeRange', [SummaryReportsController::class, 'getEstablishmentsTimeRange'])->name('getEstablishmentsTimeRange');

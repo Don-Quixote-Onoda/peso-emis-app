@@ -14,6 +14,8 @@ export default function Dashboard(props) {
     const [employers, setEmployers] = useState({});
     const [type, setType] = useState("default");
     const [jobPosts, setJobPosts] = useState();
+    const [establishmentName, setEstablishmentName] = useState("");
+
     useEffect(() => {
         setEmployers(props.employers);
         console.log(props);
@@ -33,7 +35,7 @@ export default function Dashboard(props) {
             .then((data) => {
                 (props.auth.user.role === 1) ? setType("show_posting_details") : setType('default');
                 setJobPosts(data[0].employer_vacancy_detail);
-                console.log(data[0].employer_vacancy_detail);
+                setEstablishmentName(data[0].establishment_name);
             });
     };
 
@@ -41,7 +43,8 @@ export default function Dashboard(props) {
 
     const showEmployerPostingDetails = (cardData) => {
         buttonRef.current.style.cursor = 'progress';
-        (props.auth.user.id === 1) ? fetchEmployerJobPosting(cardData.id) : fetchMatchingApplicants(cardData);
+        console.log(props.auth.user.role);
+        (props.auth.user.role === 1) ? fetchEmployerJobPosting(cardData.id) : fetchMatchingApplicants(cardData);
     };
 
     const [globalFilterValue, setGlobalFilterValue] = useState("");
@@ -60,14 +63,16 @@ export default function Dashboard(props) {
         setGlobalFilterValue(value);
     };
 
+
     const back = () => {
         setType('default');
     }
 
+
     const renderHeader = () => {
         return (
             <div className="flex flex-wrap gap-2 justify-content-between align-items-center">
-                <h4 className="m-0">Employers</h4>
+                <h4 className="m-0">{establishmentName}</h4>
                 <div className="flex justify-between gap-2">
                     <span className="p-input-icon-left">
                         <i className="pi pi-search" />
@@ -261,7 +266,7 @@ export default function Dashboard(props) {
                     label="Back"
                     onClick={() => setType('show_posting_details')}
                 />
-                        <Applicants applicants={applicantMatches} auth={props.auth} isMatches={true} />
+                        <Applicants applicants={applicantMatches}  setDashBoardType={setType} auth={props.auth} isMatches={true} />
                         </>
                     }
                 </div>

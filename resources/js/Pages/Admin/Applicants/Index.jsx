@@ -24,7 +24,9 @@ export default function Applicants(props) {
     useEffect(() => {
         setApplicants(props.applicants);
         console.log(props.applicants);
-        // console.log(applicants);
+        console.log('props');
+        console.log(props);
+        console.log('props');
     });
 
     const onGlobalFilterChange = (e) => {
@@ -59,13 +61,14 @@ export default function Applicants(props) {
         post(route('hire-applicant'), {
             forceFormData: true,
             onSuccess: () =>{
-                // console.log('success');
+                console.log('success');
                 reset();
-                props.setDashBoardType('default');
                 setHireApplicantDialog(false);
+
+                props.setDashBoardType('default');
             },
             onError: () => {
-                // console.log(errors);
+                console.log(errors);
             },
         });
     }

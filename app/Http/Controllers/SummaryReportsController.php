@@ -282,4 +282,18 @@ class SummaryReportsController extends Controller
             ->get();
         return $applicants;
     }
+
+    public function getEstablishmentsTimeRange(Request $request)
+    {
+        $employers = Employer::with('applicant_status')
+            ->selectRaw("*")
+            ->where('is_deleted', 0)
+            ->whereBetween('created_at', [
+                Carbon::parse($request->dateFrom)->startOfDay(),
+                Carbon::parse($request->dateTo)->endOfDay()
+            ])
+            ->orderByDesc('id')
+            ->get();
+        return $employers;
+    }
 }

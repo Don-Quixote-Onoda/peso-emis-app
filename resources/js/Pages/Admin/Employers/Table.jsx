@@ -30,7 +30,7 @@ export default function EmployersTable({
     const renderHeader = () => {
         return (
             <div className="flex flex-wrap gap-2 justify-content-between align-items-center">
-                <h4 className="m-0">Employers</h4>
+                <h4 className="m-0">Establishments</h4>
                 <span className="p-input-icon-left">
                     <i className="pi pi-search" />
                     <InputText

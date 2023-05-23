@@ -40,11 +40,15 @@ export default function SummaryReports(props) {
     const [visibleDate, setVisibleDate] = useState(false);
     const [visibleApplicantsInformation, setVisibleApplicantsInformation] =
         useState(false);
+        const [visibleEstablishmentsInformation, setVisibleEstablishmentsInformation] =
+        useState(false);
     const regionalOffice = "DOLE RO 10 (NORTHERN MINDANAO)";
     const fieldOffice = "DOLE BUKIDNON FIELD OFFICE";
     const pesoOffice = "VALENCIA CITY (BUKIDNON)";
 
     const [applicantsDataReports, setApplicantsDataReports] = useState([]);
+    const [establishmentsDataReports, setEstablishmentsDataReports] = useState([]);
+    const [previewShowName, setPreviewShowName] = useState('');
 
     const handlePreviewShow = async (event) => {
         
@@ -59,6 +63,32 @@ export default function SummaryReports(props) {
      
       if (response.status === 200) {
         setApplicantsDataReports(response.data);
+        NProgress.done(); // Stop the progress indicator
+        setVisibleDate(false);
+        setVisibleApplicantsInformation(true);
+      }
+    } catch (error) {
+      // Handle error
+    } finally {
+    //   NProgress.done(); // Stop the progress indicator
+    //   setVisibleDate(false);
+    // setVisibleApplicantsInformation(true);
+    }
+    };
+
+    const handlePreviewShowEstalishments = async (event) => {
+        
+        event.preventDefault();
+    NProgress.start(); // Start the progress indicator
+
+    try {
+      const response = await axios.post(route('getEstablishmentsTimeRange'), {
+       dateFrom: dateFrom,
+       dateTo: dateTo
+      });
+     
+      if (response.status === 200) {
+        setEstablishmentsDataReports(response.data);
         NProgress.done(); // Stop the progress indicator
         setVisibleDate(false);
         setVisibleApplicantsInformation(true);
@@ -501,6 +531,11 @@ export default function SummaryReports(props) {
         return <span>{rowData.applicant_status.applicant_type === 0? 'Employed' : 'Unemployed'}</span>
     }
 
+    const handleSetVisible = (name) => {
+        setPreviewShowName(name);
+        setVisibleDate(true);
+    }
+
     return (
         <AuthenticatedLayout
             auth={props.auth}
@@ -517,12 +552,12 @@ export default function SummaryReports(props) {
                         <Button
                             label="Print Applicants"
                             icon="pi pi-external-link"
-                            onClick={() => setVisibleDate(true)}
+                            onClick={() => handleSetVisible('applicants')}
                         />
                         <Button
                             label="Print Establishment"
                             icon="pi pi-external-link"
-                            onClick={() => setVisibleDate(true)}
+                            onClick={() => handleSetVisible('name')}
                         />
                         <Dialog
                             header="Set report period"
@@ -611,7 +646,7 @@ export default function SummaryReports(props) {
                             <Button
                                 label="Preview"
                                 icon="pi pi-eye"
-                                onClick={e => handlePreviewShow(e)}
+                                onClick={e => handlePreviewShowEstalishments(e)}
                             />
                         </Dialog>
                         <Dialog
@@ -636,6 +671,118 @@ export default function SummaryReports(props) {
                                         </h3>
                                         <h3 className="text-center font-bold text-md mb-5">
                                             Jobseekers Employment Status Report
+                                        </h3>
+                                    </div>
+                                    <div className="top-title mb-5">
+                                        <table className="w-full">
+                                            <tr>
+                                                <td>
+                                                    <div className="flex gap-2">
+                                                        <p className="font-bold text-md">
+                                                            Regional Office:{" "}
+                                                        </p>
+                                                        <p className="underline">
+                                                            {regionalOffice}
+                                                        </p>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div className="flex gap-2">
+                                                        <p className="font-bold text-md">
+                                                            Field Office:{" "}
+                                                        </p>
+                                                        <p className="underline">
+                                                            {fieldOffice}
+                                                        </p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div className="flex gap-2">
+                                                        <p className="font-bold text-md">
+                                                            PESO:{" "}
+                                                        </p>
+                                                        <p className="underline">
+                                                            {pesoOffice}
+                                                        </p>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div className="flex gap-2">
+                                                        <p className="font-bold text-md">
+                                                            Date Coverage:{" "}
+                                                        </p>
+                                                        <p className="underline">
+                                                            {new Date(
+                                                                dateFrom
+                                                            ).toLocaleDateString(
+                                                                "en-US",
+                                                                {
+                                                                    month: "numeric",
+                                                                    day: "numeric",
+                                                                    year: "numeric",
+                                                                }
+                                                            )}{" "}
+                                                            to{" "}
+                                                            {new Date(
+                                                                dateTo
+                                                            ).toLocaleDateString(
+                                                                "en-US",
+                                                                {
+                                                                    month: "numeric",
+                                                                    day: "numeric",
+                                                                    year: "numeric",
+                                                                }
+                                                            )}
+                                                        </p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div className="applicant-body">
+                                <div className="card my-3">
+            <DataTable value={applicantsDataReports} tableStyle={{ minWidth: '50rem' }}>
+                    <Column field='id' header='No.' />
+                    <Column field='full_name' header='Name' />
+                    <Column field='phone_number' header='Contact no.' />
+                    <Column field='sex' header='Sex' />
+                    <Column field='applicant_status.applicant_status_type'body={filterEmployment} header='Status (as of registration or last update)' />
+                    <Column field='full_name' body={filterStatus} header='Status: Employed or Unemployed' />
+            </DataTable>
+        </div>
+                                </div>
+                            </div>
+                            <Button
+                                label="Print"
+                                icon="pi pi-eye"
+                                onClick={(e) => handlePrintApplicantsReport(e)}
+                            />
+                        </Dialog>
+                        <Dialog
+                            header="Set report period"
+                            visible={visibleEstablishmentsInformation}
+                            style={{ width: "85vw" }}
+                            onHide={() =>
+                                setVisibleEstablishmentsInformation(false)
+                            }
+                        >
+                            <div className="applicantsReportData p-5">
+                                <div className="applicant-header">
+                                    <div className="top-header">
+                                        <h5 className="text-center mb-1">
+                                            Republic of the Philippines
+                                        </h5>
+                                        <h5 className="text-center mb-1">
+                                            Department of Labor and Employment
+                                        </h5>
+                                        <h3 className="text-center font-bold text-xl mb-1">
+                                            NATIONAL SKILLS REGISTRATION PROGRAM
+                                        </h3>
+                                        <h3 className="text-center font-bold text-md mb-5">
+                                            Establishments Status Report
                                         </h3>
                                     </div>
                                     <div className="top-title mb-5">
