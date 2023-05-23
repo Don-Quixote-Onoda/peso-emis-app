@@ -285,7 +285,7 @@ class SummaryReportsController extends Controller
 
     public function getEstablishmentsTimeRange(Request $request)
     {
-        $employers = Employer::with('applicant_status')
+        $employers = Employer::with(['employer_establishment_contact_detail', 'employer_vacancy_detail'])
             ->selectRaw("*")
             ->where('is_deleted', 0)
             ->whereBetween('created_at', [
