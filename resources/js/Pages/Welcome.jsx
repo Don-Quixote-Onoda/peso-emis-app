@@ -9,7 +9,7 @@ export default function Welcome(props) {
     const [jobInfo, setJobInfo] = useState();
     const [isCompleted, setIsCompleted] = useState(false);
     const [index, setIndex] = useState(5);
-    const initialJobInfo = slice(props.jobs, 0, index);
+    const [initialJobInfo, setInitialJobInfo] = useState([]);
 
     function timeAgo(date) {
         const seconds = Math.floor((new Date() - new Date(date)) / 1000);
@@ -36,6 +36,16 @@ export default function Welcome(props) {
         }
         return Math.floor(seconds) + " second" + (seconds === 1 ? "" : "s") + " ago";
       }
+
+      useState(() => {
+        setInitialJobInfo(slice(props.jobs, 0, index));
+      })
+
+      const searchJobPosts = (e) => {
+        let searchResults = props.jobs.filter(job => job.position_title.toLowerCase().includes(e.target.value.toLowerCase()));
+       setInitialJobInfo(searchResults);
+      }
+
 
     const loadMore = () => {
         setIndex(index + 5);
@@ -633,9 +643,12 @@ export default function Welcome(props) {
 
                 <section id="jobPosting" className="jobPosting">
                     <div className="container">
-                        <div className="section-title" data-aos="zoom-out">
+                        <div className="section-title flex justify-content-between" data-aos="zoom-out">
+                            <div>
                             <h2>Job Posts</h2>
                             <p>Check out the latest Job Postings</p>
+                            </div>
+                            <input type="text" name="" id="" className="w-80" onChange={(e) => searchJobPosts(e)} placeholder="Search job posts" />
                         </div>
                         <div class="row job-postings">
                             <div
