@@ -648,7 +648,7 @@ export default function Welcome(props) {
                             <h2>Job Posts</h2>
                             <p>Check out the latest Job Postings</p>
                             </div>
-                            <input type="text" name="" id="" className="w-80" onChange={(e) => searchJobPosts(e)} placeholder="Search job posts" />
+                            <input type="text" name="" id="" className="w-80 form-control rounded-pill mr-1 pr-5" onChange={(e) => searchJobPosts(e)} placeholder="Search job posts" />
                         </div>
                         <div class="row job-postings">
                             <div
@@ -805,7 +805,7 @@ export default function Welcome(props) {
                         // </button>
                         <span></span>
                         ) : (
-                            initialJobInfo.length > 4 &&  <button 
+                            initialJobInfo.length > 5 &&  <button 
                             onClick={loadMore}
                             className="cursor transition hover:bg-stone-400 my-5 bg-stone-500 p-3 rounded text-white">
                             See More
