@@ -80,7 +80,6 @@ export default function SummaryReports(props) {
         
         event.preventDefault();
     NProgress.start(); // Start the progress indicator
-
     try {
       const response = await axios.post(route('getEstablishmentsTimeRange'), {
        dateFrom: dateFrom,
@@ -88,17 +87,18 @@ export default function SummaryReports(props) {
       });
      
       if (response.status === 200) {
+        console.log(response.data);
         setEstablishmentsDataReports(response.data);
         NProgress.done(); // Stop the progress indicator
         setVisibleDate(false);
-        setVisibleApplicantsInformation(true);
+        setVisibleEstablishmentsInformation(true);
       }
     } catch (error) {
       // Handle error
     } finally {
     //   NProgress.done(); // Stop the progress indicator
     //   setVisibleDate(false);
-    // setVisibleApplicantsInformation(true);
+    // setVisibleEstablishmentsInformation(true);
     }
     };
 
@@ -462,6 +462,46 @@ export default function SummaryReports(props) {
         setVisibleApplicantsInformation(false);
     };
 
+    const handlePrintEstablishmentsReport = (e) => {
+        /////////////////////////////
+        // Hide/show button if you need
+        /////////////////////////////
+
+        const today = new Date();
+
+        // Get the month, day, year, hours, minutes, and seconds from the Date object
+        const month = today.toLocaleString("default", { month: "long" });
+        const day = today.getDate();
+        const year = today.getFullYear();
+        const hours = today.getHours();
+        const minutes = today.getMinutes();
+        const seconds = today.getSeconds();
+
+        // Format the date and time as "Month day, year at hours:minutes:seconds"
+        const formattedDate = `${month} ${day}, ${year}`;
+
+        const but = e.target;
+        // but.style.display = "none";
+        let input = window.document.getElementsByClassName("establishmentsReportData")[0];
+
+        html2canvas(input).then((canvas) => {
+            const imgData = canvas.toDataURL("image/png");
+            const pdf = new jsPDF({
+                orientation: "portrait",
+            });
+            const imgProps = pdf.getImageProperties(imgData);
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+            pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+            pdf.save(
+                "Establishment Report - Applicants Applied (" +
+                    formattedDate +
+                    ").pdf"
+            );
+        });
+        setVisibleEstablishmentsInformation(false);
+    };
+
     const getCurrentDateFormat = () => {
         const today = new Date();
 
@@ -557,7 +597,7 @@ export default function SummaryReports(props) {
                         <Button
                             label="Print Establishment"
                             icon="pi pi-external-link"
-                            onClick={() => handleSetVisible('name')}
+                            onClick={() => handleSetVisible('establishments')}
                         />
                         <Dialog
                             header="Set report period"
@@ -646,7 +686,7 @@ export default function SummaryReports(props) {
                             <Button
                                 label="Preview"
                                 icon="pi pi-eye"
-                                onClick={e => handlePreviewShowEstalishments(e)}
+                                onClick={e => previewShowName == 'applicants' ? handlePreviewShow(e) : handlePreviewShowEstalishments(e)}
                             />
                         </Dialog>
                         <Dialog
@@ -769,7 +809,7 @@ export default function SummaryReports(props) {
                                 setVisibleEstablishmentsInformation(false)
                             }
                         >
-                            <div className="applicantsReportData p-5">
+                            <div className="establishmentsReportData p-5">
                                 <div className="applicant-header">
                                     <div className="top-header">
                                         <h5 className="text-center mb-1">
@@ -856,13 +896,13 @@ export default function SummaryReports(props) {
                                 </div>
                                 <div className="applicant-body">
                                 <div className="card my-3">
-            <DataTable value={applicantsDataReports} tableStyle={{ minWidth: '50rem' }}>
+            <DataTable value={establishmentsDataReports} tableStyle={{ minWidth: '50rem' }}>
                     <Column field='id' header='No.' />
-                    <Column field='full_name' header='Name' />
-                    <Column field='phone_number' header='Contact no.' />
-                    <Column field='sex' header='Sex' />
-                    <Column field='applicant_status.applicant_status_type'body={filterEmployment} header='Status (as of registration or last update)' />
-                    <Column field='full_name' body={filterStatus} header='Status: Employed or Unemployed' />
+                    <Column field='establishment_name' header='Establishement Name' />
+                    <Column field='employer_establishment_contact_detail.email_address' header='Email Address' />
+                    <Column field='employer_establishment_contact_detail.mobile_number' header='Contact Person' />
+                    <Column field='employer_vacancy_detail.length' header='Number of Jobs Posted' />
+                   
             </DataTable>
         </div>
                                 </div>
@@ -870,7 +910,7 @@ export default function SummaryReports(props) {
                             <Button
                                 label="Print"
                                 icon="pi pi-eye"
-                                onClick={(e) => handlePrintApplicantsReport(e)}
+                                onClick={(e) => handlePrintEstablishmentsReport(e)}
                             />
                         </Dialog>
                     </div>
