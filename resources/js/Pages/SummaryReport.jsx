@@ -563,12 +563,17 @@ export default function SummaryReports(props) {
     };
 
     const filterStatus = (rowData) => {
-        return <span>{rowData.applicant_status.applicant_status_type.replaceAll('"', '')}</span>
+        
+        return <span>{
+            rowData.applicant_status.applicant_status_type !== null?     <span>{rowData.applicant_status.applicant_status_type.replaceAll('"', '')}</span>: ''
+        }</span>
     }
 
     const filterEmployment = (rowData) => {
 
-        return <span>{rowData.applicant_status.applicant_type === 0? 'Employed' : 'Unemployed'}</span>
+        return <span>
+            {rowData.applicant_status.applicant_type !== null? <span>{rowData.applicant_status.applicant_type === 0? 'Employed' : 'Unemployed'}</span> : ''}
+        </span>
     }
 
     const handleSetVisible = (name) => {
