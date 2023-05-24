@@ -10,11 +10,11 @@ export default function Welcome(props) {
     const [isCompleted, setIsCompleted] = useState(false);
     const [index, setIndex] = useState(5);
     const [initialJobInfo, setInitialJobInfo] = useState([]);
+    const totalJobs = props.jobs.length;
 
     function timeAgo(date) {
         const seconds = Math.floor((new Date() - new Date(date)) / 1000);
         let interval = Math.floor(seconds / 31536000);
-      
         if (interval >= 1) {
           return interval + " year" + (interval === 1 ? "" : "s") + " ago";
         }
@@ -48,12 +48,9 @@ export default function Welcome(props) {
 
 
     const loadMore = () => {
-        setIndex(index + 5);
-        if (index >= initialJobInfo) {
-            setIsCompleted(true);
-        } else {
-            setIsCompleted(false);
-        }
+       
+            setInitialJobInfo(slice(props.jobs, 0, index+1));
+            setIndex(index+1);
     };
 
     const [isMobile, setMobile] = useState(false);
@@ -797,7 +794,7 @@ export default function Welcome(props) {
                                 </div>
                             )}
                         </div>
-                        {isCompleted ? (
+                        {/* {isCompleted ? (
                         //     <button 
                         //     onClick={loadMore}
                         //     className="cursor transition hover:bg-stone-400 my-5 bg-stone-500 p-3 rounded text-white">
@@ -810,7 +807,14 @@ export default function Welcome(props) {
                             className="cursor transition hover:bg-stone-400 my-5 bg-stone-500 p-3 rounded text-white">
                             See More
                         </button>
-                        )}
+                        )} */}
+                        {
+                             initialJobInfo.length < totalJobs &&  <button 
+                              onClick={loadMore}
+                              className="cursor transition hover:bg-stone-400 my-5 bg-stone-500 p-3 rounded text-white">
+                              See More
+                          </button>
+                        }
                         
                     </div>
                 </section>
