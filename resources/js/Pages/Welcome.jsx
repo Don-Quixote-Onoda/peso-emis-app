@@ -1188,7 +1188,7 @@ export default function Welcome(props) {
                                 className="col-lg-8 mt-5 mt-lg-0"
                                 data-aos="fade-left"
                             >
-                                <form
+                                {/*<form
                                     action="forms/contact.php"
                                     method="post"
                                     role="form"
@@ -1248,7 +1248,7 @@ export default function Welcome(props) {
                                             Send Message
                                         </button>
                                     </div>
-                                </form>
+            </form>*/}
                             </div>
                         </div>
                     </div>
