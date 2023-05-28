@@ -228,7 +228,7 @@ export default function UsersTable({
                         display: "flex",
                         gap: "0.5rem",
                     }}
-                ></Column>
+                />
             </DataTable>
             <Dialog
                 visible={addNewJobPostingDialog}
