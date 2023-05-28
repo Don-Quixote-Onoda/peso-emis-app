@@ -837,18 +837,26 @@ export default function Welcome(props) {
                                             }}
                                             className=""
                                         >
-                                            <li>{
-                                                    jobInfo.employer.employer_qualification_requirement[jobInfo.id-1].other_qualification
-                                                }</li>
+                                            {
+                                                <li>{
+                                                    jobInfo.employer.employer_qualification_requirement.filter(item => {
+                                                       return item.id == jobInfo.id;
+                                                   })[0].other_qualification
+                                                   }
+                                               </li>
+                                            }
                                         </ul>
                                         <p className="my-2">
                                             Salary: {parseFloat(jobInfo.salary).toLocaleString('en-PH', { style: 'currency', currency: 'PHP' })} per month
                                         </p>
-                                        <p className="text-md font-bold my-3">
-                                            Experience: {
-                                                    jobInfo.employer.employer_qualification_requirement[jobInfo.id-1].work_of_experience
-                                                }
-                                        </p>
+                                        {<p className="text-md font-bold my-3">
+                                            Experience:
+                                            {
+                                                    jobInfo.employer.employer_qualification_requirement.filter(item => {
+                                                       return item.id == jobInfo.id;
+                                                   })[0].work_of_experience
+                                                   }
+                                        </p>}
                                         <ul
                                             style={{
                                                 listStyleType: "disc",
@@ -856,11 +864,15 @@ export default function Welcome(props) {
                                             }}
                                             className=""
                                         >
-                                            <li>
+                                            {
+                                                <li>
                                                 {
-                                                    jobInfo.employer.employer_qualification_requirement[jobInfo.id-1].other_qualification
-                                                }
+                                                jobInfo.employer.employer_qualification_requirement.filter(item => {
+                                                       return item.id == jobInfo.id;
+                                                   })[0].other_qualification
+                                                   }
                                             </li>
+                                            }
                                         </ul>
                                     </div>
                                 </div>
