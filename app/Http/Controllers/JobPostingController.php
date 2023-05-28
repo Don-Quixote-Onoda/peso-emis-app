@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Redirect;
 use App\Models\EmployerVacancyDetail;
 use App\Models\EmployerQualificationRequirement;
 use App\Models\EmployerPostingDetail;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
 
 class JobPostingController extends Controller
 {
@@ -21,12 +23,12 @@ class JobPostingController extends Controller
     {
         $id = Auth::user()->id;
         $employer = Employer::where('user_id', $id)->get();
-        
+
         $response = array();
-        if(count($employer) > 0)
+        if (count($employer) > 0)
             array_push($response, $employer[0]->employer_vacancy_detail);
-            array_push($response, $employer[0]->employer_posting_detail);
-            array_push($response, $employer[0]->employer_qualification_requirement);
+        array_push($response, $employer[0]->employer_posting_detail);
+        array_push($response, $employer[0]->employer_qualification_requirement);
         return Inertia::render('EmployerAdmin/Index', [
             'employers' => $employer
         ]);
@@ -77,7 +79,7 @@ class JobPostingController extends Controller
 
         $employer[0]->employer_posting_detail()->create([
             "posting_date" => date('Y-m-d', strtotime($request->postingDate)),
-            "valid_until" =>date('Y-m-d', strtotime($request->validUntil)),
+            "valid_until" => date('Y-m-d', strtotime($request->validUntil)),
         ]);
 
         return Redirect::route('job-postings');
@@ -96,7 +98,6 @@ class JobPostingController extends Controller
      */
     public function edit(string $id)
     {
-        
     }
 
     /**
@@ -138,7 +139,7 @@ class JobPostingController extends Controller
         $employer_posting_detail = EmployerPostingDetail::find($request->id);
         $employer_posting_detail->update([
             "posting_date" => date('Y-m-d', strtotime($request->postingDate)),
-            "valid_until" =>date('Y-m-d', strtotime($request->validUntil)),
+            "valid_until" => date('Y-m-d', strtotime($request->validUntil)),
         ]);
         return Redirect::route('job-postings');
     }
@@ -160,5 +161,51 @@ class JobPostingController extends Controller
         // $employer_qualification_requirement->delete();
         // $employer_posting_detail->delete();
         return Redirect::route('job-postings');
+    }
+
+    public function jobPosts()
+    {
+        // $vacancy = EmployerVacancyDetail::where('is_active', 1)
+        //     ->orderByDesc('created_at')
+        //     ->get();
+
+        // $jobposts = array();
+        // foreach ($vacancy as $jobpost) {
+        //     array_push($jobposts, array(
+        //         $jobpost,
+        //         $jobpost->employer,
+        //         $jobpost->employer->employer_address,
+        //         $jobpost->employer->employer_establishment_contact_detail,
+        //         $jobpost->employer->employer_qualification_requirement
+        //     ));
+        // }
+
+        // return Inertia::render('JobPostings', [
+        //     'canLogin' => Route::has('login'),
+        //     'canRegister' => Route::has('register'),
+        //     'laravelVersion' => Application::VERSION,
+        //     'phpVersion' => PHP_VERSION,
+        //     'jobs' => $vacancy
+        // ]);
+
+            $jobposts = array();
+            $vacancy = EmployerVacancyDetail::where('is_active', 1)->get();
+            foreach($vacancy as $jobpost) {
+                array_push($jobposts, array(
+                    $jobpost,
+                    $jobpost->employer,
+                    $jobpost->employer->employer_address,
+                    $jobpost->employer->employer_establishment_contact_detail,
+                    $jobpost->employer->employer_qualification_requirement
+                ));
+            }
+    
+            return Inertia::render('JobPostings', [
+                'canLogin' => Route::has('login'),
+                'canRegister' => Route::has('register'),
+                'laravelVersion' => Application::VERSION,
+                'phpVersion' => PHP_VERSION,
+                'jobs' => $vacancy
+            ]);
     }
 }

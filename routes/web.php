@@ -32,6 +32,7 @@ use App\Models\EmployerVacancyDetail;
 // })->where('any', '.*');
 
 Route::get('/', [WelcomeController::class, 'index'])->name('home');
+Route::get('/job-posts', [JobPostingController::class, 'jobPosts'])->name('job-post');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 

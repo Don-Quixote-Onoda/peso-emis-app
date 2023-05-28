@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use App\Models\Employer;
 use App\Models\User;
 use App\Models\Applicant;
+use Illuminate\Support\Facades\Auth;
 class DashboardController extends Controller
 {
     /**
@@ -53,11 +54,11 @@ class DashboardController extends Controller
         //
     }
 
-    public function getAllEmployerJobPosting(string $id) {
-        $user = User::find($id);
-        $employer = Employer::find($id);
-        if($user->role == 0) {
-            $employer = Employer::where('user_id', $user->id)->get()[0];
+    public function getAllEmployerJobPosting(Request $request) {
+        $employer = Employer::where('user_id', $request->user['id'])->get();
+
+        if($request->user['role'] == 0) {
+            $employer = Employer::where('user_id',  $request->user['id'])->get()[0];
             $response = array();
             array_push($response, $employer->employer_vacancy_detail);
             array_push($response, $employer->employer_posting_detail);

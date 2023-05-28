@@ -159,7 +159,7 @@ export default function Users(props) {
                         style={{ fontSize: "2rem" }}
                     />
                         <span>
-                            Are you sure you want to delete <b></b>?
+                            Are you sure you want to deactivate this account <b></b>?
                         </span>
                 </div>
             </Dialog>

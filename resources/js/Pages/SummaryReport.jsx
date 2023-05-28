@@ -563,9 +563,9 @@ export default function SummaryReports(props) {
     };
 
     const filterStatus = (rowData) => {
-        
+        console.log(rowData.applicant_status.applicant_status_type.includes(null));
         return <span>{
-            rowData.applicant_status.applicant_status_type !== null?     <span>{rowData.applicant_status.applicant_status_type.replaceAll('"', '')}</span>: ''
+            !rowData.applicant_status.applicant_status_type.includes(null)?     <span>{rowData.applicant_status.applicant_status_type.replaceAll('"', '')}</span>: ''
         }</span>
     }
 

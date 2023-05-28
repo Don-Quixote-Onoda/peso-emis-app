@@ -57,14 +57,20 @@ export default function Applicants(props) {
     const [deleteApplicantDialog, setDeleteApplicantDialog] = useState(false);
     const [hireApplicantDialog, setHireApplicantDialog] = useState(false);
     const submitHiredApplicantData = () => {
+        console.log('data');
         console.log(data);
+        console.log('data');
+        const applicant = applicants.filter(item => {
+            return item.id === data.id;
+        });
+        const emailAddress = applicant[0].email_address;
         post(route('hire-applicant'), {
             forceFormData: true,
             onSuccess: () =>{
                 console.log('success');
                 reset();
                 setHireApplicantDialog(false);
-
+                window.open('mailto:'+emailAddress);
                 props.setDashBoardType('default');
             },
             onError: () => {

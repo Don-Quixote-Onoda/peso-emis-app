@@ -43,7 +43,6 @@ export default function Dashboard(props) {
 
     const showEmployerPostingDetails = (cardData) => {
         buttonRef.current.style.cursor = 'progress';
-        console.log(cardData);
         (props.auth.user.role === 1) ? fetchEmployerJobPosting(cardData) : fetchMatchingApplicants(cardData);
     };
 

@@ -106,9 +106,9 @@ export default function UsersTable({
         setData(rowData);
     }
     const userActivatedTemplate = (rowData) => {
-        
+        console.log(rowData.is_activated);
         return (
-            rowData.role == 0 ? (rowData.is_activated == 0 ? <Button label="Activate" onClick={e => activateAccount(rowData)} icon="pi pi-check" /> : <span></span>) : <span></span>
+            rowData.role == 0 ? (rowData.is_activated == 0 ? <Button label="Activate" onClick={e => activateAccount(rowData)} icon="pi pi-check" /> : <span>Active</span>) : <span>Active</span>
         );
     };
 
@@ -129,13 +129,15 @@ export default function UsersTable({
                     className="mr-2"
                     onClick={() => editUser(rowData)}
                 />
-                <Button
-                    icon="pi pi-trash"
-                    rounded
-                    outlined
-                    severity="danger"
-                    onClick={() => confirmDeleteUser(rowData)}
-                />
+               {
+                (rowData.role == 0 && rowData.is_activated == 1) &&  <Button
+                icon="pi pi-trash"
+                rounded
+                outlined
+                severity="danger"
+                onClick={() => confirmDeleteUser(rowData)}
+            />
+               }
             </React.Fragment>
         );
     };
@@ -211,7 +213,7 @@ export default function UsersTable({
                 />
                 <Column
                     field="is_activated"
-                    header="Role"
+                    header="Status (In Activation)"
                     body={userActivatedTemplate}
                     sortable
                     filter

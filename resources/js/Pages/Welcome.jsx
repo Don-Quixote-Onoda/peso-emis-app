@@ -1,9 +1,14 @@
 import { Link, Head } from "@inertiajs/react";
-import { useState } from "react";
-import { useEffect } from "react";
 import { slice } from "lodash";
 import Footer from "./Employers/Components/Footer";
 import '../App.css';
+import { Dialog } from "primereact/dialog";
+import { FilterMatchMode, FilterOperator } from "primereact/api";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
+import { InputText } from "primereact/inputtext";
+import { Button } from 'primereact/button';
+import React, { useState, useEffect } from "react";
 
 export default function Welcome(props) {
     const [jobInfo, setJobInfo] = useState();
@@ -11,7 +16,54 @@ export default function Welcome(props) {
     const [index, setIndex] = useState(5);
     const [initialJobInfo, setInitialJobInfo] = useState([]);
     const totalJobs = props.jobs.length;
+    const [showDialog, setShowDialog] = useState(false);
 
+    const [globalFilterValue, setGlobalFilterValue] = useState("");
+
+    const [filters, setFilters] = useState({
+        global: { value: null, matchMode: FilterMatchMode.CONTAINS },
+    });
+
+    const onGlobalFilterChange = (e) => {
+        const value = e.target.value;
+        let _filters = { ...filters };
+
+        _filters["global"].value = value;
+
+        setFilters(_filters);
+        setGlobalFilterValue(value);
+    };
+
+    const renderHeader = () => {
+        return (
+            <div className="flex flex-wrap gap-2 justify-content-between align-items-center">
+                <span className="p-input-icon-left">
+                    <i className="pi pi-search" />
+                    <InputText
+                        value={globalFilterValue}
+                        onChange={onGlobalFilterChange}
+                        placeholder="Keyword Search"
+                    />
+                </span>
+            </div>
+        );
+    };
+
+    const actionBodyTemplate = (rowData) => {
+        return (
+            <React.Fragment>
+                <Button
+                    icon="pi pi-eye"
+                    rounded
+                    outlined
+                    className="mr-2"
+                    onClick={() => handleShowDialog(rowData)}
+                />
+            </React.Fragment>
+        );
+    };
+
+    const header = renderHeader();
     function timeAgo(date) {
         const seconds = Math.floor((new Date() - new Date(date)) / 1000);
         let interval = Math.floor(seconds / 31536000);
@@ -38,12 +90,19 @@ export default function Welcome(props) {
       }
 
       useState(() => {
-        setInitialJobInfo(slice(props.jobs, 0, index));
+        setInitialJobInfo(props.jobs.slice(-index).reverse());
+
       })
 
       const searchJobPosts = (e) => {
         let searchResults = props.jobs.filter(job => job.position_title.toLowerCase().includes(e.target.value.toLowerCase()));
        setInitialJobInfo(searchResults);
+      }
+
+      const handleShowDialog = (data) => {
+        setJobInfo(data);
+        console.log(data);
+        setShowDialog(true);
       }
 
 
@@ -58,6 +117,48 @@ export default function Welcome(props) {
     const showMobile = () => {
         setMobile(!isMobile);
     }
+
+    const monetaryBodyFormat = (rowData) => {
+        const formattedAmount = new Intl.NumberFormat('en-PH', {
+            style: 'currency',
+            currency: 'PHP'
+          }).format(rowData.salary);
+        return (
+            <span>{formattedAmount}</span>
+        )
+    }
+
+    const qualificationRequirementBody = (rowData) => {
+
+          let qualifications = rowData.employer.employer_qualification_requirement.filter(data=> {
+          
+            return rowData.id === data.id;
+            
+          })
+        return (
+            <span>{qualifications[0].other_qualification}</span>
+        )
+    }
+    
+    const handeDatePosted = (rowData) => {
+
+        return (
+            <span>{timeAgo(rowData.created_at)}</span>
+        )
+  }
+    
+
+    const experienceNeededBody = (rowData) => {
+        let qualifications = rowData.employer.employer_qualification_requirement.filter(data=> {
+          
+            return rowData.id === data.id;
+            
+          })
+        return (
+            <span>{qualifications[0].work_of_experience}</span>
+        )
+    }
+
     return (
         <>
         <Head title="PESO-EMIS" />
@@ -598,7 +699,7 @@ export default function Welcome(props) {
                                     </div>
                                     <h4 className="title">
                                         <Link
-                                            href={route("employers.index")}
+                                            href={route("employers.index")}Form
                                             className="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
                                         >
                                             Employers Form
@@ -647,63 +748,37 @@ export default function Welcome(props) {
                             </div>
                             <input type="text" name="" id="" className="w-80 form-control rounded-pill mr-1 pr-5" onChange={(e) => searchJobPosts(e)} placeholder="Search job posts" />
                         </div>
-                        <div class="row job-postings">
-                            <div
-                                className={`job-posts ${
-                                    jobInfo ? "basis-2/4 showJobInfo" : ""
-                                }`}
-                            >
-                                {initialJobInfo.map(
-                                    (job) =>
-                                            <div
-                                                class="card"
-                                                onClick={() => {
-                                                    setJobInfo(job);
-                                                }}
-                                            >
-                                                <div class="card-body">
-                                                    <h5
-                                                        class="card-title"
-                                                        style={{
-                                                            backgroundColor:
-                                                                "rgb(157, 198, 218)",
-                                                        }}
-                                                    >
-                                                        {
-                                                            job.employer
-                                                                .establishment_accronym
-                                                        }
-                                                    </h5>
-                                                    <div class="card-text">
-                                                        <p className="text-md font-bold py-1">
-                                                            {job.position_title}
-                                                        </p>
-                                                        <p className="text-sm py-1">
-                                                            {
-                                                                job.employer
-                                                                    .establishment_name
-                                                            }
-                                                        </p>
-                                                        <p
-                                                            className="text-sm py-1"
-                                                            style={{
-                                                                textTransform:
-                                                                    "capitalize",
-                                                            }}
-                                                        >
-                                                            {job.place_of_work}
-                                                        </p>
-                                                        <p className="text-sm py-1">
-                                                            { 
-                                                            timeAgo(job.created_at)
-                                                            }
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                )}
-                            </div>
-                            {jobInfo && (
+                        
+                        <div className="card  mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <DataTable value={initialJobInfo} paginator header={header} rows={10}
+                    paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+                    rowsPerPageOptions={[10, 25, 50]} dataKey="id" 
+                    filters={filters} filterDisplay="menu"
+                    emptyMessage="No customers found." currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+                <Column field="position_title" header="Job Title" style={{ minWidth: '10rem' }} />
+                <Column field="employer.establishment_name" header="Establishment Name" style={{ minWidth: '14rem' }} />
+                <Column field="salary" header="Salary"  body={monetaryBodyFormat} style={{ minWidth: '5rem' }} />
+                <Column field="total_work_force" body={qualificationRequirementBody} header="Qualifications" style={{ minWidth: '14rem' }} />
+                <Column field="total_work_force" body={experienceNeededBody} header="Experience Needed" style={{ minWidth: '14rem' }} />
+                <Column field="created_at" body={handeDatePosted} header="Posted Time" style={{ minWidth: '14rem' }} />
+                <Column
+                    body={actionBodyTemplate}
+                    exportable={false}
+                    style={{
+                        minWidth: "12rem",
+                        display: "flex",
+                        gap: "0.5rem",
+                    }}
+                ></Column>
+            </DataTable>
+            <Dialog
+                            header="Job Information"
+                            visible={showDialog}
+                            style={{ width: "50vw" }}
+                            onHide={() => setShowDialog(false)}
+                        >
+                           
+                           {jobInfo && (
                                 <div
                                     className={`job-post-description basis-2/4 ${
                                         jobInfo ? "basis-2/4" : ""
@@ -717,10 +792,7 @@ export default function Welcome(props) {
                                             <div class="card-body">
                                                 <h5
                                                     class="card-title"
-                                                    style={{
-                                                        backgroundColor:
-                                                            "rgb(157, 198, 218)",
-                                                    }}
+                                                   
                                                 >
                                                     {
                                                         jobInfo.employer
@@ -793,28 +865,16 @@ export default function Welcome(props) {
                                     </div>
                                 </div>
                             )}
-                        </div>
-                        {/* {isCompleted ? (
-                        //     <button 
-                        //     onClick={loadMore}
-                        //     className="cursor transition hover:bg-stone-400 my-5 bg-stone-500 p-3 rounded text-white">
-                        //     See Mores
-                        // </button>
-                        <span></span>
-                        ) : (
-                            initialJobInfo.length > 5 &&  <button 
-                            onClick={loadMore}
-                            className="cursor transition hover:bg-stone-400 my-5 bg-stone-500 p-3 rounded text-white">
-                            See More
-                        </button>
-                        )} */}
-                        {
-                             initialJobInfo.length < totalJobs &&  <button 
-                              onClick={loadMore}
+                           
+                        </Dialog>
+        </div>
+                                 <button 
                               className="cursor transition hover:bg-stone-400 my-5 bg-stone-500 p-3 rounded text-white">
+                                 <Link href={route("job-post")} className="nav-link text-white">
                               See More
+                            </Link>
+
                           </button>
-                        }
                         
                     </div>
                 </section>

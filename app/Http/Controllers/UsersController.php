@@ -86,7 +86,9 @@ class UsersController extends Controller
      */
     public function destroy(Request $request)
     {
-        User::find($request->user_id)->delete();
+        $user = User::find($request->user_id);
+        $user->is_activated = 0;
+        $user->save();
         return Redirect::route('admin-users');
     }
 
