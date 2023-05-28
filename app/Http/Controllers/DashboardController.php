@@ -55,10 +55,11 @@ class DashboardController extends Controller
     }
 
     public function getAllEmployerJobPosting(Request $request) {
-        $employer = Employer::where('user_id', $request->user['id'])->get();
+        $user = User::find($request->user['id'] ?? $request->id);
+        $employer = Employer::where('user_id', $user->id)->get();
 
-        if($request->user['role'] == 0) {
-            $employer = Employer::where('user_id',  $request->user['id'])->get()[0];
+        if($user->role == 0) {
+            $employer = Employer::where('user_id',  $user->id)->get()[0];
             $response = array();
             array_push($response, $employer->employer_vacancy_detail);
             array_push($response, $employer->employer_posting_detail);
