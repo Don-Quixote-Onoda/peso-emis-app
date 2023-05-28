@@ -42,7 +42,7 @@ export default function Welcome(props) {
                     <InputText
                         value={globalFilterValue}
                         onChange={onGlobalFilterChange}
-                        placeholder="Keyword Search"
+                        placeholder="Search for Job Posting"
                     />
                 </span>
             </div>
@@ -238,7 +238,7 @@ export default function Welcome(props) {
                             <h2>Job Posts</h2>
                             <p>Check out the latest Job Postings</p>
                             </div>
-                            <input type="text" name="" id="" className="w-80 form-control rounded-pill mr-1 pr-5" onChange={(e) => searchJobPosts(e)} placeholder="Search job posts" />
+                           
                         </div>
                         
                         <div className="card  mx-auto py-6 px-4 sm:px-6 lg:px-8">

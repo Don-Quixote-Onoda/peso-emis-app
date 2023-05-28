@@ -42,7 +42,7 @@ export default function Welcome(props) {
                     <InputText
                         value={globalFilterValue}
                         onChange={onGlobalFilterChange}
-                        placeholder="Keyword Search"
+                        placeholder="Search for Job Posting"
                     />
                 </span>
             </div>
