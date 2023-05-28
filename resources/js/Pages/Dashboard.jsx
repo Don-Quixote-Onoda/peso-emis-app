@@ -93,6 +93,8 @@ export default function Dashboard(props) {
     const [applicantMatches, setApplicantMatches] = useState([]);
 
     const fetchMatchingApplicants = (jobPostData) => {
+        console.log(jobPostData);
+
         return fetch(
             route("get-matching-applicants", [
                 jobPostData.position_title,
@@ -102,6 +104,9 @@ export default function Dashboard(props) {
             .then((response) => response.json())
             .then((data) => {
                 setType("show_applicants");
+                console.log('data');
+                console.log(data);
+                console.log('data');
                 // setJobPosts(data.employer_vacancy_detail);
                 setApplicantMatches(data);
             });

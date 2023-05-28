@@ -85,6 +85,7 @@ class DashboardController extends Controller
                     ->where('occupation', $postion_title);
             })
             ->get();
+            // return $postion_title;
 
             $response = array();
 
